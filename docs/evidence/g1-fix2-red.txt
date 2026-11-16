@@ -1,0 +1,19 @@
+
+Testing niki.optimizer.portfolio-test
+
+FAIL in (direct-risk-retains-intermediate-cancellation-residuals) (portfolio_test.clj:54)
+expected: (close? expected-risk (:sample-standard-deviation result))
+  actual: (not (close? 0.3535533905932738 0.0))
+
+FAIL in (direct-risk-retains-intermediate-cancellation-residuals) (portfolio_test.clj:55)
+expected: (close? expected-risk (second (:objectives result)))
+  actual: (not (close? 0.3535533905932738 0.0))
+
+Testing niki.optimizer.portfolio-reference-test
+
+Ran 13 tests containing 12156 assertions.
+2 failures, 0 errors.
+
+real	0m1.332s
+user	0m0.015s
+sys	0m0.015s

@@ -1,0 +1,140 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 335" width="174mm" height="76.7mm" font-family="Helvetica, Arial, sans-serif">
+  <rect x="0" y="0" width="760" height="335" fill="#ffffff"/>
+  <text x="58" y="18" font-size="10.5" font-weight="700" fill="#000000">(a) <tspan font-weight="600">NASDAQ-50 Portfolio (N=50, K=5, T=90)</tspan></text>
+  <rect x="58" y="26" width="305" height="228" fill="#ffffff" stroke="#000000" stroke-width="0.9"/>
+  <line x1="58" y1="254.00" x2="363" y2="254.00" stroke="#e0e0e0" stroke-width="0.7"/>
+  <text x="52" y="254.00" font-size="9" fill="#111111" text-anchor="end" dominant-baseline="middle">0.480</text>
+  <line x1="58" y1="208.40" x2="363" y2="208.40" stroke="#e0e0e0" stroke-width="0.7"/>
+  <text x="52" y="208.40" font-size="9" fill="#111111" text-anchor="end" dominant-baseline="middle">0.535</text>
+  <line x1="58" y1="162.80" x2="363" y2="162.80" stroke="#e0e0e0" stroke-width="0.7"/>
+  <text x="52" y="162.80" font-size="9" fill="#111111" text-anchor="end" dominant-baseline="middle">0.591</text>
+  <line x1="58" y1="117.20" x2="363" y2="117.20" stroke="#e0e0e0" stroke-width="0.7"/>
+  <text x="52" y="117.20" font-size="9" fill="#111111" text-anchor="end" dominant-baseline="middle">0.646</text>
+  <line x1="58" y1="71.60" x2="363" y2="71.60" stroke="#e0e0e0" stroke-width="0.7"/>
+  <text x="52" y="71.60" font-size="9" fill="#111111" text-anchor="end" dominant-baseline="middle">0.701</text>
+  <line x1="58" y1="26.00" x2="363" y2="26.00" stroke="#e0e0e0" stroke-width="0.7"/>
+  <text x="52" y="26.00" font-size="9" fill="#111111" text-anchor="end" dominant-baseline="middle">0.756</text>
+  <line x1="80.00" y1="26" x2="80.00" y2="254" stroke="#e0e0e0" stroke-width="0.7"/>
+  <text x="80.00" y="269" font-size="9" fill="#000000" text-anchor="middle">16</text>
+  <line x1="145.25" y1="26" x2="145.25" y2="254" stroke="#e0e0e0" stroke-width="0.7"/>
+  <text x="145.25" y="269" font-size="9" fill="#000000" text-anchor="middle">32</text>
+  <line x1="210.50" y1="26" x2="210.50" y2="254" stroke="#e0e0e0" stroke-width="0.7"/>
+  <text x="210.50" y="269" font-size="9" fill="#000000" text-anchor="middle">64</text>
+  <line x1="275.75" y1="26" x2="275.75" y2="254" stroke="#e0e0e0" stroke-width="0.7"/>
+  <text x="275.75" y="269" font-size="9" fill="#000000" text-anchor="middle">128</text>
+  <line x1="341.00" y1="26" x2="341.00" y2="254" stroke="#e0e0e0" stroke-width="0.7"/>
+  <text x="341.00" y="269" font-size="9" fill="#000000" text-anchor="middle">256</text>
+  <text x="210.50" y="285" font-size="9.5" fill="#000000" text-anchor="middle">Solution Evaluations B (log scale)</text>
+  <text x="16" y="140.00" font-size="9.5" fill="#000000" text-anchor="middle" transform="rotate(-90 16 140.00)">Mean Test Normalized HV</text>
+  <polyline points="80.00,198.45 145.25,143.63 210.50,98.68 275.75,68.08 341.00,47.85" fill="none" stroke="#1f77b4" stroke-width="1.6"/>
+  <circle cx="80.00" cy="198.45" r="2.90" fill="#1f77b4" stroke="#145380" stroke-width="0.90"/>
+  <circle cx="145.25" cy="143.63" r="2.90" fill="#1f77b4" stroke="#145380" stroke-width="0.90"/>
+  <circle cx="210.50" cy="98.68" r="2.90" fill="#1f77b4" stroke="#145380" stroke-width="0.90"/>
+  <circle cx="275.75" cy="68.08" r="2.90" fill="#1f77b4" stroke="#145380" stroke-width="0.90"/>
+  <circle cx="341.00" cy="47.85" r="2.90" fill="#1f77b4" stroke="#145380" stroke-width="0.90"/>
+  <polyline points="80.00,237.52 145.25,207.39 210.50,160.63 275.75,78.89 341.00,46.82" fill="none" stroke="#ff7f0e" stroke-width="1.6" stroke-dasharray="6,2"/>
+  <rect x="77.10" y="234.62" width="5.80" height="5.80" fill="#ff7f0e" stroke="#b85800" stroke-width="0.90"/>
+  <rect x="142.35" y="204.49" width="5.80" height="5.80" fill="#ff7f0e" stroke="#b85800" stroke-width="0.90"/>
+  <rect x="207.60" y="157.73" width="5.80" height="5.80" fill="#ff7f0e" stroke="#b85800" stroke-width="0.90"/>
+  <rect x="272.85" y="75.99" width="5.80" height="5.80" fill="#ff7f0e" stroke="#b85800" stroke-width="0.90"/>
+  <rect x="338.10" y="43.92" width="5.80" height="5.80" fill="#ff7f0e" stroke="#b85800" stroke-width="0.90"/>
+  <polyline points="80.00,208.43 145.25,152.02 210.50,104.98 275.75,68.65 341.00,42.48" fill="none" stroke="#2ca02c" stroke-width="1.6" stroke-dasharray="2,2"/>
+  <polygon points="80.00,204.81 83.63,208.43 80.00,212.06 76.38,208.43" fill="#2ca02c" stroke="#1b661b" stroke-width="0.90"/>
+  <polygon points="145.25,148.40 148.88,152.02 145.25,155.65 141.63,152.02" fill="#2ca02c" stroke="#1b661b" stroke-width="0.90"/>
+  <polygon points="210.50,101.36 214.13,104.98 210.50,108.61 206.88,104.98" fill="#2ca02c" stroke="#1b661b" stroke-width="0.90"/>
+  <polygon points="275.75,65.03 279.38,68.65 275.75,72.28 272.13,68.65" fill="#2ca02c" stroke="#1b661b" stroke-width="0.90"/>
+  <polygon points="341.00,38.86 344.63,42.48 341.00,46.11 337.38,42.48" fill="#2ca02c" stroke="#1b661b" stroke-width="0.90"/>
+  <polyline points="80.00,208.43 145.25,162.62 210.50,119.95 275.75,77.94 341.00,44.48" fill="none" stroke="#9467bd" stroke-width="1.6" stroke-dasharray="5,2,1,2"/>
+  <polygon points="80.00,204.95 83.19,211.04 76.81,211.04" fill="#9467bd" stroke="#5e3c7d" stroke-width="0.90"/>
+  <polygon points="145.25,159.14 148.44,165.23 142.06,165.23" fill="#9467bd" stroke="#5e3c7d" stroke-width="0.90"/>
+  <polygon points="210.50,116.47 213.69,122.56 207.31,122.56" fill="#9467bd" stroke="#5e3c7d" stroke-width="0.90"/>
+  <polygon points="275.75,74.46 278.94,80.55 272.56,80.55" fill="#9467bd" stroke="#5e3c7d" stroke-width="0.90"/>
+  <polygon points="341.00,41.00 344.19,47.09 337.81,47.09" fill="#9467bd" stroke="#5e3c7d" stroke-width="0.90"/>
+  <polyline points="80.00,211.42 145.25,168.49 210.50,137.11 275.75,101.45 341.00,65.23" fill="none" stroke="#d62728" stroke-width="1.6" stroke-dasharray="3,3"/>
+  <polygon points="80.00,207.94 83.19,214.03 76.81,214.03" fill="#d62728" stroke="#8c1919" stroke-width="0.90"/>
+  <polygon points="145.25,165.01 148.44,171.10 142.06,171.10" fill="#d62728" stroke="#8c1919" stroke-width="0.90"/>
+  <polygon points="210.50,133.63 213.69,139.72 207.31,139.72" fill="#d62728" stroke="#8c1919" stroke-width="0.90"/>
+  <polygon points="275.75,97.97 278.94,104.06 272.56,104.06" fill="#d62728" stroke="#8c1919" stroke-width="0.90"/>
+  <polygon points="341.00,61.75 344.19,67.84 337.81,67.84" fill="#d62728" stroke="#8c1919" stroke-width="0.90"/>
+  <polyline points="80.00,215.35 145.25,187.16 210.50,167.76 275.75,149.42 341.00,130.98" fill="none" stroke="#7f7f7f" stroke-width="1.6" stroke-dasharray="1.5,2.5"/>
+  <path d="M 77.10,212.45 L 82.90,218.25 M 77.10,218.25 L 82.90,212.45" stroke="#7f7f7f" stroke-opacity="1.00" stroke-width="0.90"/>
+  <path d="M 142.35,184.26 L 148.15,190.06 M 142.35,190.06 L 148.15,184.26" stroke="#7f7f7f" stroke-opacity="1.00" stroke-width="0.90"/>
+  <path d="M 207.60,164.86 L 213.40,170.66 M 207.60,170.66 L 213.40,164.86" stroke="#7f7f7f" stroke-opacity="1.00" stroke-width="0.90"/>
+  <path d="M 272.85,146.52 L 278.65,152.32 M 272.85,152.32 L 278.65,146.52" stroke="#7f7f7f" stroke-opacity="1.00" stroke-width="0.90"/>
+  <path d="M 338.10,128.08 L 343.90,133.88 M 338.10,133.88 L 343.90,128.08" stroke="#7f7f7f" stroke-opacity="1.00" stroke-width="0.90"/>
+  <text x="435" y="18" font-size="10.5" font-weight="700" fill="#000000">(b) <tspan font-weight="600">OR-Library wt40 Scheduling (40 Jobs)</tspan></text>
+  <rect x="435" y="26" width="305" height="228" fill="#ffffff" stroke="#000000" stroke-width="0.9"/>
+  <line x1="435" y1="254.00" x2="740" y2="254.00" stroke="#e0e0e0" stroke-width="0.7"/>
+  <text x="429" y="254.00" font-size="9" fill="#111111" text-anchor="end" dominant-baseline="middle">0.370</text>
+  <line x1="435" y1="208.40" x2="740" y2="208.40" stroke="#e0e0e0" stroke-width="0.7"/>
+  <text x="429" y="208.40" font-size="9" fill="#111111" text-anchor="end" dominant-baseline="middle">0.407</text>
+  <line x1="435" y1="162.80" x2="740" y2="162.80" stroke="#e0e0e0" stroke-width="0.7"/>
+  <text x="429" y="162.80" font-size="9" fill="#111111" text-anchor="end" dominant-baseline="middle">0.445</text>
+  <line x1="435" y1="117.20" x2="740" y2="117.20" stroke="#e0e0e0" stroke-width="0.7"/>
+  <text x="429" y="117.20" font-size="9" fill="#111111" text-anchor="end" dominant-baseline="middle">0.482</text>
+  <line x1="435" y1="71.60" x2="740" y2="71.60" stroke="#e0e0e0" stroke-width="0.7"/>
+  <text x="429" y="71.60" font-size="9" fill="#111111" text-anchor="end" dominant-baseline="middle">0.519</text>
+  <line x1="435" y1="26.00" x2="740" y2="26.00" stroke="#e0e0e0" stroke-width="0.7"/>
+  <text x="429" y="26.00" font-size="9" fill="#111111" text-anchor="end" dominant-baseline="middle">0.556</text>
+  <line x1="457.00" y1="26" x2="457.00" y2="254" stroke="#e0e0e0" stroke-width="0.7"/>
+  <text x="457.00" y="269" font-size="9" fill="#000000" text-anchor="middle">16</text>
+  <line x1="522.25" y1="26" x2="522.25" y2="254" stroke="#e0e0e0" stroke-width="0.7"/>
+  <text x="522.25" y="269" font-size="9" fill="#000000" text-anchor="middle">32</text>
+  <line x1="587.50" y1="26" x2="587.50" y2="254" stroke="#e0e0e0" stroke-width="0.7"/>
+  <text x="587.50" y="269" font-size="9" fill="#000000" text-anchor="middle">64</text>
+  <line x1="652.75" y1="26" x2="652.75" y2="254" stroke="#e0e0e0" stroke-width="0.7"/>
+  <text x="652.75" y="269" font-size="9" fill="#000000" text-anchor="middle">128</text>
+  <line x1="718.00" y1="26" x2="718.00" y2="254" stroke="#e0e0e0" stroke-width="0.7"/>
+  <text x="718.00" y="269" font-size="9" fill="#000000" text-anchor="middle">256</text>
+  <text x="587.50" y="285" font-size="9.5" fill="#000000" text-anchor="middle">Solution Evaluations B (log scale)</text>
+  <text x="393" y="140.00" font-size="9.5" fill="#000000" text-anchor="middle" transform="rotate(-90 393 140.00)">Mean Test Normalized HV</text>
+  <polyline points="457.00,223.43 522.25,187.00 587.50,137.08 652.75,83.94 718.00,45.21" fill="none" stroke="#1f77b4" stroke-width="1.6"/>
+  <circle cx="457.00" cy="223.43" r="2.90" fill="#1f77b4" stroke="#145380" stroke-width="0.90"/>
+  <circle cx="522.25" cy="187.00" r="2.90" fill="#1f77b4" stroke="#145380" stroke-width="0.90"/>
+  <circle cx="587.50" cy="137.08" r="2.90" fill="#1f77b4" stroke="#145380" stroke-width="0.90"/>
+  <circle cx="652.75" cy="83.94" r="2.90" fill="#1f77b4" stroke="#145380" stroke-width="0.90"/>
+  <circle cx="718.00" cy="45.21" r="2.90" fill="#1f77b4" stroke="#145380" stroke-width="0.90"/>
+  <polyline points="457.00,235.62 522.25,205.27 587.50,149.68 652.75,87.39 718.00,44.38" fill="none" stroke="#ff7f0e" stroke-width="1.6" stroke-dasharray="6,2"/>
+  <rect x="454.10" y="232.72" width="5.80" height="5.80" fill="#ff7f0e" stroke="#b85800" stroke-width="0.90"/>
+  <rect x="519.35" y="202.37" width="5.80" height="5.80" fill="#ff7f0e" stroke="#b85800" stroke-width="0.90"/>
+  <rect x="584.60" y="146.78" width="5.80" height="5.80" fill="#ff7f0e" stroke="#b85800" stroke-width="0.90"/>
+  <rect x="649.85" y="84.49" width="5.80" height="5.80" fill="#ff7f0e" stroke="#b85800" stroke-width="0.90"/>
+  <rect x="715.10" y="41.48" width="5.80" height="5.80" fill="#ff7f0e" stroke="#b85800" stroke-width="0.90"/>
+  <polyline points="457.00,219.36 522.25,177.93 587.50,129.57 652.75,84.79 718.00,48.32" fill="none" stroke="#2ca02c" stroke-width="1.6" stroke-dasharray="2,2"/>
+  <polygon points="457.00,215.74 460.63,219.36 457.00,222.99 453.38,219.36" fill="#2ca02c" stroke="#1b661b" stroke-width="0.90"/>
+  <polygon points="522.25,174.30 525.88,177.93 522.25,181.55 518.63,177.93" fill="#2ca02c" stroke="#1b661b" stroke-width="0.90"/>
+  <polygon points="587.50,125.94 591.13,129.57 587.50,133.19 583.88,129.57" fill="#2ca02c" stroke="#1b661b" stroke-width="0.90"/>
+  <polygon points="652.75,81.16 656.38,84.79 652.75,88.41 649.13,84.79" fill="#2ca02c" stroke="#1b661b" stroke-width="0.90"/>
+  <polygon points="718.00,44.70 721.63,48.32 718.00,51.95 714.38,48.32" fill="#2ca02c" stroke="#1b661b" stroke-width="0.90"/>
+  <polyline points="457.00,209.94 522.25,185.16 587.50,147.66 652.75,102.73 718.00,61.22" fill="none" stroke="#9467bd" stroke-width="1.6" stroke-dasharray="5,2,1,2"/>
+  <polygon points="457.00,206.46 460.19,212.55 453.81,212.55" fill="#9467bd" stroke="#5e3c7d" stroke-width="0.90"/>
+  <polygon points="522.25,181.68 525.44,187.77 519.06,187.77" fill="#9467bd" stroke="#5e3c7d" stroke-width="0.90"/>
+  <polygon points="587.50,144.18 590.69,150.27 584.31,150.27" fill="#9467bd" stroke="#5e3c7d" stroke-width="0.90"/>
+  <polygon points="652.75,99.25 655.94,105.34 649.56,105.34" fill="#9467bd" stroke="#5e3c7d" stroke-width="0.90"/>
+  <polygon points="718.00,57.74 721.19,63.83 714.81,63.83" fill="#9467bd" stroke="#5e3c7d" stroke-width="0.90"/>
+  <polyline points="457.00,227.00 522.25,190.04 587.50,145.01 652.75,102.63 718.00,73.58" fill="none" stroke="#d62728" stroke-width="1.6" stroke-dasharray="3,3"/>
+  <polygon points="457.00,223.52 460.19,229.61 453.81,229.61" fill="#d62728" stroke="#8c1919" stroke-width="0.90"/>
+  <polygon points="522.25,186.56 525.44,192.65 519.06,192.65" fill="#d62728" stroke="#8c1919" stroke-width="0.90"/>
+  <polygon points="587.50,141.53 590.69,147.62 584.31,147.62" fill="#d62728" stroke="#8c1919" stroke-width="0.90"/>
+  <polygon points="652.75,99.15 655.94,105.24 649.56,105.24" fill="#d62728" stroke="#8c1919" stroke-width="0.90"/>
+  <polygon points="718.00,70.10 721.19,76.19 714.81,76.19" fill="#d62728" stroke="#8c1919" stroke-width="0.90"/>
+  <polyline points="457.00,199.67 522.25,186.05 587.50,173.71 652.75,163.33 718.00,154.83" fill="none" stroke="#7f7f7f" stroke-width="1.6" stroke-dasharray="1.5,2.5"/>
+  <path d="M 454.10,196.77 L 459.90,202.57 M 454.10,202.57 L 459.90,196.77" stroke="#7f7f7f" stroke-opacity="1.00" stroke-width="0.90"/>
+  <path d="M 519.35,183.15 L 525.15,188.95 M 519.35,188.95 L 525.15,183.15" stroke="#7f7f7f" stroke-opacity="1.00" stroke-width="0.90"/>
+  <path d="M 584.60,170.81 L 590.40,176.61 M 584.60,176.61 L 590.40,170.81" stroke="#7f7f7f" stroke-opacity="1.00" stroke-width="0.90"/>
+  <path d="M 649.85,160.43 L 655.65,166.23 M 649.85,166.23 L 655.65,160.43" stroke="#7f7f7f" stroke-opacity="1.00" stroke-width="0.90"/>
+  <path d="M 715.10,151.93 L 720.90,157.73 M 715.10,157.73 L 720.90,151.93" stroke="#7f7f7f" stroke-opacity="1.00" stroke-width="0.90"/>
+  <rect x="58" y="295" width="682" height="26" fill="#ffffff" stroke="#cccccc" stroke-width="0.8"/>
+  <circle cx="72.00" cy="308.00" r="3.00" fill="#1f77b4" stroke="#145380" stroke-width="0.90"/>
+  <text x="80" y="309" font-size="8.5" fill="#000000" dominant-baseline="middle">A1: GP-Mixed (v2)</text>
+  <rect x="181.00" y="305.00" width="6.00" height="6.00" fill="#ff7f0e" stroke="#b85800" stroke-width="0.90"/>
+  <text x="192" y="309" font-size="8.5" fill="#000000" dominant-baseline="middle">A2: GP-Mut (v2)</text>
+  <polygon points="296.00,304.25 299.75,308.00 296.00,311.75 292.25,308.00" fill="#2ca02c" stroke="#1b661b" stroke-width="0.90"/>
+  <text x="304" y="309" font-size="8.5" fill="#000000" dominant-baseline="middle">A4: Formula-Only</text>
+  <polygon points="408.00,304.40 411.30,310.70 404.70,310.70" fill="#9467bd" stroke="#5e3c7d" stroke-width="0.90"/>
+  <text x="416" y="309" font-size="8.5" fill="#000000" dominant-baseline="middle">A5: Conventional</text>
+  <polygon points="520.00,304.40 523.30,310.70 516.70,310.70" fill="#d62728" stroke="#8c1919" stroke-width="0.90"/>
+  <text x="528" y="309" font-size="8.5" fill="#000000" dominant-baseline="middle">A1: GP-Mixed (v1)</text>
+  <path d="M 629.00,305.00 L 635.00,311.00 M 629.00,311.00 L 635.00,305.00" stroke="#7f7f7f" stroke-opacity="1.00" stroke-width="0.90"/>
+  <text x="640" y="309" font-size="8.5" fill="#000000" dominant-baseline="middle">Random Search</text>
+</svg>

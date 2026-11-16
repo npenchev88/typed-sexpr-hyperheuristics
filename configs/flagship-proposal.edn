@@ -1,0 +1,62 @@
+;; Protocol data only. There is no experiment runner for this schema yet.
+;; Values are proposed, not a preregistration or authorization to launch.
+{:schema-version 1
+ :protocol-version "1.2"
+ :status :proposal
+ :confirmatory-ready? false
+ :launch-authorized? false
+ :domains {:portfolio {:representation :exact-k-subset
+                       :n 50 :k 5 :history-returns 365
+                       :objectives [:negative-mean-return :sample-standard-deviation]
+                       :exact-oracle {:n 15 :k 5 :feasible-count 3003}
+                       :universe-status :pending-point-in-time-audit}
+           :scheduling {:representation :permutation
+                        :jobs 30
+                        :objectives [:mean-completion-time :total-tardiness]
+                        :exact-oracle {:jobs 7 :feasible-count 5040}
+                        :generator {:duration-range [1 100]
+                                    :tardiness-factors [0.2 0.5 0.8]
+                                    :due-date-ranges [0.2 0.6]}}}
+ :arms [:gp-mixed :gp-mutation-only :random-dsl :formula-only :configured-conventional]
+ :outer {:independent-runs 30
+         :assessment-slots 256
+         :initial-population 32
+         :offspring-batches 7
+         :offspring-per-batch 32
+         :construction-attempts-per-slot 10
+         :duplicate-consumes-slot? true
+         :failed-slot-consumes-slot? true
+         :mixed-crossover-probability 0.5
+         :selection-objectives [:negative-mean-normalized-hv :ast-node-count]}
+ :train {:tasks-per-domain 6 :inner-seeds 2 :solution-proposals 256}
+ :validation {:max-finalists 8 :tasks-per-domain 6 :inner-seeds 2
+              :solution-proposals 256
+              :selector :maximum-mean-normalized-hv
+              :tie-breakers [:ast-node-count :canonical-id]}
+ :test {:tasks-per-domain 24 :inner-seeds 10 :solution-proposals 256
+        :holdout-status :not-locked
+        :pool-archives-across-seeds? false}
+ :indicator {:primary :normalized-hv
+             :directions [:min :min]
+             :bounds :instance-derived-analytic
+             :reference [1.05 1.05]
+             :normalizer 1.1025
+             :constant-coordinate-value 0.0
+             :absolute-practical-margin 0.01}
+ :failure-policy {:method-failure-score 0.0
+                  :infrastructure-rerun :identical-seed-with-audit-record}
+ :resource-policy {:charge-duplicates? true
+                   :objective-aware-neighbor-scans :charge-each-candidate
+                   :objective-computations :log-separately
+                   :interpreter-fuel :pending-pilot
+                   :worker-timeout :pending-pilot
+                   :worker-memory-limit :pending-pilot
+                   :start-workers 1}
+ :confirmation-gates [:numeric-oracles :runtime-budget-audit :typed-variation-properties
+                      :point-in-time-data-audit :historical-exposure-disclosure
+                      :strong-baseline-audit :frozen-core-scheduling-reuse
+                      :pilot-precision-and-cost :preregistered-analysis :compute-approval]
+ :budget-ceilings {:training 235929600 :validation 7372800 :test 18432000
+                  :subtotal 261734400
+                  :excluded [:direct-controls :exact-references :secondary-ablations
+                             :matched-time-comparisons :preprocessing :diagnostics]}}

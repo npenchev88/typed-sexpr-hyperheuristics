@@ -1,0 +1,19 @@
+
+Testing niki.optimizer.portfolio-test
+
+FAIL in (root-panel-must-be-a-map-without-realizing-sequences) (portfolio_test.clj:91)
+expected: (= :invalid-panel (error-code (list :k 1 :assets (:assets valid))))
+  actual: (not (= :invalid-panel :accepted))
+
+FAIL in (root-panel-must-be-a-map-without-realizing-sequences) (portfolio_test.clj:92)
+expected: (= :invalid-panel (error-code poison))
+  actual: (not (= :invalid-panel nil))
+
+FAIL in (root-panel-must-be-a-map-without-realizing-sequences) (portfolio_test.clj:93)
+expected: (false? (clojure.core/deref realized?))
+  actual: (not (false? true))
+
+Testing niki.optimizer.portfolio-reference-test
+
+Ran 14 tests containing 12159 assertions.
+3 failures, 0 errors.

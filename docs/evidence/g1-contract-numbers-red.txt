@@ -1,0 +1,23 @@
+
+Testing niki.optimizer.portfolio-test
+
+FAIL in (returns-accept-only-standard-immutable-numbers) (portfolio_test.clj:111)
+expected: (thrown? clojure.lang.ExceptionInfo (portfolio/prepare-instance (fixture 1 [[value 0]])))
+  actual: nil
+
+FAIL in (returns-accept-only-standard-immutable-numbers) (portfolio_test.clj:111)
+expected: (thrown? clojure.lang.ExceptionInfo (portfolio/prepare-instance (fixture 1 [[value 0]])))
+  actual: nil
+
+FAIL in (returns-accept-only-standard-immutable-numbers) (portfolio_test.clj:111)
+expected: (thrown? clojure.lang.ExceptionInfo (portfolio/prepare-instance (fixture 1 [[value 0]])))
+  actual: nil
+
+FAIL in (returns-accept-only-standard-immutable-numbers) (portfolio_test.clj:111)
+expected: (thrown? clojure.lang.ExceptionInfo (portfolio/prepare-instance (fixture 1 [[value 0]])))
+  actual: nil
+
+Testing niki.optimizer.portfolio-reference-test
+
+Ran 16 tests containing 12191 assertions.
+4 failures, 0 errors.

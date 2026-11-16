@@ -1,0 +1,20 @@
+{
+  "recorded_at": "2026-11-01T18:34:32.013660+00:00",
+  "files": [
+    {
+      "file": "docs/input/optimizer_methodology_extension_bg.pdf",
+      "bytes": 247189,
+      "sha256": "1be87a6ea50b1a3094807298f6bf16954fde7da7145a368ca8a93fe573d4f1c7"
+    },
+    {
+      "file": "docs/input/typed_clojure_portfolio_plan_bg.pdf",
+      "bytes": 772905,
+      "sha256": "8d9374c960add61048cba804963d920399d0eb90d240b511e6233f0d602c916e"
+    },
+    {
+      "file": "docs/input/mccarthy-recursive.pdf",
+      "bytes": 219563,
+      "sha256": "3d981849e59505eff3f14397a177b409f5d978d43d114bdd67c956e74320fc92"
+    }
+  ]
+}

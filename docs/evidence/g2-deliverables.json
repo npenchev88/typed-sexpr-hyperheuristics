@@ -1,0 +1,208 @@
+{
+  "recorded_at": "2026-11-07T20:32:28.968934+00:00",
+  "status": "completed",
+  "gates": [
+    "G1-contract-corrections",
+    "G2"
+  ],
+  "scope": "Synthetic correctness infrastructure only; no performance rewrite or optimizer experiment",
+  "reviewed_source_unchanged": true,
+  "confirmatory_launch_authorized": false,
+  "supersedes_current_state_manifest": "docs/evidence/g1-deliverables.json",
+  "historical_g1_manifest_preserved": true,
+  "suite_counts": [
+    [
+      "19",
+      "12227"
+    ],
+    [
+      "19",
+      "12227"
+    ],
+    [
+      "9",
+      "6466"
+    ],
+    [
+      "9",
+      "6466"
+    ],
+    [
+      "62",
+      "191"
+    ],
+    [
+      "62",
+      "191"
+    ],
+    [
+      "4",
+      "23"
+    ]
+  ],
+  "synthetic_portfolios": 3003,
+  "front_rows": 13,
+  "normalized_hypervolume": 0.7786491221991364,
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 4943,
+      "sha256": "7858d7a186fb6545c4acb3115f446986b7a22599a53285bb9ad66e9a13bbf15a"
+    },
+    {
+      "path": "configs/flagship-proposal.edn",
+      "bytes": 3344,
+      "sha256": "22269e7bfd9ae336acff27654b9cb2e274b53d88c9023817c626ca5d39359aab"
+    },
+    {
+      "path": "deps.edn",
+      "bytes": 975,
+      "sha256": "5d704bec3346587e056bdca04161b2f174d31a9f4f028f4cdd12a1dd37a8ce07"
+    },
+    {
+      "path": "docs/DECISIONS.md",
+      "bytes": 4837,
+      "sha256": "0f6e073d0e2504daaeadd7af16a7d10bed3b716bd3d8f3b271169ec3e4faf50b"
+    },
+    {
+      "path": "docs/FINAL_EXPERIMENT_PLAN.md",
+      "bytes": 45839,
+      "sha256": "c01bbd4b66eec258290258bb22e7d721236d080dfdb667458ba8cc68a94aef95"
+    },
+    {
+      "path": "docs/G1_STATUS.md",
+      "bytes": 9043,
+      "sha256": "1efa301100edb51d60ab1fbfcbea49bb701f4ab16e8b11f5123f2dda4f023f0c"
+    },
+    {
+      "path": "docs/G2_STATUS.md",
+      "bytes": 7526,
+      "sha256": "42cad69ac6c21928f93495117737ac683979c1a39f334609f7244508a32bf45f"
+    },
+    {
+      "path": "docs/evidence/g1-contract-fix.json",
+      "bytes": 6650,
+      "sha256": "1da59747f19719fa5a783b3e5274189806b9786f60a03762f5388ea01fe0a1a3"
+    },
+    {
+      "path": "docs/evidence/g1-objectives.csv",
+      "bytes": 577447,
+      "sha256": "389d94bce1cec663d41a576d115c20d08cec9f8d36b3841d071f46873e24f06e"
+    },
+    {
+      "path": "docs/evidence/g1-python-crosscheck.json",
+      "bytes": 427,
+      "sha256": "0385a798e360afdc4988cebfa41e860bd469e7de286ce9503a234d99f214cb88"
+    },
+    {
+      "path": "docs/evidence/g1-verification.edn",
+      "bytes": 657,
+      "sha256": "052c1bc0d7d08162835b2d068914a68e00014beb9fdcc2bb6b9b793eee406ef0"
+    },
+    {
+      "path": "docs/evidence/g2-code-review.json",
+      "bytes": 688,
+      "sha256": "cf02219bc1643dcf135f8431b88bdc0e5af63693e47c58c4f3535ef284d80834"
+    },
+    {
+      "path": "docs/evidence/g2-front.csv",
+      "bytes": 1243,
+      "sha256": "9aca5960b49622360715d77b1ea550b423556157dbcea0a6b188dab21483e9ea"
+    },
+    {
+      "path": "docs/evidence/g2-python-crosscheck.json",
+      "bytes": 379,
+      "sha256": "20005b4a93dcea65501858b401aca084945c61677df36624de6907bb6ae9e77e"
+    },
+    {
+      "path": "docs/evidence/g2-regression.txt",
+      "bytes": 3893,
+      "sha256": "063a267fb7a56424744dc5f25ea479174faac051ce36063ef51925e127b535f7"
+    },
+    {
+      "path": "docs/evidence/g2-review.diff",
+      "bytes": 65811,
+      "sha256": "43cc3490212d508ad240450df882659003c6f8e488d3fff41228629b359a6243"
+    },
+    {
+      "path": "docs/evidence/g2-static-scan.json",
+      "bytes": 1749,
+      "sha256": "691dd8f3ac939ad936ee2c4229179c6c1943217200fb0a1b5f9f8a437b4674bc"
+    },
+    {
+      "path": "docs/evidence/g2-verification.edn",
+      "bytes": 644,
+      "sha256": "2a341bda98a80c24ea83269a811bd1e7dd0654bd4e0cf3758eb313c13bce7015"
+    },
+    {
+      "path": "environment.lock.json",
+      "bytes": 2290,
+      "sha256": "0a2b9b0dc5f50453f2823b5b34fede16c9a7bfda14a53e31d5cf6dd6c1c052ad"
+    },
+    {
+      "path": "resources/fixtures/g1-portfolio.edn",
+      "bytes": 4341,
+      "sha256": "fb6c44113ce3d0a29a77b8998b120448710b16512455639b6e4279faa6fef758"
+    },
+    {
+      "path": "scripts/validate-protocol.clj",
+      "bytes": 3392,
+      "sha256": "83185a579616d5e5c4e919614623398063e3cef0733c0e2aa13665d087f3bfff"
+    },
+    {
+      "path": "scripts/verify-g1.clj",
+      "bytes": 4295,
+      "sha256": "345e3d0228535b8c5ce534e35d0b57f5eb1ac0d4294fc801dfaecf3c4ecc5e1a"
+    },
+    {
+      "path": "scripts/verify-g2.clj",
+      "bytes": 3588,
+      "sha256": "6b3ab782325d05abfe79266f95fa720d51ea4daa302bd302a3ee63b629d88b80"
+    },
+    {
+      "path": "src/niki/optimizer/pareto.clj",
+      "bytes": 7166,
+      "sha256": "57a723b8d9e04ef9543ffafec63364e932c0c9013b1dc3dcceda703c481a4b8a"
+    },
+    {
+      "path": "src/niki/optimizer/portfolio.clj",
+      "bytes": 6950,
+      "sha256": "1dd825d299d2b69d05f78a28bb0cf9a5895c6d68f22d9120655eafb1b5b84148"
+    },
+    {
+      "path": "src/niki/optimizer/portfolio_reference.clj",
+      "bytes": 3783,
+      "sha256": "969066b2fb045fa53f031c6f40e6ce9022398a3c320813904692e1ec6863726e"
+    },
+    {
+      "path": "test/niki/optimizer/g2_test_runner.clj",
+      "bytes": 280,
+      "sha256": "77af2ac31785fa04a3ea56b08c1c9001f7d7856a9dfa4ec1fd07a4c26adb113f"
+    },
+    {
+      "path": "test/niki/optimizer/pareto_reference.clj",
+      "bytes": 1315,
+      "sha256": "1134ba9244faf1c840742ae759519e6b8a703ada7ceb71d3a842bbb7bccdd31f"
+    },
+    {
+      "path": "test/niki/optimizer/pareto_test.clj",
+      "bytes": 9625,
+      "sha256": "fe09ba4f1eccdf3ca3f70472c460883e543d8deb4e746ffc9a75125a77451061"
+    },
+    {
+      "path": "test/niki/optimizer/portfolio_reference_test.clj",
+      "bytes": 9247,
+      "sha256": "43bb0af7b7041e8ffc59aac64ee77090c409f3e1867fa8efaf9cb9ceee471fe0"
+    },
+    {
+      "path": "test/niki/optimizer/portfolio_test.clj",
+      "bytes": 8086,
+      "sha256": "17aa598397af9a028ef73226ddb67af7190879bd14440d617ae15316b8557262"
+    },
+    {
+      "path": "test/niki/optimizer/test_runner.clj",
+      "bytes": 434,
+      "sha256": "7888a70b87708a1254d41993034fde5648b8f2b97e7127902f4998a2db6eda46"
+    }
+  ]
+}

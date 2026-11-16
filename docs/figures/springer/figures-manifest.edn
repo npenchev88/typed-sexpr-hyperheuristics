@@ -1,0 +1,64 @@
+{:generated-at "2026-11-16T18:00:07.431295100Z",
+ :publisher-target
+ "Springer (LNCS llncs.cls 122mm / Springer Nature sn-jnl.cls 174mm)",
+ :typography
+ {:font-family "Helvetica, Arial, sans-serif",
+  :code-font-family "Consolas, monospace",
+  :panel-labels "Bold lowercase (a), (b), (c), (d)",
+  :print-caption-mode true},
+ :accessibility
+ {:palette "Okabe-Ito colorblind-safe",
+  :grayscale-encodings
+  "Distinct geometric markers (:circle, :triangle, :square, :diamond, :cross) + stroke-dasharray"},
+ :source-evidence
+ {:primary-arms "docs/evidence/g8-thirty-replications-results.edn",
+  :budget-scaling "docs/evidence/budget-scaling-ablation-results.edn",
+  :ast-knockout "docs/evidence/ast-knockout-ablation-results.edn",
+  :cache-ablation "docs/evidence/cache-ablation-results.edn",
+  :typed-vs-untyped
+  "docs/evidence/typed-vs-untyped-ablation-results.edn"},
+ :figures
+ [{:id :fig1,
+   :file "docs/figures/springer/fig1_architecture_and_dsl.svg",
+   :viewBox [0 0 760 300],
+   :width-mm 174.0,
+   :height-mm 68.7,
+   :description
+   "System Architecture, 6-Role Typed DSL, Dual Resource Ledger, and Domain Adapters"}
+  {:id :fig2,
+   :file "docs/figures/springer/fig2_pareto_fronts_2panel.svg",
+   :viewBox [0 0 760 345],
+   :width-mm 174.0,
+   :height-mm 79.0,
+   :description
+   "2-Panel Portfolio & Scheduling Pareto Fronts with Smooth Monotone Cubic Curve + Shaded HV Step Region"}
+  {:id :fig3,
+   :file "docs/figures/springer/fig3_five_arms_and_prior_ablation.svg",
+   :viewBox [0 0 760 330],
+   :width-mm 174.0,
+   :height-mm 75.5,
+   :description
+   "2-Panel Five Search Arms & Generator Prior Ablation (:development-only-v1 vs :budget-aware-v2, N=30 seeds)"}
+  {:id :fig4,
+   :file "docs/figures/springer/fig4_anytime_budget_scaling.svg",
+   :viewBox [0 0 760 335],
+   :width-mm 174.0,
+   :height-mm 76.7,
+   :description
+   "2-Panel Anytime Proposal-Budget Scaling Trajectory B in {16, 32, 64, 128, 256}"}
+  {:id :fig5,
+   :file "docs/figures/springer/fig5_mechanism_ablations_3panel.svg",
+   :viewBox [0 0 760 305],
+   :width-mm 174.0,
+   :height-mm 69.8,
+   :description
+   "3-Panel Secondary Mechanism Ablations: (a) Typed vs Untyped Hit Rate, (b) Surgical AST Knockouts, (c) Cache Eval Savings"}
+  {:id :fig6,
+   :file
+   "docs/figures/springer/fig6_meta_evolution_and_ast_structure.svg",
+   :viewBox [0 0 760 325],
+   :width-mm 174.0,
+   :height-mm 74.4,
+   :description
+   "2-Panel 30-Seed Meta-Evolution Batch Trajectory & Final AST Feature Tally"}],
+ :latex-companion "docs/figures/springer/springer_figures.tex"}

@@ -1,0 +1,3652 @@
+Clojure 1.12.5 standalone shape validation slice2
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :check :domain :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :check :domain :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :check :domain :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :check :domain :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :check :domain :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :check :domain :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :check :body-form-tag :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :check :body-form-tag :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :check :body-form-tag :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :check :body-form-tag :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :check :body-form-tag :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :check :body-form-tag :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :check :nested-operation-tag :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :check :nested-operation-tag :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :check :nested-operation-tag :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :check :nested-operation-tag :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :check :nested-operation-tag :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :check :nested-operation-tag :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :check :nested-count-tag :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :check :nested-count-tag :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :check :nested-count-tag :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :check :nested-count-tag :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :check :nested-count-tag :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :check :nested-count-tag :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :check :nested-initializer-tag :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :check :nested-initializer-tag :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :check :nested-initializer-tag :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :check :nested-initializer-tag :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :check :nested-initializer-tag :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :check :nested-initializer-tag :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :check :nested-operator-tag :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :check :nested-operator-tag :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :check :nested-operator-tag :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :check :nested-operator-tag :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :check :nested-operator-tag :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :check :nested-operator-tag :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :check :nested-score-tag :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :check :nested-score-tag :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :check :nested-score-tag :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :check :nested-score-tag :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :check :nested-score-tag :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :check :nested-score-tag :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :check :nested-predicate-tag :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :check :nested-predicate-tag :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :check :nested-predicate-tag :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :check :nested-predicate-tag :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :check :nested-predicate-tag :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :check :nested-predicate-tag :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :check :initializer-payload :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :check :initializer-payload :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :check :initializer-payload :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :check :initializer-payload :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :check :initializer-payload :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :check :initializer-payload :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :check :operator-payload :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :check :operator-payload :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :check :operator-payload :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :check :operator-payload :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :check :operator-payload :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :check :operator-payload :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :check :feature-payload :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :check :feature-payload :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :check :feature-payload :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :check :feature-payload :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :check :feature-payload :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :check :feature-payload :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :check :predicate-payload :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :check :predicate-payload :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :check :predicate-payload :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :check :predicate-payload :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :check :predicate-payload :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :check :predicate-payload :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :mutate :domain :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :mutate :domain :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :mutate :domain :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :mutate :domain :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :mutate :domain :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :mutate :domain :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :mutate :body-form-tag :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :mutate :body-form-tag :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :mutate :body-form-tag :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :mutate :body-form-tag :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :mutate :body-form-tag :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :mutate :body-form-tag :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :mutate :nested-operation-tag :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :mutate :nested-operation-tag :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :mutate :nested-operation-tag :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :mutate :nested-operation-tag :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :mutate :nested-operation-tag :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :mutate :nested-operation-tag :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :mutate :nested-count-tag :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :mutate :nested-count-tag :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :mutate :nested-count-tag :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :mutate :nested-count-tag :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :mutate :nested-count-tag :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :mutate :nested-count-tag :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :mutate :nested-initializer-tag :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :mutate :nested-initializer-tag :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :mutate :nested-initializer-tag :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :mutate :nested-initializer-tag :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :mutate :nested-initializer-tag :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :mutate :nested-initializer-tag :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :mutate :nested-operator-tag :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :mutate :nested-operator-tag :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :mutate :nested-operator-tag :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :mutate :nested-operator-tag :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :mutate :nested-operator-tag :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :mutate :nested-operator-tag :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :mutate :nested-score-tag :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :mutate :nested-score-tag :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :mutate :nested-score-tag :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :mutate :nested-score-tag :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :mutate :nested-score-tag :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :mutate :nested-score-tag :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :mutate :nested-predicate-tag :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :mutate :nested-predicate-tag :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :mutate :nested-predicate-tag :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :mutate :nested-predicate-tag :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :mutate :nested-predicate-tag :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :mutate :nested-predicate-tag :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :mutate :initializer-payload :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :mutate :initializer-payload :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :mutate :initializer-payload :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :mutate :initializer-payload :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :mutate :initializer-payload :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :mutate :initializer-payload :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :mutate :operator-payload :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :mutate :operator-payload :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :mutate :operator-payload :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :mutate :operator-payload :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :mutate :operator-payload :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :mutate :operator-payload :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :mutate :feature-payload :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :mutate :feature-payload :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :mutate :feature-payload :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :mutate :feature-payload :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :mutate :feature-payload :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :mutate :feature-payload :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :mutate :predicate-payload :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :mutate :predicate-payload :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :mutate :predicate-payload :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :mutate :predicate-payload :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :mutate :predicate-payload :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :mutate :predicate-payload :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :crossover-left :domain :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :crossover-left :domain :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :crossover-left :domain :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :crossover-left :domain :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :crossover-left :domain :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :crossover-left :domain :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :crossover-left :body-form-tag :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :crossover-left :body-form-tag :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :crossover-left :body-form-tag :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :crossover-left :body-form-tag :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :crossover-left :body-form-tag :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :crossover-left :body-form-tag :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :crossover-left :nested-operation-tag :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :crossover-left :nested-operation-tag :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :crossover-left :nested-operation-tag :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :crossover-left :nested-operation-tag :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :crossover-left :nested-operation-tag :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :crossover-left :nested-operation-tag :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :crossover-left :nested-count-tag :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :crossover-left :nested-count-tag :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :crossover-left :nested-count-tag :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :crossover-left :nested-count-tag :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :crossover-left :nested-count-tag :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :crossover-left :nested-count-tag :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :crossover-left :nested-initializer-tag :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :crossover-left :nested-initializer-tag :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :crossover-left :nested-initializer-tag :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :crossover-left :nested-initializer-tag :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :crossover-left :nested-initializer-tag :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :crossover-left :nested-initializer-tag :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :crossover-left :nested-operator-tag :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :crossover-left :nested-operator-tag :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :crossover-left :nested-operator-tag :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :crossover-left :nested-operator-tag :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :crossover-left :nested-operator-tag :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :crossover-left :nested-operator-tag :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :crossover-left :nested-score-tag :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :crossover-left :nested-score-tag :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :crossover-left :nested-score-tag :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :crossover-left :nested-score-tag :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :crossover-left :nested-score-tag :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :crossover-left :nested-score-tag :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :crossover-left :nested-predicate-tag :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :crossover-left :nested-predicate-tag :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :crossover-left :nested-predicate-tag :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :crossover-left :nested-predicate-tag :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :crossover-left :nested-predicate-tag :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :crossover-left :nested-predicate-tag :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :crossover-left :initializer-payload :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :crossover-left :initializer-payload :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :crossover-left :initializer-payload :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :crossover-left :initializer-payload :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :crossover-left :initializer-payload :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :crossover-left :initializer-payload :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :crossover-left :operator-payload :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :crossover-left :operator-payload :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :crossover-left :operator-payload :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :crossover-left :operator-payload :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :crossover-left :operator-payload :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :crossover-left :operator-payload :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :crossover-left :feature-payload :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :crossover-left :feature-payload :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :crossover-left :feature-payload :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :crossover-left :feature-payload :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :crossover-left :feature-payload :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :crossover-left :feature-payload :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :crossover-left :predicate-payload :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :crossover-left :predicate-payload :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :crossover-left :predicate-payload :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :crossover-left :predicate-payload :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :crossover-left :predicate-payload :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :crossover-left :predicate-payload :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :crossover-right :domain :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :crossover-right :domain :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :crossover-right :domain :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :crossover-right :domain :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :crossover-right :domain :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :crossover-right :domain :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :crossover-right :body-form-tag :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :crossover-right :body-form-tag :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :crossover-right :body-form-tag :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :crossover-right :body-form-tag :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :crossover-right :body-form-tag :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :crossover-right :body-form-tag :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :crossover-right :nested-operation-tag :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :crossover-right :nested-operation-tag :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :crossover-right :nested-operation-tag :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :crossover-right :nested-operation-tag :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :crossover-right :nested-operation-tag :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :crossover-right :nested-operation-tag :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :crossover-right :nested-count-tag :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :crossover-right :nested-count-tag :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :crossover-right :nested-count-tag :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :crossover-right :nested-count-tag :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :crossover-right :nested-count-tag :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :crossover-right :nested-count-tag :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :crossover-right :nested-initializer-tag :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :crossover-right :nested-initializer-tag :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :crossover-right :nested-initializer-tag :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :crossover-right :nested-initializer-tag :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :crossover-right :nested-initializer-tag :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :crossover-right :nested-initializer-tag :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :crossover-right :nested-operator-tag :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :crossover-right :nested-operator-tag :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :crossover-right :nested-operator-tag :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :crossover-right :nested-operator-tag :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :crossover-right :nested-operator-tag :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :crossover-right :nested-operator-tag :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :crossover-right :nested-score-tag :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :crossover-right :nested-score-tag :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :crossover-right :nested-score-tag :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :crossover-right :nested-score-tag :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :crossover-right :nested-score-tag :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :crossover-right :nested-score-tag :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :crossover-right :nested-predicate-tag :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :crossover-right :nested-predicate-tag :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :crossover-right :nested-predicate-tag :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :crossover-right :nested-predicate-tag :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :crossover-right :nested-predicate-tag :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :crossover-right :nested-predicate-tag :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :crossover-right :initializer-payload :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :crossover-right :initializer-payload :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :crossover-right :initializer-payload :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :crossover-right :initializer-payload :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :crossover-right :initializer-payload :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :crossover-right :initializer-payload :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :crossover-right :operator-payload :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :crossover-right :operator-payload :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :crossover-right :operator-payload :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :crossover-right :operator-payload :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :crossover-right :operator-payload :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :crossover-right :operator-payload :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :crossover-right :feature-payload :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :crossover-right :feature-payload :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :crossover-right :feature-payload :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :crossover-right :feature-payload :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :crossover-right :feature-payload :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :crossover-right :feature-payload :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :crossover-right :predicate-payload :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :crossover-right :predicate-payload :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :crossover-right :predicate-payload :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :crossover-right :predicate-payload :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:portfolio :crossover-right :predicate-payload :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:portfolio :crossover-right :predicate-payload :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :check :domain :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :check :domain :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :check :domain :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :check :domain :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :check :domain :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :check :domain :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :check :body-form-tag :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :check :body-form-tag :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :check :body-form-tag :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :check :body-form-tag :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :check :body-form-tag :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :check :body-form-tag :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :check :nested-operation-tag :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :check :nested-operation-tag :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :check :nested-operation-tag :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :check :nested-operation-tag :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :check :nested-operation-tag :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :check :nested-operation-tag :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :check :nested-count-tag :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :check :nested-count-tag :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :check :nested-count-tag :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :check :nested-count-tag :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :check :nested-count-tag :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :check :nested-count-tag :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :check :nested-initializer-tag :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :check :nested-initializer-tag :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :check :nested-initializer-tag :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :check :nested-initializer-tag :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :check :nested-initializer-tag :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :check :nested-initializer-tag :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :check :nested-operator-tag :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :check :nested-operator-tag :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :check :nested-operator-tag :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :check :nested-operator-tag :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :check :nested-operator-tag :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :check :nested-operator-tag :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :check :nested-score-tag :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :check :nested-score-tag :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :check :nested-score-tag :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :check :nested-score-tag :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :check :nested-score-tag :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :check :nested-score-tag :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :check :nested-predicate-tag :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :check :nested-predicate-tag :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :check :nested-predicate-tag :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :check :nested-predicate-tag :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :check :nested-predicate-tag :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :check :nested-predicate-tag :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :check :initializer-payload :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :check :initializer-payload :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :check :initializer-payload :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :check :initializer-payload :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :check :initializer-payload :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :check :initializer-payload :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :check :operator-payload :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :check :operator-payload :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :check :operator-payload :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :check :operator-payload :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :check :operator-payload :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :check :operator-payload :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :check :feature-payload :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :check :feature-payload :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :check :feature-payload :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :check :feature-payload :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :check :feature-payload :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :check :feature-payload :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :check :predicate-payload :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :check :predicate-payload :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :check :predicate-payload :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :check :predicate-payload :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :check :predicate-payload :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :check :predicate-payload :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :mutate :domain :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :mutate :domain :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :mutate :domain :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :mutate :domain :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :mutate :domain :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :mutate :domain :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :mutate :body-form-tag :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :mutate :body-form-tag :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :mutate :body-form-tag :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :mutate :body-form-tag :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :mutate :body-form-tag :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :mutate :body-form-tag :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :mutate :nested-operation-tag :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :mutate :nested-operation-tag :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :mutate :nested-operation-tag :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :mutate :nested-operation-tag :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :mutate :nested-operation-tag :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :mutate :nested-operation-tag :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :mutate :nested-count-tag :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :mutate :nested-count-tag :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :mutate :nested-count-tag :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :mutate :nested-count-tag :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :mutate :nested-count-tag :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :mutate :nested-count-tag :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :mutate :nested-initializer-tag :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :mutate :nested-initializer-tag :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :mutate :nested-initializer-tag :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :mutate :nested-initializer-tag :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :mutate :nested-initializer-tag :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :mutate :nested-initializer-tag :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :mutate :nested-operator-tag :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :mutate :nested-operator-tag :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :mutate :nested-operator-tag :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :mutate :nested-operator-tag :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :mutate :nested-operator-tag :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :mutate :nested-operator-tag :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :mutate :nested-score-tag :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :mutate :nested-score-tag :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :mutate :nested-score-tag :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :mutate :nested-score-tag :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :mutate :nested-score-tag :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :mutate :nested-score-tag :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :mutate :nested-predicate-tag :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :mutate :nested-predicate-tag :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :mutate :nested-predicate-tag :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :mutate :nested-predicate-tag :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :mutate :nested-predicate-tag :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :mutate :nested-predicate-tag :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :mutate :initializer-payload :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :mutate :initializer-payload :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :mutate :initializer-payload :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :mutate :initializer-payload :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :mutate :initializer-payload :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :mutate :initializer-payload :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :mutate :operator-payload :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :mutate :operator-payload :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :mutate :operator-payload :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :mutate :operator-payload :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :mutate :operator-payload :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :mutate :operator-payload :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :mutate :feature-payload :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :mutate :feature-payload :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :mutate :feature-payload :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :mutate :feature-payload :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :mutate :feature-payload :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :mutate :feature-payload :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :mutate :predicate-payload :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :mutate :predicate-payload :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :mutate :predicate-payload :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :mutate :predicate-payload :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :mutate :predicate-payload :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :mutate :predicate-payload :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :crossover-left :domain :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :crossover-left :domain :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :crossover-left :domain :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :crossover-left :domain :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :crossover-left :domain :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :crossover-left :domain :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :crossover-left :body-form-tag :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :crossover-left :body-form-tag :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :crossover-left :body-form-tag :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :crossover-left :body-form-tag :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :crossover-left :body-form-tag :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :crossover-left :body-form-tag :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :crossover-left :nested-operation-tag :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :crossover-left :nested-operation-tag :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :crossover-left :nested-operation-tag :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :crossover-left :nested-operation-tag :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :crossover-left :nested-operation-tag :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :crossover-left :nested-operation-tag :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :crossover-left :nested-count-tag :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :crossover-left :nested-count-tag :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :crossover-left :nested-count-tag :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :crossover-left :nested-count-tag :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :crossover-left :nested-count-tag :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :crossover-left :nested-count-tag :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :crossover-left :nested-initializer-tag :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :crossover-left :nested-initializer-tag :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :crossover-left :nested-initializer-tag :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :crossover-left :nested-initializer-tag :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :crossover-left :nested-initializer-tag :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :crossover-left :nested-initializer-tag :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :crossover-left :nested-operator-tag :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :crossover-left :nested-operator-tag :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :crossover-left :nested-operator-tag :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :crossover-left :nested-operator-tag :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :crossover-left :nested-operator-tag :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :crossover-left :nested-operator-tag :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :crossover-left :nested-score-tag :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :crossover-left :nested-score-tag :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :crossover-left :nested-score-tag :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :crossover-left :nested-score-tag :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :crossover-left :nested-score-tag :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :crossover-left :nested-score-tag :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :crossover-left :nested-predicate-tag :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :crossover-left :nested-predicate-tag :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :crossover-left :nested-predicate-tag :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :crossover-left :nested-predicate-tag :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :crossover-left :nested-predicate-tag :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :crossover-left :nested-predicate-tag :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :crossover-left :initializer-payload :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :crossover-left :initializer-payload :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :crossover-left :initializer-payload :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :crossover-left :initializer-payload :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :crossover-left :initializer-payload :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :crossover-left :initializer-payload :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :crossover-left :operator-payload :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :crossover-left :operator-payload :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :crossover-left :operator-payload :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :crossover-left :operator-payload :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :crossover-left :operator-payload :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :crossover-left :operator-payload :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :crossover-left :feature-payload :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :crossover-left :feature-payload :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :crossover-left :feature-payload :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :crossover-left :feature-payload :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :crossover-left :feature-payload :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :crossover-left :feature-payload :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :crossover-left :predicate-payload :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :crossover-left :predicate-payload :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :crossover-left :predicate-payload :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :crossover-left :predicate-payload :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :crossover-left :predicate-payload :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :crossover-left :predicate-payload :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :crossover-right :domain :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :crossover-right :domain :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :crossover-right :domain :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :crossover-right :domain :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :crossover-right :domain :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :crossover-right :domain :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :crossover-right :body-form-tag :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :crossover-right :body-form-tag :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :crossover-right :body-form-tag :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :crossover-right :body-form-tag :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :crossover-right :body-form-tag :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :crossover-right :body-form-tag :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :crossover-right :nested-operation-tag :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :crossover-right :nested-operation-tag :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :crossover-right :nested-operation-tag :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :crossover-right :nested-operation-tag :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :crossover-right :nested-operation-tag :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :crossover-right :nested-operation-tag :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :crossover-right :nested-count-tag :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :crossover-right :nested-count-tag :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :crossover-right :nested-count-tag :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :crossover-right :nested-count-tag :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :crossover-right :nested-count-tag :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :crossover-right :nested-count-tag :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :crossover-right :nested-initializer-tag :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :crossover-right :nested-initializer-tag :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :crossover-right :nested-initializer-tag :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :crossover-right :nested-initializer-tag :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :crossover-right :nested-initializer-tag :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :crossover-right :nested-initializer-tag :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :crossover-right :nested-operator-tag :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :crossover-right :nested-operator-tag :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :crossover-right :nested-operator-tag :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :crossover-right :nested-operator-tag :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :crossover-right :nested-operator-tag :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :crossover-right :nested-operator-tag :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :crossover-right :nested-score-tag :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :crossover-right :nested-score-tag :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :crossover-right :nested-score-tag :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :crossover-right :nested-score-tag :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :crossover-right :nested-score-tag :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :crossover-right :nested-score-tag :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :crossover-right :nested-predicate-tag :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :crossover-right :nested-predicate-tag :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :crossover-right :nested-predicate-tag :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :crossover-right :nested-predicate-tag :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :crossover-right :nested-predicate-tag :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :crossover-right :nested-predicate-tag :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :crossover-right :initializer-payload :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :crossover-right :initializer-payload :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :crossover-right :initializer-payload :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :crossover-right :initializer-payload :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :crossover-right :initializer-payload :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :crossover-right :initializer-payload :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :crossover-right :operator-payload :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :crossover-right :operator-payload :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :crossover-right :operator-payload :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :crossover-right :operator-payload :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :crossover-right :operator-payload :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :crossover-right :operator-payload :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :crossover-right :feature-payload :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :crossover-right :feature-payload :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :crossover-right :feature-payload :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :crossover-right :feature-payload :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :crossover-right :feature-payload :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :crossover-right :feature-payload :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :crossover-right :predicate-payload :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :crossover-right :predicate-payload :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :crossover-right :predicate-payload :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :crossover-right :predicate-payload :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:20)
+:scheduling :crossover-right :predicate-payload :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-keyword-shape-precedes-lookup) (shape_validation_test.clj:21)
+:scheduling :crossover-right :predicate-payload :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-roots-wrappers-and-numeric-payloads-reject-without-traversal) (shape_validation_test.clj:20)
+:portfolio :check :program-tag
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-roots-wrappers-and-numeric-payloads-reject-without-traversal) (shape_validation_test.clj:21)
+:portfolio :check :program-tag
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-roots-wrappers-and-numeric-payloads-reject-without-traversal) (shape_validation_test.clj:20)
+:portfolio :check :wrapper-tag
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-roots-wrappers-and-numeric-payloads-reject-without-traversal) (shape_validation_test.clj:21)
+:portfolio :check :wrapper-tag
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-roots-wrappers-and-numeric-payloads-reject-without-traversal) (shape_validation_test.clj:20)
+:portfolio :mutate :program-tag
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-roots-wrappers-and-numeric-payloads-reject-without-traversal) (shape_validation_test.clj:21)
+:portfolio :mutate :program-tag
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-roots-wrappers-and-numeric-payloads-reject-without-traversal) (shape_validation_test.clj:20)
+:portfolio :mutate :wrapper-tag
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-roots-wrappers-and-numeric-payloads-reject-without-traversal) (shape_validation_test.clj:21)
+:portfolio :mutate :wrapper-tag
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-roots-wrappers-and-numeric-payloads-reject-without-traversal) (shape_validation_test.clj:20)
+:portfolio :crossover-left :program-tag
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-roots-wrappers-and-numeric-payloads-reject-without-traversal) (shape_validation_test.clj:21)
+:portfolio :crossover-left :program-tag
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-roots-wrappers-and-numeric-payloads-reject-without-traversal) (shape_validation_test.clj:20)
+:portfolio :crossover-left :wrapper-tag
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-roots-wrappers-and-numeric-payloads-reject-without-traversal) (shape_validation_test.clj:21)
+:portfolio :crossover-left :wrapper-tag
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-roots-wrappers-and-numeric-payloads-reject-without-traversal) (shape_validation_test.clj:20)
+:portfolio :crossover-right :program-tag
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-roots-wrappers-and-numeric-payloads-reject-without-traversal) (shape_validation_test.clj:21)
+:portfolio :crossover-right :program-tag
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-roots-wrappers-and-numeric-payloads-reject-without-traversal) (shape_validation_test.clj:20)
+:portfolio :crossover-right :wrapper-tag
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-roots-wrappers-and-numeric-payloads-reject-without-traversal) (shape_validation_test.clj:21)
+:portfolio :crossover-right :wrapper-tag
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-roots-wrappers-and-numeric-payloads-reject-without-traversal) (shape_validation_test.clj:20)
+:scheduling :check :program-tag
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-roots-wrappers-and-numeric-payloads-reject-without-traversal) (shape_validation_test.clj:21)
+:scheduling :check :program-tag
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-roots-wrappers-and-numeric-payloads-reject-without-traversal) (shape_validation_test.clj:20)
+:scheduling :check :wrapper-tag
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-roots-wrappers-and-numeric-payloads-reject-without-traversal) (shape_validation_test.clj:21)
+:scheduling :check :wrapper-tag
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-roots-wrappers-and-numeric-payloads-reject-without-traversal) (shape_validation_test.clj:20)
+:scheduling :mutate :program-tag
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-roots-wrappers-and-numeric-payloads-reject-without-traversal) (shape_validation_test.clj:21)
+:scheduling :mutate :program-tag
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-roots-wrappers-and-numeric-payloads-reject-without-traversal) (shape_validation_test.clj:20)
+:scheduling :mutate :wrapper-tag
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-roots-wrappers-and-numeric-payloads-reject-without-traversal) (shape_validation_test.clj:21)
+:scheduling :mutate :wrapper-tag
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-roots-wrappers-and-numeric-payloads-reject-without-traversal) (shape_validation_test.clj:20)
+:scheduling :crossover-left :program-tag
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-roots-wrappers-and-numeric-payloads-reject-without-traversal) (shape_validation_test.clj:21)
+:scheduling :crossover-left :program-tag
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-roots-wrappers-and-numeric-payloads-reject-without-traversal) (shape_validation_test.clj:20)
+:scheduling :crossover-left :wrapper-tag
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-roots-wrappers-and-numeric-payloads-reject-without-traversal) (shape_validation_test.clj:21)
+:scheduling :crossover-left :wrapper-tag
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-roots-wrappers-and-numeric-payloads-reject-without-traversal) (shape_validation_test.clj:20)
+:scheduling :crossover-right :program-tag
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-roots-wrappers-and-numeric-payloads-reject-without-traversal) (shape_validation_test.clj:21)
+:scheduling :crossover-right :program-tag
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-roots-wrappers-and-numeric-payloads-reject-without-traversal) (shape_validation_test.clj:20)
+:scheduling :crossover-right :wrapper-tag
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-roots-wrappers-and-numeric-payloads-reject-without-traversal) (shape_validation_test.clj:21)
+:scheduling :crossover-right :wrapper-tag
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+Ran 3 tests containing 1712 assertions.
+608 failures, 0 errors.

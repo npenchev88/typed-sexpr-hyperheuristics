@@ -1,0 +1,196 @@
+Clojure 1.12.6 standalone shape validation slice2
+
+FAIL in (ast-roots-wrappers-and-numeric-payloads-reject-without-traversal) (shape_validation_test.clj:20)
+:portfolio :check :program-tag
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-roots-wrappers-and-numeric-payloads-reject-without-traversal) (shape_validation_test.clj:21)
+:portfolio :check :program-tag
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-roots-wrappers-and-numeric-payloads-reject-without-traversal) (shape_validation_test.clj:20)
+:portfolio :check :wrapper-tag
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-roots-wrappers-and-numeric-payloads-reject-without-traversal) (shape_validation_test.clj:21)
+:portfolio :check :wrapper-tag
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-roots-wrappers-and-numeric-payloads-reject-without-traversal) (shape_validation_test.clj:20)
+:portfolio :mutate :program-tag
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-roots-wrappers-and-numeric-payloads-reject-without-traversal) (shape_validation_test.clj:21)
+:portfolio :mutate :program-tag
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-roots-wrappers-and-numeric-payloads-reject-without-traversal) (shape_validation_test.clj:20)
+:portfolio :mutate :wrapper-tag
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-roots-wrappers-and-numeric-payloads-reject-without-traversal) (shape_validation_test.clj:21)
+:portfolio :mutate :wrapper-tag
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-roots-wrappers-and-numeric-payloads-reject-without-traversal) (shape_validation_test.clj:20)
+:portfolio :crossover-left :program-tag
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-roots-wrappers-and-numeric-payloads-reject-without-traversal) (shape_validation_test.clj:21)
+:portfolio :crossover-left :program-tag
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-roots-wrappers-and-numeric-payloads-reject-without-traversal) (shape_validation_test.clj:20)
+:portfolio :crossover-left :wrapper-tag
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-roots-wrappers-and-numeric-payloads-reject-without-traversal) (shape_validation_test.clj:21)
+:portfolio :crossover-left :wrapper-tag
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-roots-wrappers-and-numeric-payloads-reject-without-traversal) (shape_validation_test.clj:20)
+:portfolio :crossover-right :program-tag
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-roots-wrappers-and-numeric-payloads-reject-without-traversal) (shape_validation_test.clj:21)
+:portfolio :crossover-right :program-tag
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-roots-wrappers-and-numeric-payloads-reject-without-traversal) (shape_validation_test.clj:20)
+:portfolio :crossover-right :wrapper-tag
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-roots-wrappers-and-numeric-payloads-reject-without-traversal) (shape_validation_test.clj:21)
+:portfolio :crossover-right :wrapper-tag
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-roots-wrappers-and-numeric-payloads-reject-without-traversal) (shape_validation_test.clj:20)
+:scheduling :check :program-tag
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-roots-wrappers-and-numeric-payloads-reject-without-traversal) (shape_validation_test.clj:21)
+:scheduling :check :program-tag
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-roots-wrappers-and-numeric-payloads-reject-without-traversal) (shape_validation_test.clj:20)
+:scheduling :check :wrapper-tag
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-roots-wrappers-and-numeric-payloads-reject-without-traversal) (shape_validation_test.clj:21)
+:scheduling :check :wrapper-tag
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-roots-wrappers-and-numeric-payloads-reject-without-traversal) (shape_validation_test.clj:20)
+:scheduling :mutate :program-tag
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-roots-wrappers-and-numeric-payloads-reject-without-traversal) (shape_validation_test.clj:21)
+:scheduling :mutate :program-tag
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-roots-wrappers-and-numeric-payloads-reject-without-traversal) (shape_validation_test.clj:20)
+:scheduling :mutate :wrapper-tag
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-roots-wrappers-and-numeric-payloads-reject-without-traversal) (shape_validation_test.clj:21)
+:scheduling :mutate :wrapper-tag
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-roots-wrappers-and-numeric-payloads-reject-without-traversal) (shape_validation_test.clj:20)
+:scheduling :crossover-left :program-tag
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-roots-wrappers-and-numeric-payloads-reject-without-traversal) (shape_validation_test.clj:21)
+:scheduling :crossover-left :program-tag
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-roots-wrappers-and-numeric-payloads-reject-without-traversal) (shape_validation_test.clj:20)
+:scheduling :crossover-left :wrapper-tag
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-roots-wrappers-and-numeric-payloads-reject-without-traversal) (shape_validation_test.clj:21)
+:scheduling :crossover-left :wrapper-tag
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-roots-wrappers-and-numeric-payloads-reject-without-traversal) (shape_validation_test.clj:20)
+:scheduling :crossover-right :program-tag
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-roots-wrappers-and-numeric-payloads-reject-without-traversal) (shape_validation_test.clj:21)
+:scheduling :crossover-right :program-tag
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (ast-roots-wrappers-and-numeric-payloads-reject-without-traversal) (shape_validation_test.clj:20)
+:scheduling :crossover-right :wrapper-tag
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (ast-roots-wrappers-and-numeric-payloads-reject-without-traversal) (shape_validation_test.clj:21)
+:scheduling :crossover-right :wrapper-tag
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+Ran 3 tests containing 1712 assertions.
+32 failures, 0 errors.

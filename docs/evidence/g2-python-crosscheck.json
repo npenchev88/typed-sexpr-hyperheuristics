@@ -1,0 +1,9 @@
+{
+  "status": "passed",
+  "scope": "Independent Python quadratic front and exact rational cell-grid area, plus exact-binary64 representative portfolio checks",
+  "all_portfolios": 3003,
+  "front_rows": 13,
+  "normalized_hypervolume": 0.7786491221991364,
+  "matches_clojure": true,
+  "front_csv_sha256": "9aca5960b49622360715d77b1ea550b423556157dbcea0a6b188dab21483e9ea"
+}

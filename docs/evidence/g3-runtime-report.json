@@ -1,0 +1,731 @@
+{
+  "scope": "G3 runtime and portfolio adapter only; stop for external review, no project task completion declared",
+  "repository": "C:\\Users\\meggy\\Niki\\typed-optimizer-lab",
+  "contract": "docs/G3_G4_CONTRACT.md",
+  "owned_source_files": [
+    "src/niki/optimizer/runtime.clj",
+    "src/niki/optimizer/portfolio_runtime.clj",
+    "test/niki/optimizer/runtime_test.clj"
+  ],
+  "source_sha256": {
+    "src/niki/optimizer/runtime.clj": "fdd05aa862a1ff03940ccfb73851f07060b7873cc23ad2957440e3185d6e24a2",
+    "src/niki/optimizer/portfolio_runtime.clj": "a28e8d3637ec85cea0fea5083cca132410d378979ccaa81d8e51acd9e540769a",
+    "test/niki/optimizer/runtime_test.clj": "b190b8bef9883849a9becc7c099d9f4851e7ed8d881bb23e8204ca983d7683d4"
+  },
+  "evidence_design": "docs/evidence/g3-runtime-design.md",
+  "native_standalone_driver": "docs/evidence/g3-runtime-native-test.clj",
+  "tdd_slices": [
+    {
+      "slice": 1,
+      "behavior": "noop and protected-wrapper visitation",
+      "red": "docs/evidence/g3-runtime-01-red.log",
+      "red_counts": {
+        "tests": 1,
+        "assertions": 7,
+        "failures": 6,
+        "errors": 0
+      },
+      "green": "docs/evidence/g3-runtime-01-green.log",
+      "green_counts": {
+        "tests": 1,
+        "assertions": 7,
+        "failures": 0,
+        "errors": 0
+      }
+    },
+    {
+      "slice": 2,
+      "behavior": "fail-closed host preflight and selected capabilities",
+      "red": "docs/evidence/g3-runtime-02-red.log",
+      "red_counts": {
+        "tests": 2,
+        "assertions": 30,
+        "failures": 23,
+        "errors": 0
+      },
+      "green": "docs/evidence/g3-runtime-02-green.log",
+      "green_counts": {
+        "tests": 2,
+        "assertions": 30,
+        "failures": 0,
+        "errors": 0
+      }
+    },
+    {
+      "slice": 3,
+      "behavior": "every-node fuel and repeat transitions",
+      "red": "docs/evidence/g3-runtime-03-red.log",
+      "red_counts": {
+        "tests": 3,
+        "assertions": 159,
+        "failures": 76,
+        "errors": 0
+      },
+      "green": "docs/evidence/g3-runtime-03-green.log",
+      "green_counts": {
+        "tests": 3,
+        "assertions": 159,
+        "failures": 0,
+        "errors": 0
+      }
+    },
+    {
+      "slice": 4,
+      "behavior": "charged candidate pipeline, cache, representatives and exceptions",
+      "red": "docs/evidence/g3-runtime-04-red.log",
+      "red_counts": {
+        "tests": 7,
+        "assertions": 172,
+        "failures": 0,
+        "errors": 4
+      },
+      "green": "docs/evidence/g3-runtime-04-green.log",
+      "green_counts": {
+        "tests": 7,
+        "assertions": 246,
+        "failures": 0,
+        "errors": 0
+      }
+    },
+    {
+      "slice": 5,
+      "behavior": "search neighbor charging and normalized scoring, partial archive before adoption",
+      "red": "docs/evidence/g3-runtime-05-red.log",
+      "red_counts": {
+        "tests": 10,
+        "assertions": 249,
+        "failures": 0,
+        "errors": 3
+      },
+      "green": "docs/evidence/g3-runtime-05-green.log",
+      "green_counts": {
+        "tests": 10,
+        "assertions": 291,
+        "failures": 0,
+        "errors": 0
+      }
+    },
+    {
+      "slice": 6,
+      "behavior": "predicates, clamped arithmetic, progress, randomness and deterministic replay",
+      "red": "docs/evidence/g3-runtime-06-red.log",
+      "red_counts": {
+        "tests": 14,
+        "assertions": 295,
+        "failures": 0,
+        "errors": 4
+      },
+      "green": "docs/evidence/g3-runtime-06-green.log",
+      "green_counts": {
+        "tests": 14,
+        "assertions": 334,
+        "failures": 0,
+        "errors": 0
+      }
+    },
+    {
+      "slice": 7,
+      "behavior": "bounded trace and measured timing",
+      "red": "docs/evidence/g3-runtime-07-red.log",
+      "red_counts": {
+        "tests": 16,
+        "assertions": 354,
+        "failures": 16,
+        "errors": 0
+      },
+      "green": "docs/evidence/g3-runtime-07-green.log",
+      "green_counts": {
+        "tests": 16,
+        "assertions": 354,
+        "failures": 0,
+        "errors": 0
+      }
+    },
+    {
+      "slice": 8,
+      "behavior": "bounded objective-free exact-K portfolio adapter with existing G1 fixture",
+      "red": "docs/evidence/g3-runtime-08-red.log",
+      "red_counts": {
+        "tests": 19,
+        "assertions": 360,
+        "failures": 6,
+        "errors": 0
+      },
+      "green": "docs/evidence/g3-runtime-08-green.log",
+      "green_counts": {
+        "tests": 19,
+        "assertions": 536,
+        "failures": 0,
+        "errors": 0
+      }
+    },
+    {
+      "slice": 9,
+      "behavior": "canonical numeric objective keys and independent actual-call/cache-order observers",
+      "red": "docs/evidence/g3-runtime-09-red.log",
+      "red_counts": {
+        "tests": 22,
+        "assertions": 592,
+        "failures": 2,
+        "errors": 0
+      },
+      "green": "docs/evidence/g3-runtime-09-green.log",
+      "green_counts": {
+        "tests": 22,
+        "assertions": 592,
+        "failures": 0,
+        "errors": 0
+      }
+    },
+    {
+      "slice": 10,
+      "behavior": "explicit normalized search acceptance trace and default DSL execution-limit coverage",
+      "red": "docs/evidence/g3-runtime-10-red.log",
+      "red_counts": {
+        "tests": 24,
+        "assertions": 600,
+        "failures": 4,
+        "errors": 0
+      },
+      "green": "docs/evidence/g3-runtime-10-green.log",
+      "green_counts": {
+        "tests": 24,
+        "assertions": 600,
+        "failures": 0,
+        "errors": 0
+      }
+    }
+  ],
+  "final_standalone_results": [
+    {
+      "path": "docs/evidence/g3-runtime-10-green.log",
+      "summary": {
+        "tests": 24,
+        "assertions": 600,
+        "failures": 0,
+        "errors": 0
+      },
+      "test_command": "bash ./clojure -M -e '(load-file \"test/niki/optimizer/runtime_test.clj\") (let [r (clojure.test/run-tests (quote niki.optimizer.runtime-test))] (System/exit (if (zero? (+ (:fail r) (:error r))) 0 1)))'",
+      "capture_command": "set -o pipefail; bash ./clojure -M -e '(load-file \"test/niki/optimizer/runtime_test.clj\") (let [r (clojure.test/run-tests (quote niki.optimizer.runtime-test))] (System/exit (if (zero? (+ (:fail r) (:error r))) 0 1)))' 2>&1 | tee docs/evidence/g3-runtime-10-green.log",
+      "observed_exit_code": 0
+    },
+    {
+      "path": "docs/evidence/g3-runtime-legacy-final.log",
+      "summary": {
+        "tests": 24,
+        "assertions": 600,
+        "failures": 0,
+        "errors": 0
+      },
+      "test_command": "bash ./clojure -M:legacy-version -e '(load-file \"test/niki/optimizer/runtime_test.clj\") (let [r (clojure.test/run-tests (quote niki.optimizer.runtime-test))] (System/exit (if (zero? (+ (:fail r) (:error r))) 0 1)))'",
+      "capture_command": "set -o pipefail; bash ./clojure -M:legacy-version -e '(load-file \"test/niki/optimizer/runtime_test.clj\") (let [r (clojure.test/run-tests (quote niki.optimizer.runtime-test))] (System/exit (if (zero? (+ (:fail r) (:error r))) 0 1)))' 2>&1 | tee docs/evidence/g3-runtime-legacy-final.log",
+      "observed_exit_code": 0
+    },
+    {
+      "path": "docs/evidence/g3-runtime-native-final.log",
+      "summary": {
+        "tests": 24,
+        "assertions": 600,
+        "failures": 0,
+        "errors": 0
+      },
+      "test_command": "cmd.exe /d /s /c 'clojure.cmd -M docs/evidence/g3-runtime-native-test.clj'",
+      "capture_command": "set -o pipefail; cmd.exe /d /s /c 'clojure.cmd -M docs/evidence/g3-runtime-native-test.clj' 2>&1 | tee docs/evidence/g3-runtime-native-final.log",
+      "observed_exit_code": 0
+    },
+    {
+      "path": "docs/evidence/g3-runtime-native-legacy-final.log",
+      "summary": {
+        "tests": 24,
+        "assertions": 600,
+        "failures": 0,
+        "errors": 0
+      },
+      "test_command": "cmd.exe /d /s /c 'clojure.cmd -M:legacy-version docs/evidence/g3-runtime-native-test.clj'",
+      "capture_command": "set -o pipefail; cmd.exe /d /s /c 'clojure.cmd -M:legacy-version docs/evidence/g3-runtime-native-test.clj' 2>&1 | tee docs/evidence/g3-runtime-native-legacy-final.log",
+      "observed_exit_code": 0
+    }
+  ],
+  "regressions": [
+    {
+      "path": "docs/evidence/g3-runtime-g1-regression.log",
+      "summary": {
+        "tests": 19,
+        "assertions": 12227,
+        "failures": 0,
+        "errors": 0
+      },
+      "test_command": "bash ./clojure -M:g1-test",
+      "capture_command": "set -o pipefail; bash ./clojure -M:g1-test 2>&1 | tee docs/evidence/g3-runtime-g1-regression.log",
+      "observed_exit_code": 0
+    },
+    {
+      "path": "docs/evidence/g3-runtime-g2-regression.log",
+      "summary": {
+        "tests": 9,
+        "assertions": 6466,
+        "failures": 0,
+        "errors": 0
+      },
+      "test_command": "bash ./clojure -M:g2-test",
+      "capture_command": "set -o pipefail; bash ./clojure -M:g2-test 2>&1 | tee docs/evidence/g3-runtime-g2-regression.log",
+      "observed_exit_code": 0
+    }
+  ],
+  "all_log_evidence": [
+    {
+      "path": "docs/evidence/g3-runtime-01-green.log",
+      "summary": {
+        "tests": 1,
+        "assertions": 7,
+        "failures": 0,
+        "errors": 0
+      },
+      "test_command": "bash ./clojure -M -e '(load-file \"test/niki/optimizer/runtime_test.clj\") (let [r (clojure.test/run-tests (quote niki.optimizer.runtime-test))] (System/exit (if (zero? (+ (:fail r) (:error r))) 0 1)))'",
+      "capture_command": "set -o pipefail; bash ./clojure -M -e '(load-file \"test/niki/optimizer/runtime_test.clj\") (let [r (clojure.test/run-tests (quote niki.optimizer.runtime-test))] (System/exit (if (zero? (+ (:fail r) (:error r))) 0 1)))' 2>&1 | tee docs/evidence/g3-runtime-01-green.log",
+      "observed_exit_code": 0
+    },
+    {
+      "path": "docs/evidence/g3-runtime-01-integration-blocked-2.log",
+      "summary": {
+        "tests": 1,
+        "assertions": 1,
+        "failures": 0,
+        "errors": 1
+      },
+      "test_command": "bash ./clojure -M -e '(load-file \"test/niki/optimizer/runtime_test.clj\") (let [r (clojure.test/run-tests (quote niki.optimizer.runtime-test))] (System/exit (if (zero? (+ (:fail r) (:error r))) 0 1)))'",
+      "capture_command": "set -o pipefail; bash ./clojure -M -e '(load-file \"test/niki/optimizer/runtime_test.clj\") (let [r (clojure.test/run-tests (quote niki.optimizer.runtime-test))] (System/exit (if (zero? (+ (:fail r) (:error r))) 0 1)))' 2>&1 | tee docs/evidence/g3-runtime-01-integration-blocked-2.log",
+      "observed_exit_code": 1
+    },
+    {
+      "path": "docs/evidence/g3-runtime-01-integration-blocked.log",
+      "summary": {
+        "tests": 1,
+        "assertions": 1,
+        "failures": 0,
+        "errors": 1
+      },
+      "test_command": "bash ./clojure -M -e '(load-file \"test/niki/optimizer/runtime_test.clj\") (let [r (clojure.test/run-tests (quote niki.optimizer.runtime-test))] (System/exit (if (zero? (+ (:fail r) (:error r))) 0 1)))'",
+      "capture_command": "set -o pipefail; bash ./clojure -M -e '(load-file \"test/niki/optimizer/runtime_test.clj\") (let [r (clojure.test/run-tests (quote niki.optimizer.runtime-test))] (System/exit (if (zero? (+ (:fail r) (:error r))) 0 1)))' 2>&1 | tee docs/evidence/g3-runtime-01-integration-blocked.log",
+      "observed_exit_code": 1
+    },
+    {
+      "path": "docs/evidence/g3-runtime-01-red.log",
+      "summary": {
+        "tests": 1,
+        "assertions": 7,
+        "failures": 6,
+        "errors": 0
+      },
+      "test_command": "bash ./clojure -M -e '(load-file \"test/niki/optimizer/runtime_test.clj\") (let [r (clojure.test/run-tests (quote niki.optimizer.runtime-test))] (System/exit (if (zero? (+ (:fail r) (:error r))) 0 1)))'",
+      "capture_command": "set -o pipefail; bash ./clojure -M -e '(load-file \"test/niki/optimizer/runtime_test.clj\") (let [r (clojure.test/run-tests (quote niki.optimizer.runtime-test))] (System/exit (if (zero? (+ (:fail r) (:error r))) 0 1)))' 2>&1 | tee docs/evidence/g3-runtime-01-red.log",
+      "observed_exit_code": 1
+    },
+    {
+      "path": "docs/evidence/g3-runtime-02-green.log",
+      "summary": {
+        "tests": 2,
+        "assertions": 30,
+        "failures": 0,
+        "errors": 0
+      },
+      "test_command": "bash ./clojure -M -e '(load-file \"test/niki/optimizer/runtime_test.clj\") (let [r (clojure.test/run-tests (quote niki.optimizer.runtime-test))] (System/exit (if (zero? (+ (:fail r) (:error r))) 0 1)))'",
+      "capture_command": "set -o pipefail; bash ./clojure -M -e '(load-file \"test/niki/optimizer/runtime_test.clj\") (let [r (clojure.test/run-tests (quote niki.optimizer.runtime-test))] (System/exit (if (zero? (+ (:fail r) (:error r))) 0 1)))' 2>&1 | tee docs/evidence/g3-runtime-02-green.log",
+      "observed_exit_code": 0
+    },
+    {
+      "path": "docs/evidence/g3-runtime-02-integration-partial.log",
+      "summary": {
+        "tests": 2,
+        "assertions": 30,
+        "failures": 2,
+        "errors": 0
+      },
+      "test_command": "bash ./clojure -M -e '(load-file \"test/niki/optimizer/runtime_test.clj\") (let [r (clojure.test/run-tests (quote niki.optimizer.runtime-test))] (System/exit (if (zero? (+ (:fail r) (:error r))) 0 1)))'",
+      "capture_command": "set -o pipefail; bash ./clojure -M -e '(load-file \"test/niki/optimizer/runtime_test.clj\") (let [r (clojure.test/run-tests (quote niki.optimizer.runtime-test))] (System/exit (if (zero? (+ (:fail r) (:error r))) 0 1)))' 2>&1 | tee docs/evidence/g3-runtime-02-integration-partial.log",
+      "observed_exit_code": 1
+    },
+    {
+      "path": "docs/evidence/g3-runtime-02-red.log",
+      "summary": {
+        "tests": 2,
+        "assertions": 30,
+        "failures": 23,
+        "errors": 0
+      },
+      "test_command": "bash ./clojure -M -e '(load-file \"test/niki/optimizer/runtime_test.clj\") (let [r (clojure.test/run-tests (quote niki.optimizer.runtime-test))] (System/exit (if (zero? (+ (:fail r) (:error r))) 0 1)))'",
+      "capture_command": "set -o pipefail; bash ./clojure -M -e '(load-file \"test/niki/optimizer/runtime_test.clj\") (let [r (clojure.test/run-tests (quote niki.optimizer.runtime-test))] (System/exit (if (zero? (+ (:fail r) (:error r))) 0 1)))' 2>&1 | tee docs/evidence/g3-runtime-02-red.log",
+      "observed_exit_code": 1
+    },
+    {
+      "path": "docs/evidence/g3-runtime-03-green.log",
+      "summary": {
+        "tests": 3,
+        "assertions": 159,
+        "failures": 0,
+        "errors": 0
+      },
+      "test_command": "bash ./clojure -M -e '(load-file \"test/niki/optimizer/runtime_test.clj\") (let [r (clojure.test/run-tests (quote niki.optimizer.runtime-test))] (System/exit (if (zero? (+ (:fail r) (:error r))) 0 1)))'",
+      "capture_command": "set -o pipefail; bash ./clojure -M -e '(load-file \"test/niki/optimizer/runtime_test.clj\") (let [r (clojure.test/run-tests (quote niki.optimizer.runtime-test))] (System/exit (if (zero? (+ (:fail r) (:error r))) 0 1)))' 2>&1 | tee docs/evidence/g3-runtime-03-green.log",
+      "observed_exit_code": 0
+    },
+    {
+      "path": "docs/evidence/g3-runtime-03-red.log",
+      "summary": {
+        "tests": 3,
+        "assertions": 159,
+        "failures": 76,
+        "errors": 0
+      },
+      "test_command": "bash ./clojure -M -e '(load-file \"test/niki/optimizer/runtime_test.clj\") (let [r (clojure.test/run-tests (quote niki.optimizer.runtime-test))] (System/exit (if (zero? (+ (:fail r) (:error r))) 0 1)))'",
+      "capture_command": "set -o pipefail; bash ./clojure -M -e '(load-file \"test/niki/optimizer/runtime_test.clj\") (let [r (clojure.test/run-tests (quote niki.optimizer.runtime-test))] (System/exit (if (zero? (+ (:fail r) (:error r))) 0 1)))' 2>&1 | tee docs/evidence/g3-runtime-03-red.log",
+      "observed_exit_code": 1
+    },
+    {
+      "path": "docs/evidence/g3-runtime-04-green.log",
+      "summary": {
+        "tests": 7,
+        "assertions": 246,
+        "failures": 0,
+        "errors": 0
+      },
+      "test_command": "bash ./clojure -M -e '(load-file \"test/niki/optimizer/runtime_test.clj\") (let [r (clojure.test/run-tests (quote niki.optimizer.runtime-test))] (System/exit (if (zero? (+ (:fail r) (:error r))) 0 1)))'",
+      "capture_command": "set -o pipefail; bash ./clojure -M -e '(load-file \"test/niki/optimizer/runtime_test.clj\") (let [r (clojure.test/run-tests (quote niki.optimizer.runtime-test))] (System/exit (if (zero? (+ (:fail r) (:error r))) 0 1)))' 2>&1 | tee docs/evidence/g3-runtime-04-green.log",
+      "observed_exit_code": 0
+    },
+    {
+      "path": "docs/evidence/g3-runtime-04-red.log",
+      "summary": {
+        "tests": 7,
+        "assertions": 172,
+        "failures": 0,
+        "errors": 4
+      },
+      "test_command": "bash ./clojure -M -e '(load-file \"test/niki/optimizer/runtime_test.clj\") (let [r (clojure.test/run-tests (quote niki.optimizer.runtime-test))] (System/exit (if (zero? (+ (:fail r) (:error r))) 0 1)))'",
+      "capture_command": "set -o pipefail; bash ./clojure -M -e '(load-file \"test/niki/optimizer/runtime_test.clj\") (let [r (clojure.test/run-tests (quote niki.optimizer.runtime-test))] (System/exit (if (zero? (+ (:fail r) (:error r))) 0 1)))' 2>&1 | tee docs/evidence/g3-runtime-04-red.log",
+      "observed_exit_code": 1
+    },
+    {
+      "path": "docs/evidence/g3-runtime-05-green.log",
+      "summary": {
+        "tests": 10,
+        "assertions": 291,
+        "failures": 0,
+        "errors": 0
+      },
+      "test_command": "bash ./clojure -M -e '(load-file \"test/niki/optimizer/runtime_test.clj\") (let [r (clojure.test/run-tests (quote niki.optimizer.runtime-test))] (System/exit (if (zero? (+ (:fail r) (:error r))) 0 1)))'",
+      "capture_command": "set -o pipefail; bash ./clojure -M -e '(load-file \"test/niki/optimizer/runtime_test.clj\") (let [r (clojure.test/run-tests (quote niki.optimizer.runtime-test))] (System/exit (if (zero? (+ (:fail r) (:error r))) 0 1)))' 2>&1 | tee docs/evidence/g3-runtime-05-green.log",
+      "observed_exit_code": 0
+    },
+    {
+      "path": "docs/evidence/g3-runtime-05-red.log",
+      "summary": {
+        "tests": 10,
+        "assertions": 249,
+        "failures": 0,
+        "errors": 3
+      },
+      "test_command": "bash ./clojure -M -e '(load-file \"test/niki/optimizer/runtime_test.clj\") (let [r (clojure.test/run-tests (quote niki.optimizer.runtime-test))] (System/exit (if (zero? (+ (:fail r) (:error r))) 0 1)))'",
+      "capture_command": "set -o pipefail; bash ./clojure -M -e '(load-file \"test/niki/optimizer/runtime_test.clj\") (let [r (clojure.test/run-tests (quote niki.optimizer.runtime-test))] (System/exit (if (zero? (+ (:fail r) (:error r))) 0 1)))' 2>&1 | tee docs/evidence/g3-runtime-05-red.log",
+      "observed_exit_code": 1
+    },
+    {
+      "path": "docs/evidence/g3-runtime-06-green.log",
+      "summary": {
+        "tests": 14,
+        "assertions": 334,
+        "failures": 0,
+        "errors": 0
+      },
+      "test_command": "bash ./clojure -M -e '(load-file \"test/niki/optimizer/runtime_test.clj\") (let [r (clojure.test/run-tests (quote niki.optimizer.runtime-test))] (System/exit (if (zero? (+ (:fail r) (:error r))) 0 1)))'",
+      "capture_command": "set -o pipefail; bash ./clojure -M -e '(load-file \"test/niki/optimizer/runtime_test.clj\") (let [r (clojure.test/run-tests (quote niki.optimizer.runtime-test))] (System/exit (if (zero? (+ (:fail r) (:error r))) 0 1)))' 2>&1 | tee docs/evidence/g3-runtime-06-green.log",
+      "observed_exit_code": 0
+    },
+    {
+      "path": "docs/evidence/g3-runtime-06-red.log",
+      "summary": {
+        "tests": 14,
+        "assertions": 295,
+        "failures": 0,
+        "errors": 4
+      },
+      "test_command": "bash ./clojure -M -e '(load-file \"test/niki/optimizer/runtime_test.clj\") (let [r (clojure.test/run-tests (quote niki.optimizer.runtime-test))] (System/exit (if (zero? (+ (:fail r) (:error r))) 0 1)))'",
+      "capture_command": "set -o pipefail; bash ./clojure -M -e '(load-file \"test/niki/optimizer/runtime_test.clj\") (let [r (clojure.test/run-tests (quote niki.optimizer.runtime-test))] (System/exit (if (zero? (+ (:fail r) (:error r))) 0 1)))' 2>&1 | tee docs/evidence/g3-runtime-06-red.log",
+      "observed_exit_code": 1
+    },
+    {
+      "path": "docs/evidence/g3-runtime-07-green.log",
+      "summary": {
+        "tests": 16,
+        "assertions": 354,
+        "failures": 0,
+        "errors": 0
+      },
+      "test_command": "bash ./clojure -M -e '(load-file \"test/niki/optimizer/runtime_test.clj\") (let [r (clojure.test/run-tests (quote niki.optimizer.runtime-test))] (System/exit (if (zero? (+ (:fail r) (:error r))) 0 1)))'",
+      "capture_command": "set -o pipefail; bash ./clojure -M -e '(load-file \"test/niki/optimizer/runtime_test.clj\") (let [r (clojure.test/run-tests (quote niki.optimizer.runtime-test))] (System/exit (if (zero? (+ (:fail r) (:error r))) 0 1)))' 2>&1 | tee docs/evidence/g3-runtime-07-green.log",
+      "observed_exit_code": 0
+    },
+    {
+      "path": "docs/evidence/g3-runtime-07-red.log",
+      "summary": {
+        "tests": 16,
+        "assertions": 354,
+        "failures": 16,
+        "errors": 0
+      },
+      "test_command": "bash ./clojure -M -e '(load-file \"test/niki/optimizer/runtime_test.clj\") (let [r (clojure.test/run-tests (quote niki.optimizer.runtime-test))] (System/exit (if (zero? (+ (:fail r) (:error r))) 0 1)))'",
+      "capture_command": "set -o pipefail; bash ./clojure -M -e '(load-file \"test/niki/optimizer/runtime_test.clj\") (let [r (clojure.test/run-tests (quote niki.optimizer.runtime-test))] (System/exit (if (zero? (+ (:fail r) (:error r))) 0 1)))' 2>&1 | tee docs/evidence/g3-runtime-07-red.log",
+      "observed_exit_code": 1
+    },
+    {
+      "path": "docs/evidence/g3-runtime-08-green.log",
+      "summary": {
+        "tests": 19,
+        "assertions": 536,
+        "failures": 0,
+        "errors": 0
+      },
+      "test_command": "bash ./clojure -M -e '(load-file \"test/niki/optimizer/runtime_test.clj\") (let [r (clojure.test/run-tests (quote niki.optimizer.runtime-test))] (System/exit (if (zero? (+ (:fail r) (:error r))) 0 1)))'",
+      "capture_command": "set -o pipefail; bash ./clojure -M -e '(load-file \"test/niki/optimizer/runtime_test.clj\") (let [r (clojure.test/run-tests (quote niki.optimizer.runtime-test))] (System/exit (if (zero? (+ (:fail r) (:error r))) 0 1)))' 2>&1 | tee docs/evidence/g3-runtime-08-green.log",
+      "observed_exit_code": 0
+    },
+    {
+      "path": "docs/evidence/g3-runtime-08-red.log",
+      "summary": {
+        "tests": 19,
+        "assertions": 360,
+        "failures": 6,
+        "errors": 0
+      },
+      "test_command": "bash ./clojure -M -e '(load-file \"test/niki/optimizer/runtime_test.clj\") (let [r (clojure.test/run-tests (quote niki.optimizer.runtime-test))] (System/exit (if (zero? (+ (:fail r) (:error r))) 0 1)))'",
+      "capture_command": "set -o pipefail; bash ./clojure -M -e '(load-file \"test/niki/optimizer/runtime_test.clj\") (let [r (clojure.test/run-tests (quote niki.optimizer.runtime-test))] (System/exit (if (zero? (+ (:fail r) (:error r))) 0 1)))' 2>&1 | tee docs/evidence/g3-runtime-08-red.log",
+      "observed_exit_code": 1
+    },
+    {
+      "path": "docs/evidence/g3-runtime-09-green.log",
+      "summary": {
+        "tests": 22,
+        "assertions": 592,
+        "failures": 0,
+        "errors": 0
+      },
+      "test_command": "bash ./clojure -M -e '(load-file \"test/niki/optimizer/runtime_test.clj\") (let [r (clojure.test/run-tests (quote niki.optimizer.runtime-test))] (System/exit (if (zero? (+ (:fail r) (:error r))) 0 1)))'",
+      "capture_command": "set -o pipefail; bash ./clojure -M -e '(load-file \"test/niki/optimizer/runtime_test.clj\") (let [r (clojure.test/run-tests (quote niki.optimizer.runtime-test))] (System/exit (if (zero? (+ (:fail r) (:error r))) 0 1)))' 2>&1 | tee docs/evidence/g3-runtime-09-green.log",
+      "observed_exit_code": 0
+    },
+    {
+      "path": "docs/evidence/g3-runtime-09-red.log",
+      "summary": {
+        "tests": 22,
+        "assertions": 592,
+        "failures": 2,
+        "errors": 0
+      },
+      "test_command": "bash ./clojure -M -e '(load-file \"test/niki/optimizer/runtime_test.clj\") (let [r (clojure.test/run-tests (quote niki.optimizer.runtime-test))] (System/exit (if (zero? (+ (:fail r) (:error r))) 0 1)))'",
+      "capture_command": "set -o pipefail; bash ./clojure -M -e '(load-file \"test/niki/optimizer/runtime_test.clj\") (let [r (clojure.test/run-tests (quote niki.optimizer.runtime-test))] (System/exit (if (zero? (+ (:fail r) (:error r))) 0 1)))' 2>&1 | tee docs/evidence/g3-runtime-09-red.log",
+      "observed_exit_code": 1
+    },
+    {
+      "path": "docs/evidence/g3-runtime-10-green.log",
+      "summary": {
+        "tests": 24,
+        "assertions": 600,
+        "failures": 0,
+        "errors": 0
+      },
+      "test_command": "bash ./clojure -M -e '(load-file \"test/niki/optimizer/runtime_test.clj\") (let [r (clojure.test/run-tests (quote niki.optimizer.runtime-test))] (System/exit (if (zero? (+ (:fail r) (:error r))) 0 1)))'",
+      "capture_command": "set -o pipefail; bash ./clojure -M -e '(load-file \"test/niki/optimizer/runtime_test.clj\") (let [r (clojure.test/run-tests (quote niki.optimizer.runtime-test))] (System/exit (if (zero? (+ (:fail r) (:error r))) 0 1)))' 2>&1 | tee docs/evidence/g3-runtime-10-green.log",
+      "observed_exit_code": 0
+    },
+    {
+      "path": "docs/evidence/g3-runtime-10-red.log",
+      "summary": {
+        "tests": 24,
+        "assertions": 600,
+        "failures": 4,
+        "errors": 0
+      },
+      "test_command": "bash ./clojure -M -e '(load-file \"test/niki/optimizer/runtime_test.clj\") (let [r (clojure.test/run-tests (quote niki.optimizer.runtime-test))] (System/exit (if (zero? (+ (:fail r) (:error r))) 0 1)))'",
+      "capture_command": "set -o pipefail; bash ./clojure -M -e '(load-file \"test/niki/optimizer/runtime_test.clj\") (let [r (clojure.test/run-tests (quote niki.optimizer.runtime-test))] (System/exit (if (zero? (+ (:fail r) (:error r))) 0 1)))' 2>&1 | tee docs/evidence/g3-runtime-10-red.log",
+      "observed_exit_code": 1
+    },
+    {
+      "path": "docs/evidence/g3-runtime-g1-regression.log",
+      "summary": {
+        "tests": 19,
+        "assertions": 12227,
+        "failures": 0,
+        "errors": 0
+      },
+      "test_command": "bash ./clojure -M:g1-test",
+      "capture_command": "set -o pipefail; bash ./clojure -M:g1-test 2>&1 | tee docs/evidence/g3-runtime-g1-regression.log",
+      "observed_exit_code": 0
+    },
+    {
+      "path": "docs/evidence/g3-runtime-g2-regression.log",
+      "summary": {
+        "tests": 9,
+        "assertions": 6466,
+        "failures": 0,
+        "errors": 0
+      },
+      "test_command": "bash ./clojure -M:g2-test",
+      "capture_command": "set -o pipefail; bash ./clojure -M:g2-test 2>&1 | tee docs/evidence/g3-runtime-g2-regression.log",
+      "observed_exit_code": 0
+    },
+    {
+      "path": "docs/evidence/g3-runtime-g3-alias.log",
+      "summary": {
+        "tests": 28,
+        "assertions": 645,
+        "failures": 0,
+        "errors": 0
+      },
+      "test_command": "bash ./clojure -M:g3-test",
+      "capture_command": "set -o pipefail; bash ./clojure -M:g3-test 2>&1 | tee docs/evidence/g3-runtime-g3-alias.log",
+      "observed_exit_code": 0
+    },
+    {
+      "path": "docs/evidence/g3-runtime-g3-final.log",
+      "summary": {
+        "tests": 31,
+        "assertions": 659,
+        "failures": 0,
+        "errors": 2
+      },
+      "test_command": "bash ./clojure -M:g3-test",
+      "capture_command": "set -o pipefail; bash ./clojure -M:g3-test 2>&1 | tee docs/evidence/g3-runtime-g3-final.log",
+      "observed_exit_code": 1
+    },
+    {
+      "path": "docs/evidence/g3-runtime-legacy-final.log",
+      "summary": {
+        "tests": 24,
+        "assertions": 600,
+        "failures": 0,
+        "errors": 0
+      },
+      "test_command": "bash ./clojure -M:legacy-version -e '(load-file \"test/niki/optimizer/runtime_test.clj\") (let [r (clojure.test/run-tests (quote niki.optimizer.runtime-test))] (System/exit (if (zero? (+ (:fail r) (:error r))) 0 1)))'",
+      "capture_command": "set -o pipefail; bash ./clojure -M:legacy-version -e '(load-file \"test/niki/optimizer/runtime_test.clj\") (let [r (clojure.test/run-tests (quote niki.optimizer.runtime-test))] (System/exit (if (zero? (+ (:fail r) (:error r))) 0 1)))' 2>&1 | tee docs/evidence/g3-runtime-legacy-final.log",
+      "observed_exit_code": 0
+    },
+    {
+      "path": "docs/evidence/g3-runtime-legacy-g3.log",
+      "summary": {
+        "tests": 29,
+        "assertions": 651,
+        "failures": 0,
+        "errors": 2
+      },
+      "test_command": "bash ./clojure -M:legacy-version:g3-test",
+      "capture_command": "set -o pipefail; bash ./clojure -M:legacy-version:g3-test 2>&1 | tee docs/evidence/g3-runtime-legacy-g3.log",
+      "observed_exit_code": 1
+    },
+    {
+      "path": "docs/evidence/g3-runtime-legacy-standalone.log",
+      "summary": {
+        "tests": 22,
+        "assertions": 592,
+        "failures": 0,
+        "errors": 0
+      },
+      "test_command": "bash ./clojure -M:legacy-version -e '(load-file \"test/niki/optimizer/runtime_test.clj\") (let [r (clojure.test/run-tests (quote niki.optimizer.runtime-test))] (System/exit (if (zero? (+ (:fail r) (:error r))) 0 1)))'",
+      "capture_command": "set -o pipefail; bash ./clojure -M:legacy-version -e '(load-file \"test/niki/optimizer/runtime_test.clj\") (let [r (clojure.test/run-tests (quote niki.optimizer.runtime-test))] (System/exit (if (zero? (+ (:fail r) (:error r))) 0 1)))' 2>&1 | tee docs/evidence/g3-runtime-legacy-standalone.log",
+      "observed_exit_code": 0
+    },
+    {
+      "path": "docs/evidence/g3-runtime-native-final.log",
+      "summary": {
+        "tests": 24,
+        "assertions": 600,
+        "failures": 0,
+        "errors": 0
+      },
+      "test_command": "cmd.exe /d /s /c 'clojure.cmd -M docs/evidence/g3-runtime-native-test.clj'",
+      "capture_command": "set -o pipefail; cmd.exe /d /s /c 'clojure.cmd -M docs/evidence/g3-runtime-native-test.clj' 2>&1 | tee docs/evidence/g3-runtime-native-final.log",
+      "observed_exit_code": 0
+    },
+    {
+      "path": "docs/evidence/g3-runtime-native-g3.log",
+      "summary": {
+        "tests": 29,
+        "assertions": 651,
+        "failures": 0,
+        "errors": 2
+      },
+      "test_command": "cmd.exe /d /s /c 'clojure.cmd -M:g3-test'",
+      "capture_command": "set -o pipefail; cmd.exe /d /s /c 'clojure.cmd -M:g3-test' 2>&1 | tee docs/evidence/g3-runtime-native-g3.log",
+      "observed_exit_code": 1
+    },
+    {
+      "path": "docs/evidence/g3-runtime-native-legacy-final.log",
+      "summary": {
+        "tests": 24,
+        "assertions": 600,
+        "failures": 0,
+        "errors": 0
+      },
+      "test_command": "cmd.exe /d /s /c 'clojure.cmd -M:legacy-version docs/evidence/g3-runtime-native-test.clj'",
+      "capture_command": "set -o pipefail; cmd.exe /d /s /c 'clojure.cmd -M:legacy-version docs/evidence/g3-runtime-native-test.clj' 2>&1 | tee docs/evidence/g3-runtime-native-legacy-final.log",
+      "observed_exit_code": 0
+    },
+    {
+      "path": "docs/evidence/g3-runtime-native-standalone.log",
+      "summary": null,
+      "test_command": "cmd.exe /d /s /c 'clojure.cmd -M -i test/niki/optimizer/runtime_test.clj -e \"(let [r (clojure.test/run-tests (quote niki.optimizer.runtime-test))] (System/exit (if (zero? (+ (:fail r) (:error r))) 0 1)))\"'",
+      "capture_command": "set -o pipefail; cmd.exe /d /s /c 'clojure.cmd -M -i test/niki/optimizer/runtime_test.clj -e \"(let [r (clojure.test/run-tests (quote niki.optimizer.runtime-test))] (System/exit (if (zero? (+ (:fail r) (:error r))) 0 1)))\"' 2>&1 | tee docs/evidence/g3-runtime-native-standalone.log",
+      "observed_exit_code": 1
+    }
+  ],
+  "log_count": 34,
+  "fix_found": "Canonicalized objective keys and trace values through G2 to remove signed zero; real failing regression preserved in slice 09.",
+  "assumptions": [
+    "Host adapters/solutions are trusted bounded immutable deterministic code/values and perform no hidden objective queries.",
+    "Invalid candidates stop as method-failure; primitive/evaluation Exceptions retain actual charged partial state; fatal JVM Errors propagate.",
+    "A visited node may finish semantics using its last available fuel unit; the next node/loop transition is refused.",
+    "Search with no current point adopts without score visits; otherwise both scores consume AST fuel after candidate archive insertion.",
+    "archive-solutions is positionally aligned with objective-front and keeps the first representative for equal canonical objectives.",
+    "G1 PreparedPortfolio construction is a host preparation responsibility; make-adapter separately measures fixed-G2 preparation elapsed time.",
+    "Replay compares every returned field except timing, with the same task instance, AST, adapter version, options and seed.",
+    "Only ordinary Clojure host functions are accepted for required adapter function fields; no generic callable framework is introduced."
+  ],
+  "trace": {
+    "event_cap": 2048,
+    "truncation_flag": "trace-truncated?",
+    "dropped_counter": "trace-dropped",
+    "off_changes_counters": false
+  },
+  "timing": {
+    "runtime_elapsed": "measured System.nanoTime delta after preflight",
+    "thread_cpu": "measured current-thread CPU delta if enabled/supported, else null",
+    "preparation": "adapter preparation elapsed-ns carried only under timing.preparation"
+  },
+  "issues_encountered": [
+    {
+      "issue": "Parent DSL API initially incomplete",
+      "resolution": "Preserved initial compiler/NPE/partial-checker logs; final runtime uses actual dsl/check-program and dsl/program-id. No DSL edits."
+    },
+    {
+      "issue": "Native Windows inline -e quote ambiguity produced EOF while reading string",
+      "resolution": "Preserved failed invocation; tested owned standalone driver script via clojure.cmd on both Clojure versions. Launcher source unchanged."
+    },
+    {
+      "issue": "Concurrent intentional DSL serialization RED caused aggregate G3 errors",
+      "resolution": "Observed and preserved before steering; after parent approval-blocker message, no aggregate/blocked serialization regression was executed again."
+    }
+  ],
+  "remaining_issues": [
+    "Aggregate G3 serialization fix is outside owned scope and awaits user approval in the parent. Last aggregate observation: 31 tests, 659 assertions, zero failures, two DSL canonical-edn arity errors; owned standalone runtime tests are green.",
+    "Parent owns independent review, G4, full upstream/protocol regression package and external-review approval. No empirical optimizer study was executed.",
+    "Fuel is not a sandbox, elapsed-time or heap bound for arbitrary trusted host calls; worker timeout/heap isolation remain later operational gates before G7."
+  ],
+  "not_performed": [
+    "DSL/G1/G2/vendor source edits",
+    "new dependencies or tool installs",
+    "git staging or commits",
+    "market data ingestion",
+    "optimizer experiment or G5+ execution",
+    "approval bypass",
+    "marking project tasks complete"
+  ]
+}

@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 550" width="920" height="550" font-family="Inter, Segoe UI, Arial, sans-serif">
+  <rect x="0" y="0" width="920" height="550" fill="#ffffff" rx="8"/>
+  <text x="65" y="34" font-size="18" font-weight="700" fill="#0f172a">Secondary Ablation: Surgical AST Knockouts (Body, Initializer &amp; Score Terms)</text>
+  <text x="65" y="55" font-size="13" fill="#475569">Held-out Test Normalized HV across 6 structural/formula knockouts on evolved A1 (:gp-mixed) and A2 (:gp-mutation-only) winners</text>
+  <text x="65" y="81" font-size="14.5" font-weight="700" fill="#0f172a">A. Portfolio Selection (N=50, K=5, T=365)</text>
+  <rect x="65" y="95" width="380" height="340" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+  <line x1="65" y1="435.00" x2="445" y2="435.00" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="57" y="435.00" font-size="10.5" fill="#475569" text-anchor="end" dominant-baseline="middle">0.450</text>
+  <line x1="65" y1="367.00" x2="445" y2="367.00" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="57" y="367.00" font-size="10.5" fill="#475569" text-anchor="end" dominant-baseline="middle">0.494</text>
+  <line x1="65" y1="299.00" x2="445" y2="299.00" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="57" y="299.00" font-size="10.5" fill="#475569" text-anchor="end" dominant-baseline="middle">0.538</text>
+  <line x1="65" y1="231.00" x2="445" y2="231.00" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="57" y="231.00" font-size="10.5" fill="#475569" text-anchor="end" dominant-baseline="middle">0.582</text>
+  <line x1="65" y1="163.00" x2="445" y2="163.00" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="57" y="163.00" font-size="10.5" fill="#475569" text-anchor="end" dominant-baseline="middle">0.626</text>
+  <line x1="65" y1="95.00" x2="445" y2="95.00" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="57" y="95.00" font-size="10.5" fill="#475569" text-anchor="end" dominant-baseline="middle">0.670</text>
+  <line x1="65" y1="2.28" x2="445" y2="2.28" stroke="#059669" stroke-dasharray="4,4" stroke-width="1.4"/>
+  <rect x="74.64" y="2.28" width="16.0" height="432.72" rx="2.5" fill="#10b981" fill-opacity="0.88" stroke="#047857" stroke-width="1.1"/>
+  <rect x="93.64" y="0.35" width="16.0" height="434.65" rx="2.5" fill="#0ea5e9" fill-opacity="0.85" stroke="#0369a1" stroke-width="1.1"/>
+  <text x="92.14" y="453" font-size="9.5" font-weight="600" fill="#1e293b" text-anchor="middle">K0: Intact</text>
+  <rect x="128.93" y="435.00" width="16.0" height="2.00" rx="2.5" fill="#f43f5e" fill-opacity="0.88" stroke="#be123c" stroke-width="1.1"/>
+  <rect x="147.93" y="435.00" width="16.0" height="2.00" rx="2.5" fill="#f59e0b" fill-opacity="0.85" stroke="#b45309" stroke-width="1.1"/>
+  <text x="146.43" y="429.00" font-size="9.5" font-weight="700" fill="#be123c" text-anchor="middle">-0.377</text>
+  <text x="146.43" y="453" font-size="9.5" font-weight="600" fill="#1e293b" text-anchor="middle">K1: No Body</text>
+  <rect x="183.21" y="2.16" width="16.0" height="432.84" rx="2.5" fill="#f43f5e" fill-opacity="0.88" stroke="#be123c" stroke-width="1.1"/>
+  <rect x="202.21" y="0.35" width="16.0" height="434.65" rx="2.5" fill="#f59e0b" fill-opacity="0.85" stroke="#b45309" stroke-width="1.1"/>
+  <text x="200.71" y="-5.65" font-size="9.5" font-weight="700" fill="#be123c" text-anchor="middle">+0.000</text>
+  <text x="200.71" y="453" font-size="9.5" font-weight="600" fill="#1e293b" text-anchor="middle">K2: Rand Init</text>
+  <rect x="237.50" y="176.01" width="16.0" height="258.99" rx="2.5" fill="#f43f5e" fill-opacity="0.88" stroke="#be123c" stroke-width="1.1"/>
+  <rect x="256.50" y="178.77" width="16.0" height="256.23" rx="2.5" fill="#f59e0b" fill-opacity="0.85" stroke="#b45309" stroke-width="1.1"/>
+  <text x="255.00" y="170.01" font-size="9.5" font-weight="700" fill="#be123c" text-anchor="middle">-0.112</text>
+  <text x="255.00" y="453" font-size="9.5" font-weight="600" fill="#1e293b" text-anchor="middle">K3: Blind Score</text>
+  <rect x="291.79" y="0.92" width="16.0" height="434.08" rx="2.5" fill="#f43f5e" fill-opacity="0.88" stroke="#be123c" stroke-width="1.1"/>
+  <rect x="310.79" y="-4.33" width="16.0" height="439.33" rx="2.5" fill="#f59e0b" fill-opacity="0.85" stroke="#b45309" stroke-width="1.1"/>
+  <text x="309.29" y="-10.33" font-size="9.5" font-weight="700" fill="#be123c" text-anchor="middle">+0.001</text>
+  <text x="309.29" y="453" font-size="9.5" font-weight="600" fill="#1e293b" text-anchor="middle">K4: Const=1</text>
+  <rect x="346.07" y="2.28" width="16.0" height="432.72" rx="2.5" fill="#f43f5e" fill-opacity="0.88" stroke="#be123c" stroke-width="1.1"/>
+  <rect x="365.07" y="-0.54" width="16.0" height="435.54" rx="2.5" fill="#f59e0b" fill-opacity="0.85" stroke="#b45309" stroke-width="1.1"/>
+  <text x="363.57" y="-6.54" font-size="9.5" font-weight="700" fill="#be123c" text-anchor="middle">+0.000</text>
+  <text x="363.57" y="453" font-size="9.5" font-weight="600" fill="#1e293b" text-anchor="middle">K5: No Prog</text>
+  <rect x="400.36" y="36.43" width="16.0" height="398.57" rx="2.5" fill="#f43f5e" fill-opacity="0.88" stroke="#be123c" stroke-width="1.1"/>
+  <rect x="419.36" y="11.27" width="16.0" height="423.73" rx="2.5" fill="#f59e0b" fill-opacity="0.85" stroke="#b45309" stroke-width="1.1"/>
+  <text x="417.86" y="5.27" font-size="9.5" font-weight="700" fill="#be123c" text-anchor="middle">-0.022</text>
+  <text x="417.86" y="453" font-size="9.5" font-weight="600" fill="#1e293b" text-anchor="middle">K6: Obj0 Only</text>
+  <text x="505" y="81" font-size="14.5" font-weight="700" fill="#0f172a">B. Single-Machine Scheduling (30 Jobs)</text>
+  <rect x="505" y="95" width="380" height="340" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+  <line x1="505" y1="435.00" x2="885" y2="435.00" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="497" y="435.00" font-size="10.5" fill="#475569" text-anchor="end" dominant-baseline="middle">0.440</text>
+  <line x1="505" y1="367.00" x2="885" y2="367.00" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="497" y="367.00" font-size="10.5" fill="#475569" text-anchor="end" dominant-baseline="middle">0.465</text>
+  <line x1="505" y1="299.00" x2="885" y2="299.00" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="497" y="299.00" font-size="10.5" fill="#475569" text-anchor="end" dominant-baseline="middle">0.490</text>
+  <line x1="505" y1="231.00" x2="885" y2="231.00" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="497" y="231.00" font-size="10.5" fill="#475569" text-anchor="end" dominant-baseline="middle">0.515</text>
+  <line x1="505" y1="163.00" x2="885" y2="163.00" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="497" y="163.00" font-size="10.5" fill="#475569" text-anchor="end" dominant-baseline="middle">0.540</text>
+  <line x1="505" y1="95.00" x2="885" y2="95.00" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="497" y="95.00" font-size="10.5" fill="#475569" text-anchor="end" dominant-baseline="middle">0.565</text>
+  <line x1="505" y1="161.18" x2="885" y2="161.18" stroke="#059669" stroke-dasharray="4,4" stroke-width="1.4"/>
+  <rect x="514.64" y="161.18" width="16.0" height="273.82" rx="2.5" fill="#10b981" fill-opacity="0.88" stroke="#047857" stroke-width="1.1"/>
+  <rect x="533.64" y="159.34" width="16.0" height="275.66" rx="2.5" fill="#0ea5e9" fill-opacity="0.85" stroke="#0369a1" stroke-width="1.1"/>
+  <text x="532.14" y="453" font-size="9.5" font-weight="600" fill="#1e293b" text-anchor="middle">K0: Intact</text>
+  <rect x="568.93" y="435.00" width="16.0" height="2.00" rx="2.5" fill="#f43f5e" fill-opacity="0.88" stroke="#be123c" stroke-width="1.1"/>
+  <rect x="587.93" y="435.00" width="16.0" height="2.00" rx="2.5" fill="#f59e0b" fill-opacity="0.85" stroke="#b45309" stroke-width="1.1"/>
+  <text x="586.43" y="429.00" font-size="9.5" font-weight="700" fill="#be123c" text-anchor="middle">-0.185</text>
+  <text x="586.43" y="453" font-size="9.5" font-weight="600" fill="#1e293b" text-anchor="middle">K1: No Body</text>
+  <rect x="623.21" y="161.97" width="16.0" height="273.03" rx="2.5" fill="#f43f5e" fill-opacity="0.88" stroke="#be123c" stroke-width="1.1"/>
+  <rect x="642.21" y="159.34" width="16.0" height="275.66" rx="2.5" fill="#f59e0b" fill-opacity="0.85" stroke="#b45309" stroke-width="1.1"/>
+  <text x="640.71" y="153.34" font-size="9.5" font-weight="700" fill="#be123c" text-anchor="middle">-0.000</text>
+  <text x="640.71" y="453" font-size="9.5" font-weight="600" fill="#1e293b" text-anchor="middle">K2: Rand Init</text>
+  <rect x="677.50" y="435.00" width="16.0" height="2.00" rx="2.5" fill="#f43f5e" fill-opacity="0.88" stroke="#be123c" stroke-width="1.1"/>
+  <rect x="696.50" y="435.00" width="16.0" height="2.00" rx="2.5" fill="#f59e0b" fill-opacity="0.85" stroke="#b45309" stroke-width="1.1"/>
+  <text x="695.00" y="429.00" font-size="9.5" font-weight="700" fill="#be123c" text-anchor="middle">-0.119</text>
+  <text x="695.00" y="453" font-size="9.5" font-weight="600" fill="#1e293b" text-anchor="middle">K3: Blind Score</text>
+  <rect x="731.79" y="161.18" width="16.0" height="273.82" rx="2.5" fill="#f43f5e" fill-opacity="0.88" stroke="#be123c" stroke-width="1.1"/>
+  <rect x="750.79" y="159.30" width="16.0" height="275.70" rx="2.5" fill="#f59e0b" fill-opacity="0.85" stroke="#b45309" stroke-width="1.1"/>
+  <text x="749.29" y="153.30" font-size="9.5" font-weight="700" fill="#be123c" text-anchor="middle">+0.000</text>
+  <text x="749.29" y="453" font-size="9.5" font-weight="600" fill="#1e293b" text-anchor="middle">K4: Const=1</text>
+  <rect x="786.07" y="162.22" width="16.0" height="272.78" rx="2.5" fill="#f43f5e" fill-opacity="0.88" stroke="#be123c" stroke-width="1.1"/>
+  <rect x="805.07" y="159.41" width="16.0" height="275.59" rx="2.5" fill="#f59e0b" fill-opacity="0.85" stroke="#b45309" stroke-width="1.1"/>
+  <text x="803.57" y="153.41" font-size="9.5" font-weight="700" fill="#be123c" text-anchor="middle">-0.000</text>
+  <text x="803.57" y="453" font-size="9.5" font-weight="600" fill="#1e293b" text-anchor="middle">K5: No Prog</text>
+  <rect x="840.36" y="207.14" width="16.0" height="227.86" rx="2.5" fill="#f43f5e" fill-opacity="0.88" stroke="#be123c" stroke-width="1.1"/>
+  <rect x="859.36" y="207.80" width="16.0" height="227.20" rx="2.5" fill="#f59e0b" fill-opacity="0.85" stroke="#b45309" stroke-width="1.1"/>
+  <text x="857.86" y="201.14" font-size="9.5" font-weight="700" fill="#be123c" text-anchor="middle">-0.017</text>
+  <text x="857.86" y="453" font-size="9.5" font-weight="600" fill="#1e293b" text-anchor="middle">K6: Obj0 Only</text>
+  <rect x="65" y="482" width="820" height="42" rx="6" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+  <rect x="85" y="496" width="14" height="14" rx="2" fill="#10b981" stroke="#047857"/>
+  <text x="105" y="503" font-size="11.5" font-weight="600" fill="#064e3b" dominant-baseline="middle">K0: Intact A1 (:gp-mixed)</text>
+  <rect x="285" y="496" width="14" height="14" rx="2" fill="#f43f5e" stroke="#be123c"/>
+  <text x="305" y="503" font-size="11.5" fill="#1e293b" dominant-baseline="middle">Knockout on A1 (:gp-mixed, label = Delta HV)</text>
+  <rect x="585" y="496" width="14" height="14" rx="2" fill="#f59e0b" stroke="#b45309"/>
+  <text x="605" y="503" font-size="11.5" fill="#1e293b" dominant-baseline="middle">Knockout on A2 (:gp-mutation-only)</text>
+</svg>

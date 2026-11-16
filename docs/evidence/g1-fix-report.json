@@ -1,0 +1,47 @@
+{
+  "status": "passed",
+  "scope": "Only the two reported G1 numerical defects and their direct regressions",
+  "repository": "C:/Users/meggy/Niki/typed-optimizer-lab",
+  "sequential_tdd": [
+    {
+      "defect": "direct portfolio risk loses near-constant dispersion",
+      "order": ["add direct-risk-preserves-near-constant-asset-dispersion", "run direct RED", "fix portfolio/evaluate", "run direct GREEN"],
+      "root_cause": "Subtracting the rounded absolute binary64 portfolio mean yields deviations [0,2] instead of [-1,1] for the one-asset case. In the two-asset case, per-period equal-weight rounding first erases the variation entirely.",
+      "change": "For each selected asset, subtract its first observation, calculate the scaled compensated mean of those shifts, and center the shifts. Equal-weight the per-asset centered series, then use the existing hypot norm divided by sqrt(T-1). Leave returned portfolio series and mean calculations unchanged.",
+      "numerical_justification": "Translation leaves covariance unchanged; centering is linear under equal weighting. Forming small shifts before their mean avoids rounding an absolute mean, while centering assets before weighting avoids losing dispersion in the absolute portfolio series. The existing scaled compensated mean and hypot accumulation retain huge/tiny-magnitude protection.",
+      "regressions": [
+        {"k": 1, "dates": ["2000-01-01", "2000-01-02"], "returns": [[10000000000000000.0, 10000000000000002.0]], "reference_exact_variance": "2", "red_risk": 2.0, "green_risk": 1.4142135623730951},
+        {"k": 2, "dates": ["2000-01-01", "2000-01-02"], "returns": [[10000000000000000.0, 10000000000000002.0], [10000000000000000.0, 10000000000000000.0]], "reference_exact_variance": "1/2", "red_risk": 0.0, "green_risk": 0.7071067811865476}
+      ],
+      "binary64_limitation": "For the two-asset case the returned portfolio-returns remains [1.0E16,1.0E16]: the true second-period equal-weight return 10000000000000001 is unrepresentable in binary64. Risk is computed from the per-asset centered series and correctly remains sqrt(1/2), independently of this rounded returned series. The mean-return remains binary64.",
+      "red": {"command": "set -o pipefail; bash ./clojure -M:g1-test 2>&1 | tee docs/evidence/g1-fix-direct-red.txt", "exit_code": 1, "tests": 11, "assertions": 12147, "failures": 4, "errors": 0},
+      "green": {"command": "set -o pipefail; bash ./clojure -M:g1-test 2>&1 | tee docs/evidence/g1-fix-direct-green.txt", "exit_code": 0, "tests": 11, "assertions": 12147, "failures": 0, "errors": 0}
+    },
+    {
+      "defect": "exact reference overflows integral arithmetic",
+      "order": ["add exact-reference-promotes-integral-arithmetic after direct GREEN", "run reference RED", "promote exact-reference arithmetic", "run reference GREEN"],
+      "root_cause": "rationalize leaves Long inputs as Long. Checked + and * overflow while summing means, squaring integral deviations, aggregating selected asset means, or aggregating covariance entries, despite an exact rational answer existing.",
+      "change": "Use promoting +' for exact sums, -' for exact centered differences, and *' for covariance products and the k*k variance divisor. Retain rationalize, rational division, independent covariance evaluation, and the existing BigDecimal square root before binary64 conversion.",
+      "regressions": [
+        {"case": "Long/MAX_VALUE constant input", "returns": "[9223372036854775807 9223372036854775807]", "exact_mean": "9223372036854775807", "exact_variance": "0", "red_error": "ArithmeticException: long overflow in prepare-reference mean sum"},
+        {"case": "large integer nonzero variance", "returns": "[0 8000000000]", "exact_mean": "4000000000", "exact_variance": "32000000000000000000", "red_error": "ArithmeticException: long overflow in covariance multiplication"},
+        {"case": "three constant assets with individually fitting means", "returns": "3 copies of [4000000000000000000 4000000000000000000]", "exact_mean": "4000000000000000000", "exact_variance": "0", "red_error": "ArithmeticException: long overflow in evaluate selected mean sum"},
+        {"case": "two identical assets with individually fitting covariances", "returns": "2 copies of [0 4000000000]", "exact_mean": "2000000000", "exact_variance": "8000000000000000000", "red_error": "ArithmeticException: long overflow in evaluate selected covariance sum"}
+      ],
+      "red": {"command": "set -o pipefail; bash ./clojure -M:g1-test 2>&1 | tee docs/evidence/g1-fix-reference-red.txt", "exit_code": 1, "tests": 12, "assertions": 12151, "failures": 0, "errors": 4, "error_interpretation": "All four errors are expected reproductions of production long overflow, not test harness failures."},
+      "green": {"command": "set -o pipefail; bash ./clojure -M:g1-test 2>&1 | tee docs/evidence/g1-fix-reference-green.txt", "exit_code": 0, "tests": 12, "assertions": 12151, "failures": 0, "errors": 0}
+    }
+  ],
+  "final_verification": {
+    "suite": {"command": "set -o pipefail; bash ./clojure -M:g1-test 2>&1 | tee docs/evidence/g1-fix-suite-green.txt", "exit_code": 0, "tests": 12, "assertions": 12151, "failures": 0, "errors": 0},
+    "g1_script": {"command": "set -o pipefail; bash ./clojure -M scripts/verify-g1.clj 2>&1 | tee docs/evidence/g1-fix-verify-green.txt", "exit_code": 0, "status": "passed", "checked_portfolios": 3003, "unique_selections": 3003, "failed_crosschecks": 0, "maximum_absolute_mean_error": 2.168404344971009e-18, "maximum_absolute_risk_error": 6.938893903907228e-18, "absolute_tolerance": 1e-12, "relative_tolerance": 1e-10, "fixture_sha256": "fb6c44113ce3d0a29a77b8998b120448710b16512455639b6e4279faa6fef758", "clojure_version": "1.12.6", "java_version": "25.0.5", "experiment_launched": false},
+    "artifact_checks": "A successful Python terminal check parsed all five suite logs and asserted their exact counts. It also read g1-objectives.csv and asserted 3003 data rows, 3003 unique selections, and zero failed rows. g1-verification.edn was read back and matches the successful script output.",
+    "value_probe": {"command": "set -o pipefail; bash ./clojure -M -e '(require (quote [niki.optimizer.portfolio :as p]) (quote [niki.optimizer.portfolio-reference :as r])) (doseq [rows [[[10000000000000000.0 10000000000000002.0]] [[10000000000000000.0 10000000000000002.0] [10000000000000000.0 10000000000000000.0]]]] (let [panel {:k (count rows) :assets (mapv (fn [i xs] {:id (str i) :dates [\"2000-01-01\" \"2000-01-02\"] :returns xs}) (range) rows)} selection (vec (range (count rows)))] (prn {:direct (p/evaluate (p/prepare-instance panel) selection) :reference (r/evaluate (r/prepare-reference panel) selection)})))' 2>&1 | tee docs/evidence/g1-fix-values-green.txt", "exit_code": 0, "cases": 2}
+  },
+  "preserved": ["Public API and return-map keys", "Objectives [-mean-return, sample-standard-deviation]", "Sample denominator T-1", "Selection canonicalization and validation", "Finite simple-return domain >= -1 and existing data validation", "Existing huge/tiny finite-magnitude tests", "Existing normal-output and exhaustive covariance checks", "Reference numerical independence from direct evaluator"],
+  "modified_source_and_test_files": ["src/niki/optimizer/portfolio.clj", "src/niki/optimizer/portfolio_reference.clj", "test/niki/optimizer/portfolio_reference_test.clj"],
+  "evidence_artifacts": ["docs/evidence/g1-fix-direct-red.txt", "docs/evidence/g1-fix-direct-green.txt", "docs/evidence/g1-fix-reference-red.txt", "docs/evidence/g1-fix-reference-green.txt", "docs/evidence/g1-fix-suite-green.txt", "docs/evidence/g1-fix-verify-green.txt", "docs/evidence/g1-fix-values-green.txt", "docs/evidence/g1-fix-report.json"],
+  "regenerated_by_requested_verification_script": ["docs/evidence/g1-objectives.csv", "docs/evidence/g1-verification.edn"],
+  "issues": ["The repository has no commits and all project work is untracked; the initial git log command returned exit 128 for the unborn main branch. Nothing was staged, committed, or pushed.", "No execution blockers. Integer RED reports four expected ArithmeticException errors, each directly reproducing the defect."],
+  "scope_checks": {"vendor_edited": false, "configuration_edited": false, "skills_edited": false, "documentation_edited_beyond_requested_evidence": false, "experiments_run": false, "commits_or_pushes": false}
+}

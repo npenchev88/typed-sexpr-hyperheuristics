@@ -1,0 +1,13 @@
+{
+  "status": "passed",
+  "archive": "C:\\Users\\meggy\\Niki\\typed-optimizer-lab\\review\\G1_EXTERNAL_REVIEW_2026-11-07.zip",
+  "archive_bytes": 3100263,
+  "archive_sha256": "7fee8216a88ab4a02d080f47a10b4bbdd9dfca7ceb2f9d4ee53dfb8fa68eb28e",
+  "archive_members": 242,
+  "all_member_hashes_verified": true,
+  "crc_verified": true,
+  "accepted_g1_snapshot_unchanged": true,
+  "upstream_commit": "29252c5b86d9f8a15099d85893e5e97861cb705d",
+  "g2_started": false,
+  "external_upload_performed": false
+}

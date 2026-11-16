@@ -1,0 +1,7 @@
+#'niki.optimizer.portfolio-test/malformed-return-panels-fail-closed
+:reviewer {:selection [0 1], :portfolio-returns [5.0E15 5.0E15], :mean-return 5.0E15, :sample-standard-deviation 0.3535533905932738, :objectives [-5.0E15 0.3535533905932738]}
+:nearconstant-k1 {:selection [0], :portfolio-returns [1.0E16 1.0000000000000002E16], :mean-return 1.0E16, :sample-standard-deviation 1.4142135623730951, :objectives [-1.0E16 1.4142135623730951]}
+:nearconstant-k2 {:selection [0 1], :portfolio-returns [1.0E16 1.0E16], :mean-return 1.0E16, :sample-standard-deviation 0.7071067811865476, :objectives [-1.0E16 0.7071067811865476]}
+:huge-constant {:selection [0 1], :portfolio-returns [1.0E308 1.0E308], :mean-return 1.0E308, :sample-standard-deviation 0.0, :objectives [-1.0E308 0.0]}
+:huge-risk {:selection [0], :portfolio-returns [0.0 1.0E200], :mean-return 5.0E199, :sample-standard-deviation 7.071067811865475E199, :objectives [-5.0E199 7.071067811865475E199]}
+:tiny-risk {:selection [0], :portfolio-returns [0.0 1.0E-200], :mean-return 5.0E-201, :sample-standard-deviation 7.071067811865475E-201, :objectives [-5.0E-201 7.071067811865475E-201]}

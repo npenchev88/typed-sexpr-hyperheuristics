@@ -1,0 +1,23 @@
+
+Testing niki.optimizer.portfolio-test
+
+FAIL in (assets-must-be-maps-before-field-access) (portfolio_test.clj:100)
+expected: (= :invalid-assets (try (portfolio/prepare-instance panel) :accepted (catch clojure.lang.ExceptionInfo e (:error (ex-data e)))))
+  actual: (not (= :invalid-assets :invalid-asset-id))
+
+FAIL in (assets-must-be-maps-before-field-access) (portfolio_test.clj:100)
+expected: (= :invalid-assets (try (portfolio/prepare-instance panel) :accepted (catch clojure.lang.ExceptionInfo e (:error (ex-data e)))))
+  actual: (not (= :invalid-assets :invalid-asset-id))
+
+FAIL in (assets-must-be-maps-before-field-access) (portfolio_test.clj:100)
+expected: (= :invalid-assets (try (portfolio/prepare-instance panel) :accepted (catch clojure.lang.ExceptionInfo e (:error (ex-data e)))))
+  actual: (not (= :invalid-assets :invalid-asset-id))
+
+FAIL in (assets-must-be-maps-before-field-access) (portfolio_test.clj:100)
+expected: (= :invalid-assets (try (portfolio/prepare-instance panel) :accepted (catch clojure.lang.ExceptionInfo e (:error (ex-data e)))))
+  actual: (not (= :invalid-assets :duplicate-assets))
+
+Testing niki.optimizer.portfolio-reference-test
+
+Ran 15 tests containing 12163 assertions.
+4 failures, 0 errors.

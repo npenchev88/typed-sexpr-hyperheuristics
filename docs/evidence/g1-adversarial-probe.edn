@@ -1,0 +1,1 @@
+{:objectives-checked 400, :experiment-launched? false, :scope :bounded-differential-correctness-only, :seed 7102026, :panels-checked 200, :reference :covariance-of-exact-normalized-binary64-inputs, :status :passed, :palette-size 12, :failures []}

@@ -1,0 +1,125 @@
+{
+  "gate": "G1",
+  "status": "passed",
+  "scope": "Minimal input-contract and independent-reference input-domain corrections; synthetic correctness only",
+  "experiment_launched": false,
+  "implementation_files_modified": [
+    "src/niki/optimizer/portfolio.clj",
+    "src/niki/optimizer/portfolio_reference.clj",
+    "test/niki/optimizer/portfolio_test.clj",
+    "test/niki/optimizer/portfolio_reference_test.clj",
+    "scripts/verify-g1.clj"
+  ],
+  "changes": [
+    "Check root map before associative destructuring; reject key/value lists and bounded lazy poison without realization.",
+    "Require a nonempty assets vector containing only maps before reading any asset fields.",
+    "Accept exact standard immutable numeric classes only; reject DoubleAdder of both signs, AtomicLong, and custom Number implementations.",
+    "Convert each return once to a canonical double; validate finite normalized return >= -1 and retain raw exact lower-bound validation.",
+    "Default prepare-reference to :normalized-binary64 using prepared returns -> BigDecimal(double) -> rationalize.",
+    "Retain explicit :exact-input diagnostics with original-input rationalization, reject unknown modes with ExceptionInfo, and store :input-mode.",
+    "Move original-ratio and integral-exactness tests to explicit :exact-input; keep ordinary production comparisons on the default input domain.",
+    "Add strict regressions for large doubles, decimal cancellation, and large Long normalization, plus intended exact-mode differences.",
+    "Add :reference-input-mode to the verification summary only; do not change production evaluate arithmetic or share numerical reference logic."
+  ],
+  "baseline": {
+    "log": "docs/evidence/g1-contract-baseline.txt",
+    "tests": 13,
+    "assertions": 12156,
+    "failures": 0,
+    "errors": 0
+  },
+  "red_green_evidence": [
+    {
+      "slice": "Root shape before destructuring",
+      "red_log": "docs/evidence/g1-contract-root-red.txt",
+      "red": {"tests": 14, "assertions": 12159, "failures": 3, "errors": 0},
+      "green_log": "docs/evidence/g1-contract-root-green.txt",
+      "green": {"tests": 14, "assertions": 12159, "failures": 0, "errors": 0}
+    },
+    {
+      "slice": "Asset maps before field access",
+      "red_log": "docs/evidence/g1-contract-assets-red.txt",
+      "red": {"tests": 15, "assertions": 12163, "failures": 4, "errors": 0},
+      "green_log": "docs/evidence/g1-contract-assets-green.txt",
+      "green": {"tests": 15, "assertions": 12163, "failures": 0, "errors": 0}
+    },
+    {
+      "slice": "Immutable-number normalization contract",
+      "red_log": "docs/evidence/g1-contract-numbers-red.txt",
+      "red": {"tests": 16, "assertions": 12191, "failures": 4, "errors": 0},
+      "green_log": "docs/evidence/g1-contract-numbers-green.txt",
+      "green": {"tests": 16, "assertions": 12191, "failures": 0, "errors": 0}
+    },
+    {
+      "slice": "Explicit reference input domain",
+      "red_log": "docs/evidence/g1-contract-reference-red.txt",
+      "red": {"tests": 17, "assertions": 12203, "failures": 10, "errors": 0},
+      "additional_api_red_log": "docs/evidence/g1-contract-modes-red.txt",
+      "additional_api_red": {"tests": 19, "assertions": 12203, "failures": 10, "errors": 10},
+      "additional_api_red_reason": "Expected ArityException errors because the explicit two-argument mode API did not yet exist; numerical mismatch RED was separately demonstrated without errors.",
+      "green_log": "docs/evidence/g1-contract-reference-green.txt",
+      "green": {"tests": 19, "assertions": 12227, "failures": 0, "errors": 0}
+    }
+  ],
+  "final_suites": [
+    {
+      "command": "bash ./clojure -M:g1-test",
+      "clojure_version": "1.12.6",
+      "java_version": "25.0.5",
+      "log": "docs/evidence/g1-contract-suite-1.12.6.txt",
+      "tests": 19,
+      "assertions": 12227,
+      "failures": 0,
+      "errors": 0
+    },
+    {
+      "command": "bash ./clojure -M:legacy-version:g1-test",
+      "clojure_version": "1.12.5",
+      "java_version": "25.0.5",
+      "log": "docs/evidence/g1-contract-suite-legacy.txt",
+      "tests": 19,
+      "assertions": 12227,
+      "failures": 0,
+      "errors": 0
+    }
+  ],
+  "verification": {
+    "command": "bash ./clojure -M scripts/verify-g1.clj",
+    "log": "docs/evidence/g1-contract-verifier.txt",
+    "report": "docs/evidence/g1-verification.edn",
+    "csv": "docs/evidence/g1-objectives.csv",
+    "verified_at": "2026-11-07T20:11:15.259846700Z",
+    "reference_input_mode": "normalized-binary64",
+    "checked_portfolios": 3003,
+    "unique_selections": 3003,
+    "failed_crosschecks": 0,
+    "csv_rows": 3003,
+    "csv_passed_rows": 3003,
+    "maximum_absolute_mean_error": 8.673617379884035e-19,
+    "maximum_absolute_risk_error": 0.0,
+    "fixture_sha256": "fb6c44113ce3d0a29a77b8998b120448710b16512455639b6e4279faa6fef758"
+  },
+  "environment_log": "docs/evidence/g1-contract-environment.txt",
+  "boundaries": {
+    "production_evaluate_arithmetic_changed": false,
+    "shared_numerical_mean_covariance_or_evaluate_logic_added": false,
+    "vendor_changes_by_this_task": false,
+    "optimization_runs": false,
+    "performance_cache_or_rewrite": false,
+    "budget_or_configuration_changes_by_this_task": false,
+    "dependencies_or_test_runner_changes_by_this_task": false,
+    "g1_alias_unchanged": true,
+    "docs_or_skills_changes_other_than_requested_evidence": false,
+    "commits_or_staging": false,
+    "historical_manifest_rewritten": false,
+    "historical_manifest": "docs/evidence/g1-deliverables.json",
+    "historical_manifest_sha256": "d7bc628045bab426940b92e82127ded5a535164d11e872f61fd67e48e1a4e156"
+  },
+  "limitations_and_observations": [
+    "Exact-input mode is an original-rational/decimal diagnostic, not a production input-domain oracle; raw floating values use rationalize's decimal interpretation.",
+    "Same-domain mean conversions can differ slightly because the independent rational reference and direct DECIMAL128 finalization remain separate; verifier maximum mean error is recorded above, with zero risk error.",
+    "Legacy-version testing uses Clojure 1.12.5 on the same Java 25.0.5 runtime, not a historical JDK replication.",
+    "The concurrent G2 work added a separate deps.edn alias during verification. This task did not edit deps.edn; the existing G1 alias was independently asserted unchanged.",
+    "An ancillary protected-file hash check detected that concurrent deps.edn change; fixture and existing G1 test-runner hashes still match the historical manifest. A mistyped ancillary environment assertion was corrected and rerun successfully; neither affected suite results."
+  ]
+}

@@ -1,0 +1,314 @@
+{
+  "status": "two_confirmed_shape_blockers_fixed_and_scoped_checks_passed",
+  "review_input": "docs/evidence/g4-code-review-01.json",
+  "production_sources": [
+    {
+      "path": "src/niki/optimizer/dsl.clj",
+      "before_sha256": "54490eff37a1782c4b37cf67f448868bc0ed93f224e4fdecebf8bdca44bcaf4b",
+      "after_sha256": "2d3fd4acb9295462cec841f8bd22089516ffba5649d6f2637a20d43e1f5888c8",
+      "exact_preimage_verified": true
+    },
+    {
+      "path": "src/niki/optimizer/variation.clj",
+      "before_sha256": "07056767d97868e19d43e6e7e6992fec80aae044866652967196c3d53ac09d71",
+      "after_sha256": "1d21e255608d2e401b94cb921aaa0a1382e136064be44ee0bb314a8f5ec10f11",
+      "exact_preimage_verified": true
+    }
+  ],
+  "new_test": {
+    "path": "test/niki/optimizer/shape_validation_test.clj",
+    "sha256": "74f6f5920e5b519190fa067f362abc7534e8c49be9692f7bea006498078fc313",
+    "standalone": true,
+    "imports_dsl_test": false,
+    "fixture_safety": "Fresh bounded lazy-seq sets atom then throws immediately; fixtures use vector identity labels and array-map, never hash poison. Assertions report class/labels only.",
+    "rejection_contract": "ExceptionInfo and atom remains false for every case",
+    "domains": [
+      "portfolio",
+      "scheduling"
+    ],
+    "slice1": "Option keys and nested limit keys across generate/mutate/crossover, plus direct checker/effective-limits and root/nonmap options/limits",
+    "slice2": "Domain and all six role form-tag positions, initializer/operator/feature/predicate payloads through check-program/mutate/both crossover parents; program/budget tags, root/wrapper/body and numeric-payload poison; generation domain"
+  },
+  "tdd_order": [
+    "slice1 RED both versions",
+    "slice1 minimal guards",
+    "slice1 GREEN both versions",
+    "slice2 tests added",
+    "slice2 RED both versions",
+    "slice2 domain/form/payload guards",
+    "slice2 first GREEN attempt exposed remaining program/budget tag realization (32 failures each)",
+    "program/budget keyword guards added",
+    "slice2 GREEN both versions",
+    "full standalone shape, standalone G4, standalone runtime and valid-output snapshots both versions"
+  ],
+  "runs": [
+    {
+      "phase": "slice1-red",
+      "clojure": "1.12.6",
+      "command": "bash ./clojure -Sdeps '{:paths [\"src\" \"resources\" \"test\"]}' -M -m niki.optimizer.shape-validation-test slice1",
+      "stdout_stderr_log": "docs/evidence/g3-g4-shape-fix-slice1-red-1.12.6.log",
+      "exit_code_observed": 1,
+      "tests": 3,
+      "assertions": 376,
+      "failures": 96,
+      "errors": 0,
+      "expected_result": "failure reproduces blocker"
+    },
+    {
+      "phase": "slice1-red",
+      "clojure": "1.12.5",
+      "command": "bash ./clojure -Sdeps '{:paths [\"src\" \"resources\" \"test\"]}' -M:legacy-version -m niki.optimizer.shape-validation-test slice1",
+      "stdout_stderr_log": "docs/evidence/g3-g4-shape-fix-slice1-red-1.12.5.log",
+      "exit_code_observed": 1,
+      "tests": 3,
+      "assertions": 376,
+      "failures": 96,
+      "errors": 0,
+      "expected_result": "failure reproduces blocker"
+    },
+    {
+      "phase": "slice1-green",
+      "clojure": "1.12.6",
+      "command": "bash ./clojure -Sdeps '{:paths [\"src\" \"resources\" \"test\"]}' -M -m niki.optimizer.shape-validation-test slice1",
+      "stdout_stderr_log": "docs/evidence/g3-g4-shape-fix-slice1-green-1.12.6.log",
+      "exit_code_observed": 0,
+      "tests": 3,
+      "assertions": 376,
+      "failures": 0,
+      "errors": 0,
+      "expected_result": "pass"
+    },
+    {
+      "phase": "slice1-green",
+      "clojure": "1.12.5",
+      "command": "bash ./clojure -Sdeps '{:paths [\"src\" \"resources\" \"test\"]}' -M:legacy-version -m niki.optimizer.shape-validation-test slice1",
+      "stdout_stderr_log": "docs/evidence/g3-g4-shape-fix-slice1-green-1.12.5.log",
+      "exit_code_observed": 0,
+      "tests": 3,
+      "assertions": 376,
+      "failures": 0,
+      "errors": 0,
+      "expected_result": "pass"
+    },
+    {
+      "phase": "slice2-red",
+      "clojure": "1.12.6",
+      "command": "bash ./clojure -Sdeps '{:paths [\"src\" \"resources\" \"test\"]}' -M -m niki.optimizer.shape-validation-test slice2",
+      "stdout_stderr_log": "docs/evidence/g3-g4-shape-fix-slice2-red-1.12.6.log",
+      "exit_code_observed": 1,
+      "tests": 3,
+      "assertions": 1712,
+      "failures": 608,
+      "errors": 0,
+      "expected_result": "failure reproduces blocker"
+    },
+    {
+      "phase": "slice2-red",
+      "clojure": "1.12.5",
+      "command": "bash ./clojure -Sdeps '{:paths [\"src\" \"resources\" \"test\"]}' -M:legacy-version -m niki.optimizer.shape-validation-test slice2",
+      "stdout_stderr_log": "docs/evidence/g3-g4-shape-fix-slice2-red-1.12.5.log",
+      "exit_code_observed": 1,
+      "tests": 3,
+      "assertions": 1712,
+      "failures": 608,
+      "errors": 0,
+      "expected_result": "failure reproduces blocker"
+    },
+    {
+      "phase": "slice2-green-attempt1",
+      "clojure": "1.12.6",
+      "command": "bash ./clojure -Sdeps '{:paths [\"src\" \"resources\" \"test\"]}' -M -m niki.optimizer.shape-validation-test slice2",
+      "stdout_stderr_log": "docs/evidence/g3-g4-shape-fix-slice2-green-attempt1-1.12.6.log",
+      "exit_code_observed": 1,
+      "tests": 3,
+      "assertions": 1712,
+      "failures": 32,
+      "errors": 0,
+      "expected_result": "failure reproduces blocker"
+    },
+    {
+      "phase": "slice2-green-attempt1",
+      "clojure": "1.12.5",
+      "command": "bash ./clojure -Sdeps '{:paths [\"src\" \"resources\" \"test\"]}' -M:legacy-version -m niki.optimizer.shape-validation-test slice2",
+      "stdout_stderr_log": "docs/evidence/g3-g4-shape-fix-slice2-green-attempt1-1.12.5.log",
+      "exit_code_observed": 1,
+      "tests": 3,
+      "assertions": 1712,
+      "failures": 32,
+      "errors": 0,
+      "expected_result": "failure reproduces blocker"
+    },
+    {
+      "phase": "slice2-green",
+      "clojure": "1.12.6",
+      "command": "bash ./clojure -Sdeps '{:paths [\"src\" \"resources\" \"test\"]}' -M -m niki.optimizer.shape-validation-test slice2",
+      "stdout_stderr_log": "docs/evidence/g3-g4-shape-fix-slice2-green-1.12.6.log",
+      "exit_code_observed": 0,
+      "tests": 3,
+      "assertions": 1712,
+      "failures": 0,
+      "errors": 0,
+      "expected_result": "pass"
+    },
+    {
+      "phase": "slice2-green",
+      "clojure": "1.12.5",
+      "command": "bash ./clojure -Sdeps '{:paths [\"src\" \"resources\" \"test\"]}' -M:legacy-version -m niki.optimizer.shape-validation-test slice2",
+      "stdout_stderr_log": "docs/evidence/g3-g4-shape-fix-slice2-green-1.12.5.log",
+      "exit_code_observed": 0,
+      "tests": 3,
+      "assertions": 1712,
+      "failures": 0,
+      "errors": 0,
+      "expected_result": "pass"
+    },
+    {
+      "phase": "shape-green",
+      "clojure": "1.12.6",
+      "command": "bash ./clojure -Sdeps '{:paths [\"src\" \"resources\" \"test\"]}' -M -m niki.optimizer.shape-validation-test",
+      "stdout_stderr_log": "docs/evidence/g3-g4-shape-fix-shape-green-1.12.6.log",
+      "exit_code_observed": 0,
+      "tests": 6,
+      "assertions": 2088,
+      "failures": 0,
+      "errors": 0,
+      "expected_result": "pass"
+    },
+    {
+      "phase": "shape-green",
+      "clojure": "1.12.5",
+      "command": "bash ./clojure -Sdeps '{:paths [\"src\" \"resources\" \"test\"]}' -M:legacy-version -m niki.optimizer.shape-validation-test",
+      "stdout_stderr_log": "docs/evidence/g3-g4-shape-fix-shape-green-1.12.5.log",
+      "exit_code_observed": 0,
+      "tests": 6,
+      "assertions": 2088,
+      "failures": 0,
+      "errors": 0,
+      "expected_result": "pass"
+    },
+    {
+      "phase": "g4",
+      "clojure": "1.12.6",
+      "command": "bash ./clojure -M:g4-test",
+      "stdout_stderr_log": "docs/evidence/g3-g4-shape-fix-g4-1.12.6.log",
+      "exit_code_observed": 0,
+      "tests": 8,
+      "assertions": 76930,
+      "failures": 0,
+      "errors": 0,
+      "expected_result": "pass"
+    },
+    {
+      "phase": "g4",
+      "clojure": "1.12.5",
+      "command": "bash ./clojure -M:legacy-version:g4-test",
+      "stdout_stderr_log": "docs/evidence/g3-g4-shape-fix-g4-1.12.5.log",
+      "exit_code_observed": 0,
+      "tests": 8,
+      "assertions": 76930,
+      "failures": 0,
+      "errors": 0,
+      "expected_result": "pass"
+    },
+    {
+      "phase": "runtime",
+      "clojure": "1.12.6",
+      "command": "bash ./clojure -M docs/evidence/g3-runtime-native-test.clj",
+      "stdout_stderr_log": "docs/evidence/g3-g4-shape-fix-runtime-1.12.6.log",
+      "exit_code_observed": 0,
+      "tests": 24,
+      "assertions": 600,
+      "failures": 0,
+      "errors": 0,
+      "expected_result": "pass"
+    },
+    {
+      "phase": "runtime",
+      "clojure": "1.12.5",
+      "command": "bash ./clojure -M:legacy-version docs/evidence/g3-runtime-native-test.clj",
+      "stdout_stderr_log": "docs/evidence/g3-g4-shape-fix-runtime-1.12.5.log",
+      "exit_code_observed": 0,
+      "tests": 24,
+      "assertions": 600,
+      "failures": 0,
+      "errors": 0,
+      "expected_result": "pass"
+    }
+  ],
+  "valid_behavior_equivalence": {
+    "snapshots": [
+      {
+        "clojure": "1.12.6",
+        "byte_identical_before_after": true,
+        "sha256": "cff3a32ef68794fa48744e6e0499e532533e40885bb8429f74c2421759d23f60",
+        "bytes": 534751,
+        "records": 216,
+        "seeded_records": 200,
+        "explicit_grammar_records": 16,
+        "before_path": "docs/evidence/g3-g4-shape-fix-seeded-before-1.12.6.edn",
+        "after_path": "docs/evidence/g3-g4-shape-fix-seeded-after-1.12.6.edn",
+        "command": "bash ./clojure -M docs/evidence/g3-g4-shape-fix-seeded-snapshot.clj"
+      },
+      {
+        "clojure": "1.12.5",
+        "byte_identical_before_after": true,
+        "sha256": "cff3a32ef68794fa48744e6e0499e532533e40885bb8429f74c2421759d23f60",
+        "bytes": 534751,
+        "records": 216,
+        "seeded_records": 200,
+        "explicit_grammar_records": 16,
+        "before_path": "docs/evidence/g3-g4-shape-fix-seeded-before-1.12.5.edn",
+        "after_path": "docs/evidence/g3-g4-shape-fix-seeded-after-1.12.5.edn",
+        "command": "bash ./clojure -M:legacy-version docs/evidence/g3-g4-shape-fix-seeded-snapshot.clj"
+      }
+    ],
+    "cross_version_byte_identical": true,
+    "corpus": "Seeds 0..99 for each domain, three envelopes, generated programs/full metadata, checked structure/sites/effects, canonical EDN, IDs, mutation and crossover; explicit corpus covers all grammar tags and keyword payloads including scheduling insert/reverse"
+  },
+  "serialization_source": {
+    "region": "dsl.clj from (defn canonical-edn through EOF (includes program-id)",
+    "unchanged": true,
+    "sha256": "8f5acc17e5317e139f3501acafd9a650f00741f85679430c0b1c867e68d3e9ca"
+  },
+  "protected_file_checks": [
+    {
+      "path": "test/niki/optimizer/dsl_test.clj",
+      "sha256": "2e1ce0b562b96baf91eed2ec6ec30b1e5df821745d8ab85e8fa29835af4039c4",
+      "unchanged": true
+    },
+    {
+      "path": "deps.edn",
+      "sha256": "33333c45fac24e881f042906081c75f20bc5b9f43c4ecee9c86ee1c48a4dea59",
+      "unchanged": true
+    },
+    {
+      "path": "test/niki/optimizer/g4_test_runner.clj",
+      "sha256": "c12fe5f826d78902a8feeffcdcbb5c3e33cb53cf09a947cf4ddb2d6ea9696e8c",
+      "unchanged": true
+    },
+    {
+      "path": "docs/evidence/g3-runtime-native-test.clj",
+      "sha256": "81a99c9c0f4969a1809f304d45f2d1bad2b47bbbf68427b17d418a5396f2196f",
+      "unchanged": true
+    }
+  ],
+  "changes": [
+    "Keyword shape before variation option membership",
+    "Keyword shape before DSL limit membership (contains? on existing hard-limit map)",
+    "Keyword shape before domain set lookup, AST form lookup and four keyword-payload set lookups",
+    "Keyword shape before program/budget tag equality, required by bounded root-tag poison regressions"
+  ],
+  "limitations": [
+    "dsl_test.clj was never executed or imported; its unrelated serializer regression remains pending user approval and unchanged",
+    "Aggregate :g3-test was never run; no claim of aggregate G3/serializer gate completion",
+    "No infinite lazy probes were run; only bounded set-atom-then-throw poison",
+    "Finite valid corpus establishes exact equivalence for exercised inputs, not exhaustive generation-distribution equivalence",
+    "Custom hostile map implementations and arbitrary non-keyword API positions are outside this narrow fix",
+    "No dependencies, runners, other docs, vendor files, serialization implementation, stage/commit or project task closure were changed"
+  ],
+  "issues_encountered": [
+    "First slice2 GREEN attempt retained program/budget tag realization through equality; retained failed logs and added only keyword guards at these keyword-bearing positions",
+    "Initial artifact checksum manifest used Windows CRLF, which Git Bash sha256sum -c treated as filename characters; regenerated the manifest as LF bytes and rechecked"
+  ],
+  "diff_path": "docs/evidence/g3-g4-shape-fix-changes.diff"
+}

@@ -1,0 +1,40 @@
+{
+  "checked_at": "2026-11-01T20:24:36.704176+00:00",
+  "sources": [
+    {
+      "url": "https://www-formal.stanford.edu/jmc/lisp/lisp.html?utm_source=chatgpt.com",
+      "status": 200,
+      "content_type": "text/html",
+      "bytes": 2335,
+      "sha256": "75f360c5ec92b5c6c89e2f154536d031cafbc10f5e4ccbc040d1bcff61f12251"
+    },
+    {
+      "url": "https://www-formal.stanford.edu/jmc/recursive.pdf?utm_source=chatgpt.com",
+      "status": 200,
+      "content_type": "application/pdf",
+      "bytes": 219563,
+      "sha256": "3d981849e59505eff3f14397a177b409f5d978d43d114bdd67c956e74320fc92"
+    },
+    {
+      "url": "https://www-formal.stanford.edu/jmc/mcc59/node1.html?utm_source=chatgpt.com",
+      "status": 200,
+      "content_type": "text/html",
+      "bytes": 10875,
+      "sha256": "227f842844027b3b92ac2f6aa21e306168d0088af0d4333f143e89488c21343b"
+    },
+    {
+      "url": "https://clojure.org/guides/install_clojure",
+      "status": 200,
+      "content_type": "text/html",
+      "bytes": 23900,
+      "sha256": "9d9c29a0a86ca7db42211f5fc111f276f1be3d786fa19fb3238d4c81e263e4ae"
+    },
+    {
+      "url": "https://clojure.org/releases/downloads",
+      "status": 200,
+      "content_type": "text/html",
+      "bytes": 18564,
+      "sha256": "a8730b34d21e60e4fa696fd442d08fbfc64ccd0c1ffef4ce8ce6c905147f8163"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "scope": {
+    "src/niki/optimizer/variation.clj": "07056767d97868e19d43e6e7e6992fec80aae044866652967196c3d53ac09d71",
+    "test/niki/optimizer/variation_test.clj": "b1b76bb485cf361692e4074323d73505db149810cf96b676c938fc9a4661b015"
+  },
+  "dependencies": {
+    "src/niki/optimizer/dsl.clj": "54490eff37a1782c4b37cf67f448868bc0ed93f224e4fdecebf8bdca44bcaf4b"
+  },
+  "patterns": {
+    "secret": [],
+    "host_eval": [],
+    "process": []
+  },
+  "note": "G4 typed-variation review; dependency DSL optional serialization-limits fix is pending approval. Runtime remains separate ongoing work."
+}

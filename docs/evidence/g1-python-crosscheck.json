@@ -1,0 +1,11 @@
+{
+  "status": "passed",
+  "input_mode": "normalized-binary64",
+  "scope": "Independent exact binary64 Fraction/Decimal series check after contract corrections",
+  "portfolios_checked": 3003,
+  "unique_selections": 3003,
+  "max_absolute_mean_error": 8.673617379884035e-19,
+  "max_absolute_risk_error": 0.0,
+  "decimal_precision": 80,
+  "csv_sha256": "389d94bce1cec663d41a576d115c20d08cec9f8d36b3841d071f46873e24f06e"
+}

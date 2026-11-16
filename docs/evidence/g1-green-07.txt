@@ -1,0 +1,7 @@
+
+Testing niki.optimizer.portfolio-test
+
+Testing niki.optimizer.portfolio-reference-test
+
+Ran 10 tests containing 12125 assertions.
+0 failures, 0 errors.

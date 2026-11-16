@@ -1,0 +1,13 @@
+{
+  "scope": [
+    "src/niki/optimizer/portfolio.clj",
+    "src/niki/optimizer/portfolio_reference.clj",
+    "test/niki/optimizer/portfolio_reference_test.clj",
+    "test/niki/optimizer/portfolio_test.clj",
+    "test/niki/optimizer/test_runner.clj",
+    "scripts/verify-g1.clj",
+    "resources/fixtures/g1-portfolio.edn"
+  ],
+  "concerns": [],
+  "note": "Untracked initial repository files reviewed as additions. EDN parsing is clojure.edn/read-string, not executable clojure.core/read-string."
+}

@@ -1,0 +1,5 @@
+{:fixture-sha256 "fb6c44113ce3d0a29a77b8998b120448710b16512455639b6e4279faa6fef758", :observations 12, :maximum-absolute-mean-error 8.673617379884035E-19, :assets 15, :verified-at "2026-11-07T15:51:20.096365700Z", :tolerance {:absolute 1.0E-12, :relative 1.0E-10}, :verification-elapsed-ms 365.7413, :failed-crosschecks 0, :experiment-launched? false, :scope :synthetic-correctness-only, :k 5, :expected-portfolios 3003, :maximum-absolute-risk-error 3.469446951953614E-18, :java-version "25.0.5", :checked-portfolios 3003, :status :passed, :gate :G1, :clojure-version "1.12.6", :fixture-id :g1-modular-v1, :unique-selections 3003}
+
+real	0m0.954s
+user	0m0.015s
+sys	0m0.015s

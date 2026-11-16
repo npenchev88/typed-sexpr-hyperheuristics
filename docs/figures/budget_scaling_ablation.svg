@@ -1,0 +1,140 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 540" width="920" height="540" font-family="Inter, Segoe UI, Arial, sans-serif">
+  <rect x="0" y="0" width="920" height="540" fill="#ffffff" rx="8"/>
+  <text x="65" y="34" font-size="18" font-weight="700" fill="#0f172a">Secondary Ablation: Inner Proposal-Budget Scaling (16 to 256 Proposals)</text>
+  <text x="65" y="55" font-size="13" fill="#475569">Anytime generalization of frozen 256-proposal representatives evaluated across B in {16, 32, 64, 128, 256} (24 test tasks x 10 seeds)</text>
+  <text x="65" y="81" font-size="14.5" font-weight="700" fill="#0f172a">A. Portfolio Selection (N=50, K=5, T=365)</text>
+  <rect x="65" y="95" width="375" height="330" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+  <line x1="65" y1="425.00" x2="440" y2="425.00" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="57" y="425.00" font-size="10.5" fill="#475569" text-anchor="end" dominant-baseline="middle">0.360</text>
+  <line x1="65" y1="359.00" x2="440" y2="359.00" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="57" y="359.00" font-size="10.5" fill="#475569" text-anchor="end" dominant-baseline="middle">0.422</text>
+  <line x1="65" y1="293.00" x2="440" y2="293.00" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="57" y="293.00" font-size="10.5" fill="#475569" text-anchor="end" dominant-baseline="middle">0.484</text>
+  <line x1="65" y1="227.00" x2="440" y2="227.00" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="57" y="227.00" font-size="10.5" fill="#475569" text-anchor="end" dominant-baseline="middle">0.546</text>
+  <line x1="65" y1="161.00" x2="440" y2="161.00" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="57" y="161.00" font-size="10.5" fill="#475569" text-anchor="end" dominant-baseline="middle">0.608</text>
+  <line x1="65" y1="95.00" x2="440" y2="95.00" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="57" y="95.00" font-size="10.5" fill="#475569" text-anchor="end" dominant-baseline="middle">0.670</text>
+  <line x1="93.00" y1="95" x2="93.00" y2="425" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="93.00" y="445" font-size="11" font-weight="600" fill="#334155" text-anchor="middle">16</text>
+  <line x1="172.75" y1="95" x2="172.75" y2="425" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="172.75" y="445" font-size="11" font-weight="600" fill="#334155" text-anchor="middle">32</text>
+  <line x1="252.50" y1="95" x2="252.50" y2="425" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="252.50" y="445" font-size="11" font-weight="600" fill="#334155" text-anchor="middle">64</text>
+  <line x1="332.25" y1="95" x2="332.25" y2="425" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="332.25" y="445" font-size="11" font-weight="600" fill="#334155" text-anchor="middle">128</text>
+  <line x1="412.00" y1="95" x2="412.00" y2="425" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="412.00" y="445" font-size="11" font-weight="600" fill="#334155" text-anchor="middle">256</text>
+  <text x="252.50" y="465" font-size="11.5" font-weight="600" fill="#475569" text-anchor="middle">Inner Solution Proposal Budget (log2 scale)</text>
+  <polyline points="93.00,225.65 172.75,154.84 252.50,96.79 332.25,57.27 412.00,31.14" fill="none" stroke="#10b981" stroke-width="2.8"/>
+  <circle cx="93.00" cy="225.65" r="3.8" fill="#10b981" stroke="#ffffff" stroke-width="1.2"/>
+  <circle cx="172.75" cy="154.84" r="3.8" fill="#10b981" stroke="#ffffff" stroke-width="1.2"/>
+  <circle cx="252.50" cy="96.79" r="3.8" fill="#10b981" stroke="#ffffff" stroke-width="1.2"/>
+  <circle cx="332.25" cy="57.27" r="3.8" fill="#10b981" stroke="#ffffff" stroke-width="1.2"/>
+  <circle cx="412.00" cy="31.14" r="3.8" fill="#10b981" stroke="#ffffff" stroke-width="1.2"/>
+  <polyline points="93.00,276.11 172.75,237.20 252.50,176.81 332.25,71.23 412.00,29.81" fill="none" stroke="#0ea5e9" stroke-width="2.4"/>
+  <circle cx="93.00" cy="276.11" r="3.8" fill="#0ea5e9" stroke="#ffffff" stroke-width="1.2"/>
+  <circle cx="172.75" cy="237.20" r="3.8" fill="#0ea5e9" stroke="#ffffff" stroke-width="1.2"/>
+  <circle cx="252.50" cy="176.81" r="3.8" fill="#0ea5e9" stroke="#ffffff" stroke-width="1.2"/>
+  <circle cx="332.25" cy="71.23" r="3.8" fill="#0ea5e9" stroke="#ffffff" stroke-width="1.2"/>
+  <circle cx="412.00" cy="29.81" r="3.8" fill="#0ea5e9" stroke="#ffffff" stroke-width="1.2"/>
+  <polyline points="93.00,238.55 172.75,165.69 252.50,104.93 332.25,58.01 412.00,24.21" fill="none" stroke="#6366f1" stroke-width="2.2"/>
+  <circle cx="93.00" cy="238.55" r="3.8" fill="#6366f1" stroke="#ffffff" stroke-width="1.2"/>
+  <circle cx="172.75" cy="165.69" r="3.8" fill="#6366f1" stroke="#ffffff" stroke-width="1.2"/>
+  <circle cx="252.50" cy="104.93" r="3.8" fill="#6366f1" stroke="#ffffff" stroke-width="1.2"/>
+  <circle cx="332.25" cy="58.01" r="3.8" fill="#6366f1" stroke="#ffffff" stroke-width="1.2"/>
+  <circle cx="412.00" cy="24.21" r="3.8" fill="#6366f1" stroke="#ffffff" stroke-width="1.2"/>
+  <polyline points="93.00,238.55 172.75,179.37 252.50,124.27 332.25,70.01 412.00,26.78" fill="none" stroke="#8b5cf6" stroke-width="2.2" stroke-dasharray="5,3"/>
+  <circle cx="93.00" cy="238.55" r="3.8" fill="#8b5cf6" stroke="#ffffff" stroke-width="1.2"/>
+  <circle cx="172.75" cy="179.37" r="3.8" fill="#8b5cf6" stroke="#ffffff" stroke-width="1.2"/>
+  <circle cx="252.50" cy="124.27" r="3.8" fill="#8b5cf6" stroke="#ffffff" stroke-width="1.2"/>
+  <circle cx="332.25" cy="70.01" r="3.8" fill="#8b5cf6" stroke="#ffffff" stroke-width="1.2"/>
+  <circle cx="412.00" cy="26.78" r="3.8" fill="#8b5cf6" stroke="#ffffff" stroke-width="1.2"/>
+  <polyline points="93.00,242.40 172.75,186.95 252.50,146.42 332.25,100.37 412.00,53.59" fill="none" stroke="#f59e0b" stroke-width="2.2" stroke-dasharray="4,4"/>
+  <circle cx="93.00" cy="242.40" r="3.8" fill="#f59e0b" stroke="#ffffff" stroke-width="1.2"/>
+  <circle cx="172.75" cy="186.95" r="3.8" fill="#f59e0b" stroke="#ffffff" stroke-width="1.2"/>
+  <circle cx="252.50" cy="146.42" r="3.8" fill="#f59e0b" stroke="#ffffff" stroke-width="1.2"/>
+  <circle cx="332.25" cy="100.37" r="3.8" fill="#f59e0b" stroke="#ffffff" stroke-width="1.2"/>
+  <circle cx="412.00" cy="53.59" r="3.8" fill="#f59e0b" stroke="#ffffff" stroke-width="1.2"/>
+  <polyline points="93.00,247.48 172.75,211.07 252.50,186.01 332.25,162.32 412.00,138.51" fill="none" stroke="#64748b" stroke-width="1.8" stroke-dasharray="2,3"/>
+  <circle cx="93.00" cy="247.48" r="3.8" fill="#64748b" stroke="#ffffff" stroke-width="1.2"/>
+  <circle cx="172.75" cy="211.07" r="3.8" fill="#64748b" stroke="#ffffff" stroke-width="1.2"/>
+  <circle cx="252.50" cy="186.01" r="3.8" fill="#64748b" stroke="#ffffff" stroke-width="1.2"/>
+  <circle cx="332.25" cy="162.32" r="3.8" fill="#64748b" stroke="#ffffff" stroke-width="1.2"/>
+  <circle cx="412.00" cy="138.51" r="3.8" fill="#64748b" stroke="#ffffff" stroke-width="1.2"/>
+  <text x="505" y="81" font-size="14.5" font-weight="700" fill="#0f172a">B. Single-Machine Scheduling (30 Jobs)</text>
+  <rect x="505" y="95" width="375" height="330" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+  <line x1="505" y1="425.00" x2="880" y2="425.00" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="497" y="425.00" font-size="10.5" fill="#475569" text-anchor="end" dominant-baseline="middle">0.400</text>
+  <line x1="505" y1="359.00" x2="880" y2="359.00" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="497" y="359.00" font-size="10.5" fill="#475569" text-anchor="end" dominant-baseline="middle">0.433</text>
+  <line x1="505" y1="293.00" x2="880" y2="293.00" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="497" y="293.00" font-size="10.5" fill="#475569" text-anchor="end" dominant-baseline="middle">0.466</text>
+  <line x1="505" y1="227.00" x2="880" y2="227.00" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="497" y="227.00" font-size="10.5" fill="#475569" text-anchor="end" dominant-baseline="middle">0.499</text>
+  <line x1="505" y1="161.00" x2="880" y2="161.00" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="497" y="161.00" font-size="10.5" fill="#475569" text-anchor="end" dominant-baseline="middle">0.532</text>
+  <line x1="505" y1="95.00" x2="880" y2="95.00" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="497" y="95.00" font-size="10.5" fill="#475569" text-anchor="end" dominant-baseline="middle">0.565</text>
+  <line x1="533.00" y1="95" x2="533.00" y2="425" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="533.00" y="445" font-size="11" font-weight="600" fill="#334155" text-anchor="middle">16</text>
+  <line x1="612.75" y1="95" x2="612.75" y2="425" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="612.75" y="445" font-size="11" font-weight="600" fill="#334155" text-anchor="middle">32</text>
+  <line x1="692.50" y1="95" x2="692.50" y2="425" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="692.50" y="445" font-size="11" font-weight="600" fill="#334155" text-anchor="middle">64</text>
+  <line x1="772.25" y1="95" x2="772.25" y2="425" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="772.25" y="445" font-size="11" font-weight="600" fill="#334155" text-anchor="middle">128</text>
+  <line x1="852.00" y1="95" x2="852.00" y2="425" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="852.00" y="445" font-size="11" font-weight="600" fill="#334155" text-anchor="middle">256</text>
+  <text x="692.50" y="465" font-size="11.5" font-weight="600" fill="#475569" text-anchor="middle">Inner Solution Proposal Budget (log2 scale)</text>
+  <polyline points="533.00,434.54 612.75,375.07 692.50,293.60 772.25,206.88 852.00,143.66" fill="none" stroke="#10b981" stroke-width="2.8"/>
+  <circle cx="533.00" cy="434.54" r="3.8" fill="#10b981" stroke="#ffffff" stroke-width="1.2"/>
+  <circle cx="612.75" cy="375.07" r="3.8" fill="#10b981" stroke="#ffffff" stroke-width="1.2"/>
+  <circle cx="692.50" cy="293.60" r="3.8" fill="#10b981" stroke="#ffffff" stroke-width="1.2"/>
+  <circle cx="772.25" cy="206.88" r="3.8" fill="#10b981" stroke="#ffffff" stroke-width="1.2"/>
+  <circle cx="852.00" cy="143.66" r="3.8" fill="#10b981" stroke="#ffffff" stroke-width="1.2"/>
+  <polyline points="533.00,454.43 612.75,404.89 692.50,314.16 772.25,212.51 852.00,142.31" fill="none" stroke="#0ea5e9" stroke-width="2.4"/>
+  <circle cx="533.00" cy="454.43" r="3.8" fill="#0ea5e9" stroke="#ffffff" stroke-width="1.2"/>
+  <circle cx="612.75" cy="404.89" r="3.8" fill="#0ea5e9" stroke="#ffffff" stroke-width="1.2"/>
+  <circle cx="692.50" cy="314.16" r="3.8" fill="#0ea5e9" stroke="#ffffff" stroke-width="1.2"/>
+  <circle cx="772.25" cy="212.51" r="3.8" fill="#0ea5e9" stroke="#ffffff" stroke-width="1.2"/>
+  <circle cx="852.00" cy="142.31" r="3.8" fill="#0ea5e9" stroke="#ffffff" stroke-width="1.2"/>
+  <polyline points="533.00,427.89 612.75,360.27 692.50,281.34 772.25,208.25 852.00,148.74" fill="none" stroke="#6366f1" stroke-width="2.2"/>
+  <circle cx="533.00" cy="427.89" r="3.8" fill="#6366f1" stroke="#ffffff" stroke-width="1.2"/>
+  <circle cx="612.75" cy="360.27" r="3.8" fill="#6366f1" stroke="#ffffff" stroke-width="1.2"/>
+  <circle cx="692.50" cy="281.34" r="3.8" fill="#6366f1" stroke="#ffffff" stroke-width="1.2"/>
+  <circle cx="772.25" cy="208.25" r="3.8" fill="#6366f1" stroke="#ffffff" stroke-width="1.2"/>
+  <circle cx="852.00" cy="148.74" r="3.8" fill="#6366f1" stroke="#ffffff" stroke-width="1.2"/>
+  <polyline points="533.00,412.51 612.75,372.08 692.50,310.87 772.25,237.54 852.00,169.79" fill="none" stroke="#8b5cf6" stroke-width="2.2" stroke-dasharray="5,3"/>
+  <circle cx="533.00" cy="412.51" r="3.8" fill="#8b5cf6" stroke="#ffffff" stroke-width="1.2"/>
+  <circle cx="612.75" cy="372.08" r="3.8" fill="#8b5cf6" stroke="#ffffff" stroke-width="1.2"/>
+  <circle cx="692.50" cy="310.87" r="3.8" fill="#8b5cf6" stroke="#ffffff" stroke-width="1.2"/>
+  <circle cx="772.25" cy="237.54" r="3.8" fill="#8b5cf6" stroke="#ffffff" stroke-width="1.2"/>
+  <circle cx="852.00" cy="169.79" r="3.8" fill="#8b5cf6" stroke="#ffffff" stroke-width="1.2"/>
+  <polyline points="533.00,440.36 612.75,380.03 692.50,306.55 772.25,237.37 852.00,189.97" fill="none" stroke="#f59e0b" stroke-width="2.2" stroke-dasharray="4,4"/>
+  <circle cx="533.00" cy="440.36" r="3.8" fill="#f59e0b" stroke="#ffffff" stroke-width="1.2"/>
+  <circle cx="612.75" cy="380.03" r="3.8" fill="#f59e0b" stroke="#ffffff" stroke-width="1.2"/>
+  <circle cx="692.50" cy="306.55" r="3.8" fill="#f59e0b" stroke="#ffffff" stroke-width="1.2"/>
+  <circle cx="772.25" cy="237.37" r="3.8" fill="#f59e0b" stroke="#ffffff" stroke-width="1.2"/>
+  <circle cx="852.00" cy="189.97" r="3.8" fill="#f59e0b" stroke="#ffffff" stroke-width="1.2"/>
+  <polyline points="533.00,395.75 612.75,373.53 692.50,353.38 772.25,336.44 852.00,322.57" fill="none" stroke="#64748b" stroke-width="1.8" stroke-dasharray="2,3"/>
+  <circle cx="533.00" cy="395.75" r="3.8" fill="#64748b" stroke="#ffffff" stroke-width="1.2"/>
+  <circle cx="612.75" cy="373.53" r="3.8" fill="#64748b" stroke="#ffffff" stroke-width="1.2"/>
+  <circle cx="692.50" cy="353.38" r="3.8" fill="#64748b" stroke="#ffffff" stroke-width="1.2"/>
+  <circle cx="772.25" cy="336.44" r="3.8" fill="#64748b" stroke="#ffffff" stroke-width="1.2"/>
+  <circle cx="852.00" cy="322.57" r="3.8" fill="#64748b" stroke="#ffffff" stroke-width="1.2"/>
+  <rect x="65" y="480" width="815" height="42" rx="6" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+  <circle cx="80" cy="501" r="4.5" fill="#10b981"/>
+  <text x="90" y="501" font-size="11" font-weight="600" fill="#1e293b" dominant-baseline="middle">A1: GP-Mixed (v2)</text>
+  <circle cx="214" cy="501" r="4.5" fill="#0ea5e9"/>
+  <text x="224" y="501" font-size="11" font-weight="600" fill="#1e293b" dominant-baseline="middle">A2: GP-Mutation (v2)</text>
+  <circle cx="348" cy="501" r="4.5" fill="#6366f1"/>
+  <text x="358" y="501" font-size="11" font-weight="600" fill="#1e293b" dominant-baseline="middle">A4: Formula-Only</text>
+  <circle cx="482" cy="501" r="4.5" fill="#8b5cf6"/>
+  <text x="492" y="501" font-size="11" font-weight="600" fill="#1e293b" dominant-baseline="middle">A5: Conventional</text>
+  <circle cx="616" cy="501" r="4.5" fill="#f59e0b"/>
+  <text x="626" y="501" font-size="11" font-weight="600" fill="#1e293b" dominant-baseline="middle">A1: GP-Mixed (v1)</text>
+  <circle cx="750" cy="501" r="4.5" fill="#64748b"/>
+  <text x="760" y="501" font-size="11" font-weight="600" fill="#1e293b" dominant-baseline="middle">Random Search</text>
+</svg>

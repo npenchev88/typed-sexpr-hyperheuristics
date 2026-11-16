@@ -1,0 +1,7 @@
+Please independently review this research proposal and its G1 implementation. Do not continue G2, implement changes, tune parameters, access holdouts or run optimizer experiments.
+
+Start with docs/EXTERNAL_REVIEW_BRIEF.md and docs/G1_STATUS.md, then inspect the canonical plan/configuration, code, tests, evidence and prior-work materials. Distinguish historical reported results, actually executed tests, unimplemented proposals and unsupported claims. Earlier-paper summaries are second-hand from the supplied planning PDFs because the original article PDFs are absent.
+
+Challenge the motivation, novelty against prior art, causal controls, domain choices, budget fairness, statistical units, data leakage risks, exact arithmetic and numerical reference independence. Give concrete counterexamples for code defects and cite file/line or source support. Do not endorse the prior model by default. AI review and green tests are not proof or publication peer review.
+
+Return: overall verdict; blocking issues; major/minor concerns; strengths; missing evidence; and prioritized changes needed before resuming. State explicitly what you executed versus inferred statically. If the archive cannot be read, request the specific missing files rather than pretending to inspect them.

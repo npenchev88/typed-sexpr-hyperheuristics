@@ -1,0 +1,14 @@
+#'niki.optimizer.runtime-test/objective-ledger-equals-real-invocations-including-thrown-calls
+
+Testing niki.optimizer.runtime-test
+
+FAIL in (objective-representatives-use-g2-canonical-numeric-keys) (runtime_test.clj:411)
+expected: (= 0 (Double/doubleToRawLongBits (first (:objectives outcome))))
+  actual: (not (= 0 -9223372036854775808))
+
+FAIL in (objective-representatives-use-g2-canonical-numeric-keys) (runtime_test.clj:411)
+expected: (= 0 (Double/doubleToRawLongBits (first (:objectives outcome))))
+  actual: (not (= 0 -9223372036854775808))
+
+Ran 22 tests containing 592 assertions.
+2 failures, 0 errors.

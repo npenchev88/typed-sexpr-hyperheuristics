@@ -1,0 +1,12 @@
+
+Testing niki.optimizer.portfolio-test
+
+Testing niki.optimizer.portfolio-reference-test
+
+FAIL in (exact-subset-enumeration) (portfolio_reference_test.clj:19)
+The exact subset enumerator must exist
+expected: (some? selections)
+  actual: (not (some? nil))
+
+Ran 5 tests containing 50 assertions.
+1 failures, 0 errors.

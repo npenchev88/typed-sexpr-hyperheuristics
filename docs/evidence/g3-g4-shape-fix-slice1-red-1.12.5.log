@@ -1,0 +1,580 @@
+Clojure 1.12.5 standalone shape validation slice1
+
+FAIL in (option-key-shape-precedes-membership) (shape_validation_test.clj:20)
+:portfolio :generate :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (option-key-shape-precedes-membership) (shape_validation_test.clj:21)
+:portfolio :generate :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (option-key-shape-precedes-membership) (shape_validation_test.clj:20)
+:portfolio :generate :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (option-key-shape-precedes-membership) (shape_validation_test.clj:21)
+:portfolio :generate :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (option-key-shape-precedes-membership) (shape_validation_test.clj:20)
+:portfolio :generate :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (option-key-shape-precedes-membership) (shape_validation_test.clj:21)
+:portfolio :generate :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (option-key-shape-precedes-membership) (shape_validation_test.clj:20)
+:portfolio :mutate :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (option-key-shape-precedes-membership) (shape_validation_test.clj:21)
+:portfolio :mutate :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (option-key-shape-precedes-membership) (shape_validation_test.clj:20)
+:portfolio :mutate :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (option-key-shape-precedes-membership) (shape_validation_test.clj:21)
+:portfolio :mutate :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (option-key-shape-precedes-membership) (shape_validation_test.clj:20)
+:portfolio :mutate :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (option-key-shape-precedes-membership) (shape_validation_test.clj:21)
+:portfolio :mutate :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (option-key-shape-precedes-membership) (shape_validation_test.clj:20)
+:portfolio :crossover :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (option-key-shape-precedes-membership) (shape_validation_test.clj:21)
+:portfolio :crossover :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (option-key-shape-precedes-membership) (shape_validation_test.clj:20)
+:portfolio :crossover :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (option-key-shape-precedes-membership) (shape_validation_test.clj:21)
+:portfolio :crossover :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (option-key-shape-precedes-membership) (shape_validation_test.clj:20)
+:portfolio :crossover :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (option-key-shape-precedes-membership) (shape_validation_test.clj:21)
+:portfolio :crossover :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (option-key-shape-precedes-membership) (shape_validation_test.clj:20)
+:scheduling :generate :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (option-key-shape-precedes-membership) (shape_validation_test.clj:21)
+:scheduling :generate :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (option-key-shape-precedes-membership) (shape_validation_test.clj:20)
+:scheduling :generate :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (option-key-shape-precedes-membership) (shape_validation_test.clj:21)
+:scheduling :generate :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (option-key-shape-precedes-membership) (shape_validation_test.clj:20)
+:scheduling :generate :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (option-key-shape-precedes-membership) (shape_validation_test.clj:21)
+:scheduling :generate :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (option-key-shape-precedes-membership) (shape_validation_test.clj:20)
+:scheduling :mutate :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (option-key-shape-precedes-membership) (shape_validation_test.clj:21)
+:scheduling :mutate :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (option-key-shape-precedes-membership) (shape_validation_test.clj:20)
+:scheduling :mutate :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (option-key-shape-precedes-membership) (shape_validation_test.clj:21)
+:scheduling :mutate :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (option-key-shape-precedes-membership) (shape_validation_test.clj:20)
+:scheduling :mutate :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (option-key-shape-precedes-membership) (shape_validation_test.clj:21)
+:scheduling :mutate :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (option-key-shape-precedes-membership) (shape_validation_test.clj:20)
+:scheduling :crossover :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (option-key-shape-precedes-membership) (shape_validation_test.clj:21)
+:scheduling :crossover :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (option-key-shape-precedes-membership) (shape_validation_test.clj:20)
+:scheduling :crossover :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (option-key-shape-precedes-membership) (shape_validation_test.clj:21)
+:scheduling :crossover :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (option-key-shape-precedes-membership) (shape_validation_test.clj:20)
+:scheduling :crossover :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (option-key-shape-precedes-membership) (shape_validation_test.clj:21)
+:scheduling :crossover :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (nested-limit-key-shape-precedes-membership) (shape_validation_test.clj:20)
+:portfolio :generate :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (nested-limit-key-shape-precedes-membership) (shape_validation_test.clj:21)
+:portfolio :generate :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (nested-limit-key-shape-precedes-membership) (shape_validation_test.clj:20)
+:portfolio :generate :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (nested-limit-key-shape-precedes-membership) (shape_validation_test.clj:21)
+:portfolio :generate :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (nested-limit-key-shape-precedes-membership) (shape_validation_test.clj:20)
+:portfolio :generate :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (nested-limit-key-shape-precedes-membership) (shape_validation_test.clj:21)
+:portfolio :generate :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (nested-limit-key-shape-precedes-membership) (shape_validation_test.clj:20)
+:portfolio :mutate :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (nested-limit-key-shape-precedes-membership) (shape_validation_test.clj:21)
+:portfolio :mutate :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (nested-limit-key-shape-precedes-membership) (shape_validation_test.clj:20)
+:portfolio :mutate :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (nested-limit-key-shape-precedes-membership) (shape_validation_test.clj:21)
+:portfolio :mutate :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (nested-limit-key-shape-precedes-membership) (shape_validation_test.clj:20)
+:portfolio :mutate :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (nested-limit-key-shape-precedes-membership) (shape_validation_test.clj:21)
+:portfolio :mutate :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (nested-limit-key-shape-precedes-membership) (shape_validation_test.clj:20)
+:portfolio :crossover :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (nested-limit-key-shape-precedes-membership) (shape_validation_test.clj:21)
+:portfolio :crossover :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (nested-limit-key-shape-precedes-membership) (shape_validation_test.clj:20)
+:portfolio :crossover :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (nested-limit-key-shape-precedes-membership) (shape_validation_test.clj:21)
+:portfolio :crossover :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (nested-limit-key-shape-precedes-membership) (shape_validation_test.clj:20)
+:portfolio :crossover :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (nested-limit-key-shape-precedes-membership) (shape_validation_test.clj:21)
+:portfolio :crossover :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (nested-limit-key-shape-precedes-membership) (shape_validation_test.clj:20)
+:portfolio :check :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (nested-limit-key-shape-precedes-membership) (shape_validation_test.clj:21)
+:portfolio :check :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (nested-limit-key-shape-precedes-membership) (shape_validation_test.clj:20)
+:portfolio :check :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (nested-limit-key-shape-precedes-membership) (shape_validation_test.clj:21)
+:portfolio :check :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (nested-limit-key-shape-precedes-membership) (shape_validation_test.clj:20)
+:portfolio :check :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (nested-limit-key-shape-precedes-membership) (shape_validation_test.clj:21)
+:portfolio :check :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (nested-limit-key-shape-precedes-membership) (shape_validation_test.clj:20)
+:portfolio :limits :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (nested-limit-key-shape-precedes-membership) (shape_validation_test.clj:21)
+:portfolio :limits :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (nested-limit-key-shape-precedes-membership) (shape_validation_test.clj:20)
+:portfolio :limits :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (nested-limit-key-shape-precedes-membership) (shape_validation_test.clj:21)
+:portfolio :limits :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (nested-limit-key-shape-precedes-membership) (shape_validation_test.clj:20)
+:portfolio :limits :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (nested-limit-key-shape-precedes-membership) (shape_validation_test.clj:21)
+:portfolio :limits :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (nested-limit-key-shape-precedes-membership) (shape_validation_test.clj:20)
+:scheduling :generate :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (nested-limit-key-shape-precedes-membership) (shape_validation_test.clj:21)
+:scheduling :generate :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (nested-limit-key-shape-precedes-membership) (shape_validation_test.clj:20)
+:scheduling :generate :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (nested-limit-key-shape-precedes-membership) (shape_validation_test.clj:21)
+:scheduling :generate :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (nested-limit-key-shape-precedes-membership) (shape_validation_test.clj:20)
+:scheduling :generate :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (nested-limit-key-shape-precedes-membership) (shape_validation_test.clj:21)
+:scheduling :generate :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (nested-limit-key-shape-precedes-membership) (shape_validation_test.clj:20)
+:scheduling :mutate :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (nested-limit-key-shape-precedes-membership) (shape_validation_test.clj:21)
+:scheduling :mutate :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (nested-limit-key-shape-precedes-membership) (shape_validation_test.clj:20)
+:scheduling :mutate :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (nested-limit-key-shape-precedes-membership) (shape_validation_test.clj:21)
+:scheduling :mutate :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (nested-limit-key-shape-precedes-membership) (shape_validation_test.clj:20)
+:scheduling :mutate :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (nested-limit-key-shape-precedes-membership) (shape_validation_test.clj:21)
+:scheduling :mutate :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (nested-limit-key-shape-precedes-membership) (shape_validation_test.clj:20)
+:scheduling :crossover :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (nested-limit-key-shape-precedes-membership) (shape_validation_test.clj:21)
+:scheduling :crossover :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (nested-limit-key-shape-precedes-membership) (shape_validation_test.clj:20)
+:scheduling :crossover :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (nested-limit-key-shape-precedes-membership) (shape_validation_test.clj:21)
+:scheduling :crossover :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (nested-limit-key-shape-precedes-membership) (shape_validation_test.clj:20)
+:scheduling :crossover :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (nested-limit-key-shape-precedes-membership) (shape_validation_test.clj:21)
+:scheduling :crossover :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (nested-limit-key-shape-precedes-membership) (shape_validation_test.clj:20)
+:scheduling :check :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (nested-limit-key-shape-precedes-membership) (shape_validation_test.clj:21)
+:scheduling :check :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (nested-limit-key-shape-precedes-membership) (shape_validation_test.clj:20)
+:scheduling :check :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (nested-limit-key-shape-precedes-membership) (shape_validation_test.clj:21)
+:scheduling :check :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (nested-limit-key-shape-precedes-membership) (shape_validation_test.clj:20)
+:scheduling :check :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (nested-limit-key-shape-precedes-membership) (shape_validation_test.clj:21)
+:scheduling :check :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (nested-limit-key-shape-precedes-membership) (shape_validation_test.clj:20)
+:scheduling :limits :lazy
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (nested-limit-key-shape-precedes-membership) (shape_validation_test.clj:21)
+:scheduling :limits :lazy
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (nested-limit-key-shape-precedes-membership) (shape_validation_test.clj:20)
+:scheduling :limits :vector
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (nested-limit-key-shape-precedes-membership) (shape_validation_test.clj:21)
+:scheduling :limits :vector
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+FAIL in (nested-limit-key-shape-precedes-membership) (shape_validation_test.clj:20)
+:scheduling :limits :map
+must reject with ExceptionInfo
+expected: (= :exception-info outcome)
+  actual: (not (= :exception-info "java.lang.Exception"))
+
+FAIL in (nested-limit-key-shape-precedes-membership) (shape_validation_test.clj:21)
+:scheduling :limits :map
+must not realize poison
+expected: (false? (clojure.core/deref touched))
+  actual: (not (false? true))
+
+Ran 3 tests containing 376 assertions.
+96 failures, 0 errors.

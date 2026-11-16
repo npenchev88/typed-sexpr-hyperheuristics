@@ -1,0 +1,10 @@
+{:instance-id "g6-synthetic-7jobs-v1"
+ :source :synthetic-development-only
+ :description "Deterministic 7-job single-machine scheduling fixture (5,040 permutations) with nontrivial mean-completion vs total-tardiness Pareto trade-offs."
+ :jobs [{:id "job-0" :duration 12 :due-date 25}
+        {:id "job-1" :duration 28 :due-date 40}
+        {:id "job-2" :duration 7  :due-date 60}
+        {:id "job-3" :duration 19 :due-date 30}
+        {:id "job-4" :duration 35 :due-date 95}
+        {:id "job-5" :duration 14 :due-date 50}
+        {:id "job-6" :duration 25 :due-date 75}]}

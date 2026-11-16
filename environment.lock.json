@@ -1,0 +1,50 @@
+{
+  "jdk": {
+    "vendor": "Eclipse Temurin",
+    "version": "25.0.5+8",
+    "java_executable": ".tools/jdk/jdk-25.0.5+8/bin/java.exe"
+  },
+  "launcher": {
+    "implementation": "deps.clj native Windows AMD64",
+    "version": "1.12.6.1673",
+    "exe": ".tools/cli/deps.exe"
+  },
+  "clojure_default": "1.12.6",
+  "clojure_legacy_comparison": "1.12.5",
+  "commons_math3": "3.6.1",
+  "upstream": {
+    "url": "https://github.com/npenchev88/evolving-portfolio-dsl.git",
+    "commit": "29252c5b86d9f8a15099d85893e5e97861cb705d",
+    "path": "vendor/evolving-portfolio-dsl"
+  },
+  "downloads": [
+    {
+      "name": "jdk",
+      "url": "https://github.com/adoptium/temurin25-binaries/releases/download/jdk-25.0.5%2B8/OpenJDK25U-jdk_x64_windows_hotspot_25.0.5_8.zip",
+      "sha256": "636bdc13dc649ddc7d5921c5c7d23cca6e44fd19d662b45cc9c02135a6c96c42",
+      "bytes": 141285173,
+      "destination": "C:\\Users\\meggy\\Niki\\typed-optimizer-lab\\.tools\\jdk"
+    },
+    {
+      "name": "cli",
+      "url": "https://github.com/borkdude/deps.clj/releases/download/v1.12.6.1673/deps.clj-1.12.6.1673-windows-amd64.zip",
+      "sha256": "826e2f52657483471bb98013797d9d01df2ddac850ca7182792936cd6b31c834",
+      "bytes": 10450949,
+      "destination": "C:\\Users\\meggy\\Niki\\typed-optimizer-lab\\.tools\\cli"
+    }
+  ],
+  "artifact_sha256": {
+    ".cache/m2/org/apache/commons/commons-math3/3.6.1/commons-math3-3.6.1.jar": "1e56d7b058d28b65abd256b8458e3885b674c1d588fa43cd7d1cbb9c7ef2b308",
+    ".cache/m2/org/clojure/clojure/1.12.5/clojure-1.12.5.jar": "dfdee131460216a84fef22e537bb0d0579965f8f70338d748323dff26f8e5a8b",
+    ".cache/m2/org/clojure/clojure/1.12.6/clojure-1.12.6.jar": "21b578db389a8e74b286ce79c4a7f86ec641e26d88b12f18d69030916b0e18ca",
+    ".cache/m2/org/clojure/core.specs.alpha/0.4.74/core.specs.alpha-0.4.74.jar": "eb73ac08cf49ba840c88ba67beef11336ca554333d9408808d78946e0feb9ddb",
+    ".cache/m2/org/clojure/spec.alpha/0.5.238/spec.alpha-0.5.238.jar": "94cd99b6ea639641f37af4860a643b6ed399ee5a8be5d717cff0b663c8d75077"
+  },
+  "hardware": {
+    "cpu": "AMD Ryzen 7 9700X",
+    "physical_cores": 8,
+    "logical_processors": 16,
+    "physical_memory_bytes": 33694248960
+  },
+  "scope": "Project-local; no system PATH change, no global Java registration, no Leiningen installation"
+}

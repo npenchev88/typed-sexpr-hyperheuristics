@@ -1,0 +1,17 @@
+{
+  "review": 2,
+  "passed": false,
+  "security_concerns": [],
+  "logic_errors": [
+    {
+      "location": "src/niki/optimizer/portfolio.clj:99-108",
+      "issue": "First-observation shifts can discard representable input differences before centering and equal weighting, producing zero risk for a nonconstant portfolio.",
+      "counterexample": "K=2, two dates, returns [[10000000000000000.0 1.0] [0.0 10000000000000000.0]], selection [0 1]. Initial shifted implementation returns risk 0; exact variance is 1/8 and risk is sqrt(1/8).",
+      "interpretation": "Intermediate arithmetic information loss, not intended initial input coercion or only rounding of the displayed portfolio series."
+    }
+  ],
+  "suggestions": ["Retain subtraction and centering residuals through equal weighting; add a nonzero-risk regression."],
+  "scope": "Independent static review of g1-review-02.diff and g1-static-scan-02.json; previous near-constant and integral-overflow examples fixed, but wider cancellation defect remains.",
+  "delegation_id": "deleg_0db3f620",
+  "resolution": "Resolved by exact direct-series accumulation with a failing-then-passing variance 1/8 regression. Parent reran both-language suites; final independent review 3 approved the source snapshot."
+}

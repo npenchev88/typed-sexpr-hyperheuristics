@@ -1,0 +1,23 @@
+
+Testing niki.optimizer.portfolio-test
+
+Testing niki.optimizer.portfolio-reference-test
+
+FAIL in (direct-risk-preserves-near-constant-asset-dispersion) (portfolio_reference_test.clj:30)
+expected: (close? (:sample-standard-deviation independent) (:sample-standard-deviation direct))
+  actual: (not (close? 1.4142135623730951 2.0))
+
+FAIL in (direct-risk-preserves-near-constant-asset-dispersion) (portfolio_reference_test.clj:32)
+expected: (close? expected-risk (second (:objectives direct)))
+  actual: (not (close? 1.4142135623730951 2.0))
+
+FAIL in (direct-risk-preserves-near-constant-asset-dispersion) (portfolio_reference_test.clj:30)
+expected: (close? (:sample-standard-deviation independent) (:sample-standard-deviation direct))
+  actual: (not (close? 0.7071067811865476 0.0))
+
+FAIL in (direct-risk-preserves-near-constant-asset-dispersion) (portfolio_reference_test.clj:32)
+expected: (close? expected-risk (second (:objectives direct)))
+  actual: (not (close? 0.7071067811865476 0.0))
+
+Ran 11 tests containing 12147 assertions.
+4 failures, 0 errors.

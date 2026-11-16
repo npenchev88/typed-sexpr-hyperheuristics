@@ -1,0 +1,28 @@
+{:paths ["src" "resources"]
+ :deps {org.clojure/clojure {:mvn/version "1.12.6"}}
+ :mvn/local-repo ".cache/m2"
+ :mvn/repos {"central" {:url "https://repo.maven.apache.org/maven2/"
+                        :releases {:enabled true :checksum :fail}
+                        :snapshots {:enabled false}}}
+ :aliases
+ {:g7-test {:extra-paths ["test"]
+            :main-opts ["-m" "niki.optimizer.g7-test-runner"]}
+  :g6-test {:extra-paths ["test"]
+            :main-opts ["-m" "niki.optimizer.g6-test-runner"]}
+  :g5-test {:extra-paths ["test"]
+            :main-opts ["-m" "niki.optimizer.g5-test-runner"]}
+  :g4-test {:extra-paths ["test"]
+            :main-opts ["-m" "niki.optimizer.g4-test-runner"]}
+  :g3-test {:extra-paths ["test"]
+            :main-opts ["-m" "niki.optimizer.g3-test-runner"]}
+  :g2-test {:extra-paths ["test"]
+            :main-opts ["-m" "niki.optimizer.g2-test-runner"]}
+  :g1-test {:extra-paths ["test"]
+            :main-opts ["-m" "niki.optimizer.test-runner"]}
+  :legacy {:extra-paths ["vendor/evolving-portfolio-dsl/src"
+                         "vendor/evolving-portfolio-dsl/resources"]
+           :extra-deps {org.apache.commons/commons-math3 {:mvn/version "3.6.1"}}}
+  :test {:extra-paths ["vendor/evolving-portfolio-dsl/test"]
+         :main-opts ["-m" "portfolio-evolution.test-runner"]}
+  :legacy-version {:override-deps {org.clojure/clojure {:mvn/version "1.12.5"}}}
+  :demo {:main-opts ["-m" "portfolio-evolution.dsl-demo"]}}}

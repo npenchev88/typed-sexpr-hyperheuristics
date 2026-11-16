@@ -1,0 +1,14 @@
+#'niki.optimizer.runtime-test/preflight-fails-closed-before-launch
+
+Testing niki.optimizer.runtime-test
+
+FAIL in (preflight-fails-closed-before-launch) (runtime_test.clj:55)
+expected: (= :invalid-adapter (thrown-error (fn* [] (run-runtime (program [:step [:operator :swap]]) (assoc adapter :operators #{:restart}) opts))))
+  actual: (not (= :invalid-adapter nil))
+
+FAIL in (preflight-fails-closed-before-launch) (runtime_test.clj:58)
+expected: (= :invalid-adapter (thrown-error (fn* [] (run-runtime (program [:initialize [:initializer :first]]) (assoc adapter :initializers #{:random}) opts))))
+  actual: (not (= :invalid-adapter nil))
+
+Ran 2 tests containing 30 assertions.
+2 failures, 0 errors.

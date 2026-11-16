@@ -1,0 +1,813 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Niki · Typed Evolution of Executable Optimizers</title><style>
+:root { color-scheme: light; --ink:#24212a; --muted:#625b6a; --accent:#68418b; --rule:#d6cfdc; }
+* { box-sizing:border-box; }
+body { margin:0; padding:34px 38px; color:var(--ink); background:#fff;
+       font:12pt/1.46 Georgia, 'Times New Roman', serif; }
+main { max-width:188mm; margin:0; }
+.eyebrow { color:var(--accent); font:600 12pt/1.3 'Segoe UI',sans-serif;
+            letter-spacing:.08em; margin:0 0 17px; }
+h1,h2,h3 { font-family:'Segoe UI',Arial,sans-serif; line-height:1.22; text-wrap:balance;
+            break-after:avoid; page-break-after:avoid; }
+h1 { font-size:29pt; letter-spacing:-.025em; margin:0 0 15px; }
+h2 { font-size:19pt; color:var(--accent); margin:27px 0 12px; padding-top:7px; }
+h3 { font-size:14pt; margin:23px 0 9px; }
+p,li { orphans:3; widows:3; }
+p { margin:9px 0 13px; }
+li { margin:5px 0; }
+blockquote { margin:20px 0; padding:16px 0; border-top:1px solid var(--rule);
+             border-bottom:1px solid var(--rule); font-size:13pt; }
+blockquote p { margin:0; }
+table { border-collapse:collapse; width:100%; table-layout:fixed; margin:15px 0 22px;
+        font-size:12pt; line-height:1.32; }
+thead { display:table-header-group; }
+tr { break-inside:avoid; page-break-inside:avoid; }
+th { font-family:'Segoe UI',Arial,sans-serif; font-weight:650; text-align:left;
+     background:#f1edf5; border-bottom:1px solid #95869f; }
+th,td { padding:9px 8px; border-bottom:1px solid var(--rule); vertical-align:top;
+        overflow-wrap:anywhere; }
+pre { white-space:pre-wrap; overflow-wrap:anywhere; padding:12px; background:#f6f4f8;
+      border:1px solid var(--rule); font:12pt/1.4 Consolas,'Courier New',monospace;
+      break-inside:avoid; }
+code { font:12pt Consolas,'Courier New',monospace; overflow-wrap:anywhere; }
+a { color:var(--accent); text-decoration:underline; overflow-wrap:anywhere; }
+hr { border:0; border-top:1px solid var(--rule); margin:28px 0; }
+nav { border-top:1px solid var(--rule); border-bottom:1px solid var(--rule);
+      padding:12px 0; margin:25px 0; font:12pt/1.4 'Segoe UI',Arial,sans-serif; }
+nav ul { margin:5px 0; padding-left:21px; columns:2; column-gap:24px; }
+nav li { break-inside:avoid; margin:5px 0; }
+nav a { text-decoration:none; }
+@page { size:A4; margin:16mm 14mm 18mm;
+        @bottom-left { content:'Niki · Typed Optimizer Lab · Protocol v1.1';
+          font:10pt 'Segoe UI',Arial,sans-serif; color:#625b6a; }
+        @bottom-right { content:counter(page); font:10pt 'Segoe UI',Arial,sans-serif; color:#625b6a; } }
+@media print { body { padding:0; } main { max-width:none; } nav { break-inside:avoid; }
+              h2 { margin-top:22px; } a { color:inherit; } }
+@media (max-width:700px) { body { padding:20px; } h1 { font-size:25pt; } nav ul { columns:1; } }
+</style></head><body><main><div class="eyebrow">RESEARCH PLAN · 02 NOVEMBER 2026</div><h1 id="typed-evolution-of-executable-optimizers">Typed Evolution of Executable Optimizers</h1>
+<h2 id="niki-final-architectural-plan-and-proposed-confirmatory-protocol-v11">Niki · Final architectural plan and proposed confirmatory protocol v1.1</h2>
+<p><strong>Prepared:</strong> November 1, 2026. <strong>Reviewed and finalized for implementation:</strong> November 2, 2026. <strong>Status:</strong> ready to guide implementation, not yet preregistered or empirically validated. The final dataset, holdout provenance and computational allowance remain release gates. Final means a consolidated implementation plan, not a completed experiment or a sealed preregistration.</p>
+<blockquote>
+<p><strong>Recommendation:</strong> a methodology-first, two-domain study. Evolve complete, bounded optimizer programs; establish correctness on exact tiny cases; compare against strong, equally configured alternatives; then replicate with an unchanged core on scheduling. Do not make profitability, universal optimization, or beneficial crossover prerequisites for an honest result.</p>
+</blockquote>
+<nav aria-label="Contents"><strong>Contents</strong><ul><li><a href="#1-what-has-actually-been-done">1. What has actually been done</a></li><li><a href="#2-scientific-positioning">2. Scientific positioning</a></li><li><a href="#3-three-scope-scenarios">3. Three scope scenarios</a></li><li><a href="#4-confirmatory-hypotheses-and-failure-conditions">4. Confirmatory hypotheses and failure conditions</a></li><li><a href="#5-domain-contracts">5. Domain contracts</a></li><li><a href="#6-language-architecture-and-proof-obligations">6. Language, architecture and proof obligations</a></li><li><a href="#7-five-search-arms-and-additional-deployment-controls">7. Five search arms and additional deployment controls</a></li><li><a href="#8-data-holdout-and-leakage-controls">8. Data, holdout and leakage controls</a></li><li><a href="#9-metrics-and-selection">9. Metrics and selection</a></li><li><a href="#10-resource-accounting-and-proposed-compute-envelope">10. Resource accounting and proposed compute envelope</a></li><li><a href="#11-statistical-analysis">11. Statistical analysis</a></li><li><a href="#12-behavioral-evidence-and-secondary-ablations">12. Behavioral evidence and secondary ablations</a></li><li><a href="#13-outcome-scenarios-and-honest-conclusions">13. Outcome scenarios and honest conclusions</a></li><li><a href="#14-milestones-with-acceptance-gates">14. Milestones with acceptance gates</a></li><li><a href="#15-publication-and-reproducibility-package">15. Publication and reproducibility package</a></li><li><a href="#16-decisions-still-required-from-niki">16. Decisions still required from Niki</a></li><li><a href="#appendix-a-environment-and-reproduction">Appendix A · Environment and reproduction</a></li><li><a href="#appendix-b-review-decisions">Appendix B · Review decisions</a></li><li><a href="#sources">Sources</a></li></ul></nav><h2 id="1-what-has-actually-been-done">1. What has actually been done</h2>
+<p>The desktop project <strong>Niki</strong> is anchored at <code>C:\Users\meggy\Niki\typed-optimizer-lab</code>. Both supplied PDFs have been copied without modification and hashed. The upstream repository is preserved at commit <code>29252c5b86d9f8a15099d85893e5e97861cb705d</code>.</p>
+<p>A portable Temurin <strong>25.0.5+8</strong> JDK and native <strong>deps.clj 1.12.6.1673</strong> launcher are installed inside this workspace. The default Clojure language is <strong>1.12.6</strong>; an alias retains the upstream language version <strong>1.12.5</strong>. The upstream suite passed <strong>62 tests / 191 assertions / zero failures / zero errors</strong> with each language version. A legacy DSL demonstration also ran. Both test runs used the new Java 25 installation; they do not reproduce the upstream Java 21 environment or its complete published experiments. Logs are in <code>docs/evidence/</code>.</p>
+<p><strong>Not done:</strong> the new portfolio evaluator, multiobjective runtime, typed crossover, market-data snapshot, scheduling adapter or confirmatory runs. This document contains proposals, not invented experimental results.</p>
+<p>The two EDN proposal configurations now exist. Their consistency checks passed <strong>4 tests / 23 assertions / zero failures / zero errors</strong>. They explicitly mark the confirmatory launch as unapproved and the new experiment runner as unimplemented. These are configuration checks, not tests of the proposed optimizer.</p>
+<p>The supplied documents provide the research continuity and much of the initial specification. This plan makes their warnings operational, adds a configured-conventional-solver comparator, tightens temporal separation, and bounds the flagship workload.[21][22]</p>
+<h2 id="2-scientific-positioning">2. Scientific positioning</h2>
+<h3 id="central-question">Central question</h3>
+<p><strong>Can search over small, typed, executable programs discover compact optimization procedures that improve held-out Pareto approximation under an explicit resource contract, beyond random program search, formula-only evolution and configured conventional algorithms?</strong></p>
+<p>The individual in the outer search is an <strong>optimizer program</strong>. The inner search produces <strong>candidate solutions and a nondominated archive</strong>. These are different populations, objectives and budgets.</p>
+<p>The intended contribution is a combination of:</p>
+<ol>
+<li>A small language with precise domain, type, effect and resource semantics.</li>
+<li>An auditable implementation of program generation and bounded execution.</li>
+<li>A causal comparison of search, evolvable control flow, and variation policy.</li>
+<li>A reusable domain interface demonstrated on two different representations.</li>
+<li>An artifact that exposes failures, compute costs and the actual discovered programs.</li>
+</ol>
+<p>Automatic algorithm design is already established: Bezerra, López-Ibáñez and Stützle describe automatically configured multiobjective algorithms. Therefore, using Clojure, types, or recombination is not by itself a novelty claim. A focused related-work comparison must precede a paper's final novelty statement.[14]</p>
+<h3 id="closest-precedents-and-the-contribution-we-must-actually-demonstrate">Closest precedents and the contribution we must actually demonstrate</h3>
+<table>
+<thead>
+<tr>
+<th>Prior work</th>
+<th>What is already established</th>
+<th>Our proposed discriminating test</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Montana, <em>Strongly Typed Genetic Programming</em> (1995)</td>
+<td>Type-constrained genetic programming is prior art.[15]</td>
+<td>Type-directed vs generate-and-validate proposals in the same legal language; useful quality per resource, not just fewer syntax errors</td>
+</tr>
+<tr>
+<td>Lones, <em>Evolving continuous optimisers from scratch</em> (2021)</td>
+<td>Stateful executable optimizer evolution using Push is prior art.[23]</td>
+<td>Whether evolvable orchestration of discrete, multiobjective search adds value beyond a fixed scaffold; disclose everything our framework keeps fixed</td>
+</tr>
+<tr>
+<td>Zhou and Yang, scheduling policies through multiobjective GP (2019)</td>
+<td>GP-generated scheduling policies are prior art; their dynamic flexible-job-shop formulation differs from ours.[25]</td>
+<td>Full control flow versus scoring-rule evolution and competent scheduling controls; a changed scheduling problem is not itself a new methodology</td>
+</tr>
+<tr>
+<td>Bezerra et al., automatic MOEA design for combinatorial optimization (2014)</td>
+<td>Automatic component configuration has already been tested on permutation-flowshop variants.[24]</td>
+<td>Compare our DSL search to a configured component/template space, not only default solvers</td>
+</tr>
+<tr>
+<td>Bezerra et al., automatic multi-/many-objective algorithm design (2020)</td>
+<td>Automatically designing MOEAs and using multiple design metrics are established.[14]</td>
+<td>Controlled evidence about quality, complexity, cost and behavior across the specified two domains</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Candidate contribution:</strong> identify when search over bounded, executable control structures adds useful behavior beyond evolved scoring, configured components and supplied heuristics. This focused review is not an exhaustive novelty clearance. The study must show actual behavioral changes and attribution, not only valid or shorter trees.</p>
+<p>“Whole-program evolution” means the entire permitted optimizer AST. The grammar, primitive implementations, evaluator, safety envelope, archive semantics and outer-search machinery remain fixed. It does not mean unrestricted invention of an optimizer or self-modification of its judge.</p>
+<h3 id="what-mccarthy-contributes-to-the-argument">What McCarthy contributes to the argument</h3>
+<ul>
+<li><strong>History of Lisp:</strong> the supplied page is a 1979 retrospective, not the original 1960 paper. Its account of programs represented as lists and the emergence of an interpreter motivates manipulable program representations.[1][4]</li>
+<li><strong>Recursive Functions of Symbolic Expressions (1960):</strong> functions can themselves be represented as symbolic expressions, with an interpreter defining execution. Our design adopts this representation/interpreter separation, not unrestricted execution of generated host-language code.[18][19][20]</li>
+<li><strong>Programs with Common Sense (1959):</strong> the introduction identifies a difficulty with searching arbitrary behavior representations: useful behaviors are sparse and meaningful behavioral changes may be hard to express. Our proposed empirical connection is to measure whether typed, domain-appropriate edits produce useful behavioral changes.[3]</li>
+</ul>
+<p>These works are intellectual motivation, <strong>not evidence that GP will succeed</strong>. We are not reproducing the Advice Taker, claiming AGI, or allowing the evolution mechanism to rewrite its own evaluator. The supplied 1960 PDF is archived locally.[2] Relevant sections were read through Stanford's HTML edition; formula images missing from HTML text were not treated as parsed equations. This is a focused reading, not a claim to have verified every displayed formula.</p>
+<h2 id="3-three-scope-scenarios">3. Three scope scenarios</h2>
+<table>
+<thead>
+<tr>
+<th>Scenario</th>
+<th>Deliverable</th>
+<th>Defensible claim</th>
+<th>Decision</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>A. Focused portfolio study</strong></td>
+<td>Exact oracle, portfolio runtime, five search arms, strong direct solvers, locked evaluation</td>
+<td>Evidence about executable optimizer search on the defined portfolio tasks</td>
+<td>Fallback if resources or historical eligibility block the second domain</td>
+</tr>
+<tr>
+<td><strong>B. Two-domain methodology study</strong></td>
+<td>A plus a scheduling adapter, the same frozen core, separate evolution in each domain</td>
+<td>Tested methodology reuse across subset and permutation problems</td>
+<td><strong>Recommended flagship</strong></td>
+</tr>
+<tr>
+<td><strong>C. Frozen-program transfer / richer language</strong></td>
+<td>A/B plus a common abstract operator interface, genuinely unchanged transferred programs, or learned subroutines</td>
+<td>Only the specific transfer or abstraction tested</td>
+<td>Later study; not a prerequisite for B</td>
+</tr>
+</tbody>
+</table>
+<p>A financial-application-first paper is a separate scope choice: it needs execution assumptions, costs, selection rules and market realism beyond this optimization study. Do not enlarge B by quietly adding trading, CVaR, forecasting, LLM proposals and extra domains.</p>
+<h2 id="4-confirmatory-hypotheses-and-failure-conditions">4. Confirmatory hypotheses and failure conditions</h2>
+<p>All effects below concern <strong>held-out normalized hypervolume</strong>, not the number of nondominated points or future financial returns.</p>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Contrast</th>
+<th>Question</th>
+<th>What would not support it?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>H1</td>
+<td>Full GP vs Random DSL Search</td>
+<td>Does evolutionary search add value beyond sampling the same program space?</td>
+<td>No practically meaningful held-out improvement</td>
+</tr>
+<tr>
+<td>H2</td>
+<td>Full GP vs evolved scoring in a fixed scaffold</td>
+<td>Does evolvable control flow add value?</td>
+<td>Formula-only is as good or better under the frozen comparison</td>
+</tr>
+<tr>
+<td>H3</td>
+<td>Mutation+crossover vs mutation-only</td>
+<td>Does the specified recombination policy help?</td>
+<td>Improvement absent, harmful, or too uncertain</td>
+</tr>
+<tr>
+<td>H4</td>
+<td>Full GP vs configured conventional families</td>
+<td>Is there useful advantage over a stronger practical alternative?</td>
+<td>Gains vanish after fair tuning or matched-time comparison</td>
+</tr>
+<tr>
+<td>H5</td>
+<td>Portfolio and scheduling with unchanged core</td>
+<td>Can the framework be reused without domain-specific changes to its engine?</td>
+<td>Runtime, type system or search requires task-specific rewrites</td>
+</tr>
+</tbody>
+</table>
+<p>H5 is a software/experimental-reuse claim, not proof that a frozen portfolio optimizer transfers to schedules. Separate scheduling evolution is allowed; any changes to the core after its freeze must be logged and trigger reruns under the new version.</p>
+<p><strong>Proposed practical threshold:</strong> an absolute difference of <strong>0.01 normalized-HV units</strong>. This is a design choice, not an established domain standard. Validate its relevance and achievable precision during development, then freeze it. Do not replace it after inspecting confirmation results. Confidence intervals crossing meaningful benefit and harm are inconclusive, not evidence of equivalence.</p>
+<h2 id="5-domain-contracts">5. Domain contracts</h2>
+<h3 id="51-portfolio-exactly-k-of-n-equal-weights">5.1 Portfolio: exactly K-of-N, equal weights</h3>
+<p>Primary deployment size is provisionally <strong>N=50, K=5</strong>, subject to a historical-data availability audit. The exact correctness case is <strong>N=15, K=5: 3,003 feasible portfolios</strong>, calculated programmatically.</p>
+<p>For aligned simple daily returns <code>r[i,t]</code>, select binary <code>x[i]</code> with <code>sum(x)=K</code>, then <code>w[i]=x[i]/K</code>:</p>
+<pre><code class="language-text">r_p[t]   = sum_i w[i] * r[i,t]
+mean     = sum_t r_p[t] / T
+variance = sum_t (r_p[t] - mean)^2 / (T - 1)
+risk     = sqrt(variance)
+f        = [-mean, risk]                    ; both coordinates minimized
+</code></pre>
+<p>Require <code>T &gt;= 2</code>, finite values, valid price denominators and identical dates. Independently test direct-series calculations against <code>mu^T w</code> and <code>w^T Sigma w</code> with sample covariance. Include zero volatility, identical assets, anticorrelated assets, ties and singular covariance matrices. Do not replace portfolio risk with a sum of individual risks (main input §8; extension §§3–4).[21][22]</p>
+<p>The optimization scenario uses fixed weights analytically. A later buy-and-hold simulation must keep initial quantities and allow weights to drift. Simulated 10,000 USDT is an illustration, not an extra constraint when quantities are fractional and costs are absent. USDT is not assumed identical to USD (main input §§7–9).[21]</p>
+<p>Use return and <strong>standard deviation</strong>, not variance, for reported HV. A monotone square root preserves dominance, but not HV geometry (main input §§8,12).[21]</p>
+<h3 id="52-scheduling-a-genuinely-different-representation">5.2 Scheduling: a genuinely different representation</h3>
+<p>Primary scheduling instances contain <strong>30 jobs</strong>, all available at time zero, non-preemptive, on one machine. A solution is a permutation. For completion times <code>C[j]</code> and due dates <code>d[j]</code>, minimize:</p>
+<pre><code class="language-text">f1 = mean_j C[j]
+f2 = sum_j max(0, C[j] - d[j])
+</code></pre>
+<p>The exact correctness case contains <strong>7 jobs: 5,040 permutations</strong>, calculated programmatically. Makespan is deliberately not an objective here: without idle time it is the same sum of processing times for every order (extension §5).[22]</p>
+<p>Proposed generator: integer durations from 1 through 100; total duration <code>P</code>; deadlines <code>max(1, round(P*u))</code>, with <code>u</code> uniform on <code>[1-tau-R/2, 1-tau+R/2]</code>. Use six strata from <code>tau in {0.2,0.5,0.8}</code> and <code>R in {0.2,0.6}</code>. Assign one independent training instance and one validation instance per stratum, then four test instances per stratum. Seed lists are disjoint.</p>
+<p>Audit the generator on development instances. Very loose or uniformly late deadlines can make the objectives nearly aligned; retain such cases as labeled sanity checks rather than allowing them to dominate the flagship. Any revision to generator strata happens before freezing test seeds and without selection on method performance.</p>
+<p>Operators are swap, insertion and bounded segment reversal. Exact permutation validity is checked after every operation. New size and deadline-regime generalization are secondary extensions, not extra primary endpoints.</p>
+<h2 id="6-language-architecture-and-proof-obligations">6. Language, architecture and proof obligations</h2>
+<h3 id="layers">Layers</h3>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Responsibility</th>
+<th>May depend on the domain?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Program AST and grammar</td>
+<td>Serialization, node paths, bounded forms</td>
+<td>Via an explicit domain parameter</td>
+</tr>
+<tr>
+<td>Type/effect checker</td>
+<td>Arity, roles, domain identity, allowed effects</td>
+<td>Operator signatures only</td>
+</tr>
+<tr>
+<td>Variation</td>
+<td>Typed generation, subtree mutation, compatible crossover</td>
+<td>Through the same signatures</td>
+</tr>
+<tr>
+<td>Interpreter and resource ledger</td>
+<td>Execute allowed instructions, charge costs, terminate and diagnose</td>
+<td>No hidden portfolio special cases</td>
+</tr>
+<tr>
+<td>Domain adapter</td>
+<td>Solution validity, proposals, objective vector, static features</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Pareto/HV core</td>
+<td>Dominance, archive, indicators</td>
+<td>Objective dimension and frozen normalization</td>
+</tr>
+<tr>
+<td>Outer search</td>
+<td>Assessment, selection, complexity control, lineage</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Experiment runner</td>
+<td>Data manifests, split protection, seeds, metrics, failures</td>
+<td>Declarative domain/configuration</td>
+</tr>
+</tbody>
+</table>
+<p>Suggested new namespaces are under <code>src/niki/optimizer/</code>, separate from the preserved upstream checkout. Namespace names are an implementation proposal, not a list of already existing modules.</p>
+<p>The runtime contract is:</p>
+<pre><code class="language-text">run(program, permitted-instance, solution-budget, step-budget, seed)
+    -&gt; {archive, charged-costs, status, trace, diagnostics}
+</code></pre>
+<p>Use <code>Program[Domain]</code>, <code>Predicate[Domain]</code>, <code>Operation[Domain]</code>, <code>Initializer[Domain]</code>, <code>Score</code>, <code>Count</code>, and bounded numeric roles. A portfolio operation must not inhabit a schedule-program slot. Static types are a property of the DSL; they do not make the host Clojure language statically typed (main input §§2,11; extension §2).[21][22]</p>
+<p>Start with sequencing, a bounded repeat wrapper, predicates, restart/perturbation, local search and small pure scoring expressions. No local binders, unrestricted recursion, host interop, filesystem/network operations, or arbitrary Clojure <code>eval</code>. Parse an allowed EDN subset with tagged forms disabled/rejected, validate node limits before execution, and whitelist every operation.</p>
+<h3 id="three-propositions-to-establish-not-assume">Three propositions to establish, not assume</h3>
+<p><strong>P1 — replacement preserves well-typedness under explicit conditions.</strong> If a child subtree has the same domain-indexed type and permitted effects as the replaced subtree, and the enclosing context is unchanged, substitution preserves the typing judgment for the binder-free language. Arity and depth/node limits are separate checks. Deliver a grammar, inference rules, a structural-induction proof sketch and generated counterexample tests. Adding lexical bindings would require scope-aware rules.</p>
+<p><strong>P2 — the interpreter respects resource bounds.</strong> If every solution request is charged before evaluation, every interpreter transition consumes fuel, and every primitive has a bounded implementation, no completed run exceeds the requested proposal or fuel budgets. Validate that the system fails closed on exhausted budgets. Fuel alone does not bound an unbounded host call: worker wall-time and memory limits remain separate operational guards.</p>
+<p><strong>P3 — an uncapped exact-dominance archive has nondecreasing HV.</strong> Under fixed objectives, normalization and reference point, adding a feasible finite candidate and removing only dominated/duplicate objective points cannot reduce the archive's dominated volume. This obligation does not hold automatically for archive truncation or changing normalization. Use a fixed exact dominance rule over computed values; do not introduce a nontransitive approximate-dominance comparator.</p>
+<p>Property tests support implementation confidence; they do not replace a proof. A small reference implementation and exhaustive fixtures are stronger than merely obtaining a green test count.</p>
+<h3 id="recombination-details">Recombination details</h3>
+<p>Protect the root and budget wrapper. Select compatible subtree sites, enforce type/domain/effect compatibility, then validate both whole children and structural limits. Use at most ten proposal attempts per assessment slot. A failed crossover has a predetermined fallback and a recorded reason. In the mixed arm, crossover <strong>replaces</strong> mutation in its offspring slot; it must not receive an extra child or fitness assessment.</p>
+<p>Initial proposed mixture: 50% crossover, 50% mutation, with shared initial populations between the two GP arms. This is a frozen policy to test, not a claim that 50% is optimal. A random-donor, size-matched diagnostic can later distinguish useful inheritance from simply making larger edits.</p>
+<h2 id="7-five-search-arms-and-additional-deployment-controls">7. Five search arms and additional deployment controls</h2>
+<table>
+<thead>
+<tr>
+<th>Arm</th>
+<th>Search object</th>
+<th>Required control</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A1 Full GP</td>
+<td>Program control flow and scoring</td>
+<td>Mutation+crossover</td>
+</tr>
+<tr>
+<td>A2 Mutation-only</td>
+<td>Same program space</td>
+<td>Same initialization, selection, limits and budget</td>
+</tr>
+<tr>
+<td>A3 Random DSL</td>
+<td>Independent typed programs</td>
+<td>Same grammar, initial pool and training-fixed size/depth prior</td>
+</tr>
+<tr>
+<td>A4 Formula-only</td>
+<td>Scoring expression in a fixed optimizer scaffold</td>
+<td>Same primitive access and scoring terminals</td>
+</tr>
+<tr>
+<td>A5 Configured conventional algorithms</td>
+<td>Parameters and family choice</td>
+<td>Same training-assessment and validation allowances</td>
+</tr>
+</tbody>
+</table>
+<p>A5 should contain NSGA-II, multi-start Pareto local search and simple fixed restart schedules. The scheduling versions include shortest-processing-time and earliest-due-date initializers with swap/insertion search. Configuration can initially use bounded random configuration search over a published, preregistered parameter space; do not compare carefully tuned GP against default-only algorithms. Audit these implementations and cross-check at least a small set with an independent implementation.</p>
+<p>A5 is one family-selection/configuration procedure with the same total assessment allowance as each GP arm, not a separate full allowance for every family followed by an uncharged winner selection. Publish its component space and search distribution. For a stronger follow-up, add a dedicated algorithm configurator under its own explicit allocation. A restricted random configurator cannot support a claim of beating every automatic-design method.</p>
+<p>Separately report feasible random solution search, initializer-only behavior and straightforward hand-designed heuristics. The same knowledgeable initializer or local-search primitive must be available to the relevant controls. The supplied baseline's own README reports initializer-dominated performance, which makes this particularly important (main input §1).[8][21]</p>
+<p>Use exact enumeration for small tasks. For larger portfolios, an epsilon-constrained mixed-integer quadratic formulation is a separately timed reference option: minimize variance subject to a return threshold and cardinality constraints. A finite threshold grid is an approximate front even when individual subproblems are solved optimally. Log solver version, licenses, gaps and timeouts. OR-Library's supplied fronts are unconstrained and must not be relabeled as exact fronts for our equal-weight cardinality model (main input §12).[9][21]</p>
+<h2 id="8-data-holdout-and-leakage-controls">8. Data, holdout and leakage controls</h2>
+<h3 id="dataset-provenance">Dataset provenance</h3>
+<p>For portfolios, start from the official Binance Spot archive, not a live account. It documents ZIP checksums and a change to microsecond spot timestamps from January 1, 2025. Archived files can subsequently change; a dataset must therefore pin actual file hashes, not just filenames.[10]</p>
+<p>The ingestion manifest must include: source URL, retrieval time, SHA-256, schema, timestamp unit, UTC boundaries, symbols, quote currency, observed listing history, missing-data decisions, transformation version and processed-data hash. Verify the publisher checksum when provided. Never silently replace a frozen snapshot.</p>
+<p>Eligibility at date <code>d</code> may use only observations available then. A provisional universe is the top 50 eligible USDT pairs by trailing quote volume, with a preregistered stablecoin/leveraged-token policy. The history and eligibility audit must precede committing to N=50. Do not fill prelisting data, backfill from future prices or use today's survivors as a historical universe. If historical membership cannot be reconstructed, narrow the claim to the explicit fixed-universe benchmark and disclose survivor selection (main input §§7,9).[21]</p>
+<h3 id="two-different-kinds-of-leakage">Two different kinds of leakage</h3>
+<ol>
+<li><strong>Future-information leakage:</strong> a task sees data after its allowed decision date, or eligibility depends on what happened later. This is prohibited.</li>
+<li><strong>Cross-split information reuse:</strong> training and test tasks have different endpoint dates but share observations in their 365-day histories. This can be a realistic deployment setting, but it is not a clean test of unseen market information.</li>
+</ol>
+<p>For the stronger flagship claim, separate the full data footprints, including closing prices needed to construct returns, preprocessing and universe selection. Within-split rolling windows will still be dependent. Point-in-time metadata and forward outcomes, if later added, must be included in the audit.</p>
+<h3 id="conditional-retrospective-calendar">Conditional retrospective calendar</h3>
+<p>This is an <strong>illustration, not an approved holdout</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Split</th>
+<th>Task endpoints</th>
+<th>Required daily-close footprint for 365 returns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Train: six instances</td>
+<td>2019-03-31, 06-30, 09-30, 12-31; 2020-06-30, 12-31</td>
+<td>Earliest 2018-03-31; latest 2020-12-31</td>
+</tr>
+<tr>
+<td>Validation: six</td>
+<td>Month-ends July–December 2022</td>
+<td>Earliest 2021-07-31; latest 2022-12-31</td>
+</tr>
+<tr>
+<td>Test: 24</td>
+<td>Month-ends January 2024–December 2025</td>
+<td>Earliest 2023-01-31; latest 2025-12-31</td>
+</tr>
+</tbody>
+</table>
+<p>The calendar arithmetic is saved in <code>docs/evidence/proposed-calendar.json</code>. It is conditional on asset availability and prior inspection. On <strong>November 1, 2026</strong>, these are all historical dates. They are not automatically unseen simply because a new program has not yet been run on them.</p>
+<p>Before preregistration, Niki must disclose which periods, symbols and results have already influenced design. Previously inspected periods remain development/retrospective evaluation data. If an honest untouched historical holdout cannot be established, use a newly sequestered dataset or a prospective period fixed after preregistration. New random seeds do not undo exposure to a market period.</p>
+<p>Test data must be inaccessible to program search and validation selection. The instance handed to the runtime contains only permitted features; raw future-price files belong outside that object and process. A hash is provenance, not an access-control system: the experiment runner must enforce the split.</p>
+<h2 id="9-metrics-and-selection">9. Metrics and selection</h2>
+<h3 id="fixed-normalization">Fixed normalization</h3>
+<p>Use minimized objectives. For portfolio return, derive bounds from allowed instance data: <code>[-max(mu_i), -min(mu_i)]</code>. For risk, use <code>[0, max(sigma_i)]</code> under nonnegative weights summing to one (main input §12).[21] For scheduling, our proposed safe bounds are <code>[0,P]</code> for mean completion and <code>[0, sum_j max(0,P-d_j)]</code> for total tardiness. Handle a zero-width range by assigning zero to that constant normalized coordinate, and flag the degenerate instance.</p>
+<p>Map each coordinate to <code>[0,1]</code>, then use reference point <code>(1.05,1.05)</code>. Define:</p>
+<pre><code class="language-text">normalized-HV = HV(normalized archive; reference) / 1.1025
+</code></pre>
+<p>The divisor is computed from the reference rectangle and keeps the proposed score on a unit scale for valid normalized points. Never derive bounds from competitors' test outcomes. Reject or diagnose values materially outside analytical bounds; do not silently clip them into a better score. Tiny floating-point tolerances are frozen in advance.</p>
+<h3 id="primary-and-secondary-endpoints">Primary and secondary endpoints</h3>
+<ul>
+<li><strong>Primary:</strong> mean per-execution normalized HV at <strong>256 charged solution proposals</strong>, first averaging ten fresh inner seeds per test instance, then the predetermined instance weights.</li>
+<li>Do not pool the archives from ten executions and present their union as one 256-proposal run.</li>
+<li><strong>Secondary:</strong> HV traces at intermediate budgets, elapsed and CPU time, unique candidates, full objective calculations, failures, node/depth counts, behavioral diversity and operator usage.</li>
+<li>Use IGD+ only where a separate reference front is available; label approximate references clearly. Nondominated-point count is descriptive, not a victory criterion (main input §12).[21]</li>
+</ul>
+<p>Outer search can use <code>(-training mean normalized-HV, program size)</code> with a training hall of fame. Select at most eight finalists by a deterministic training-only diversity/quality rule. On validation, select the highest mean normalized-HV; use size and canonical identifier only for numerical ties under a frozen tolerance. This avoids choosing a post-hoc simplicity tolerance from test performance. The earlier smallest-within-1% suggestion remains a separately labeled selector sensitivity, not the primary selector (main input §13).[21]</p>
+<p>Retain one selected program/configuration from <strong>every</strong> outer run. Do not report only the best outer seed. Freeze its AST/configuration, evaluator version, feature schema and hashes before testing.</p>
+<p>Conduct human tuning and pilot redesign on development data within the training side. Reserve selection-validation for one automated pass after the training procedure is frozen. Selection itself is part of the method being evaluated; finite validation data can also be overfit.[26] If selection-validation results trigger redesign, record that exposure and acquire a new selection set before making the corresponding clean-selection claim. Never use test feedback to choose the selector.</p>
+<h2 id="10-resource-accounting-and-proposed-compute-envelope">10. Resource accounting and proposed compute envelope</h2>
+<h3 id="inner-budget">Inner budget</h3>
+<p>Each proposed candidate consumes one unit, including duplicates. All neighborhood candidates, objective-dependent scorer queries and repair proposals that inspect objectives must go through the same ledger. A cache saves work, not search opportunities. Record at least: proposal attempts, valid candidates, unique candidates, cache hits, actual objective calculations, interpreter steps, elapsed time and CPU time.</p>
+<p>Use objective-free feasibility repair where possible. A hidden scan of hundreds of neighbors cannot count as one evaluation. Preprocessing is shared and separately timed. The archive is initially uncapped; its size is bounded by the proposal count.</p>
+<h3 id="outer-budget">Outer budget</h3>
+<p>Use <strong>256 candidate-assessment slots</strong> per search arm and outer run, not an unlimited stream of free rejected/cached candidates. A possible GP schedule is 32 initial candidates followed by seven batches of 32 offspring; parent survivors are not re-assessed unless the evaluation contract changes. A duplicate proposed AST consumes a slot but may reuse its fitness. Permit at most ten construction attempts per slot, then record a failed slot under a frozen fallback policy.</p>
+<p>This is a deliberate <strong>equal-slot</strong> protocol, not a promise to evaluate 256 distinct ASTs. Report distinct evaluated programs and construction attempts separately. Failed or cached slots do not release allowance for extra candidates; constant tuning also consumes assessment slots. A separately labeled equal-distinct-program sensitivity is possible, but must report its extra construction/time cost. Do not combine the accounting rules of those two experiments.</p>
+<p>Evaluate each assessed program/configuration on six training tasks and two common inner seeds with inner budget 256. All arms share these allowances. Give validation at most eight finalists × six tasks × two seeds. Freeze one representative per run, then test it on 24 tasks × ten new seeds.</p>
+<h3 id="proposed-flagship-ceilings-not-measured-runtime">Proposed flagship ceilings, not measured runtime</h3>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th style="text-align: right;">Charged solution-proposal ceiling</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Training for one arm/domain/outer run</td>
+<td style="text-align: right;">786,432</td>
+</tr>
+<tr>
+<td>Training for one arm/domain, 30 outer runs</td>
+<td style="text-align: right;">23,592,960</td>
+</tr>
+<tr>
+<td>Training: five arms × two domains × 30 runs</td>
+<td style="text-align: right;">235,929,600</td>
+</tr>
+<tr>
+<td>Validation with eight finalists per run</td>
+<td style="text-align: right;">7,372,800</td>
+</tr>
+<tr>
+<td>Final test with ten inner seeds</td>
+<td style="text-align: right;">18,432,000</td>
+</tr>
+<tr>
+<td><strong>Subtotal: training + validation + test</strong></td>
+<td style="text-align: right;"><strong>261,734,400</strong></td>
+</tr>
+</tbody>
+</table>
+<p>These ceilings exclude direct-control runs, exact/reference construction, matched-time analyses, secondary ablations, preprocessing and diagnostics. Caching can reduce physical evaluations, but should not expand the assessment allowance. Arithmetic is saved in <code>docs/evidence/flagship-budget.json</code>.</p>
+<p><strong>No runtime estimate is claimed yet.</strong> The existing knapsack demo cannot predict the cost of the new covariance, archive and interpreter workload. First run a development smoke configuration: eight programs, generation zero plus three offspring batches, two tasks, one inner seed and budget 64. Its ceiling is 4,096 proposals. Then measure a realistic assessment before authorizing the flagship.</p>
+<p>This PC has an observed Ryzen 7 9700X, eight physical cores, 16 logical processors and approximately 31.38 GiB physical RAM. Start with one worker. Consider four independent worker processes only after profiling memory and throughput; preserve deterministic seed allocation and result ordering. A GPU is not required for this initial design.</p>
+<p>Report offline algorithm-design cost separately from deployment cost. For repeated-use scenarios, show total cost as <code>training cost + deployment count × per-instance cost</code>, with measured components. MIQP branch-and-bound work is not comparable to the heuristic proposal counter; use a separate time-based comparison.</p>
+<h2 id="11-statistical-analysis">11. Statistical analysis</h2>
+<p>The independent training replication is the <strong>outer run</strong>, not every market window or inner execution. Proposed starting count: <strong>30 outer runs per arm/domain</strong>, justified or revised by a development-only precision/power analysis. Thirty is not a magic guarantee of sensitivity.</p>
+<p>For each outer run, compute paired arm differences after averaging the prespecified task/inner-seed outcomes. Share training tasks and evaluation seed schedules; the GP arms additionally share initial populations. Report domain-specific estimates, paired differences, confidence intervals and the full distribution, not just p-values.</p>
+<p><strong>Primary estimand:</strong> the expected difference between complete training-plus-selection procedures, over independent outer randomness, conditional on the registered benchmark suite. Give each registered market date equal weight; if universe variants are later added, average those within a date first. The primary analysis is not the performance of the best discovered outer seed. Use 10,000 bootstrap resamples of whole paired outer-run result vectors for the proposed conditional estimation interval, preserving all arm outcomes in each resampled vector. This is a proposed inferential procedure, not a finite-sample guarantee; validate its behavior and freeze the testing/interval implementation on development data before confirmation.</p>
+<p>For the recommended two-domain flagship, preregister the four Full-GP contrasts in each domain as one family of eight confirmatory comparisons. Use Holm-adjusted tests for the corresponding null comparisons; report unadjusted estimation intervals as such and simultaneous uncertainty where claims require family-wise coverage. A positive zero-null test alone does not establish a practically meaningful effect above the chosen margin.</p>
+<p>Declare practical superiority only when the relevant prespecified, multiplicity-aware lower bound exceeds the positive margin. Equivalence requires an explicitly registered equivalence procedure and uncertainty contained inside the negative/positive margin; a nonsignificant superiority test does not establish it. Claims about H5 additionally require unchanged-core evidence and domain-specific competitive quality, not a pooled cross-domain average.</p>
+<p>Separate two uncertainty targets:</p>
+<ul>
+<li><strong>Conditional algorithmic uncertainty:</strong> variability across independent training runs on the fixed benchmark suite.</li>
+<li><strong>Task/population uncertainty:</strong> generalization beyond those task instances and periods. Use a prespecified crossed run/instance resampling design; market instances require consecutive temporal blocks rather than IID month sampling. Preserve pairing in every resample. Use development data to choose block length, with a conservative alternative-length sensitivity. Few effective temporal blocks imply wide uncertainty and restricted market claims.</li>
+</ul>
+<p>Overlapping windows, reused assets and inner seeds do not multiply the number of independent markets. Do not call an analysis hierarchical if it merely resamples every row as IID.</p>
+<p>Normal search-budget exhaustion returns the valid archive and is not a crash. Method-caused exceptions, invalid/nonfinite archives, or operational timeouts receive the preregistered worst score, normally zero normalized-HV, and count toward failure rates. Infrastructure failures are distinguished by an auditable reason and rerun with the identical seed. A partial archive may be shown diagnostically; it must not quietly replace the failure policy in the primary endpoint.</p>
+<p>Before confirmation, freeze handling of missing outcomes, ties, empty fronts, numerical failures, degenerate tasks, multiple contrasts and stopping rules. No optional stopping at the first significant result. Report inconclusive and negative outcomes with the same visibility as improvements.</p>
+<h2 id="12-behavioral-evidence-and-secondary-ablations">12. Behavioral evidence and secondary ablations</h2>
+<p>To distinguish program syntax from actual algorithm behavior, record branch execution, operator frequencies, restart timing, candidate/parent lineage and archive improvements. Measure semantic duplicates using fixed development probe tasks. Publish several frozen discovered programs with readable traces and counterexamples, not merely a pretty AST.</p>
+<p>Stage these ablations after the core comparison, rather than running a huge factorial grid immediately:</p>
+<ol>
+<li>Type-directed proposals vs untyped proposals with validation over the <strong>same permitted language</strong>; never execute invalid programs. Measure valid-child throughput, rejects, distinct children, CPU cost and end quality. Include an equal-CPU-time comparison with the time allowance frozen from development measurements. Identical accepted languages do not imply identical proposal distributions: report size/type/edit distributions and do not attribute every difference solely to typing.</li>
+<li>Knowledge-rich vs minimal initializers/operators, with matching controls. Include body-deletion/replacement and branch ablations to determine whether a learned program actually adds search behavior beyond its initializer.</li>
+<li>Fixed vs evolved scoring constants, charging all tuning evaluations.</li>
+<li>Inherited crossover donor vs size-matched random donor.</li>
+<li>Structural edit size vs behavioral change, motivated by the representation issue in McCarthy's introduction.[3]</li>
+</ol>
+<p>Algebraic simplification must respect floating-point behavior and effects. Do not reorder random draws or state-changing instructions because their textual forms look interchangeable. No islands, learned subroutines, LLM-guided proposals or arbitrary-language synthesis in the first flagship.</p>
+<h2 id="13-outcome-scenarios-and-honest-conclusions">13. Outcome scenarios and honest conclusions</h2>
+<table>
+<thead>
+<tr>
+<th>Observation</th>
+<th>Supported conclusion</th>
+<th>Not supported</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Full GP beats all strong controls in both domains, with meaningful intervals and competitive time</td>
+<td>Evidence for this executable-program methodology on these task classes</td>
+<td>A universally superior optimizer</td>
+</tr>
+<tr>
+<td>Full GP beats Random DSL but not formula-only</td>
+<td>Search helps; evolvable control flow has not shown extra value</td>
+<td>Discovery of useful algorithmic structure</td>
+</tr>
+<tr>
+<td>Full GP and Random DSL are similar</td>
+<td>Grammar/primitives may dominate; evolutionary selection has no demonstrated benefit here</td>
+<td>GP is useless in every setting</td>
+</tr>
+<tr>
+<td>Mutation-only equals or beats mixed GP</td>
+<td>No support for this crossover policy at this budget</td>
+<td>Every form of recombination is ineffective</td>
+</tr>
+<tr>
+<td>Gains disappear against tuned Pareto local search or equal CPU time</td>
+<td>No practical advantage over that stronger comparator</td>
+<td>A deployment breakthrough based only on proposal counts</td>
+</tr>
+<tr>
+<td>Portfolio works, scheduling does not</td>
+<td>Domain-limited performance evidence; reuse may still work as software</td>
+<td>Empirical cross-domain success</td>
+</tr>
+<tr>
+<td>Historical frontier quality improves, future returns do not</td>
+<td>Better optimization of the specified historical task</td>
+<td>A profitable investment strategy</td>
+</tr>
+<tr>
+<td>Intervals include meaningful gain and harm</td>
+<td>Inconclusive; estimate uncertainty and consider a new preregistered study</td>
+<td>Equivalence or a hidden positive result</td>
+</tr>
+<tr>
+<td>Tiny exact cases fail or budgets can be bypassed</td>
+<td>Stop; implementation invalidates comparison</td>
+<td>Permission to compensate with more large runs</td>
+</tr>
+</tbody>
+</table>
+<h2 id="14-milestones-with-acceptance-gates">14. Milestones with acceptance gates</h2>
+<table>
+<thead>
+<tr>
+<th>Gate</th>
+<th>Deliverable</th>
+<th>Acceptance criterion</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>G0 · Baseline</td>
+<td>Frozen inputs, toolchain and upstream checkout</td>
+<td><strong>Completed:</strong> hashes, actual tests and legacy demo recorded</td>
+</tr>
+<tr>
+<td>G1 · Numeric oracle</td>
+<td>K-of-N evaluator and independent reference</td>
+<td>All 3,003 tiny portfolios enumerable; direct/covariance agreement and adversarial fixtures pass</td>
+</tr>
+<tr>
+<td>G2 · Pareto indicators</td>
+<td>Archive, normalization and 2-D HV</td>
+<td>Known-area fixtures, permutation/order invariance and archive monotonicity pass</td>
+</tr>
+<tr>
+<td>G3 · Runtime contract</td>
+<td>Domain interface, ledger, interpreter, trace</td>
+<td>Handwritten programs terminate correctly; duplicates/hidden scans cannot evade budgets; replay deterministic</td>
+</tr>
+<tr>
+<td>G4 · Typed variation</td>
+<td>Mutation and actual crossover</td>
+<td>Validity/effect/domain/size preservation; real distinct children; bounded rejection/fallback logs</td>
+</tr>
+<tr>
+<td>G5 · Data and controls</td>
+<td>Frozen pilot snapshot; five search arms</td>
+<td>Point-in-time and footprint audits; independent checks of strong baseline behavior</td>
+</tr>
+<tr>
+<td>G6 · Scheduling reuse</td>
+<td>Second adapter and exact scheduling oracle</td>
+<td>All 5,040 tiny permutations; unchanged core version; documented domain-only changes</td>
+</tr>
+<tr>
+<td>G7 · Pilot and freeze</td>
+<td>Measured costs, precision analysis, full preregistration</td>
+<td>Holdout disclosure resolved, run manifest approved, no open primary-analysis choices</td>
+</tr>
+<tr>
+<td>G8 · Confirmation</td>
+<td>Locked runs and complete result table</td>
+<td>All scheduled seeds accounted for, failures retained, artifacts replayable</td>
+</tr>
+<tr>
+<td>G9 · Paper/artifact</td>
+<td>Claim-to-evidence matrix and reproducibility package</td>
+<td>Independent rerun of selected cases; code/data licensing checked; conclusions match results</td>
+</tr>
+</tbody>
+</table>
+<p>Follow test-driven vertical slices. G1 is the next implementation step, not a market-data dashboard. Do not begin a large GP search while the small oracle or budget invariants remain questionable.</p>
+<p><strong>Headroom gate before confirmation:</strong> use exact/development cases to establish that the tasks contain nontrivial trade-offs and that relevant strong baselines do not already saturate the frontier. Label degenerate or ceiling cases and retain them as sanity checks. Define any benchmark strata or exclusions independently of whether GP wins; do not remove losing tasks. Lack of headroom calls for a transparent development-stage redesign, not post-test replacement of the benchmark.</p>
+<h2 id="15-publication-and-reproducibility-package">15. Publication and reproducibility package</h2>
+<p>The final artifact should contain the grammar and semantics, type/effect rules, proof obligations, immutable configuration, dependency and data hashes, per-run seeds, ASTs and lineage, failure records, raw metric tables, fixed analysis scripts, and instructions that reproduce a small case on a fresh machine. Include data redistribution terms and the original source licenses. An accessible subset should run without a proprietary optimizer license.</p>
+<p>The pinned upstream checkout contains no tracked file matching LICENSE or COPYING. Resolve the actual license/author permission before public redistribution; no publication or licensing conclusion is implied by its public availability.</p>
+<p>Planned figures: HV vs proposal/time budgets; paired differences by task/regime; quality vs program complexity; primitive/branch behavior; generalization across domains; and a compute-cost table. Generate them from actual run logs only. A secondary financial appendix can be added later under its own frozen portfolio-selection and cost protocol; it must not influence primary optimizer selection.</p>
+<h2 id="16-decisions-still-required-from-niki">16. Decisions still required from Niki</h2>
+<p>These do <strong>not</strong> block G1–G4, but they block a confirmatory launch:</p>
+<ol>
+<li>Which historical datasets, years and results have already influenced this research?</li>
+<li>Is the first paper primarily a GP/automatic-algorithm-design methodology contribution, as recommended, or a financial application?</li>
+<li>What maximum local CPU-hours and any external-compute spending are acceptable after the pilot?</li>
+</ol>
+<p>No external compute, market account, paid solver, publication or scheduling is authorized by this document. <strong>World-class here means precise claims, strong controls and reproducible evidence, not guaranteed positive results.</strong></p>
+<hr />
+<h2 id="appendix-a-environment-and-reproduction">Appendix A · Environment and reproduction</h2>
+<p>Verified November 1, 2026 on this Windows PC.</p>
+<h3 id="do-we-need-leiningen">Do we need Leiningen?</h3>
+<p><strong>No.</strong> The preserved upstream project declares its dependencies and entry points in <code>deps.edn</code>. This workspace continues that model. Clojure CLI-style execution supports a REPL, dependency resolution, aliases and program execution without Leiningen.[7][12]</p>
+<p>Leiningen would become relevant if we deliberately adopted a <code>project.clj</code>-based project or a necessary Leiningen-only workflow. Installing both now would add a second configuration path without solving a current requirement. Do not confuse Leiningen with the Java runtime: <strong>Java is required</strong>.[5]</p>
+<h3 id="installed-here">Installed here</h3>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Pinned value</th>
+<th>Scope</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Java</td>
+<td>Eclipse Temurin 25.0.5+8, Windows x64</td>
+<td><code>.tools/jdk/jdk-25.0.5+8/</code></td>
+</tr>
+<tr>
+<td>CLI-compatible launcher</td>
+<td>deps.clj 1.12.6.1673, native Windows x64</td>
+<td><code>.tools/cli/deps.exe</code></td>
+</tr>
+<tr>
+<td>Clojure tools</td>
+<td>1.12.6.1673</td>
+<td><code>.tools/clojure-tools/</code></td>
+</tr>
+<tr>
+<td>Clojure language</td>
+<td>1.12.6</td>
+<td>Root <code>deps.edn</code></td>
+</tr>
+<tr>
+<td>Upstream-language comparison</td>
+<td>1.12.5</td>
+<td><code>:legacy-version</code> alias</td>
+</tr>
+<tr>
+<td>Commons Math</td>
+<td>3.6.1</td>
+<td><code>:legacy</code> alias</td>
+</tr>
+</tbody>
+</table>
+<p>The language and CLI have different version numbers and release cycles. Clojure's official installation guide supports Java LTS releases and currently recommends Temurin 25; the release page lists language 1.12.6 as stable. We deliberately pinned these rather than selecting a development alpha.[5][6]</p>
+<p>The native launcher is <strong>deps.clj</strong>, a Clojure-CLI-compatible implementation used by the Windows <code>clj-msi</code> distribution. This is a portable installation of its released binary, not the Unix bash CLI and not a claim that an MSI was registered system-wide.[11][13][17]</p>
+<p>No system PATH, registry Java registration, PowerShell security policy, WSL installation, trading credentials or global package manager configuration was changed. The wrapper sets Java and Clojure configuration locations for the child process only. Maven artifacts are cached under <code>.cache/m2</code>; project classpath cache is <code>.cpcache</code>. The launcher uses <code>-Srepro</code> to omit user-specific Clojure dependency configuration.[12]</p>
+<h3 id="commands-that-were-exercised">Commands that were exercised</h3>
+<p>From <code>C:\Users\meggy\Niki\typed-optimizer-lab</code> in PowerShell:</p>
+<pre><code class="language-powershell">.\clojure.cmd -Sdescribe
+.\clojure.cmd -M:legacy:test
+.\clojure.cmd -M:legacy:test:legacy-version
+.\clojure.cmd -M:legacy:demo
+</code></pre>
+<p>In Git Bash:</p>
+<pre><code class="language-bash">bash ./clojure -Sdescribe
+bash ./clojure -M:legacy:test
+bash ./clojure -M:legacy:test:legacy-version
+bash ./clojure -M:legacy:demo
+</code></pre>
+<p>The suite and demo were executed through the Git Bash wrapper; the Windows <code>.cmd</code> wrapper was separately smoke-tested with <code>(println (clojure-version))</code>, which returned <code>1.12.6</code>. Both wrappers dispatch the same native launcher. The launchers intentionally preserve the current working directory; use the project root for the supplied aliases.</p>
+<p>Start an interactive REPL with <code>./clojure.cmd -M</code> in PowerShell (use <code>.\clojure.cmd -M</code> if needed) or <code>bash ./clojure -M</code> in Git Bash. Exit using the REPL's normal EOF mechanism. No persistent REPL was left running.</p>
+<h3 id="actual-verification">Actual verification</h3>
+<table>
+<thead>
+<tr>
+<th>Check</th>
+<th>Observed result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>java --version</code></td>
+<td>OpenJDK 25.0.5, Temurin build 25.0.5+8</td>
+</tr>
+<tr>
+<td>Native launcher description</td>
+<td>deps.clj/tools 1.12.6.1673, reproducible mode true</td>
+</tr>
+<tr>
+<td>Upstream tests, language 1.12.5</td>
+<td>62 tests, 191 assertions, zero failures/errors</td>
+</tr>
+<tr>
+<td>Upstream tests, language 1.12.6</td>
+<td>62 tests, 191 assertions, zero failures/errors</td>
+</tr>
+<tr>
+<td><code>.cmd</code> language smoke check</td>
+<td>1.12.6</td>
+</tr>
+<tr>
+<td>Upstream DSL demo</td>
+<td>Valid typed optimizer, feasible result, objective matched its tiny demonstration's DP optimum</td>
+</tr>
+</tbody>
+</table>
+<p>Latest verification logs: <code>docs/evidence/verified-upstream-tests-legacy.txt</code>, <code>verified-upstream-tests-current.txt</code>, <code>verified-upstream-demo.txt</code>, and <code>verified-protocol-data.txt</code>. The protocol-data check passed 4 tests and 23 assertions; it does not execute the proposed experiment.</p>
+<p>The demo concerns synthetic, single-objective knapsack. It is <strong>not evidence</strong> about the proposed mean-volatility experiment, not a statistical performance result, and not a replication of all upstream reported numbers. The upstream source requests Java 21; these tests used Java 25. If historical environment replication becomes an acceptance requirement, separately pin Java 21 and rerun rather than silently treating the versions as identical.[8]</p>
+<h3 id="provenance-and-restoration">Provenance and restoration</h3>
+<p><code>environment.lock.json</code> records the upstream commit, exact artifact coordinates, publisher SHA-256 values for the JDK/native launcher downloads, local Maven-jar SHA-256 values and observed hardware. <code>docs/evidence/toolchain-downloads.json</code> preserves the download provenance. Publisher-checksum equality was checked before extracting the JDK and launcher archives; this is not a claim of independent cryptographic signature verification.[16][17]</p>
+<p>For a fresh machine:</p>
+<ol>
+<li>Restore the project text files, with their license terms.</li>
+<li>Fetch the two exact ZIPs identified in <code>environment.lock.json</code>; verify their SHA-256 before extracting into the recorded <code>.tools/jdk</code> and <code>.tools/cli</code> locations.</li>
+<li>Clone the upstream repository into <code>vendor/evolving-portfolio-dsl</code> and detach at the exact recorded commit. Do not use an unpinned moving branch as a replacement.</li>
+<li>Run the root wrapper's <code>-Sdescribe</code>; the launcher retrieves its matching Clojure tools if absent.</li>
+<li>Run the two language-version test commands. Root Maven repositories require checksum validation for release artifacts.</li>
+<li>Compare the resolved dependency hashes with the lock record and investigate any difference.</li>
+</ol>
+<p>This restoration checklist is documentation, not an already tested clean-machine rebuild. The current local installation and both launchers have been exercised.</p>
+<h3 id="editor-and-optional-tools">Editor and optional tools</h3>
+<p>An editor is useful but not needed to reproduce the command-line baseline. No editor installation or extension settings were changed. Select editor integration separately; do not make it a scientific dependency. Likewise, Babashka, Docker, WSL, GPU libraries, plotting packages and commercial solvers are not installed or required by this baseline.</p>
+<p>The workspace does not depend on an <code>AGENTS.md</code> file.</p>
+<hr />
+<h2 id="appendix-b-review-decisions">Appendix B · Review decisions</h2>
+<p>Two independent methodological reviews were considered. Their alternative numerical proposals were not silently merged. The main plan v1.1 and <code>configs/flagship-proposal.edn</code> are the canonical proposal, pending pilot and preregistration.</p>
+<h3 id="accepted-improvements">Accepted improvements</h3>
+<ul>
+<li>Add direct prior art on typed GP, executable optimizer evolution, GP scheduling and automatic multiobjective component configuration.</li>
+<li>Treat configured conventional algorithms as a full outer-search arm, not merely an untuned deployed baseline.</li>
+<li>Define the primary estimand over the complete training-plus-selection procedure and retain every outer seed.</li>
+<li>Separate algorithmic randomness on a fixed benchmark from inference about independent market periods.</li>
+<li>Reserve selection-validation for a frozen automated choice and document any exposure-driven redesign.</li>
+<li>Distinguish normal budget exhaustion from crashes and operational timeouts.</li>
+<li>Add a development-stage headroom gate, body/branch attribution checks, and equal-time evaluation of typing efficiency.</li>
+<li>Keep framework reuse, within-domain generalization and unchanged-program cross-domain transfer as different claims.</li>
+</ul>
+<h3 id="alternatives-resolved-explicitly">Alternatives resolved explicitly</h3>
+<table>
+<thead>
+<tr>
+<th>Design choice</th>
+<th>Canonical v1.1 proposal</th>
+<th>Reason / limitation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Portfolio size</td>
+<td>N=50, K=5, conditional on the point-in-time audit</td>
+<td>No data availability is assumed; revise before confirmation if the audit fails</td>
+</tr>
+<tr>
+<td>Scheduling size</td>
+<td>30 jobs</td>
+<td>Exact correctness uses 7 jobs; size generalization is secondary</td>
+</tr>
+<tr>
+<td>Training tasks</td>
+<td>6 per domain</td>
+<td>Bounded first study; broader task coverage can be preregistered after profiling</td>
+</tr>
+<tr>
+<td>Outer allowance</td>
+<td>256 assessment slots, at most 10 construction attempts per slot</td>
+<td>Duplicates and failed slots consume allowance; not 256 guaranteed distinct programs</td>
+</tr>
+<tr>
+<td>Validation</td>
+<td>At most 8 training-selected finalists, 6 tasks, 2 seeds</td>
+<td>Choose maximum mean score; size/canonical ID are tie-breakers, not a post-hoc tolerance</td>
+</tr>
+<tr>
+<td>Test</td>
+<td>24 tasks, 10 fresh inner seeds, no cross-seed archive pooling</td>
+<td>These are execution replicates, not independent markets</td>
+</tr>
+<tr>
+<td>Independent training</td>
+<td>Proposed 30 paired outer runs</td>
+<td>Requires a development-only precision analysis</td>
+</tr>
+<tr>
+<td>Main arms</td>
+<td>Mixed GP, mutation-only, Random DSL, formula-only, configured conventional</td>
+<td>Other mechanism ablations are staged and budgeted separately</td>
+</tr>
+<tr>
+<td>Quality metric</td>
+<td>HV / 1.1025 with reference (1.05, 1.05)</td>
+<td>Instance-derived analytical normalization, not competitor-derived bounds</td>
+</tr>
+<tr>
+<td>Practical threshold</td>
+<td>Proposed 0.01 absolute score units</td>
+<td>Validate relevance in development and freeze before test access</td>
+</tr>
+</tbody>
+</table>
+<p>The proposal's training/validation/test ceiling is 261,734,400 solution proposals across five arms, two domains and 30 outer runs. This is arithmetic, not measured runtime or authorization. Direct controls, exact references, secondary ablations, matched-time comparisons and preprocessing are additional costs.</p>
+<h3 id="unresolved-before-confirmation">Unresolved before confirmation</h3>
+<p>Owner-attested historical exposure; point-in-time asset eligibility; core/grammar and numerical limits; baseline configuration space; measured compute and precision; exact inferential implementation and multiplicity policy; licensing for redistribution. No pristine temporal holdout, scientific superiority or financial return is claimed.</p>
+<h2 id="sources">Sources</h2>
+<p>[1] https://www-formal.stanford.edu/jmc/lisp/lisp.html?utm_source=chatgpt.com — McCarthy (1979), History of Lisp</p>
+<p>[2] https://www-formal.stanford.edu/jmc/recursive.pdf?utm_source=chatgpt.com — McCarthy (1960), Recursive Functions of Symbolic Expressions and Their Computation by Machine, Part I</p>
+<p>[3] https://www-formal.stanford.edu/jmc/mcc59/node1.html?utm_source=chatgpt.com — McCarthy, Programs with Common Sense: Introduction</p>
+<p>[4] https://www-formal.stanford.edu/jmc/lisp/node3.html — McCarthy, History of Lisp: The implementation of LISP</p>
+<p>[5] https://clojure.org/guides/install_clojure — Clojure: Install Clojure</p>
+<p>[6] https://clojure.org/releases/downloads — Clojure: Downloads and Compatibility</p>
+<p>[7] https://clojure.org/reference/deps_edn — Clojure: deps.edn Reference</p>
+<p>[8] https://github.com/npenchev88/evolving-portfolio-dsl — npenchev88/evolving-portfolio-dsl, pinned commit 29252c5b86d9f8a15099d85893e5e97861cb705d</p>
+<p>[9] https://people.brunel.ac.uk/~mastjjb/jeb/orlib/portinfo.html — OR-Library: Portfolio optimisation</p>
+<p>[10] https://github.com/binance/binance-public-data — Binance Public Data: official data schema and checksums</p>
+<p>[11] https://github.com/casselc/clj-msi — clj-msi: Clojure Windows Installer</p>
+<p>[12] https://clojure.org/reference/clojure_cli — Clojure CLI Reference</p>
+<p>[13] https://github.com/borkdude/deps.clj — deps.clj: Clojure CLI-compatible launcher</p>
+<p>[14] https://research.manchester.ac.uk/en/publications/automatically-designing-state-of-the-art-multi-and-many-objective — Bezerra, Lopez-Ibanez and Stutzle (2020), Automatically Designing State-of-the-Art Multi- and Many-Objective Evolutionary Algorithms</p>
+<p>[15] https://davidmontana.net/papers/stgp.pdf — Montana (1995), Strongly Typed Genetic Programming</p>
+<p>[16] https://api.adoptium.net/v3/assets/latest/25/hotspot?architecture=x64&amp;image_type=jdk&amp;os=windows&amp;vendor=eclipse — Eclipse Adoptium: Temurin 25 Windows x64 JDK metadata</p>
+<p>[17] https://github.com/borkdude/deps.clj/releases/tag/v1.12.6.1673 — deps.clj release v1.12.6.1673</p>
+<p>[18] https://www-formal.stanford.edu/jmc/recursive/recursive.html — McCarthy (1960), Recursive Functions: HTML edition</p>
+<p>[19] https://www-formal.stanford.edu/jmc/recursive/node1.html — McCarthy (1960), Recursive Functions: Introduction</p>
+<p>[20] https://www-formal.stanford.edu/jmc/recursive/node3.html — McCarthy (1960), Recursive Functions of Symbolic Expressions</p>
+<p>[21] file:///C:/Users/meggy/Niki/typed-optimizer-lab/docs/input/typed_clojure_portfolio_plan_bg.pdf — Niki supplied Clojure portfolio plan, 2026-10-31</p>
+<p>[22] file:///C:/Users/meggy/Niki/typed-optimizer-lab/docs/input/optimizer_methodology_extension_bg.pdf — Niki supplied methodology extension, 2026-10-31</p>
+<p>[23] https://arxiv.org/abs/2103.11746 — Lones (2021), Evolving continuous optimisers from scratch</p>
+<p>[24] https://doi.org/10.1007/978-3-319-10762-2_50 — Bezerra et al. (2014), Automatic Design of Evolutionary Algorithms for Multi-Objective Combinatorial Optimization</p>
+<p>[25] https://doi.org/10.1016/j.procir.2019.02.118 — Zhou and Yang (2019), Automatic design of scheduling policies for dynamic flexible job shop scheduling by multi-objective genetic programming based hyper-heuristic</p>
+<p>[26] https://www.jmlr.org/papers/v11/cawley10a.html — Cawley and Talbot (2010), On Over-fitting in Model Selection and Subsequent Selection Bias in Performance Evaluation</p></main></body></html>

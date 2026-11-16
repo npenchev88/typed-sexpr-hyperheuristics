@@ -1,0 +1,49 @@
+{
+  "status": "completed",
+  "completed": true,
+  "finding": "canonical-edn and program-id revalidated with default limits only; added optional 2-arity (canonical-edn program overrides) and (program-id program overrides) forwarding overrides to check-program.",
+  "baseline_evidence": "docs/evidence/g3-dsl-fix-baseline.json",
+  "red_evidence": {
+    "clojure_version": "1.12.6",
+    "tests": 31,
+    "assertions": 659,
+    "failures": 0,
+    "errors": 2,
+    "exit_code": 1,
+    "error_summary": "clojure.lang.ArityException: Wrong number of args (2) passed to: niki.optimizer.dsl/canonical-edn in canonical-serialization-honors-count-limits"
+  },
+  "green_evidence": {
+    "clojure_1_12_6": {
+      "dsl_tests": 7,
+      "dsl_assertions": 79,
+      "g3_aggregate_tests": 31,
+      "g3_aggregate_assertions": 679,
+      "failures": 0,
+      "errors": 0,
+      "exit_code": 0
+    },
+    "clojure_1_12_5": {
+      "dsl_tests": 7,
+      "dsl_assertions": 79,
+      "g3_aggregate_tests": 31,
+      "g3_aggregate_assertions": 679,
+      "failures": 0,
+      "errors": 0,
+      "exit_code": 0
+    }
+  },
+  "modified_files": [
+    "src/niki/optimizer/dsl.clj",
+    "test/niki/optimizer/dsl_test.clj"
+  ],
+  "regression_added": "canonical-serialization-honors-count-limits",
+  "production_source_changed": true,
+  "red_executed": true,
+  "green_executed": true,
+  "legacy_version_executed": true,
+  "source_sha256": {
+    "src/niki/optimizer/dsl.clj": "9a0b90f0ce9e2d71b27e04a266895967a34dce3978d2867cc1db7e83e4dcbd07",
+    "test/niki/optimizer/dsl_test.clj": "94c214c93668caf9848513a69b33ac8bcc467653b149c3fecc06360c419d6729"
+  },
+  "git_state_actions": "No commit or staging performed."
+}

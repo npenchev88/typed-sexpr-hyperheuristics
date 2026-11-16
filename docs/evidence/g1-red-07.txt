@@ -1,0 +1,19 @@
+
+Testing niki.optimizer.portfolio-test
+
+Testing niki.optimizer.portfolio-reference-test
+
+FAIL in (covariance-reference-does-not-square-into-overflow-or-underflow) (portfolio_reference_test.clj:23)
+expected: (Double/isFinite (:sample-standard-deviation result))
+  actual: false
+
+FAIL in (covariance-reference-does-not-square-into-overflow-or-underflow) (portfolio_reference_test.clj:24)
+expected: (< (abs (- 1.0 (/ (:sample-standard-deviation result) expected))) 1.0E-12)
+  actual: (not (< ##Inf 1.0E-12))
+
+FAIL in (covariance-reference-does-not-square-into-overflow-or-underflow) (portfolio_reference_test.clj:24)
+expected: (< (abs (- 1.0 (/ (:sample-standard-deviation result) expected))) 1.0E-12)
+  actual: (not (< 1.0 1.0E-12))
+
+Ran 10 tests containing 12125 assertions.
+3 failures, 0 errors.

@@ -1,0 +1,15 @@
+{
+  "phase": "baseline",
+  "command": "python -c 'import hashlib,json,pathlib; print(\"SOURCE_SHA256\", json.dumps({str(p).replace(chr(92),\"/\"):hashlib.sha256(p.read_bytes()).hexdigest() for p in [pathlib.Path(\"src/niki/optimizer/dsl.clj\"),pathlib.Path(\"test/niki/optimizer/dsl_test.clj\")]}))' && bash ./clojure -M -e '(do (load-file \"test/niki/optimizer/dsl_test.clj\") (println \"Clojure\" (clojure-version)) (println \"serialization-baseline\" (pr-str (mapv (fn [p] [(niki.optimizer.dsl/canonical-edn p) (niki.optimizer.dsl/program-id p)]) [niki.optimizer.dsl-test/minimal niki.optimizer.dsl-test/complex-program]))) (let [r (clojure.test/run-tests (quote niki.optimizer.dsl-test))] (System/exit (if (zero? (+ (:fail r) (:error r))) 0 1))))'",
+  "workdir": "C:/Users/meggy/Niki/typed-optimizer-lab",
+  "output": "SOURCE_SHA256 {\"src/niki/optimizer/dsl.clj\": \"54490eff37a1782c4b37cf67f448868bc0ed93f224e4fdecebf8bdca44bcaf4b\", \"test/niki/optimizer/dsl_test.clj\": \"9437130622e80a10984b1a8e6243d428d0a0d7a7b0a76e81cc5d567983b0b280\"}\r\nClojure 1.12.6\r\nserialization-baseline [[\"[:program :portfolio [:budget [:noop]]]\" \"819f0acaaf84b7f1d8552db3dc927951063fba136bd8b93d7ec11cd559c16b3b\"] [\"[:program :portfolio [:budget [:seq [:initialize [:initializer :random]] [:if [:and [:predicate :coin] [:not [:predicate :archive-changed]]] [:repeat [:count 2] [:search [:count 3] [:operator :swap] [:add [:feature :objective-0] [:multiply [:constant 0.5] [:feature :objective-1]]]]] [:step [:operator :restart]]]]]]\" \"3725698ee0f58ed3f22653b376e2cc4ac7d36f49089d10d0dc4df070873e5527\"]]\r\n\nTesting niki.optimizer.dsl-test\r\n\nRan 6 tests containing 53 assertions.\r\n0 failures, 0 errors.",
+  "exit_code": 0,
+  "error": null,
+  "approval": "Command was flagged (script execution via -e/-c flag) and auto-approved by smart approval.",
+  "counts": {
+    "tests": 6,
+    "assertions": 53,
+    "failures": 0,
+    "errors": 0
+  }
+}

@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 540" width="920" height="540" font-family="Inter, Segoe UI, Arial, sans-serif">
+  <rect x="0" y="0" width="920" height="540" fill="#ffffff" rx="8"/>
+  <text x="65" y="34" font-size="18" font-weight="700" fill="#0f172a">Secondary Ablation: Type-Directed vs. Untyped Variation with Validation</text>
+  <text x="65" y="55" font-size="13" fill="#475569">Left: Per-Attempt Validation Success Rate (%) across 1,000 Operations. Right: End-to-End Held-Out Test HV (256 Slots).</text>
+  <text x="65" y="84" font-size="14" font-weight="700" fill="#0f172a">A. Valid-Attempt Throughput Rate (%)</text>
+  <rect x="65" y="98" width="375" height="340" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+  <line x1="65" y1="438.00" x2="440" y2="438.00" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="57" y="438.00" font-size="10.5" fill="#475569" text-anchor="end" dominant-baseline="middle">0%</text>
+  <line x1="65" y1="370.00" x2="440" y2="370.00" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="57" y="370.00" font-size="10.5" fill="#475569" text-anchor="end" dominant-baseline="middle">20%</text>
+  <line x1="65" y1="302.00" x2="440" y2="302.00" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="57" y="302.00" font-size="10.5" fill="#475569" text-anchor="end" dominant-baseline="middle">40%</text>
+  <line x1="65" y1="234.00" x2="440" y2="234.00" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="57" y="234.00" font-size="10.5" fill="#475569" text-anchor="end" dominant-baseline="middle">60%</text>
+  <line x1="65" y1="166.00" x2="440" y2="166.00" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="57" y="166.00" font-size="10.5" fill="#475569" text-anchor="end" dominant-baseline="middle">80%</text>
+  <line x1="65" y1="98.00" x2="440" y2="98.00" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="57" y="98.00" font-size="10.5" fill="#475569" text-anchor="end" dominant-baseline="middle">100%</text>
+  <rect x="101.50" y="98.00" width="24.0" height="340.00" rx="3" fill="#10b981" fill-opacity="0.88" stroke="#047857" stroke-width="1.2"/>
+  <rect x="129.50" y="407.40" width="24.0" height="30.60" rx="3" fill="#f43f5e" fill-opacity="0.85" stroke="#be123c" stroke-width="1.2"/>
+  <text x="113.50" y="92.00" font-size="10" font-weight="700" fill="#047857" text-anchor="middle">100.0%</text>
+  <text x="141.50" y="401.40" font-size="10" font-weight="700" fill="#be123c" text-anchor="middle">9.0%</text>
+  <text x="127.50" y="458" font-size="11" font-weight="600" fill="#1e293b" text-anchor="middle">Generate AST</text>
+  <rect x="226.50" y="142.86" width="24.0" height="295.14" rx="3" fill="#10b981" fill-opacity="0.88" stroke="#047857" stroke-width="1.2"/>
+  <rect x="254.50" y="407.01" width="24.0" height="30.99" rx="3" fill="#f43f5e" fill-opacity="0.85" stroke="#be123c" stroke-width="1.2"/>
+  <text x="238.50" y="136.86" font-size="10" font-weight="700" fill="#047857" text-anchor="middle">86.8%</text>
+  <text x="266.50" y="401.01" font-size="10" font-weight="700" fill="#be123c" text-anchor="middle">9.1%</text>
+  <text x="252.50" y="458" font-size="11" font-weight="600" fill="#1e293b" text-anchor="middle">Subtree Mutate</text>
+  <rect x="351.50" y="123.77" width="24.0" height="314.23" rx="3" fill="#10b981" fill-opacity="0.88" stroke="#047857" stroke-width="1.2"/>
+  <rect x="379.50" y="359.83" width="24.0" height="78.17" rx="3" fill="#f43f5e" fill-opacity="0.85" stroke="#be123c" stroke-width="1.2"/>
+  <text x="363.50" y="117.77" font-size="10" font-weight="700" fill="#047857" text-anchor="middle">92.4%</text>
+  <text x="391.50" y="353.83" font-size="10" font-weight="700" fill="#be123c" text-anchor="middle">23.0%</text>
+  <text x="377.50" y="458" font-size="11" font-weight="600" fill="#1e293b" text-anchor="middle">Subtree Crossover</text>
+  <text x="505" y="84" font-size="14" font-weight="700" fill="#0f172a">B. End-to-End Test HV (Typed vs. Untyped GP)</text>
+  <rect x="505" y="98" width="375" height="340" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+  <line x1="505" y1="438.00" x2="880" y2="438.00" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="497" y="438.00" font-size="10.5" fill="#475569" text-anchor="end" dominant-baseline="middle">0.450</text>
+  <line x1="505" y1="370.00" x2="880" y2="370.00" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="497" y="370.00" font-size="10.5" fill="#475569" text-anchor="end" dominant-baseline="middle">0.494</text>
+  <line x1="505" y1="302.00" x2="880" y2="302.00" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="497" y="302.00" font-size="10.5" fill="#475569" text-anchor="end" dominant-baseline="middle">0.538</text>
+  <line x1="505" y1="234.00" x2="880" y2="234.00" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="497" y="234.00" font-size="10.5" fill="#475569" text-anchor="end" dominant-baseline="middle">0.582</text>
+  <line x1="505" y1="166.00" x2="880" y2="166.00" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="497" y="166.00" font-size="10.5" fill="#475569" text-anchor="end" dominant-baseline="middle">0.626</text>
+  <line x1="505" y1="98.00" x2="880" y2="98.00" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="497" y="98.00" font-size="10.5" fill="#475569" text-anchor="end" dominant-baseline="middle">0.670</text>
+  <rect x="524.38" y="5.28" width="17.0" height="432.72" rx="2.5" fill="#10b981" fill-opacity="0.88" stroke="#047857" stroke-width="1.1"/>
+  <rect x="543.38" y="37.89" width="17.0" height="400.11" rx="2.5" fill="#f59e0b" fill-opacity="0.85" stroke="#b45309" stroke-width="1.1"/>
+  <rect x="562.38" y="438.00" width="17.0" height="2.00" rx="2.5" fill="#f43f5e" fill-opacity="0.85" stroke="#be123c" stroke-width="1.1"/>
+  <text x="551.88" y="458" font-size="10.5" font-weight="600" fill="#1e293b" text-anchor="middle">Port: GP-Mixed</text>
+  <rect x="618.13" y="3.35" width="17.0" height="434.65" rx="2.5" fill="#10b981" fill-opacity="0.88" stroke="#047857" stroke-width="1.1"/>
+  <rect x="637.13" y="98.38" width="17.0" height="339.62" rx="2.5" fill="#f59e0b" fill-opacity="0.85" stroke="#b45309" stroke-width="1.1"/>
+  <rect x="656.13" y="438.00" width="17.0" height="2.00" rx="2.5" fill="#f43f5e" fill-opacity="0.85" stroke="#be123c" stroke-width="1.1"/>
+  <text x="645.63" y="458" font-size="10.5" font-weight="600" fill="#1e293b" text-anchor="middle">Port: GP-Mut</text>
+  <rect x="711.88" y="297.87" width="17.0" height="140.13" rx="2.5" fill="#10b981" fill-opacity="0.88" stroke="#047857" stroke-width="1.1"/>
+  <rect x="730.88" y="333.66" width="17.0" height="104.34" rx="2.5" fill="#f59e0b" fill-opacity="0.85" stroke="#b45309" stroke-width="1.1"/>
+  <rect x="749.88" y="438.00" width="17.0" height="2.00" rx="2.5" fill="#f43f5e" fill-opacity="0.85" stroke="#be123c" stroke-width="1.1"/>
+  <text x="739.38" y="458" font-size="10.5" font-weight="600" fill="#1e293b" text-anchor="middle">Sched: GP-Mixed</text>
+  <rect x="805.63" y="296.83" width="17.0" height="141.17" rx="2.5" fill="#10b981" fill-opacity="0.88" stroke="#047857" stroke-width="1.1"/>
+  <rect x="824.63" y="327.13" width="17.0" height="110.87" rx="2.5" fill="#f59e0b" fill-opacity="0.85" stroke="#b45309" stroke-width="1.1"/>
+  <rect x="843.63" y="438.00" width="17.0" height="2.00" rx="2.5" fill="#f43f5e" fill-opacity="0.85" stroke="#be123c" stroke-width="1.1"/>
+  <text x="833.13" y="458" font-size="10.5" font-weight="600" fill="#1e293b" text-anchor="middle">Sched: GP-Mut</text>
+  <rect x="65" y="482" width="815" height="40" rx="6" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+  <rect x="85" y="495" width="14" height="14" rx="2" fill="#10b981" stroke="#047857"/>
+  <text x="105" y="503" font-size="11.5" font-weight="600" fill="#064e3b" dominant-baseline="middle">Type-Directed (:budget-aware-v2)</text>
+  <rect x="345" y="495" width="14" height="14" rx="2" fill="#f59e0b" stroke="#b45309"/>
+  <text x="365" y="503" font-size="11.5" fill="#1e293b" dominant-baseline="middle">Type-Directed (:development-only-v1)</text>
+  <rect x="615" y="495" width="14" height="14" rx="2" fill="#f43f5e" stroke="#be123c"/>
+  <text x="635" y="503" font-size="11.5" fill="#be123c" dominant-baseline="middle">Untyped + Validation (:untyped-validated)</text>
+</svg>

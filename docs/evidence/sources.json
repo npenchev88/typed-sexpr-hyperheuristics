@@ -1,0 +1,161 @@
+{
+  "version": 1,
+  "sources": [
+    {
+      "id": 1,
+      "url": "https://www-formal.stanford.edu/jmc/lisp/lisp.html?utm_source=chatgpt.com",
+      "title": "McCarthy (1979), History of Lisp",
+      "accessed": "2026-11-01"
+    },
+    {
+      "id": 2,
+      "url": "https://www-formal.stanford.edu/jmc/recursive.pdf?utm_source=chatgpt.com",
+      "title": "McCarthy (1960), Recursive Functions of Symbolic Expressions and Their Computation by Machine, Part I",
+      "accessed": "2026-11-01"
+    },
+    {
+      "id": 3,
+      "url": "https://www-formal.stanford.edu/jmc/mcc59/node1.html?utm_source=chatgpt.com",
+      "title": "McCarthy, Programs with Common Sense: Introduction",
+      "accessed": "2026-11-01"
+    },
+    {
+      "id": 4,
+      "url": "https://www-formal.stanford.edu/jmc/lisp/node3.html",
+      "title": "McCarthy, History of Lisp: The implementation of LISP",
+      "accessed": "2026-11-01"
+    },
+    {
+      "id": 5,
+      "url": "https://clojure.org/guides/install_clojure",
+      "title": "Clojure: Install Clojure",
+      "accessed": "2026-11-01"
+    },
+    {
+      "id": 6,
+      "url": "https://clojure.org/releases/downloads",
+      "title": "Clojure: Downloads and Compatibility",
+      "accessed": "2026-11-01"
+    },
+    {
+      "id": 7,
+      "url": "https://clojure.org/reference/deps_edn",
+      "title": "Clojure: deps.edn Reference",
+      "accessed": "2026-11-01"
+    },
+    {
+      "id": 8,
+      "url": "https://github.com/npenchev88/evolving-portfolio-dsl",
+      "title": "npenchev88/evolving-portfolio-dsl, pinned commit 29252c5b86d9f8a15099d85893e5e97861cb705d",
+      "accessed": "2026-11-01"
+    },
+    {
+      "id": 9,
+      "url": "https://people.brunel.ac.uk/~mastjjb/jeb/orlib/portinfo.html",
+      "title": "OR-Library: Portfolio optimisation",
+      "accessed": "2026-11-01"
+    },
+    {
+      "id": 10,
+      "url": "https://github.com/binance/binance-public-data",
+      "title": "Binance Public Data: official data schema and checksums",
+      "accessed": "2026-11-01"
+    },
+    {
+      "id": 11,
+      "url": "https://github.com/casselc/clj-msi",
+      "title": "clj-msi: Clojure Windows Installer",
+      "accessed": "2026-11-01"
+    },
+    {
+      "id": 12,
+      "url": "https://clojure.org/reference/clojure_cli",
+      "title": "Clojure CLI Reference",
+      "accessed": "2026-11-01"
+    },
+    {
+      "id": 13,
+      "url": "https://github.com/borkdude/deps.clj",
+      "title": "deps.clj: Clojure CLI-compatible launcher",
+      "accessed": "2026-11-01"
+    },
+    {
+      "id": 14,
+      "url": "https://research.manchester.ac.uk/en/publications/automatically-designing-state-of-the-art-multi-and-many-objective",
+      "title": "Bezerra, Lopez-Ibanez and Stutzle (2020), Automatically Designing State-of-the-Art Multi- and Many-Objective Evolutionary Algorithms",
+      "accessed": "2026-11-01"
+    },
+    {
+      "id": 15,
+      "url": "https://davidmontana.net/papers/stgp.pdf",
+      "title": "Montana (1995), Strongly Typed Genetic Programming",
+      "accessed": "2026-11-01"
+    },
+    {
+      "id": 16,
+      "url": "https://api.adoptium.net/v3/assets/latest/25/hotspot?architecture=x64&image_type=jdk&os=windows&vendor=eclipse",
+      "title": "Eclipse Adoptium: Temurin 25 Windows x64 JDK metadata",
+      "accessed": "2026-11-01"
+    },
+    {
+      "id": 17,
+      "url": "https://github.com/borkdude/deps.clj/releases/tag/v1.12.6.1673",
+      "title": "deps.clj release v1.12.6.1673",
+      "accessed": "2026-11-01"
+    },
+    {
+      "id": 18,
+      "url": "https://www-formal.stanford.edu/jmc/recursive/recursive.html",
+      "title": "McCarthy (1960), Recursive Functions: HTML edition",
+      "accessed": "2026-11-01"
+    },
+    {
+      "id": 19,
+      "url": "https://www-formal.stanford.edu/jmc/recursive/node1.html",
+      "title": "McCarthy (1960), Recursive Functions: Introduction",
+      "accessed": "2026-11-01"
+    },
+    {
+      "id": 20,
+      "url": "https://www-formal.stanford.edu/jmc/recursive/node3.html",
+      "title": "McCarthy (1960), Recursive Functions of Symbolic Expressions",
+      "accessed": "2026-11-01"
+    },
+    {
+      "id": 21,
+      "url": "file:///C:/Users/meggy/Niki/typed-optimizer-lab/docs/input/typed_clojure_portfolio_plan_bg.pdf",
+      "title": "Niki supplied Clojure portfolio plan, 2026-10-31",
+      "accessed": "2026-11-01"
+    },
+    {
+      "id": 22,
+      "url": "file:///C:/Users/meggy/Niki/typed-optimizer-lab/docs/input/optimizer_methodology_extension_bg.pdf",
+      "title": "Niki supplied methodology extension, 2026-10-31",
+      "accessed": "2026-11-01"
+    },
+    {
+      "id": 23,
+      "url": "https://arxiv.org/abs/2103.11746",
+      "title": "Lones (2021), Evolving continuous optimisers from scratch",
+      "accessed": "2026-11-01"
+    },
+    {
+      "id": 24,
+      "url": "https://doi.org/10.1007/978-3-319-10762-2_50",
+      "title": "Bezerra et al. (2014), Automatic Design of Evolutionary Algorithms for Multi-Objective Combinatorial Optimization",
+      "accessed": "2026-11-01"
+    },
+    {
+      "id": 25,
+      "url": "https://doi.org/10.1016/j.procir.2019.02.118",
+      "title": "Zhou and Yang (2019), Automatic design of scheduling policies for dynamic flexible job shop scheduling by multi-objective genetic programming based hyper-heuristic",
+      "accessed": "2026-11-01"
+    },
+    {
+      "id": 26,
+      "url": "https://www.jmlr.org/papers/v11/cawley10a.html",
+      "title": "Cawley and Talbot (2010), On Over-fitting in Model Selection and Subsequent Selection Bias in Performance Evaluation",
+      "accessed": "2026-11-01"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "scope": {
+    "src/niki/optimizer/runtime.clj": "fdd05aa862a1ff03940ccfb73851f07060b7873cc23ad2957440e3185d6e24a2",
+    "src/niki/optimizer/portfolio_runtime.clj": "a28e8d3637ec85cea0fea5083cca132410d378979ccaa81d8e51acd9e540769a",
+    "test/niki/optimizer/runtime_test.clj": "b190b8bef9883849a9becc7c099d9f4851e7ed8d881bb23e8204ca983d7683d4"
+  },
+  "dependencies": {
+    "src/niki/optimizer/dsl.clj": "54490eff37a1782c4b37cf67f448868bc0ed93f224e4fdecebf8bdca44bcaf4b",
+    "src/niki/optimizer/pareto.clj": "57a723b8d9e04ef9543ffafec63364e932c0c9013b1dc3dcceda703c481a4b8a",
+    "src/niki/optimizer/portfolio.clj": "1dd825d299d2b69d05f78a28bb0cf9a5895c6d68f22d9120655eafb1b5b84148"
+  },
+  "patterns": {
+    "secret": [],
+    "host_eval": [],
+    "process": []
+  },
+  "note": "G3 runtime/adapter/test review; DSL optional serialization-limits fix pending approval. Source/tests unchanged from returned runtime report."
+}

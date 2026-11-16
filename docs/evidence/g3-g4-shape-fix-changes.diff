@@ -1,0 +1,58 @@
+--- before/src/niki/optimizer/dsl.clj
++++ after/src/niki/optimizer/dsl.clj
+@@ -16,7 +16,7 @@
+ (defn effective-limits [limits]
+   (ensure! (map? limits) "Limits must be a map" {})
+   (let [hard {:max-nodes 4096 :max-depth 64 :max-count 4096 :max-source-chars 262144}]
+-    (ensure! (every? (set (keys hard)) (keys limits)) "Unknown limit" {})
++    (ensure! (every? #(and (keyword? %) (contains? hard %)) (keys limits)) "Unknown limit" {})
+     (let [limits (merge default-limits limits)]
+       (doseq [[k ceiling] hard :let [v (get limits k)]]
+         (ensure! (and (integral-classes (class v)) (<= 1 v ceiling)) "Invalid limit" {:limit k}))
+@@ -45,25 +45,27 @@
+   ([program] (check-program program {}))
+   ([program overrides]
+    (let [limits (effective-limits overrides)]
+-     (ensure! (and (vector? program) (= 3 (count program)) (= :program (first program))) "Expected program vector" {})
++     (ensure! (and (vector? program) (= 3 (count program)) (keyword? (first program)) (= :program (first program))) "Expected program vector" {})
+      (let [domain (nth program 1) wrapper (nth program 2)]
+-       (ensure! (#{:portfolio :scheduling} domain) "Unknown domain" {})
+-       (ensure! (and (vector? wrapper) (= 2 (count wrapper)) (= :budget (first wrapper))) "Expected budget wrapper" {})
++       (ensure! (and (keyword? domain) (#{:portfolio :scheduling} domain)) "Unknown domain" {})
++       (ensure! (and (vector? wrapper) (= 2 (count wrapper)) (keyword? (first wrapper)) (= :budget (first wrapper))) "Expected budget wrapper" {})
+        (let [seen (volatile! 2)]
+          (letfn [(walk [node expected path depth]
+                    (ensure! (<= depth (:max-depth limits)) "Depth limit exceeded" {:path path})
+                    (ensure! (<= (vswap! seen inc) (:max-nodes limits)) "Node limit exceeded" {:path path})
+                    (ensure! (and (vector? node) (seq node)) "Expected AST vector" {:path path})
+-                   (let [op (first node) [role arity children intrinsic] (get forms op)]
++                   (let [op (first node)
++                         _ (ensure! (keyword? op) "Expected keyword form tag" {:path path})
++                         [role arity children intrinsic] (get forms op)]
+                      (ensure! (and role (= expected role) (= arity (count node))) "Form/role/arity mismatch" {:path path})
+                      (let [x (second node)
+                            node (case op
+                                   :count (do (ensure! (and (integral-classes (class x)) (<= 0 x (:max-count limits))) "Invalid Count" {:path path}) [:count (long x)])
+                                   :constant (do (ensure! (and (numeric-classes (class x)) (Double/isFinite (double x)) (<= -1000000 x 1000000)) "Invalid Score constant" {:path path}) [:constant (if (zero? (double x)) 0.0 (double x))])
+-                                  :initializer (do (ensure! (#{:random :first} x) "Unknown initializer" {:path path}) node)
+-                                  :operator (do (ensure! ((if (= domain :portfolio) #{:swap :restart} #{:swap :restart :insert :reverse}) x) "Unknown operator" {:path path}) node)
+-                                  :feature (do (ensure! (#{:objective-0 :objective-1 :progress} x) "Unknown feature" {:path path}) node)
+-                                  :predicate (do (ensure! (#{:archive-changed :budget-left :coin} x) "Unknown predicate" {:path path}) node)
++                                  :initializer (do (ensure! (and (keyword? x) (#{:random :first} x)) "Unknown initializer" {:path path}) node)
++                                  :operator (do (ensure! (and (keyword? x) ((if (= domain :portfolio) #{:swap :restart} #{:swap :restart :insert :reverse}) x)) "Unknown operator" {:path path}) node)
++                                  :feature (do (ensure! (and (keyword? x) (#{:objective-0 :objective-1 :progress} x)) "Unknown feature" {:path path}) node)
++                                  :predicate (do (ensure! (and (keyword? x) (#{:archive-changed :budget-left :coin} x)) "Unknown predicate" {:path path}) node)
+                                   node)
+                            intrinsic (case op :initializer (if (= x :random) #{:random} #{}) :predicate (if (= x :coin) #{:random} #{:read}) intrinsic)
+                            compiled (mapv (fn [[i r]] (walk (nth node i) r (conj path i) (inc depth))) children)
+--- before/src/niki/optimizer/variation.clj
++++ after/src/niki/optimizer/variation.clj
+@@ -13,7 +13,7 @@
+ (defn- options! [options]
+   ;; Shape checks precede destructuring, sequence traversal and numeric coercion.
+   (ensure! (map? options) "Variation options must be a map" {})
+-  (ensure! (every? #{:seed :limits :max-attempts} (keys options))
++  (ensure! (every? #(and (keyword? %) (#{:seed :limits :max-attempts} %)) (keys options))
+            "Unknown variation option" {})
+   (let [seed (get options :seed 0)
+         attempts (get options :max-attempts 10)

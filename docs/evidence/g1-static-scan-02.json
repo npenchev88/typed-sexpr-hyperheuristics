@@ -1,0 +1,14 @@
+{
+  "review": 2,
+  "scope": {
+    "src/niki/optimizer/portfolio.clj": "f67e08c93d9a9bb40ef3ea3c12dae2754fc8cfcb4d45de177f8d8adca9eac54e",
+    "src/niki/optimizer/portfolio_reference.clj": "8e41aa0568c9f2f1a900131192c29d6cce7487ccc22765520e6105ee05588edf",
+    "test/niki/optimizer/portfolio_reference_test.clj": "40187c5e639b7c580ca95105f0368e530db6facabf1c0d0429cced675c8f42aa",
+    "test/niki/optimizer/portfolio_test.clj": "4d2d34bb6882450911acca7d97d10260abe3d84a5b370f854f2d4aa716d26773",
+    "test/niki/optimizer/test_runner.clj": "7888a70b87708a1254d41993034fde5648b8f2b97e7127902f4998a2db6eda46",
+    "scripts/verify-g1.clj": "5d840e134d3bfffd3509143efecee7f8bac766b3ea2846ceec221cc9e74ead18",
+    "resources/fixtures/g1-portfolio.edn": "fb6c44113ce3d0a29a77b8998b120448710b16512455639b6e4279faa6fef758"
+  },
+  "concerns": [],
+  "note": "All additions in an unborn root repository; EDN parsing is non-executable clojure.edn/read-string."
+}

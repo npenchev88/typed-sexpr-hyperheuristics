@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+set -euo pipefail
+ROOT="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd -W)"
+export JAVA_HOME="$ROOT/.tools/jdk/jdk-25.0.5+8"
+export DEPS_CLJ_TOOLS_DIR="$ROOT/.tools/clojure-tools"
+export CLJ_CONFIG="$ROOT/.config/clojure"
+export CLJ_CACHE="$ROOT/.cache/clojure"
+exec "$ROOT/.tools/cli/deps.exe" -Srepro "$@"

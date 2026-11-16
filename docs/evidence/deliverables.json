@@ -1,0 +1,56 @@
+{
+  "verified_at": "2026-11-02T05:42:15.336621+00:00",
+  "scope": "Plan, project-local environment and legacy baseline; no new confirmatory experiment run",
+  "files": [
+    {
+      "path": "docs/NIKI_EXPERIMENT_PLAN.pdf",
+      "bytes": 439602,
+      "sha256": "b0933717ca48e964e84e00c1fb0ee002d8932be7c443999d2060c77fead187bf"
+    },
+    {
+      "path": "docs/NIKI_EXPERIMENT_DOSSIER.md",
+      "bytes": 55211,
+      "sha256": "b57e49932d7e4112546d95302fc5591c684efc8edd23743b680069f51a9517c7"
+    },
+    {
+      "path": "docs/NIKI_EXPERIMENT_PLAN.html",
+      "bytes": 68587,
+      "sha256": "119e1ca0098e942b4e406e99ff52615934151004404839e2db935766b180d5b6"
+    },
+    {
+      "path": "docs/FINAL_EXPERIMENT_PLAN.md",
+      "bytes": 44786,
+      "sha256": "924bccca6e3afe2b8c41fc4f900785998d44fd49c52921fae4b591226814412b"
+    },
+    {
+      "path": "docs/ENVIRONMENT.md",
+      "bytes": 7183,
+      "sha256": "2c10342d9594f36a3ff49a9752a2ce5780e0e9ba002747256c781029f72b6072"
+    },
+    {
+      "path": "docs/REVIEW_RESOLUTION.md",
+      "bytes": 3348,
+      "sha256": "0a2e549560f4f62197764ed3f04c270bb30ad115ad862182ab8467b610f5f4b3"
+    },
+    {
+      "path": "configs/flagship-proposal.edn",
+      "bytes": 3344,
+      "sha256": "9277238fa57e77f575b28da94999c8eafbfb97fe391516ca07f8ed1c8d6fa9cd"
+    },
+    {
+      "path": "configs/smoke-proposal.edn",
+      "bytes": 903,
+      "sha256": "946d9bf4a7cdb3a6c6c8420b68aae8f0086d474e532e5d030f9d9a3fa4317b27"
+    },
+    {
+      "path": "scripts/validate-protocol.clj",
+      "bytes": 3392,
+      "sha256": "83185a579616d5e5c4e919614623398063e3cef0733c0e2aa13665d087f3bfff"
+    },
+    {
+      "path": "docs/evidence/verification.txt",
+      "bytes": 1970,
+      "sha256": "f67c9f5e8023dac49a7cd01fb30114a266ede74cbe9a169b8c04b34ca62f83ee"
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "status": "passed",
+  "scope": "Exact rational algebra check of direct centered-numerator variance identity; not a test of replacement source code",
+  "panels_checked": 200,
+  "seed": 7102026,
+  "formula": "sum_t (T*S_t-Q)^2 / (K^2*T^2*(T-1)), S_t=sum selected returns, Q=sum S_t"
+}

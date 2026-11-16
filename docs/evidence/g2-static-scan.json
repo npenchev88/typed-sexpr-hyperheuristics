@@ -1,0 +1,20 @@
+{
+  "scope": {
+    "src/niki/optimizer/pareto.clj": "57a723b8d9e04ef9543ffafec63364e932c0c9013b1dc3dcceda703c481a4b8a",
+    "src/niki/optimizer/portfolio.clj": "1dd825d299d2b69d05f78a28bb0cf9a5895c6d68f22d9120655eafb1b5b84148",
+    "src/niki/optimizer/portfolio_reference.clj": "969066b2fb045fa53f031c6f40e6ce9022398a3c320813904692e1ec6863726e",
+    "test/niki/optimizer/g2_test_runner.clj": "77af2ac31785fa04a3ea56b08c1c9001f7d7856a9dfa4ec1fd07a4c26adb113f",
+    "test/niki/optimizer/pareto_reference.clj": "1134ba9244faf1c840742ae759519e6b8a703ada7ceb71d3a842bbb7bccdd31f",
+    "test/niki/optimizer/pareto_test.clj": "fe09ba4f1eccdf3ca3f70472c460883e543d8deb4e746ffc9a75125a77451061",
+    "test/niki/optimizer/portfolio_reference_test.clj": "43bb0af7b7041e8ffc59aac64ee77090c409f3e1867fa8efaf9cb9ceee471fe0",
+    "test/niki/optimizer/portfolio_test.clj": "17aa598397af9a028ef73226ddb67af7190879bd14440d617ae15316b8557262",
+    "test/niki/optimizer/test_runner.clj": "7888a70b87708a1254d41993034fde5648b8f2b97e7127902f4998a2db6eda46",
+    "scripts/verify-g1.clj": "345e3d0228535b8c5ce534e35d0b57f5eb1ac0d4294fc801dfaecf3c4ecc5e1a",
+    "scripts/verify-g2.clj": "6b3ab782325d05abfe79266f95fa720d51ea4daa302bd302a3ee63b629d88b80",
+    "scripts/validate-protocol.clj": "83185a579616d5e5c4e919614623398063e3cef0733c0e2aa13665d087f3bfff",
+    "deps.edn": "5d704bec3346587e056bdca04161b2f174d31a9f4f028f4cdd12a1dd37a8ce07",
+    "configs/flagship-proposal.edn": "22269e7bfd9ae336acff27654b9cb2e274b53d88c9023817c626ca5d39359aab"
+  },
+  "concerns": [],
+  "note": "Unborn root Git repository; current source/test/configuration additions reviewed without staging. EDN parsing is clojure.edn/read-string, not executable core read-string."
+}

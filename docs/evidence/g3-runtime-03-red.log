@@ -1,0 +1,310 @@
+#'niki.optimizer.runtime-test/every-node-and-loop-transition-consumes-fuel
+
+Testing niki.optimizer.runtime-test
+
+FAIL in (every-node-and-loop-transition-consumes-fuel) (runtime_test.clj:70)
+expected: (= fuel (get-in r [:charged-costs :interpreter-steps]))
+  actual: (not (= 0 3))
+
+FAIL in (every-node-and-loop-transition-consumes-fuel) (runtime_test.clj:71)
+expected: (= (if (= fuel required) :completed :step-budget-exhausted) (:status r))
+  actual: (not (= :step-budget-exhausted :completed))
+
+FAIL in (every-node-and-loop-transition-consumes-fuel) (runtime_test.clj:70)
+expected: (= fuel (get-in r [:charged-costs :interpreter-steps]))
+  actual: (not (= 1 3))
+
+FAIL in (every-node-and-loop-transition-consumes-fuel) (runtime_test.clj:71)
+expected: (= (if (= fuel required) :completed :step-budget-exhausted) (:status r))
+  actual: (not (= :step-budget-exhausted :completed))
+
+FAIL in (every-node-and-loop-transition-consumes-fuel) (runtime_test.clj:70)
+expected: (= fuel (get-in r [:charged-costs :interpreter-steps]))
+  actual: (not (= 2 3))
+
+FAIL in (every-node-and-loop-transition-consumes-fuel) (runtime_test.clj:71)
+expected: (= (if (= fuel required) :completed :step-budget-exhausted) (:status r))
+  actual: (not (= :step-budget-exhausted :completed))
+
+FAIL in (every-node-and-loop-transition-consumes-fuel) (runtime_test.clj:70)
+expected: (= fuel (get-in r [:charged-costs :interpreter-steps]))
+  actual: (not (= 0 3))
+
+FAIL in (every-node-and-loop-transition-consumes-fuel) (runtime_test.clj:71)
+expected: (= (if (= fuel required) :completed :step-budget-exhausted) (:status r))
+  actual: (not (= :step-budget-exhausted :completed))
+
+FAIL in (every-node-and-loop-transition-consumes-fuel) (runtime_test.clj:70)
+expected: (= fuel (get-in r [:charged-costs :interpreter-steps]))
+  actual: (not (= 1 3))
+
+FAIL in (every-node-and-loop-transition-consumes-fuel) (runtime_test.clj:71)
+expected: (= (if (= fuel required) :completed :step-budget-exhausted) (:status r))
+  actual: (not (= :step-budget-exhausted :completed))
+
+FAIL in (every-node-and-loop-transition-consumes-fuel) (runtime_test.clj:70)
+expected: (= fuel (get-in r [:charged-costs :interpreter-steps]))
+  actual: (not (= 2 3))
+
+FAIL in (every-node-and-loop-transition-consumes-fuel) (runtime_test.clj:71)
+expected: (= (if (= fuel required) :completed :step-budget-exhausted) (:status r))
+  actual: (not (= :step-budget-exhausted :completed))
+
+FAIL in (every-node-and-loop-transition-consumes-fuel) (runtime_test.clj:71)
+expected: (= (if (= fuel required) :completed :step-budget-exhausted) (:status r))
+  actual: (not (= :step-budget-exhausted :completed))
+
+FAIL in (every-node-and-loop-transition-consumes-fuel) (runtime_test.clj:70)
+expected: (= fuel (get-in r [:charged-costs :interpreter-steps]))
+  actual: (not (= 4 3))
+
+FAIL in (every-node-and-loop-transition-consumes-fuel) (runtime_test.clj:71)
+expected: (= (if (= fuel required) :completed :step-budget-exhausted) (:status r))
+  actual: (not (= :step-budget-exhausted :completed))
+
+FAIL in (every-node-and-loop-transition-consumes-fuel) (runtime_test.clj:70)
+expected: (= fuel (get-in r [:charged-costs :interpreter-steps]))
+  actual: (not (= 5 3))
+
+FAIL in (every-node-and-loop-transition-consumes-fuel) (runtime_test.clj:70)
+expected: (= fuel (get-in r [:charged-costs :interpreter-steps]))
+  actual: (not (= 0 3))
+
+FAIL in (every-node-and-loop-transition-consumes-fuel) (runtime_test.clj:71)
+expected: (= (if (= fuel required) :completed :step-budget-exhausted) (:status r))
+  actual: (not (= :step-budget-exhausted :completed))
+
+FAIL in (every-node-and-loop-transition-consumes-fuel) (runtime_test.clj:70)
+expected: (= fuel (get-in r [:charged-costs :interpreter-steps]))
+  actual: (not (= 1 3))
+
+FAIL in (every-node-and-loop-transition-consumes-fuel) (runtime_test.clj:71)
+expected: (= (if (= fuel required) :completed :step-budget-exhausted) (:status r))
+  actual: (not (= :step-budget-exhausted :completed))
+
+FAIL in (every-node-and-loop-transition-consumes-fuel) (runtime_test.clj:70)
+expected: (= fuel (get-in r [:charged-costs :interpreter-steps]))
+  actual: (not (= 2 3))
+
+FAIL in (every-node-and-loop-transition-consumes-fuel) (runtime_test.clj:71)
+expected: (= (if (= fuel required) :completed :step-budget-exhausted) (:status r))
+  actual: (not (= :step-budget-exhausted :completed))
+
+FAIL in (every-node-and-loop-transition-consumes-fuel) (runtime_test.clj:71)
+expected: (= (if (= fuel required) :completed :step-budget-exhausted) (:status r))
+  actual: (not (= :step-budget-exhausted :completed))
+
+FAIL in (every-node-and-loop-transition-consumes-fuel) (runtime_test.clj:70)
+expected: (= fuel (get-in r [:charged-costs :interpreter-steps]))
+  actual: (not (= 4 3))
+
+FAIL in (every-node-and-loop-transition-consumes-fuel) (runtime_test.clj:70)
+expected: (= fuel (get-in r [:charged-costs :interpreter-steps]))
+  actual: (not (= 0 3))
+
+FAIL in (every-node-and-loop-transition-consumes-fuel) (runtime_test.clj:71)
+expected: (= (if (= fuel required) :completed :step-budget-exhausted) (:status r))
+  actual: (not (= :step-budget-exhausted :completed))
+
+FAIL in (every-node-and-loop-transition-consumes-fuel) (runtime_test.clj:70)
+expected: (= fuel (get-in r [:charged-costs :interpreter-steps]))
+  actual: (not (= 1 3))
+
+FAIL in (every-node-and-loop-transition-consumes-fuel) (runtime_test.clj:71)
+expected: (= (if (= fuel required) :completed :step-budget-exhausted) (:status r))
+  actual: (not (= :step-budget-exhausted :completed))
+
+FAIL in (every-node-and-loop-transition-consumes-fuel) (runtime_test.clj:70)
+expected: (= fuel (get-in r [:charged-costs :interpreter-steps]))
+  actual: (not (= 2 3))
+
+FAIL in (every-node-and-loop-transition-consumes-fuel) (runtime_test.clj:71)
+expected: (= (if (= fuel required) :completed :step-budget-exhausted) (:status r))
+  actual: (not (= :step-budget-exhausted :completed))
+
+FAIL in (every-node-and-loop-transition-consumes-fuel) (runtime_test.clj:71)
+expected: (= (if (= fuel required) :completed :step-budget-exhausted) (:status r))
+  actual: (not (= :step-budget-exhausted :completed))
+
+FAIL in (every-node-and-loop-transition-consumes-fuel) (runtime_test.clj:70)
+expected: (= fuel (get-in r [:charged-costs :interpreter-steps]))
+  actual: (not (= 4 3))
+
+FAIL in (every-node-and-loop-transition-consumes-fuel) (runtime_test.clj:71)
+expected: (= (if (= fuel required) :completed :step-budget-exhausted) (:status r))
+  actual: (not (= :step-budget-exhausted :completed))
+
+FAIL in (every-node-and-loop-transition-consumes-fuel) (runtime_test.clj:70)
+expected: (= fuel (get-in r [:charged-costs :interpreter-steps]))
+  actual: (not (= 5 3))
+
+FAIL in (every-node-and-loop-transition-consumes-fuel) (runtime_test.clj:71)
+expected: (= (if (= fuel required) :completed :step-budget-exhausted) (:status r))
+  actual: (not (= :step-budget-exhausted :completed))
+
+FAIL in (every-node-and-loop-transition-consumes-fuel) (runtime_test.clj:70)
+expected: (= fuel (get-in r [:charged-costs :interpreter-steps]))
+  actual: (not (= 6 3))
+
+FAIL in (every-node-and-loop-transition-consumes-fuel) (runtime_test.clj:71)
+expected: (= (if (= fuel required) :completed :step-budget-exhausted) (:status r))
+  actual: (not (= :step-budget-exhausted :completed))
+
+FAIL in (every-node-and-loop-transition-consumes-fuel) (runtime_test.clj:70)
+expected: (= fuel (get-in r [:charged-costs :interpreter-steps]))
+  actual: (not (= 7 3))
+
+FAIL in (every-node-and-loop-transition-consumes-fuel) (runtime_test.clj:71)
+expected: (= (if (= fuel required) :completed :step-budget-exhausted) (:status r))
+  actual: (not (= :step-budget-exhausted :completed))
+
+FAIL in (every-node-and-loop-transition-consumes-fuel) (runtime_test.clj:70)
+expected: (= fuel (get-in r [:charged-costs :interpreter-steps]))
+  actual: (not (= 8 3))
+
+FAIL in (every-node-and-loop-transition-consumes-fuel) (runtime_test.clj:70)
+expected: (= fuel (get-in r [:charged-costs :interpreter-steps]))
+  actual: (not (= 0 3))
+
+FAIL in (every-node-and-loop-transition-consumes-fuel) (runtime_test.clj:71)
+expected: (= (if (= fuel required) :completed :step-budget-exhausted) (:status r))
+  actual: (not (= :step-budget-exhausted :completed))
+
+FAIL in (every-node-and-loop-transition-consumes-fuel) (runtime_test.clj:70)
+expected: (= fuel (get-in r [:charged-costs :interpreter-steps]))
+  actual: (not (= 1 3))
+
+FAIL in (every-node-and-loop-transition-consumes-fuel) (runtime_test.clj:71)
+expected: (= (if (= fuel required) :completed :step-budget-exhausted) (:status r))
+  actual: (not (= :step-budget-exhausted :completed))
+
+FAIL in (every-node-and-loop-transition-consumes-fuel) (runtime_test.clj:70)
+expected: (= fuel (get-in r [:charged-costs :interpreter-steps]))
+  actual: (not (= 2 3))
+
+FAIL in (every-node-and-loop-transition-consumes-fuel) (runtime_test.clj:71)
+expected: (= (if (= fuel required) :completed :step-budget-exhausted) (:status r))
+  actual: (not (= :step-budget-exhausted :completed))
+
+FAIL in (every-node-and-loop-transition-consumes-fuel) (runtime_test.clj:71)
+expected: (= (if (= fuel required) :completed :step-budget-exhausted) (:status r))
+  actual: (not (= :step-budget-exhausted :completed))
+
+FAIL in (every-node-and-loop-transition-consumes-fuel) (runtime_test.clj:70)
+expected: (= fuel (get-in r [:charged-costs :interpreter-steps]))
+  actual: (not (= 4 3))
+
+FAIL in (every-node-and-loop-transition-consumes-fuel) (runtime_test.clj:71)
+expected: (= (if (= fuel required) :completed :step-budget-exhausted) (:status r))
+  actual: (not (= :step-budget-exhausted :completed))
+
+FAIL in (every-node-and-loop-transition-consumes-fuel) (runtime_test.clj:70)
+expected: (= fuel (get-in r [:charged-costs :interpreter-steps]))
+  actual: (not (= 5 3))
+
+FAIL in (every-node-and-loop-transition-consumes-fuel) (runtime_test.clj:71)
+expected: (= (if (= fuel required) :completed :step-budget-exhausted) (:status r))
+  actual: (not (= :step-budget-exhausted :completed))
+
+FAIL in (every-node-and-loop-transition-consumes-fuel) (runtime_test.clj:70)
+expected: (= fuel (get-in r [:charged-costs :interpreter-steps]))
+  actual: (not (= 6 3))
+
+FAIL in (every-node-and-loop-transition-consumes-fuel) (runtime_test.clj:71)
+expected: (= (if (= fuel required) :completed :step-budget-exhausted) (:status r))
+  actual: (not (= :step-budget-exhausted :completed))
+
+FAIL in (every-node-and-loop-transition-consumes-fuel) (runtime_test.clj:70)
+expected: (= fuel (get-in r [:charged-costs :interpreter-steps]))
+  actual: (not (= 7 3))
+
+FAIL in (every-node-and-loop-transition-consumes-fuel) (runtime_test.clj:71)
+expected: (= (if (= fuel required) :completed :step-budget-exhausted) (:status r))
+  actual: (not (= :step-budget-exhausted :completed))
+
+FAIL in (every-node-and-loop-transition-consumes-fuel) (runtime_test.clj:70)
+expected: (= fuel (get-in r [:charged-costs :interpreter-steps]))
+  actual: (not (= 8 3))
+
+FAIL in (every-node-and-loop-transition-consumes-fuel) (runtime_test.clj:71)
+expected: (= (if (= fuel required) :completed :step-budget-exhausted) (:status r))
+  actual: (not (= :step-budget-exhausted :completed))
+
+FAIL in (every-node-and-loop-transition-consumes-fuel) (runtime_test.clj:70)
+expected: (= fuel (get-in r [:charged-costs :interpreter-steps]))
+  actual: (not (= 9 3))
+
+FAIL in (every-node-and-loop-transition-consumes-fuel) (runtime_test.clj:71)
+expected: (= (if (= fuel required) :completed :step-budget-exhausted) (:status r))
+  actual: (not (= :step-budget-exhausted :completed))
+
+FAIL in (every-node-and-loop-transition-consumes-fuel) (runtime_test.clj:70)
+expected: (= fuel (get-in r [:charged-costs :interpreter-steps]))
+  actual: (not (= 10 3))
+
+FAIL in (every-node-and-loop-transition-consumes-fuel) (runtime_test.clj:71)
+expected: (= (if (= fuel required) :completed :step-budget-exhausted) (:status r))
+  actual: (not (= :step-budget-exhausted :completed))
+
+FAIL in (every-node-and-loop-transition-consumes-fuel) (runtime_test.clj:70)
+expected: (= fuel (get-in r [:charged-costs :interpreter-steps]))
+  actual: (not (= 11 3))
+
+FAIL in (every-node-and-loop-transition-consumes-fuel) (runtime_test.clj:71)
+expected: (= (if (= fuel required) :completed :step-budget-exhausted) (:status r))
+  actual: (not (= :step-budget-exhausted :completed))
+
+FAIL in (every-node-and-loop-transition-consumes-fuel) (runtime_test.clj:70)
+expected: (= fuel (get-in r [:charged-costs :interpreter-steps]))
+  actual: (not (= 12 3))
+
+FAIL in (every-node-and-loop-transition-consumes-fuel) (runtime_test.clj:71)
+expected: (= (if (= fuel required) :completed :step-budget-exhausted) (:status r))
+  actual: (not (= :step-budget-exhausted :completed))
+
+FAIL in (every-node-and-loop-transition-consumes-fuel) (runtime_test.clj:70)
+expected: (= fuel (get-in r [:charged-costs :interpreter-steps]))
+  actual: (not (= 13 3))
+
+FAIL in (every-node-and-loop-transition-consumes-fuel) (runtime_test.clj:71)
+expected: (= (if (= fuel required) :completed :step-budget-exhausted) (:status r))
+  actual: (not (= :step-budget-exhausted :completed))
+
+FAIL in (every-node-and-loop-transition-consumes-fuel) (runtime_test.clj:70)
+expected: (= fuel (get-in r [:charged-costs :interpreter-steps]))
+  actual: (not (= 14 3))
+
+FAIL in (every-node-and-loop-transition-consumes-fuel) (runtime_test.clj:71)
+expected: (= (if (= fuel required) :completed :step-budget-exhausted) (:status r))
+  actual: (not (= :step-budget-exhausted :completed))
+
+FAIL in (every-node-and-loop-transition-consumes-fuel) (runtime_test.clj:70)
+expected: (= fuel (get-in r [:charged-costs :interpreter-steps]))
+  actual: (not (= 15 3))
+
+FAIL in (every-node-and-loop-transition-consumes-fuel) (runtime_test.clj:71)
+expected: (= (if (= fuel required) :completed :step-budget-exhausted) (:status r))
+  actual: (not (= :step-budget-exhausted :completed))
+
+FAIL in (every-node-and-loop-transition-consumes-fuel) (runtime_test.clj:70)
+expected: (= fuel (get-in r [:charged-costs :interpreter-steps]))
+  actual: (not (= 16 3))
+
+FAIL in (every-node-and-loop-transition-consumes-fuel) (runtime_test.clj:71)
+expected: (= (if (= fuel required) :completed :step-budget-exhausted) (:status r))
+  actual: (not (= :step-budget-exhausted :completed))
+
+FAIL in (every-node-and-loop-transition-consumes-fuel) (runtime_test.clj:70)
+expected: (= fuel (get-in r [:charged-costs :interpreter-steps]))
+  actual: (not (= 17 3))
+
+FAIL in (every-node-and-loop-transition-consumes-fuel) (runtime_test.clj:71)
+expected: (= (if (= fuel required) :completed :step-budget-exhausted) (:status r))
+  actual: (not (= :step-budget-exhausted :completed))
+
+FAIL in (every-node-and-loop-transition-consumes-fuel) (runtime_test.clj:70)
+expected: (= fuel (get-in r [:charged-costs :interpreter-steps]))
+  actual: (not (= 18 3))
+
+Ran 3 tests containing 159 assertions.
+76 failures, 0 errors.

@@ -1,0 +1,121 @@
+{
+  "task": "G1 final automatic fix cycle: direct intermediate cancellation",
+  "status": "passed",
+  "scope": "Synthetic correctness verification only; no optimizer experiment or external access",
+  "implementation_paths_changed": [
+    "src/niki/optimizer/portfolio.clj",
+    "test/niki/optimizer/portfolio_test.clj"
+  ],
+  "root_cause": "Binary64 first-observation subtraction loses the unit residual in 1.0-1.0e16. The subsequently centered asset rows cancel, returning zero risk even though exact selected observation sums differ by one.",
+  "fix": {
+    "path": "Independent direct time-series accumulation, not covariance",
+    "input_conversion": "Existing prepare-instance binary64 coercion and validation unchanged; construct BigDecimal directly from each normalized double, not BigDecimal.valueOf",
+    "arithmetic": "Exact BigDecimal sums S_t, total Q, centered numerators d_t=T*S_t-Q, and sum(d_t^2); variance denominator K^2*T^2*(T-1) uses promoting integer multiplication",
+    "rounding": "DECIMAL128 only for final displayed series S_t/K, mean Q/(K*T), variance division and square root; convert results to binary64",
+    "obsolete_helper_removed": "stable-mean",
+    "reference_helpers_reused": false
+  },
+  "reviewer_regression": {
+    "test": "direct-risk-retains-intermediate-cancellation-residuals",
+    "k": 2,
+    "observations": 2,
+    "rows": [[10000000000000000.0, 1.0], [0.0, 10000000000000000.0]],
+    "selection": [0, 1],
+    "expected_exact_variance": "1/8",
+    "red_actual_risk": 0.0,
+    "green_actual_risk": 0.3535533905932738,
+    "green_actual_mean": 5000000000000000.0,
+    "green_displayed_series": [5000000000000000.0, 5000000000000000.0],
+    "assertions_added": 5,
+    "checks": ["displayed series", "mean", "risk", "risk objective", "selection-order invariance"]
+  },
+  "red": {
+    "command": "bash ./clojure -M:g1-test",
+    "implementation_modified_before_run": false,
+    "tests": 13,
+    "assertions": 12156,
+    "failures": 2,
+    "errors": 0,
+    "exit_code": 1,
+    "failure_reason": "Only the two new risk assertions fail: expected 0.3535533905932738, actual 0.0",
+    "wall_seconds": 1.332,
+    "timeout_seconds": 180,
+    "log": "docs/evidence/g1-fix2-red.txt"
+  },
+  "green": {
+    "command": "bash ./clojure -M:g1-test",
+    "tests": 13,
+    "assertions": 12156,
+    "failures": 0,
+    "errors": 0,
+    "exit_code": 0,
+    "wall_seconds": 1.107,
+    "timeout_seconds": 180,
+    "log": "docs/evidence/g1-fix2-green.txt"
+  },
+  "exhaustive_verifier": {
+    "command": "bash ./clojure -M scripts/verify-g1.clj",
+    "status": "passed",
+    "exit_code": 0,
+    "checked_portfolios": 3003,
+    "expected_portfolios": 3003,
+    "unique_selections": 3003,
+    "failed_crosschecks": 0,
+    "maximum_absolute_mean_error": 8.673617379884035e-19,
+    "maximum_absolute_risk_error": 3.469446951953614e-18,
+    "tolerance": {"absolute": 1e-12, "relative": 1e-10},
+    "verification_elapsed_ms": 365.7413,
+    "wall_seconds": 0.954,
+    "timeout_seconds": 180,
+    "verified_at": "2026-11-07T15:51:20.096365700Z",
+    "fixture_sha256": "fb6c44113ce3d0a29a77b8998b120448710b16512455639b6e4279faa6fef758",
+    "java_version": "25.0.5",
+    "clojure_version": "1.12.6",
+    "csv_readback": {"rows": 3003, "unique_selections": 3003, "all_passed": true},
+    "log": "docs/evidence/g1-fix2-verifier.txt"
+  },
+  "retained_regression_outputs": {
+    "nearconstant_k1_risk": 1.4142135623730951,
+    "nearconstant_k2_risk": 0.7071067811865476,
+    "huge_constant_mean": 1e308,
+    "huge_constant_risk": 0.0,
+    "huge_risk_mean": 5e199,
+    "huge_risk": 7.071067811865475e199,
+    "tiny_risk_mean": 5e-201,
+    "tiny_risk": 7.071067811865475e-201,
+    "log": "docs/evidence/g1-fix2-regressions.txt"
+  },
+  "preservation": {
+    "reference_path": "src/niki/optimizer/portfolio_reference.clj",
+    "reference_unchanged_by_sha256": true,
+    "reference_sha256": "8e41aa0568c9f2f1a900131192c29d6cce7487ccc22765520e6105ee05588edf",
+    "baseline_hash_scope": ["src", "test", "scripts", "configs", "resources", "vendor"],
+    "baseline_timing": "After adding regression, before any production change",
+    "changed_paths_since_baseline": ["src/niki/optimizer/portfolio.clj"],
+    "existing_nearconstant_and_magnitude_tests_preserved": true,
+    "vendor_config_skills_modified": false,
+    "commits_created": false
+  },
+  "artifacts_created": [
+    "docs/evidence/g1-fix2-red.txt",
+    "docs/evidence/g1-fix2-green.txt",
+    "docs/evidence/g1-fix2-verifier.txt",
+    "docs/evidence/g1-fix2-regressions.txt",
+    "docs/evidence/g1-fix2-report.json"
+  ],
+  "standard_verifier_artifacts_regenerated": [
+    "docs/evidence/g1-objectives.csv",
+    "docs/evidence/g1-verification.edn"
+  ],
+  "issues_encountered": [
+    "Initial Python subprocess invocation resolved bash to the Windows WSL launcher and failed before running Clojure; reran all recorded verification commands directly in the terminal Git Bash shell.",
+    "Repository is on an unborn main branch with all project files untracked; git log has no commits. Used a pre-production-change SHA256 snapshot for scoped preservation checks rather than a HEAD diff."
+  ],
+  "limitations": [
+    "Final DECIMAL128 division/square-root and binary64 conversion are rounded, not exact outputs or a universal correct-rounding guarantee.",
+    "Correctness-first exact BigDecimal work may cost more time and allocation; recorded times are bounded local verification runs, not benchmarks or efficacy claims.",
+    "Verification covers the reviewer case, existing regressions and all 3003 selections of the fixed synthetic fixture; it is not a proof over all accepted finite inputs.",
+    "Displayed binary64 series may remain flat while exact-input portfolio dispersion is nonzero; risk intentionally does not recompute from that rounded display.",
+    "Existing nonfinite-objective rejection remains in place if a true final result cannot be represented finitely in binary64."
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "passed": false,
+  "security_concerns": [],
+  "logic_errors": [{
+    "path": "src/niki/optimizer/dsl.clj",
+    "line": 111,
+    "related_lines": [115],
+    "finding": "Canonical serialization and IDs revalidate with default limits, rejecting programs admitted under supported limit overrides.",
+    "counterexample": "[:program :portfolio [:budget [:repeat [:count 257] [:noop]]]] passes check-program/read-program with {:max-count 257}, but canonical-edn/program-id reject it with default limits.",
+    "recommendation": "Propagate explicit limit overrides through canonical serialization and ID generation; add round-trip regressions."
+  }],
+  "suggestions": [],
+  "summary": "One concrete limits-contract defect; no reader-execution or grammar-validation bypass found. Read-only static review, no execution.",
+  "delegation_id": "deleg_3211cc70",
+  "review_snapshot": "g3-dsl-static-scan.json"
+}

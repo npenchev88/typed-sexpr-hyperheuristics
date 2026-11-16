@@ -1,0 +1,35 @@
+
+Testing niki.optimizer.portfolio-test
+
+FAIL in (stable-objectives-for-extreme-finite-magnitudes) (portfolio_test.clj:37)
+expected: (Double/isFinite (:mean-return result))
+  actual: false
+
+FAIL in (stable-objectives-for-extreme-finite-magnitudes) (portfolio_test.clj:38)
+expected: (Double/isFinite (:sample-standard-deviation result))
+  actual: false
+
+FAIL in (stable-objectives-for-extreme-finite-magnitudes) (portfolio_test.clj:39)
+expected: (< (abs (- 1.0 (/ (:mean-return result) expected-mean))) 1.0E-12)
+  actual: (not (< ##Inf 1.0E-12))
+
+FAIL in (stable-objectives-for-extreme-finite-magnitudes) (portfolio_test.clj:41)
+expected: (zero? (:sample-standard-deviation result))
+  actual: (not (zero? ##NaN))
+
+FAIL in (stable-objectives-for-extreme-finite-magnitudes) (portfolio_test.clj:38)
+expected: (Double/isFinite (:sample-standard-deviation result))
+  actual: false
+
+FAIL in (stable-objectives-for-extreme-finite-magnitudes) (portfolio_test.clj:42)
+expected: (< (abs (- 1.0 (/ (:sample-standard-deviation result) expected-risk))) 1.0E-12)
+  actual: (not (< ##Inf 1.0E-12))
+
+FAIL in (stable-objectives-for-extreme-finite-magnitudes) (portfolio_test.clj:42)
+expected: (< (abs (- 1.0 (/ (:sample-standard-deviation result) expected-risk))) 1.0E-12)
+  actual: (not (< 1.0 1.0E-12))
+
+Testing niki.optimizer.portfolio-reference-test
+
+Ran 7 tests containing 96 assertions.
+7 failures, 0 errors.

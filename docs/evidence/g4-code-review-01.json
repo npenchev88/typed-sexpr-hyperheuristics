@@ -1,0 +1,12 @@
+{
+  "passed": false,
+  "security_concerns": [],
+  "logic_errors": [
+    {"path":"src/niki/optimizer/variation.clj","line":16,"finding":"Unknown option keys are hashed before keyword shape validation, realizing lazy keys and defeating bounded rejection.","counterexample":"Use (array-map poison 1), where poison is an unrealized lazy-seq that throws, as options for any variation API.","recommendation":"Require keyword keys before membership; protect nested DSL limit keys as well."},
+    {"path":"src/niki/optimizer/variation.clj","line":108,"related_locations":["dsl.clj:50","dsl.clj:57","dsl.clj:63-66"],"finding":"Mutation/crossover inherit lazy domain, form-tag and keyword-payload realization through checker lookups.","counterexample":"Mutate [:program poison [:budget [:noop]]] where poison is a throwing lazy-seq; also lazy body tag or keyword payload.","recommendation":"Require keyword tokens before domain/form/payload lookup; use bounded poison regressions, never infinite probes."}
+  ],
+  "suggestions": [],
+  "summary": "Well-formed variation logic appears sound; malformed nested lazy inputs can bypass bounded rejection. Static read-only review of every diff section; no execution.",
+  "delegation_id": "deleg_d2b0610e",
+  "review_snapshot": "g4-static-scan.json"
+}

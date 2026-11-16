@@ -1,0 +1,87 @@
+{
+  "scope": "G4 typed variation implementation and bounded development checks only; no optimizer search, market ingestion, scheduling adapter, G5 work, task-status changes, dependency changes or commits.",
+  "namespace": "niki.optimizer.variation",
+  "apis": {
+    "generate-program": {
+      "signature": "(generate-program domain options)",
+      "domains": [":portfolio", ":scheduling"],
+      "return_keys": ["program", "child-id", "parent-ids", "paths", "changed?", "attempts", "fallback?", "rejections", "seed", "limits", "distribution"],
+      "semantics": "Exactly one total grammar construction followed by full DSL checking. parent-ids and paths are empty; changed? true means a new construction, not comparison with a parent. distribution is :development-only-v1."
+    },
+    "mutate": {
+      "signature": "(mutate program options)",
+      "return_keys": ["program", "parent-ids", "child-id", "path", "paths", "changed?", "attempts", "fallback?", "rejections", "seed", "limits"],
+      "semantics": "Pick an editable DSL site uniformly each attempt, construct a same-role/domain replacement within contextual size/depth capacity, then use DSL replace-subtree/full checking. Equal subtrees are rejected. Exhaustion adds fallback-reason :unchanged-parent and returns the original canonical parent and its ID. Fallback path/paths describe the last attempted path, not an applied edit."
+    },
+    "crossover": {
+      "signature": "(crossover left right options)",
+      "return_keys": ["children", "parent-ids", "child-ids", "paths", "changed?", "attempts", "fallback?", "rejections", "seed", "limits"],
+      "semantics": "Enumerate site pairs with identical [role domain] and both directional effect-subset checks. Sample pairs uniformly without replacement. child1 is left with right's actual selected subtree; child2 is right with left's actual selected subtree. Evaluate BOTH full replace-subtree validations before deciding. Identical donated subtrees are rejected. Success changes BOTH children. Exhaustion adds fallback-reason :unchanged-parents and returns both original canonical parents; never substitute generated/mutated material.",
+      "preflight": "Same canonical parent ID or incompatible domains produce explicit rejection/fallback with attempts 0. Defensive no-compatible-sites fallback is also explicit."
+    }
+  },
+  "options": {
+    "allowed_keys": ["seed", "limits", "max-attempts"],
+    "defaults": {"seed": 0, "max-attempts": 10, "limits": {"max-nodes": 128, "max-depth": 12, "max-count": 256, "max-source-chars": 65536}},
+    "validation": "Require an options map before destructuring. Require standard immutable integer classes for signed-long seed and integer max-attempts in [1,10]. DSL effective-limits validates the limits map/keys/integers and feasible wrappers. Reject any effective limit above the corresponding DSL default, rather than clamping: IDs and runtime both check under DSL defaults. Invalid inputs throw ExceptionInfo before construction. Count payload validity is checked by DSL before traversing editable parent sites.",
+    "source_chars": "max-source-chars is a parser-input bound in the DSL, not an AST-vector size or serialized-output guarantee; variation returns AST vectors. Node/depth/count constraints are checked on all complete returned ASTs."
+  },
+  "development_distribution_not_confirmatory": {
+    "rng": "Fresh java.util.Random from supplied signed-long seed; stable vector ordering. Java Random is a 48-bit-state development PRNG, not cryptographic or an assertion of independent streams for every signed-long seed.",
+    "subtree_caps": "Uniform integer node cap in [1,min(30,context-node-cap)]; independently uniform integer depth cap in [1,min(6,context-depth-cap)]. For generation the context excludes the two protected wrapper vectors. Default generation therefore has at most 32 vectors and depth 8, below the runtime envelope.",
+    "production_selection": "At each role choose uniformly among grammar productions fitting one node plus the minimum one node per child, with compound forms requiring depth at least two. Every role has a valid terminal, so construction needs no rejection loop.",
+    "child_allocation": "Process children left-to-right. Allocate a uniform cap in [1,available-minus-reserved-sibling-minima], subtract that cap, recurse at depth minus one. Do not recycle unused capacity. Realized sizes/depths/trees are NOT uniform.",
+    "leaves": "Count uniform integer [0,effective-max-count]. Constant uniform integer [-10,10], represented as double. Initializer uniform random/first. Operator uniform swap/restart, plus insert/reverse for scheduling. Predicate uniform archive-changed/budget-left/coin. Feature uniform objective-0/objective-1/progress.",
+    "mutation": "Uniform site with replacement across construction attempts; replacements use the same development subtree distribution under contextual limits. May return unchanged-parent after bounded unlucky attempts even if some changed replacement exists; it does not claim exhaustive discovery of feasible edits.",
+    "crossover": "Uniform compatible pair without replacement until first successful swap or the attempt cap. Whole-body swapping at editable path [2 1] is legal; root [] and budget [2] are never editable."
+  },
+  "rejection_metadata": {
+    "common": "Rejections retain attempt number and selected path (mutation) or paths (crossover). All failed construction attempts are retained in encounter order.",
+    "reasons": [":identical-subtree", ":same-parent", ":incompatible-domain", ":no-compatible-sites", ":structural-or-type-rejection"],
+    "checker_failure": "Structural/type rejection includes child index 0/1, the original checker message (for example Node limit exceeded or Depth limit exceeded) and complete ExceptionInfo data. Both child failures are collected if present. Preflight rejection uses attempt 0 and empty paths.",
+    "accounting": "attempts counts constructed candidate edits/pairs, not validations or rejected-site enumeration. Generation uses one. Mutation never exceeds max-attempts. Crossover may stop earlier after exhausting available pairs. Explicit unchanged-parent fallback is returned within the requested operation; any future offspring-assessment ledger remains G5's responsibility."
+  },
+  "verification": {
+    "final_suite": {"tests": 8, "assertions": 76930, "failures": 0, "errors": 0},
+    "versions": ["Clojure 1.12.6", "Clojure 1.12.5"],
+    "java_version_observed": "25.0.5",
+    "commands": [
+      {"command": "bash ./clojure -M docs/evidence/g4-variation-suite.clj", "evidence": "docs/evidence/g4-variation-1.12.6.txt", "exit_code": 0},
+      {"command": "bash ./clojure -M:legacy-version docs/evidence/g4-variation-suite.clj", "evidence": "docs/evidence/g4-variation-1.12.5.txt", "exit_code": 0},
+      {"command": "cmd.exe /d /c 'clojure.cmd -M docs/evidence/g4-variation-suite.clj'", "evidence": "docs/evidence/g4-variation-native-1.12.6.txt", "exit_code": 0},
+      {"command": "cmd.exe /d /c 'clojure.cmd -M:legacy-version docs/evidence/g4-variation-suite.clj'", "evidence": "docs/evidence/g4-variation-native-1.12.5.txt", "exit_code": 0},
+      {"command": "bash ./clojure -M docs/evidence/g4-variation-audit.clj", "evidence": "docs/evidence/g4-variation-audit.txt", "exit_code": 0}
+    ],
+    "test_case_families": [
+      "200 seeded generation cases (100 per domain), checked metadata and deterministic replay.",
+      "200 rich-parent mutations: every selected seed produces a real distinct local child, checked IDs/paths/replay.",
+      "200 actual two-parent crossover cases: every selected seed changes both children; exact donor-subtree swap equations and locality checked, including protected wrappers.",
+      "300 tight-envelope max-attempts=1 crossovers: explicit identical-subtree, node-limit and depth-limit rejections, including each child index, unchanged-parent fallback and whole-child checking.",
+      "600 broad tuples (300 seeds per domain), each with two generated parents, one mutation and one crossover, replayed identically. Envelopes: nodes/depth/count 3/3/1, 4/4/1, 12/6/3 and 128/12/256. Five ASTs per tuple get an independent grammar/role/payload/effect/vector-count/depth oracle plus production validation.",
+      "All 18 body grammar form tags observed in genuine generation, including varied control, predicate and arithmetic score forms.",
+      "Malformed, unknown, lazy, nonfinite, mutable and out-of-range option/numeric inputs; source options and seeds rejected without realizing poison lazy sequences; signed-long extremes accepted and replayed.",
+      "Minimal feasible envelope generation/mutation/crossover terminates, with explicit unchanged fallback and attempt counts. Same-parent/domain mismatch produce preflight rejection, not edited invalid programs."
+    ],
+    "audit_results": {"broad_tuples": 600, "generated_parent_constructions": 1200, "mutation_changed": 424, "mutation_fallbacks": 176, "crossover_both_changed": 323, "crossover_fallbacks": 277, "max_mutation_attempts": 10, "max_crossover_attempts": 5, "broad_identical_subtree_rejections": 2281, "broad_same_parent_rejections": 277, "tight_cases": 300, "tight_node_limit_rejections": 92, "tight_depth_limit_rejections": 29, "tight_identical_subtree_rejections": 14},
+    "sequential_red_green_evidence": [
+      {"slice": "generation", "red": "g4-variation-generation-red.txt", "red_tests": 1, "red_failures": 200, "red_errors": 0, "green": "g4-variation-generation-green.txt", "green_assertions": 1400},
+      {"slice": "mutation", "red": "g4-variation-mutation-red.txt", "red_tests": 2, "red_failures": 201, "red_errors": 0, "green": "g4-variation-mutation-green.txt", "green_assertions": 3608},
+      {"slice": "actual crossover", "red": "g4-variation-crossover-red.txt", "red_tests": 4, "red_failures": 202, "red_errors": 0, "green": "g4-variation-crossover-green.txt", "green_assertions": 6822},
+      {"slice": "adversarial domain shape regression", "red": "g4-variation-edge-checks.txt", "green": "g4-variation-edge-checks-green.txt", "finding": "A lazy generation-domain input was hashed by set membership, realizing it. Added keyword? guard before membership. The first edge run also exposed a test fixture with no shared identical subtrees; adjusted its operator to make the intended identical-subtree check meaningful."}
+    ],
+    "source_sha256": {"src/niki/optimizer/variation.clj": "07056767d97868e19d43e6e7e6992fec80aae044866652967196c3d53ac09d71", "test/niki/optimizer/variation_test.clj": "b1b76bb485cf361692e4074323d73505db149810cf96b676c938fc9a4661b015"}
+  },
+  "proof_sketches_and_assumptions": {
+    "P1_generation": "Induct on decreasing depth cap. Each role has a domain-valid terminal with bounded numeric payload; selecting it inhabits the required [role domain]. A compound selects exactly the contract's child roles, reserves each child's minimum size and recursively reduces depth; child size caps sum to at most the parent's cap minus one. Union of child effects and intrinsic form effects stays within the role allowance. Adding the two protected wrappers preserves the total node/depth bounds. Full DSL validation is a final executable gate.",
+    "P2_variation": "Editable DSL sites exclude root and budget wrapper. Mutation constructs the same role/domain under the residual whole-program node/depth capacity. Crossover explicitly requires equal domain-indexed role and each donor's inferred effects to fit the opposite site's allowance. Contextual substitution therefore preserves the local typing/effect judgment by structural induction up to the wrappers; nevertheless BOTH complete crossover children and each mutation child are rechecked, since local role/effect compatibility alone does not prove global structural limits. Canonical ID calculation is valid because effective limits never exceed the DSL defaults. Equal subtree rejection ensures both accepted swap children actually differ from their corresponding parents.",
+    "termination": "Each constructor has at most 30 subtree vectors and depth cap 6, and child allocation has bounded arity. Mutation makes at most 10 attempts. Crossover enumerates at most 15876 site pairs under the 128-node envelope, and samples at most 10 pairs; no open-ended rejection or duplicate-sampling loop. Parent checking and canonical IDs use the bounded DSL checker.",
+    "trusted_host": "Assumes correctness of DSL check-program, replace-subtree, site/effect inference and canonical ID implementation; immutable ordinary Clojure AST/options values, JVM/library behavior and no malicious host implementations of collection interfaces. Independent tests duplicate the contract rather than reading the production grammar table, but are not a formal mechanized proof or a JVM security sandbox."
+  },
+  "limitations_and_boundary": [
+    "Bounded stochastic mutation can fall back even when a different site or replacement would be feasible; no exhaustive-success guarantee or distribution over all legal programs is claimed.",
+    "Development cap/form/leaf/site distributions are explicit but intentionally not frozen confirmatory priors. The constant sampler is only a subset of the accepted finite constant space.",
+    "Valid typed programs and changed offspring do not establish optimization usefulness, runtime speed, elapsed-time bounds for host code, or scientific performance.",
+    "A native -e quoting attempt failed before suite execution; using the evidence script eliminated nested Windows quoting. The audit script had an extra closing delimiter on its first run; it was corrected and rerun successfully. Neither is represented as a passing test.",
+    "This agent verified variation standalone on both language versions and native launchers. Parent owns runtime integration, aggregate G1/G2/upstream/protocol regressions, independent/external review and the post-G4 pause. No project task status was changed."
+  ]
+}

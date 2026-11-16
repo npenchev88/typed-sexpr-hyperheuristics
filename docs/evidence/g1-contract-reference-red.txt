@@ -1,0 +1,47 @@
+
+Testing niki.optimizer.portfolio-test
+
+Testing niki.optimizer.portfolio-reference-test
+
+FAIL in (default-reference-compares-normalized-binary64-inputs) (portfolio_reference_test.clj:19)
+expected: (= :normalized-binary64 (:input-mode prepared))
+  actual: (not (= :normalized-binary64 nil))
+
+FAIL in (default-reference-compares-normalized-binary64-inputs) (portfolio_reference_test.clj:22)
+expected: (= (:sample-standard-deviation direct) (:sample-standard-deviation independent))
+  actual: (not (= 1482910.4003789306 0.0))
+
+FAIL in (default-reference-compares-normalized-binary64-inputs) (portfolio_reference_test.clj:24)
+expected: (= (:objectives direct) (:objectives independent))
+  actual: (not (= [-2.5E22 1482910.4003789306] [-2.5E22 0.0]))
+
+FAIL in (default-reference-compares-normalized-binary64-inputs) (portfolio_reference_test.clj:19)
+expected: (= :normalized-binary64 (:input-mode prepared))
+  actual: (not (= :normalized-binary64 nil))
+
+FAIL in (default-reference-compares-normalized-binary64-inputs) (portfolio_reference_test.clj:22)
+expected: (= (:sample-standard-deviation direct) (:sample-standard-deviation independent))
+  actual: (not (= 9.813077866773595E-18 0.0))
+
+FAIL in (default-reference-compares-normalized-binary64-inputs) (portfolio_reference_test.clj:24)
+expected: (= (:objectives direct) (:objectives independent))
+  actual: (not (= [-0.15 9.813077866773595E-18] [-0.15 0.0]))
+
+FAIL in (default-reference-compares-normalized-binary64-inputs) (portfolio_reference_test.clj:19)
+expected: (= :normalized-binary64 (:input-mode prepared))
+  actual: (not (= :normalized-binary64 nil))
+
+FAIL in (default-reference-compares-normalized-binary64-inputs) (portfolio_reference_test.clj:21)
+expected: (= (:mean-return direct) (:mean-return independent))
+  actual: (not (= 9.223372036854776E18 9.223372036854775E18))
+
+FAIL in (default-reference-compares-normalized-binary64-inputs) (portfolio_reference_test.clj:22)
+expected: (= (:sample-standard-deviation direct) (:sample-standard-deviation independent))
+  actual: (not (= 724.0773439350247 570.6351724175438))
+
+FAIL in (default-reference-compares-normalized-binary64-inputs) (portfolio_reference_test.clj:24)
+expected: (= (:objectives direct) (:objectives independent))
+  actual: (not (= [-9.223372036854776E18 724.0773439350247] [-9.223372036854775E18 570.6351724175438]))
+
+Ran 17 tests containing 12203 assertions.
+10 failures, 0 errors.

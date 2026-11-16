@@ -1,0 +1,30 @@
+#'niki.optimizer.runtime-test/noop-visits-both-protected-wrappers
+
+Testing niki.optimizer.runtime-test
+
+FAIL in (noop-visits-both-protected-wrappers) (runtime_test.clj:25)
+expected: (= :completed (:status r))
+  actual: (not (= :completed nil))
+
+FAIL in (noop-visits-both-protected-wrappers) (runtime_test.clj:26)
+expected: (= zero-costs (:charged-costs r))
+  actual: (not (= {:proposal-attempts 0, :valid-candidates 0, :unique-candidates 0, :cache-hits 0, :objective-calculations 0, :interpreter-steps 3} nil))
+
+FAIL in (noop-visits-both-protected-wrappers) (runtime_test.clj:27)
+expected: (= [] (:archive r) (:archive-solutions r))
+  actual: (not (= [] nil nil))
+
+FAIL in (noop-visits-both-protected-wrappers) (runtime_test.clj:29)
+expected: (= 17 (:seed r))
+  actual: (not (= 17 nil))
+
+FAIL in (noop-visits-both-protected-wrappers) (runtime_test.clj:30)
+expected: (= "test-v1" (:adapter-id r))
+  actual: (not (= "test-v1" nil))
+
+FAIL in (noop-visits-both-protected-wrappers) (runtime_test.clj:31)
+expected: (re-matches #"[0-9a-f]{64}" (or (:program-id r) ""))
+  actual: (not (re-matches #"[0-9a-f]{64}" ""))
+
+Ran 1 tests containing 7 assertions.
+6 failures, 0 errors.

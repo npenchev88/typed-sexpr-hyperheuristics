@@ -1,0 +1,70 @@
+#'niki.optimizer.runtime-test/timing-is-measured-and-is-the-only-replay-exclusion
+
+Testing niki.optimizer.runtime-test
+
+FAIL in (bounded-trace-records-visits-branches-lineage-and-cache-outcomes) (runtime_test.clj:276)
+expected: (= [:program :budget :seq :initialize :initializer :if :predicate :initialize :initializer] (mapv (fn* [p1__1080#] (first (:form p1__1080#))) visits))
+  actual: (not (= [:program :budget :seq :initialize :initializer :if :predicate :initialize :initializer] []))
+
+FAIL in (bounded-trace-records-visits-branches-lineage-and-cache-outcomes) (runtime_test.clj:278)
+expected: (= [1 2 3 4 5 6 7 8 9] (mapv :step visits))
+  actual: (not (= [1 2 3 4 5 6 7 8 9] []))
+
+FAIL in (bounded-trace-records-visits-branches-lineage-and-cache-outcomes) (runtime_test.clj:279)
+expected: (= [:then] (mapv :taken (filter (fn* [p1__1081#] (= :branch (:event p1__1081#))) events)))
+  actual: (not (= [:then] []))
+
+FAIL in (bounded-trace-records-visits-branches-lineage-and-cache-outcomes) (runtime_test.clj:280)
+expected: (= [nil [5]] (mapv :parent proposals))
+  actual: (not (= [nil [5]] []))
+
+FAIL in (bounded-trace-records-visits-branches-lineage-and-cache-outcomes) (runtime_test.clj:281)
+expected: (= [:first :first] (mapv :operator proposals))
+  actual: (not (= [:first :first] []))
+
+FAIL in (bounded-trace-records-visits-branches-lineage-and-cache-outcomes) (runtime_test.clj:282)
+expected: (= [false true] (mapv :duplicate? candidates))
+  actual: (not (= [false true] []))
+
+FAIL in (bounded-trace-records-visits-branches-lineage-and-cache-outcomes) (runtime_test.clj:283)
+expected: (= [false true] (mapv :cache-hit? candidates))
+  actual: (not (= [false true] []))
+
+FAIL in (bounded-trace-records-visits-branches-lineage-and-cache-outcomes) (runtime_test.clj:284)
+expected: (= [true false] (mapv :archive-changed? candidates))
+  actual: (not (= [true false] []))
+
+FAIL in (bounded-trace-records-visits-branches-lineage-and-cache-outcomes) (runtime_test.clj:285)
+expected: (false? (:trace-truncated? r))
+  actual: (not (false? nil))
+
+FAIL in (bounded-trace-records-visits-branches-lineage-and-cache-outcomes) (runtime_test.clj:286)
+expected: (= 0 (:trace-dropped r))
+  actual: (not (= 0 nil))
+
+FAIL in (bounded-trace-records-visits-branches-lineage-and-cache-outcomes) (runtime_test.clj:291)
+expected: (= 2048 (count (:trace traced)))
+  actual: (not (= 2048 0))
+
+FAIL in (bounded-trace-records-visits-branches-lineage-and-cache-outcomes) (runtime_test.clj:292)
+expected: (true? (:trace-truncated? traced))
+  actual: (not (true? nil))
+
+FAIL in (bounded-trace-records-visits-branches-lineage-and-cache-outcomes) (runtime_test.clj:293)
+expected: (pos? (or (:trace-dropped traced) 0))
+  actual: (not (pos? 0))
+
+FAIL in (bounded-trace-records-visits-branches-lineage-and-cache-outcomes) (runtime_test.clj:295)
+expected: (false? (:trace-truncated? quiet))
+  actual: (not (false? nil))
+
+FAIL in (timing-is-measured-and-is-the-only-replay-exclusion) (runtime_test.clj:303)
+expected: (and (integer? (get-in a [:timing :elapsed-ns])) (<= 0 (get-in a [:timing :elapsed-ns] -1)))
+  actual: false
+
+FAIL in (timing-is-measured-and-is-the-only-replay-exclusion) (runtime_test.clj:305)
+expected: (contains? (:timing a) :thread-cpu-ns)
+  actual: (not (contains? {} :thread-cpu-ns))
+
+Ran 16 tests containing 354 assertions.
+16 failures, 0 errors.

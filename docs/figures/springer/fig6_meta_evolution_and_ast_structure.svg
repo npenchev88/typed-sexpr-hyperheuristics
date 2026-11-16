@@ -1,0 +1,122 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 325" width="174mm" height="74.4mm" font-family="Helvetica, Arial, sans-serif">
+  <rect x="0" y="0" width="760" height="325" fill="#ffffff"/>
+  <text x="58" y="18" font-size="10.5" font-weight="700" fill="#000000">(a) <tspan font-weight="600">Meta-Evolution Trajectory (30 Seeds)</tspan></text>
+  <rect x="58" y="26" width="302" height="224" fill="#ffffff" stroke="#000000" stroke-width="0.9"/>
+  <line x1="58" y1="250.00" x2="360" y2="250.00" stroke="#e0e0e0" stroke-width="0.7"/>
+  <text x="53" y="250.00" font-size="9" fill="#111111" text-anchor="end" dominant-baseline="middle">0.731</text>
+  <line x1="58" y1="205.20" x2="360" y2="205.20" stroke="#e0e0e0" stroke-width="0.7"/>
+  <text x="53" y="205.20" font-size="9" fill="#111111" text-anchor="end" dominant-baseline="middle">0.740</text>
+  <line x1="58" y1="160.40" x2="360" y2="160.40" stroke="#e0e0e0" stroke-width="0.7"/>
+  <text x="53" y="160.40" font-size="9" fill="#111111" text-anchor="end" dominant-baseline="middle">0.750</text>
+  <line x1="58" y1="115.60" x2="360" y2="115.60" stroke="#e0e0e0" stroke-width="0.7"/>
+  <text x="53" y="115.60" font-size="9" fill="#111111" text-anchor="end" dominant-baseline="middle">0.759</text>
+  <line x1="58" y1="70.80" x2="360" y2="70.80" stroke="#e0e0e0" stroke-width="0.7"/>
+  <text x="53" y="70.80" font-size="9" fill="#111111" text-anchor="end" dominant-baseline="middle">0.769</text>
+  <line x1="58" y1="26.00" x2="360" y2="26.00" stroke="#e0e0e0" stroke-width="0.7"/>
+  <text x="53" y="26.00" font-size="9" fill="#111111" text-anchor="end" dominant-baseline="middle">0.778</text>
+  <line x1="74.00" y1="26" x2="74.00" y2="250" stroke="#e0e0e0" stroke-width="0.7"/>
+  <text x="74.00" y="265" font-size="9" fill="#000000" text-anchor="middle">0</text>
+  <line x1="112.57" y1="26" x2="112.57" y2="250" stroke="#e0e0e0" stroke-width="0.7"/>
+  <text x="112.57" y="265" font-size="9" fill="#000000" text-anchor="middle">1</text>
+  <line x1="151.14" y1="26" x2="151.14" y2="250" stroke="#e0e0e0" stroke-width="0.7"/>
+  <text x="151.14" y="265" font-size="9" fill="#000000" text-anchor="middle">2</text>
+  <line x1="189.71" y1="26" x2="189.71" y2="250" stroke="#e0e0e0" stroke-width="0.7"/>
+  <text x="189.71" y="265" font-size="9" fill="#000000" text-anchor="middle">3</text>
+  <line x1="228.29" y1="26" x2="228.29" y2="250" stroke="#e0e0e0" stroke-width="0.7"/>
+  <text x="228.29" y="265" font-size="9" fill="#000000" text-anchor="middle">4</text>
+  <line x1="266.86" y1="26" x2="266.86" y2="250" stroke="#e0e0e0" stroke-width="0.7"/>
+  <text x="266.86" y="265" font-size="9" fill="#000000" text-anchor="middle">5</text>
+  <line x1="305.43" y1="26" x2="305.43" y2="250" stroke="#e0e0e0" stroke-width="0.7"/>
+  <text x="305.43" y="265" font-size="9" fill="#000000" text-anchor="middle">6</text>
+  <line x1="344.00" y1="26" x2="344.00" y2="250" stroke="#e0e0e0" stroke-width="0.7"/>
+  <text x="344.00" y="265" font-size="9" fill="#000000" text-anchor="middle">7</text>
+  <text x="209.00" y="281" font-size="9.5" fill="#000000" text-anchor="middle">Generation / Batch (32 Programs / Batch)</text>
+  <text x="16" y="138.00" font-size="9.5" fill="#000000" text-anchor="middle" transform="rotate(-90 16 138.00)">Best-So-Far Training Norm. HV</text>
+  <polyline points="74.00,211.98 112.57,154.73 151.14,120.33 189.71,85.88 228.29,77.43 266.86,72.87 305.43,69.45 344.00,64.02" fill="none" stroke="#1f77b4" stroke-width="1.7"/>
+  <circle cx="74.00" cy="211.98" r="2.90" fill="#1f77b4" stroke="#145380" stroke-width="0.90"/>
+  <circle cx="112.57" cy="154.73" r="2.90" fill="#1f77b4" stroke="#145380" stroke-width="0.90"/>
+  <circle cx="151.14" cy="120.33" r="2.90" fill="#1f77b4" stroke="#145380" stroke-width="0.90"/>
+  <circle cx="189.71" cy="85.88" r="2.90" fill="#1f77b4" stroke="#145380" stroke-width="0.90"/>
+  <circle cx="228.29" cy="77.43" r="2.90" fill="#1f77b4" stroke="#145380" stroke-width="0.90"/>
+  <circle cx="266.86" cy="72.87" r="2.90" fill="#1f77b4" stroke="#145380" stroke-width="0.90"/>
+  <circle cx="305.43" cy="69.45" r="2.90" fill="#1f77b4" stroke="#145380" stroke-width="0.90"/>
+  <circle cx="344.00" cy="64.02" r="2.90" fill="#1f77b4" stroke="#145380" stroke-width="0.90"/>
+  <polyline points="74.00,211.98 112.57,132.70 151.14,106.22 189.71,91.02 228.29,78.67 266.86,74.12 305.43,72.43 344.00,66.79" fill="none" stroke="#ff7f0e" stroke-width="1.7" stroke-dasharray="6,2"/>
+  <rect x="71.10" y="209.08" width="5.80" height="5.80" fill="#ff7f0e" stroke="#b85800" stroke-width="0.90"/>
+  <rect x="109.67" y="129.80" width="5.80" height="5.80" fill="#ff7f0e" stroke="#b85800" stroke-width="0.90"/>
+  <rect x="148.24" y="103.32" width="5.80" height="5.80" fill="#ff7f0e" stroke="#b85800" stroke-width="0.90"/>
+  <rect x="186.81" y="88.12" width="5.80" height="5.80" fill="#ff7f0e" stroke="#b85800" stroke-width="0.90"/>
+  <rect x="225.39" y="75.77" width="5.80" height="5.80" fill="#ff7f0e" stroke="#b85800" stroke-width="0.90"/>
+  <rect x="263.96" y="71.22" width="5.80" height="5.80" fill="#ff7f0e" stroke="#b85800" stroke-width="0.90"/>
+  <rect x="302.53" y="69.53" width="5.80" height="5.80" fill="#ff7f0e" stroke="#b85800" stroke-width="0.90"/>
+  <rect x="341.10" y="63.89" width="5.80" height="5.80" fill="#ff7f0e" stroke="#b85800" stroke-width="0.90"/>
+  <polyline points="74.00,113.83 112.57,96.61 151.14,89.31 189.71,85.45 228.29,82.14 266.86,77.87 305.43,69.54 344.00,68.63" fill="none" stroke="#2ca02c" stroke-width="1.7" stroke-dasharray="2,2"/>
+  <polygon points="74.00,110.20 77.63,113.83 74.00,117.45 70.38,113.83" fill="#2ca02c" stroke="#1b661b" stroke-width="0.90"/>
+  <polygon points="112.57,92.98 116.20,96.61 112.57,100.23 108.95,96.61" fill="#2ca02c" stroke="#1b661b" stroke-width="0.90"/>
+  <polygon points="151.14,85.68 154.77,89.31 151.14,92.93 147.52,89.31" fill="#2ca02c" stroke="#1b661b" stroke-width="0.90"/>
+  <polygon points="189.71,81.82 193.34,85.45 189.71,89.07 186.09,85.45" fill="#2ca02c" stroke="#1b661b" stroke-width="0.90"/>
+  <polygon points="228.29,78.51 231.91,82.14 228.29,85.76 224.66,82.14" fill="#2ca02c" stroke="#1b661b" stroke-width="0.90"/>
+  <polygon points="266.86,74.25 270.48,77.87 266.86,81.50 263.23,77.87" fill="#2ca02c" stroke="#1b661b" stroke-width="0.90"/>
+  <polygon points="305.43,65.92 309.05,69.54 305.43,73.17 301.80,69.54" fill="#2ca02c" stroke="#1b661b" stroke-width="0.90"/>
+  <polygon points="344.00,65.00 347.63,68.63 344.00,72.25 340.38,68.63" fill="#2ca02c" stroke="#1b661b" stroke-width="0.90"/>
+  <text x="448" y="18" font-size="10.5" font-weight="700" fill="#000000">(b) <tspan font-weight="600">Tallied Across the 30 Final Programs</tspan></text>
+  <rect x="448" y="26" width="294" height="224" fill="#ffffff" stroke="#000000" stroke-width="0.9"/>
+  <line x1="448.00" y1="26" x2="448.00" y2="250" stroke="#e0e0e0" stroke-width="0.7"/>
+  <text x="448.00" y="265" font-size="9" fill="#111111" text-anchor="middle">0</text>
+  <line x1="538.00" y1="26" x2="538.00" y2="250" stroke="#e0e0e0" stroke-width="0.7"/>
+  <text x="538.00" y="265" font-size="9" fill="#111111" text-anchor="middle">10</text>
+  <line x1="628.00" y1="26" x2="628.00" y2="250" stroke="#e0e0e0" stroke-width="0.7"/>
+  <text x="628.00" y="265" font-size="9" fill="#111111" text-anchor="middle">20</text>
+  <line x1="718.00" y1="26" x2="718.00" y2="250" stroke="#e0e0e0" stroke-width="0.7"/>
+  <text x="718.00" y="265" font-size="9" fill="#111111" text-anchor="middle">30</text>
+  <text x="595.00" y="281" font-size="9.5" fill="#000000" text-anchor="middle">Number of Final Programs (of 30)</text>
+  <text x="442" y="40.00" font-size="8.5" font-family="Consolas, monospace" fill="#000000" text-anchor="end" dominant-baseline="middle">:objective-0</text>
+  <rect x="448" y="31.00" width="270.0" height="8.5" fill="#1f77b4" stroke="#000000" stroke-width="0.6"/>
+  <rect x="448" y="40.50" width="270.0" height="8.5" fill="#ff7f0e" stroke="#000000" stroke-width="0.6"/>
+  <text x="721.00" y="38.00" font-size="7.5" fill="#000000">30</text>
+  <text x="721.00" y="48.00" font-size="7.5" fill="#000000">30</text>
+  <text x="442" y="68.00" font-size="8.5" font-family="Consolas, monospace" fill="#000000" text-anchor="end" dominant-baseline="middle">:objective-1</text>
+  <rect x="448" y="59.00" width="225.0" height="8.5" fill="#1f77b4" stroke="#000000" stroke-width="0.6"/>
+  <rect x="448" y="68.50" width="261.0" height="8.5" fill="#ff7f0e" stroke="#000000" stroke-width="0.6"/>
+  <text x="676.00" y="66.00" font-size="7.5" fill="#000000">25</text>
+  <text x="712.00" y="76.00" font-size="7.5" fill="#000000">29</text>
+  <text x="442" y="96.00" font-size="8.5" font-family="Consolas, monospace" fill="#000000" text-anchor="end" dominant-baseline="middle">:add / :multiply</text>
+  <rect x="448" y="87.00" width="261.0" height="8.5" fill="#1f77b4" stroke="#000000" stroke-width="0.6"/>
+  <rect x="448" y="96.50" width="270.0" height="8.5" fill="#ff7f0e" stroke="#000000" stroke-width="0.6"/>
+  <text x="712.00" y="94.00" font-size="7.5" fill="#000000">29</text>
+  <text x="721.00" y="104.00" font-size="7.5" fill="#000000">30</text>
+  <text x="442" y="124.00" font-size="8.5" font-family="Consolas, monospace" fill="#000000" text-anchor="end" dominant-baseline="middle">:progress (anneal)</text>
+  <rect x="448" y="115.00" width="81.0" height="8.5" fill="#1f77b4" stroke="#000000" stroke-width="0.6"/>
+  <rect x="448" y="124.50" width="126.0" height="8.5" fill="#ff7f0e" stroke="#000000" stroke-width="0.6"/>
+  <text x="532.00" y="122.00" font-size="7.5" fill="#000000">9</text>
+  <text x="577.00" y="132.00" font-size="7.5" fill="#000000">14</text>
+  <text x="442" y="152.00" font-size="8.5" font-family="Consolas, monospace" fill="#000000" text-anchor="end" dominant-baseline="middle">:operator :swap</text>
+  <rect x="448" y="143.00" width="270.0" height="8.5" fill="#1f77b4" stroke="#000000" stroke-width="0.6"/>
+  <rect x="448" y="152.50" width="81.0" height="8.5" fill="#ff7f0e" stroke="#000000" stroke-width="0.6"/>
+  <text x="721.00" y="150.00" font-size="7.5" fill="#000000">30</text>
+  <text x="532.00" y="160.00" font-size="7.5" fill="#000000">9</text>
+  <text x="442" y="180.00" font-size="8.5" font-family="Consolas, monospace" fill="#000000" text-anchor="end" dominant-baseline="middle">:operator :insert</text>
+  <rect x="448" y="171.00" width="1.5" height="8.5" fill="#1f77b4" stroke="#000000" stroke-width="0.6"/>
+  <rect x="448" y="180.50" width="234.0" height="8.5" fill="#ff7f0e" stroke="#000000" stroke-width="0.6"/>
+  <text x="451.00" y="178.00" font-size="7.5" fill="#000000">0</text>
+  <text x="685.00" y="188.00" font-size="7.5" fill="#000000">26</text>
+  <text x="442" y="208.00" font-size="8.5" font-family="Consolas, monospace" fill="#000000" text-anchor="end" dominant-baseline="middle">:operator :restart</text>
+  <rect x="448" y="199.00" width="108.0" height="8.5" fill="#1f77b4" stroke="#000000" stroke-width="0.6"/>
+  <rect x="448" y="208.50" width="36.0" height="8.5" fill="#ff7f0e" stroke="#000000" stroke-width="0.6"/>
+  <text x="559.00" y="206.00" font-size="7.5" fill="#000000">12</text>
+  <text x="487.00" y="216.00" font-size="7.5" fill="#000000">4</text>
+  <text x="442" y="236.00" font-size="8.5" font-family="Consolas, monospace" fill="#000000" text-anchor="end" dominant-baseline="middle">:initializer :first</text>
+  <rect x="448" y="227.00" width="27.0" height="8.5" fill="#1f77b4" stroke="#000000" stroke-width="0.6"/>
+  <rect x="448" y="236.50" width="81.0" height="8.5" fill="#ff7f0e" stroke="#000000" stroke-width="0.6"/>
+  <text x="478.00" y="234.00" font-size="7.5" fill="#000000">3</text>
+  <text x="532.00" y="244.00" font-size="7.5" fill="#000000">9</text>
+  <rect x="58" y="287" width="684" height="26" fill="#ffffff" stroke="#cccccc" stroke-width="0.8"/>
+  <circle cx="76.00" cy="300.00" r="3.00" fill="#1f77b4" stroke="#145380" stroke-width="0.90"/>
+  <text x="85" y="301" font-size="8.5" fill="#000000" dominant-baseline="middle">(a) A1: GP-Mixed (+0.031 Train HV)</text>
+  <rect x="257.00" y="297.00" width="6.00" height="6.00" fill="#ff7f0e" stroke="#b85800" stroke-width="0.90"/>
+  <text x="269" y="301" font-size="8.5" fill="#000000" dominant-baseline="middle">A2: GP-Mut (+0.031)</text>
+  <rect x="388" y="294" width="11" height="11" fill="#1f77b4" stroke="#000000" stroke-width="0.6"/>
+  <text x="404" y="301" font-size="8.5" fill="#000000" dominant-baseline="middle">(b) NASDAQ-50 Portfolio (30/30 Unique)</text>
+  <rect x="585" y="294" width="11" height="11" fill="#ff7f0e" stroke="#000000" stroke-width="0.6"/>
+  <text x="601" y="301" font-size="8.5" fill="#000000" dominant-baseline="middle">wt40 Scheduling (30/30)</text>
+</svg>

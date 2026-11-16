@@ -1,0 +1,11 @@
+{
+  "status": "proposed_not_executed",
+  "training_per_outer_run": 786432,
+  "training_per_arm_domain": 23592960,
+  "training_five_arms_two_domains": 235929600,
+  "validation_five_arms_two_domains": 7372800,
+  "test_five_arms_two_domains": 18432000,
+  "total_training_validation_test": 261734400,
+  "normalized_hv_divisor": 1.1025,
+  "test_portfolio_interpretation": 2000.0
+}

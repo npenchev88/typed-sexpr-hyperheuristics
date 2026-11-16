@@ -1,0 +1,107 @@
+2026-11-07T17:53:53+02:00
+
+G1 CURRENT CLOJURE
+
+Testing niki.optimizer.portfolio-test
+
+Testing niki.optimizer.portfolio-reference-test
+
+Ran 13 tests containing 12156 assertions.
+0 failures, 0 errors.
+
+G1 LEGACY CLOJURE
+
+Testing niki.optimizer.portfolio-test
+
+Testing niki.optimizer.portfolio-reference-test
+
+Ran 13 tests containing 12156 assertions.
+0 failures, 0 errors.
+
+UPSTREAM CURRENT CLOJURE
+
+Testing portfolio-evolution.core-test
+
+Testing portfolio-evolution.knapsack-test
+
+Testing portfolio-evolution.metrics-test
+
+Testing portfolio-evolution.synthetic-data-test
+
+Testing portfolio-evolution.baseline-ga-test
+
+Testing portfolio-evolution.random-search-test
+
+Testing portfolio-evolution.experiment-test
+
+Testing portfolio-evolution.dsl-test
+
+Testing portfolio-evolution.optimizer-runtime-test
+
+Testing portfolio-evolution.program-generation-test
+
+Testing portfolio-evolution.outer-gp-test
+
+Testing portfolio-evolution.outer-evolution-test
+
+Testing portfolio-evolution.held-out-evaluation-test
+
+Testing portfolio-evolution.scale-evaluation-test
+
+Testing portfolio-evolution.final-experiment-test
+
+Testing portfolio-evolution.greedy-baseline-test
+
+Ran 62 tests containing 191 assertions.
+0 failures, 0 errors.
+
+UPSTREAM LEGACY CLOJURE
+
+Testing portfolio-evolution.core-test
+
+Testing portfolio-evolution.knapsack-test
+
+Testing portfolio-evolution.metrics-test
+
+Testing portfolio-evolution.synthetic-data-test
+
+Testing portfolio-evolution.baseline-ga-test
+
+Testing portfolio-evolution.random-search-test
+
+Testing portfolio-evolution.experiment-test
+
+Testing portfolio-evolution.dsl-test
+
+Testing portfolio-evolution.optimizer-runtime-test
+
+Testing portfolio-evolution.program-generation-test
+
+Testing portfolio-evolution.outer-gp-test
+
+Testing portfolio-evolution.outer-evolution-test
+
+Testing portfolio-evolution.held-out-evaluation-test
+
+Testing portfolio-evolution.scale-evaluation-test
+
+Testing portfolio-evolution.final-experiment-test
+
+Testing portfolio-evolution.greedy-baseline-test
+
+Ran 62 tests containing 191 assertions.
+0 failures, 0 errors.
+
+PROTOCOL DATA
+Protocol proposal validation only; no optimization run is launched.
+
+Testing user
+
+Ran 4 tests containing 23 assertions.
+0 failures, 0 errors.
+
+EXHAUSTIVE G1 VERIFICATION
+{:fixture-sha256 "fb6c44113ce3d0a29a77b8998b120448710b16512455639b6e4279faa6fef758", :observations 12, :maximum-absolute-mean-error 8.673617379884035E-19, :assets 15, :verified-at "2026-11-07T15:54:00.336822500Z", :tolerance {:absolute 1.0E-12, :relative 1.0E-10}, :verification-elapsed-ms 390.7931, :failed-crosschecks 0, :experiment-launched? false, :scope :synthetic-correctness-only, :k 5, :expected-portfolios 3003, :maximum-absolute-risk-error 3.469446951953614E-18, :java-version "25.0.5", :checked-portfolios 3003, :status :passed, :gate :G1, :clojure-version "1.12.6", :fixture-id :g1-modular-v1, :unique-selections 3003}
+
+UPSTREAM PIN / WORKTREE
+29252c5b86d9f8a15099d85893e5e97861cb705d

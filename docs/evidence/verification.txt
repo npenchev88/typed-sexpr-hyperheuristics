@@ -1,0 +1,86 @@
+2026-11-02T07:41:00+02:00
+
+CURRENT CLOJURE
+
+Testing portfolio-evolution.core-test
+
+Testing portfolio-evolution.knapsack-test
+
+Testing portfolio-evolution.metrics-test
+
+Testing portfolio-evolution.synthetic-data-test
+
+Testing portfolio-evolution.baseline-ga-test
+
+Testing portfolio-evolution.random-search-test
+
+Testing portfolio-evolution.experiment-test
+
+Testing portfolio-evolution.dsl-test
+
+Testing portfolio-evolution.optimizer-runtime-test
+
+Testing portfolio-evolution.program-generation-test
+
+Testing portfolio-evolution.outer-gp-test
+
+Testing portfolio-evolution.outer-evolution-test
+
+Testing portfolio-evolution.held-out-evaluation-test
+
+Testing portfolio-evolution.scale-evaluation-test
+
+Testing portfolio-evolution.final-experiment-test
+
+Testing portfolio-evolution.greedy-baseline-test
+
+Ran 62 tests containing 191 assertions.
+0 failures, 0 errors.
+
+UPSTREAM CLOJURE VERSION
+
+Testing portfolio-evolution.core-test
+
+Testing portfolio-evolution.knapsack-test
+
+Testing portfolio-evolution.metrics-test
+
+Testing portfolio-evolution.synthetic-data-test
+
+Testing portfolio-evolution.baseline-ga-test
+
+Testing portfolio-evolution.random-search-test
+
+Testing portfolio-evolution.experiment-test
+
+Testing portfolio-evolution.dsl-test
+
+Testing portfolio-evolution.optimizer-runtime-test
+
+Testing portfolio-evolution.program-generation-test
+
+Testing portfolio-evolution.outer-gp-test
+
+Testing portfolio-evolution.outer-evolution-test
+
+Testing portfolio-evolution.held-out-evaluation-test
+
+Testing portfolio-evolution.scale-evaluation-test
+
+Testing portfolio-evolution.final-experiment-test
+
+Testing portfolio-evolution.greedy-baseline-test
+
+Ran 62 tests containing 191 assertions.
+0 failures, 0 errors.
+
+PROTOCOL DATA
+Protocol proposal validation only; no optimization run is launched.
+
+Testing user
+
+Ran 4 tests containing 23 assertions.
+0 failures, 0 errors.
+
+UPSTREAM COMMIT / WORKTREE
+29252c5b86d9f8a15099d85893e5e97861cb705d

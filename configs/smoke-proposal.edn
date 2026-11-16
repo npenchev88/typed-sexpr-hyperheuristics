@@ -1,0 +1,19 @@
+;; Proposed NEW multiobjective smoke run, not the upstream knapsack demo.
+;; This is configuration data, not an implemented experiment runner.
+{:schema-version 1
+ :status :proposal
+ :runner-implemented? false
+ :purpose :correctness-and-resource-profiling
+ :outer {:initial-population 8 :offspring-batches 3 :offspring-per-batch 8
+         :assessment-slots 32 :independent-runs 1}
+ :train {:tasks-per-domain 2 :inner-seeds 1 :solution-proposals 64}
+ :maximum-solution-proposals 4096
+ :workers 1
+ :data :synthetic-development-only
+ :scientific-claim :none
+ :pass-gates [:objective-crosscheck :feasibility :budget-conservation
+              :deterministic-replay :finite-values :archive-validity
+              :failure-recording]
+ :records [:elapsed-time :cpu-time :peak-memory :interpreter-steps
+           :proposal-requests :unique-candidates :objective-computations
+           :cache-hits :failures]}

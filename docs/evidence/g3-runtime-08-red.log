@@ -1,0 +1,30 @@
+#'niki.optimizer.runtime-test/portfolio-primitives-are-objective-free-after-fixed-preparation
+
+Testing niki.optimizer.runtime-test
+
+FAIL in (portfolio-sampling-is-bounded-even-with-constant-random-draws) (runtime_test.clj:362)
+expected: (map? a)
+  actual: (not (map? nil))
+
+FAIL in (portfolio-sampling-is-bounded-even-with-constant-random-draws) (runtime_test.clj:362)
+expected: (map? a)
+  actual: (not (map? nil))
+
+FAIL in (portfolio-sampling-is-bounded-even-with-constant-random-draws) (runtime_test.clj:362)
+expected: (map? a)
+  actual: (not (map? nil))
+
+FAIL in (portfolio-adapter-integrates-existing-synthetic-g1-fixture) (runtime_test.clj:324)
+expected: (map? a)
+  actual: (not (map? nil))
+
+FAIL in (portfolio-primitives-are-objective-free-after-fixed-preparation) (runtime_test.clj:385)
+expected: (map? a)
+  actual: (not (map? nil))
+
+FAIL in (portfolio-primitives-are-objective-free-after-fixed-preparation) (runtime_test.clj:399)
+expected: (= :unprepared-instance (thrown-error (fn* [] (make-portfolio-adapter (fixture)))))
+  actual: (not (= :unprepared-instance nil))
+
+Ran 19 tests containing 360 assertions.
+6 failures, 0 errors.

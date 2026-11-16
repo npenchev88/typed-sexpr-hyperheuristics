@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "security_concerns": [],
+  "logic_errors": [],
+  "suggestions": [],
+  "summary": "Read every section of the supplied diff and static scan, then inspected actual sources, tests, supporting runtime/reference code and guard-only changes. The scoped lazy-key and nested-token bugs are fixed: keyword checks precede hashing, membership, form lookup and wrapper-tag equality. Valid-input canonicalization, IDs, RNG draws, generation distributions and protected wrappers are unchanged. Shape fixtures avoid accidental poison hashing/printing, use finite throwing poison, cover keyword-bearing positions and unknown numeric keys, and assert both ExceptionInfo rejection and untouched state. Seeded generation, mutation and actual two-parent crossover preserve limits, validate both children and provide bounded explicit fallbacks. Integration checks correctly isolate evaluator-call observations, compare deterministic replay and trace-off results, independently evaluate archive representatives, reconstruct the front and check hypervolume monotonicity. G4 wiring includes variation, shape and integration tests without importing pending dsl-test. No code executed or files modified. Approval is narrow, not full G3/G4 acceptance; the known serializer optional-limits API issue remains unresolved and excluded.",
+  "delegation_id": "deleg_4efb5f0d",
+  "review_snapshot": "g3-g4-fix-static-scan.json",
+  "acceptance_note": "Guard fixes, variation and integration approved. Serializer defect, aggregate G3 verification and external checkpoint remain open."
+}

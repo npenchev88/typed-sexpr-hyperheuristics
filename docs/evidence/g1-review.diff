@@ -1,0 +1,461 @@
+--- /dev/null
++++ src/niki/optimizer/portfolio.clj
+@@ -0,0 +1,102 @@
++(ns niki.optimizer.portfolio
++  "Equal-weight, fixed-cardinality portfolio objectives from aligned simple returns.
++  This namespace does not ingest prices, trade assets, or annualize results."
++  (:require [clojure.string :as str])
++  (:import [java.time LocalDate]
++           [java.time.format DateTimeParseException]))
++
++(defrecord PreparedPortfolio [k asset-ids dates returns])
++
++(defn- ensure! [condition code message]
++  (when-not condition (throw (ex-info message {:error code}))))
++
++(defn- finite-number? [value]
++  (and (number? value)
++       (try (Double/isFinite (double value))
++            (catch ArithmeticException _ false))))
++
++(defn- valid-date? [value]
++  (and (string? value)
++       (boolean (re-matches #"\d{4}-\d{2}-\d{2}" value))
++       (try (LocalDate/parse value) true
++            (catch DateTimeParseException _ false))))
++
++(defn prepare-instance
++  "Validate an asset-major simple-return panel with :k and an :assets vector.
++  Each asset needs a unique keyword/nonblank-string :id, a strictly increasing
++  ISO-date vector, and a finite :returns vector of the same length (T >= 2).
++  All assets must share identical dates. Simple returns below -1 are invalid.
++  Values are converted to binary64; missing values are never filled implicitly."
++  [{:keys [k assets]}]
++  (ensure! (and (vector? assets) (seq assets)) :invalid-assets
++           "Expected a nonempty vector of assets")
++  (ensure! (and (integer? k) (<= 1 k (count assets))) :invalid-k
++           "K must be an integer between one and the asset count")
++  (let [ids (mapv :id assets)
++        dates (:dates (first assets))]
++    (ensure! (every? #(or (keyword? %) (and (string? %) (not (str/blank? %)))) ids)
++             :invalid-asset-id "Asset IDs must be keywords or nonblank strings")
++    (ensure! (= (count ids) (count (set ids))) :duplicate-assets
++             "Asset IDs must be unique")
++    (ensure! (and (vector? dates) (<= 2 (count dates))
++                  (every? valid-date? dates)
++                  (every? neg? (map compare dates (rest dates))))
++             :invalid-dates "Expected at least two unique increasing ISO dates")
++    (doseq [asset assets]
++      (ensure! (= dates (:dates asset)) :unaligned-dates
++               "Every asset must use the identical date vector")
++      (let [xs (:returns asset)]
++        (ensure! (and (vector? xs) (= (count dates) (count xs)))
++                 :invalid-return-shape "Returns must match the date vector")
++        (ensure! (every? #(and (finite-number? %) (<= -1 %)) xs)
++                 :invalid-return "Simple returns must be finite numbers >= -1")))
++    (->PreparedPortfolio k ids dates (mapv #(mapv double (:returns %)) assets))))
++
++(defn validate-selection
++  "Return sorted unique asset indices; require exactly K distinct legal members.
++  Only vectors are accepted, so accidental sets/maps and unbounded lazy inputs
++  cannot silently change representation. Prepared instances are trusted values
++  returned by prepare-instance, not a serialization or security boundary."
++  [instance selection]
++  (ensure! (instance? PreparedPortfolio instance) :unprepared-instance
++           "Call prepare-instance before evaluating a portfolio")
++  (let [k (:k instance) n (count (:returns instance))]
++    (ensure! (and (vector? selection) (= k (count selection))
++                  (every? #(and (integer? %) (<= 0 %) (< % n)) selection)
++                  (= k (count (set selection))))
++             :invalid-selection "Expected exactly K distinct valid asset indices")
++    (vec (sort selection))))
++
++(defn- stable-mean [xs]
++  ;; Normalize before compensated summation: a finite mean must not overflow
++  ;; merely because its unnormalized sum would exceed the binary64 range.
++  (let [scale (reduce max 0.0 (map abs xs))]
++    (if (zero? scale)
++      0.0
++      (let [[total _]
++            (reduce (fn [[sum correction] x]
++                      (let [y (- (/ x scale) correction)
++                            next-sum (+ sum y)]
++                        [next-sum (- (- next-sum sum) y)]))
++                    [0.0 0.0] xs)]
++        (* scale (/ total (double (count xs))))))))
++
++(defn evaluate
++  "Return daily mean and sample standard deviation; both objectives minimized.
++  Uses a scaled compensated mean and a hypot norm rather than squaring tiny or
++  huge deviations. Equal weights are reset analytically for every observation;
++  this is not a buy-and-hold or transaction-cost simulation."
++  [{:keys [returns] :as instance} selection]
++  (let [selection (validate-selection instance selection)
++        series (apply mapv (fn [& xs] (stable-mean xs)) (mapv returns selection))
++        mean (stable-mean series)
++        denominator (Math/sqrt (double (dec (count series))))
++        risk (reduce (fn [norm value]
++                       (Math/hypot (double norm) (/ (- value mean) denominator)))
++                     0.0 series)]
++    (ensure! (and (finite-number? mean) (finite-number? risk)
++                  (every? finite-number? series))
++             :nonfinite-objective "Numerical calculation produced nonfinite values")
++    {:selection selection :portfolio-returns series
++     :mean-return mean :sample-standard-deviation risk
++     :objectives [(- mean) risk]}))
+--- /dev/null
++++ src/niki/optimizer/portfolio_reference.clj
+@@ -0,0 +1,60 @@
++(ns niki.optimizer.portfolio-reference
++  "Development-only independent reference using rational sample covariance.
++  Shares input/selection validation with the evaluator, but no numerical path.
++  Do not use this slow reference as an uncharged optimizer primitive."
++  (:require [niki.optimizer.portfolio :as portfolio])
++  (:import [java.math BigDecimal MathContext]))
++
++(defn selections
++  "Lazily enumerate every K-of-N subset in lexicographic order, without repeats.
++  This exact reference is intended for small correctness cases only."
++  [n k]
++  (when-not (and (integer? n) (integer? k) (<= 0 k n))
++    (throw (ex-info "Expected integer dimensions with 0 <= K <= N"
++                    {:error :invalid-subset-dimensions})))
++  (letfn [(walk [start left prefix]
++            (lazy-seq
++              (if (zero? left)
++                (list prefix)
++                (mapcat #(walk (inc %) (dec left) (conj prefix %))
++                        (range start (inc (- n left)))))))]
++    (walk 0 k [])))
++
++(defn prepare-reference
++  "Validate a raw panel and calculate exact rational asset means and covariance.
++  rationalize preserves ratios/integers and the decimal value of input floating
++  numbers; the production evaluator instead uses binary64 arithmetic."
++  [panel]
++  (let [instance (portfolio/prepare-instance panel)
++        rows (mapv #(mapv rationalize (:returns %)) (:assets panel))
++        t (count (:dates instance))
++        means (mapv #(/ (reduce + %) t) rows)
++        deviations (mapv (fn [xs mu] (mapv #(- % mu) xs)) rows means)
++        covariance (mapv (fn [a]
++                           (mapv (fn [b] (/ (reduce + (map * a b)) (dec t)))
++                                 deviations))
++                         deviations)]
++    {:instance instance :exact-means means :exact-covariance covariance}))
++
++(defn- rational-sqrt [value]
++  ;; Take the root before conversion to binary64. Converting the squared
++  ;; quantity first would overflow/underflow for otherwise representable risks.
++  (let [^BigDecimal decimal (if (ratio? value)
++                             (.divide (bigdec (numerator value))
++                                      (bigdec (denominator value)) MathContext/DECIMAL128)
++                             (bigdec value))]
++    (double (.sqrt decimal MathContext/DECIMAL128))))
++
++(defn evaluate
++  "Calculate mu^T w and w^T Sigma w without constructing a portfolio series.
++  The exact rational variance is retained; standard deviation is binary64."
++  [{:keys [instance exact-means exact-covariance]} selection]
++  (let [selection (portfolio/validate-selection instance selection)
++        k (:k instance)
++        mean (/ (reduce + (map exact-means selection)) k)
++        variance (/ (reduce + (for [i selection j selection]
++                                (get-in exact-covariance [i j]))) (* k k))
++        risk (rational-sqrt variance)]
++    {:selection selection :exact-mean mean :exact-variance variance
++     :mean-return (double mean) :sample-standard-deviation risk
++     :objectives [(- (double mean)) risk]}))
+--- /dev/null
++++ test/niki/optimizer/portfolio_reference_test.clj
+@@ -0,0 +1,85 @@
++(ns niki.optimizer.portfolio-reference-test
++  (:require [clojure.test :refer [deftest is]]
++            [clojure.edn :as edn]
++            [clojure.java.io :as io]
++            [niki.optimizer.portfolio-test :refer [fixture close?]]
++            [niki.optimizer.portfolio :as portfolio]
++            [niki.optimizer.portfolio-reference :as reference]))
++
++(deftest independent-covariance-reference
++  (let [prepared (reference/prepare-reference (fixture 2 [[1/10 0 -1/10] [0 1/5 1/10]]))
++        result (reference/evaluate prepared [0 1])]
++    (is (= [0 1/10] (:exact-means prepared)))
++    (is (= [[1/100 -1/200] [-1/200 1/100]] (:exact-covariance prepared)))
++    (is (= 1/20 (:exact-mean result)))
++    (is (= 1/400 (:exact-variance result)))
++    (is (close? 1/20 (:mean-return result)))
++    (is (close? 1/20 (:sample-standard-deviation result)))))
++
++(deftest covariance-reference-does-not-square-into-overflow-or-underflow
++  (doseq [magnitude [1.0e200 1.0e-200]]
++    (let [prepared (reference/prepare-reference (fixture 1 [[0.0 magnitude]]))
++          result (reference/evaluate prepared [0])
++          expected (/ magnitude (Math/sqrt 2.0))]
++      (is (pos? (:exact-variance result)))
++      (is (Double/isFinite (:sample-standard-deviation result)))
++      (is (< (abs (- 1.0 (/ (:sample-standard-deviation result) expected))) 1.0e-12)))))
++
++(deftest exhaustive-direct-versus-covariance
++  (let [rows (mapv (fn [i]
++                     (mapv (fn [t]
++                             (/ (- (mod (+ (* i i) (* t t) (* 7 i t) (* 3 i) (* 11 t)) 97)
++                                   48)
++                                1000))
++                           (range 12)))
++                   (range 15))
++        panel (edn/read-string (slurp (io/resource "fixtures/g1-portfolio.edn")))
++        instance (portfolio/prepare-instance panel)
++        prepared (reference/prepare-reference panel)
++        choices (vec (reference/selections 15 5))]
++    (is (= (fixture 5 rows) (select-keys panel [:k :assets])))
++    (is (= :synthetic-development-only (:source panel)))
++    (is (= 3003 (count choices)))
++    (doseq [selection choices]
++      (let [direct (portfolio/evaluate instance selection)
++            independent (reference/evaluate prepared selection)]
++        (is (close? (:mean-return independent) (:mean-return direct)) (str selection " mean"))
++        (is (close? (:sample-standard-deviation independent)
++                    (:sample-standard-deviation direct)) (str selection " risk"))
++        (is (every? #(Double/isFinite (double %)) (:objectives direct)))
++        (is (= direct (portfolio/evaluate instance (vec (reverse selection)))))))))
++
++(deftest singular-and-tied-covariance-cases
++  (doseq [rows [[[0 0 0] [0 0 0]]
++               [[1/10 -1/10] [1/10 -1/10]]
++               [[1/10 -1/10] [-1/10 1/10]]
++               [[1/10 1/10] [1/10 1/10]]
++               [[1/10 -1/10 0] [1/10 -1/10 0] [1/10 -1/10 0]]]]
++    (let [k (count rows)
++          panel (fixture k rows)
++          direct (portfolio/evaluate (portfolio/prepare-instance panel) (vec (range k)))
++          independent (reference/evaluate (reference/prepare-reference panel) (vec (range k)))]
++      (is (close? (:mean-return independent) (:mean-return direct)))
++      (is (close? (:sample-standard-deviation independent)
++                  (:sample-standard-deviation direct))))))
++
++(deftest exact-subset-enumeration
++  (let [selections (ns-resolve 'niki.optimizer.portfolio-reference 'selections)]
++    (is (some? selections) "The exact subset enumerator must exist")
++    (when selections
++      (let [actual (vec (selections 15 5))
++            bitmask-reference (set (for [mask (range (bit-shift-left 1 15))
++                                        :when (= 5 (Long/bitCount mask))]
++                                    (vec (filter #(bit-test mask %) (range 15)))))]
++        (is (= 3003 (count actual)))
++        (is (= 3003 (count (set actual))))
++        (is (= bitmask-reference (set actual)))
++        (is (= (vec (sort actual)) actual))
++        (is (= [0 1 2 3 4] (first actual)))
++        (is (= [10 11 12 13 14] (last actual)))
++        (is (= [[]] (vec (selections 0 0))))
++        (is (= [[]] (vec (selections 3 0))))
++        (is (= [[0 1 2]] (vec (selections 3 3))))
++        (doseq [[n k] [[-1 0] [3 4] [3 -1] [3 1.5]]]
++          (is (thrown? clojure.lang.ExceptionInfo (doall (selections n k)))))))))
++
+--- /dev/null
++++ test/niki/optimizer/portfolio_test.clj
+@@ -0,0 +1,99 @@
++(ns niki.optimizer.portfolio-test
++  (:require [clojure.test :refer [deftest is testing]]
++            [niki.optimizer.portfolio :as portfolio]))
++
++(defn close? [expected actual]
++  (<= (abs (- (double expected) (double actual)))
++      (+ 1.0e-12 (* 1.0e-10 (abs (double expected))))))
++
++(defn fixture [k rows]
++  {:k k
++   :assets (mapv (fn [i values]
++                   {:id (keyword (str "asset-" i))
++                    :dates (mapv #(str "2000-01-" (format "%02d" (inc %)))
++                                 (range (count values)))
++                    :returns values})
++                 (range) rows)})
++
++(deftest equal-weight-return-and-sample-risk
++  (let [instance (portfolio/prepare-instance
++                  (fixture 2 [[1/10 0 -1/10] [0 1/5 1/10]]))
++        result (portfolio/evaluate instance [0 1])]
++    (is (= [0 1] (:selection result)))
++    (is (= 3 (count (:portfolio-returns result))))
++    (is (every? true? (map close? [1/20 1/10 0] (:portfolio-returns result))))
++    (is (close? 1/20 (:mean-return result)))
++    (is (close? 1/20 (:sample-standard-deviation result)))
++    (is (= 2 (count (:objectives result))))
++    (is (every? true? (map close? [-1/20 1/20] (:objectives result))))))
++
++(deftest stable-objectives-for-extreme-finite-magnitudes
++  (doseq [[rows expected-mean expected-risk]
++          [[[[1.0e308 1.0e308] [1.0e308 1.0e308]] 1.0e308 0.0]
++           [[[0.0 1.0e200]] 5.0e199 (/ 1.0e200 (Math/sqrt 2.0))]
++           [[[0.0 1.0e-200]] 5.0e-201 (/ 1.0e-200 (Math/sqrt 2.0))]]]
++    (let [result (portfolio/evaluate (portfolio/prepare-instance (fixture (count rows) rows))
++                                     (vec (range (count rows))))]
++      (is (Double/isFinite (:mean-return result)))
++      (is (Double/isFinite (:sample-standard-deviation result)))
++      (is (< (abs (- 1.0 (/ (:mean-return result) expected-mean))) 1.0e-12))
++      (if (zero? expected-risk)
++        (is (zero? (:sample-standard-deviation result)))
++        (is (< (abs (- 1.0 (/ (:sample-standard-deviation result) expected-risk))) 1.0e-12))))))
++
++(deftest degenerate-panels-and-sample-denominator
++  (doseq [[k rows expected-mean expected-risk]
++          [[2 [[0 0 0] [0 0 0]] 0 0]
++           [2 [[1/10 -1/10] [1/10 -1/10]] 0 (Math/sqrt 1/50)]
++           [2 [[1/10 -1/10] [-1/10 1/10]] 0 0]
++           [2 [[1/10 1/10] [1/10 1/10]] 1/10 0]
++           [1 [[0 1/5]] 1/10 (Math/sqrt 1/50)]
++           [1 [[-1 -1]] -1 0]
++           [3 [[1/10 -1/10 0] [1/10 -1/10 0] [1/10 -1/10 0]] 0 1/10]]]
++    (let [instance (portfolio/prepare-instance (fixture k rows))
++          result (portfolio/evaluate instance (vec (range k)))]
++      (is (close? expected-mean (:mean-return result)))
++      (is (close? expected-risk (:sample-standard-deviation result)))
++      (is (every? #(Double/isFinite (double %)) (:objectives result))))))
++
++(deftest selections-enforce-exact-cardinality-and-feasibility
++  (let [instance (portfolio/prepare-instance (fixture 2 [[0 1/10] [1/10 0] [0 0]]))]
++    (is (= (portfolio/evaluate instance [0 1]) (portfolio/evaluate instance [1 0])))
++    (doseq [selection [nil [] [0] [0 1 2] [0 0] [-1 1] [0 3] [0 1.0] [0 nil]
++                       #{0 1} "01"]]
++      (testing (pr-str selection)
++        (is (thrown? clojure.lang.ExceptionInfo (portfolio/evaluate instance selection)))))
++    (is (thrown? clojure.lang.ExceptionInfo (portfolio/evaluate {} [0 1])))))
++
++(deftest malformed-return-panels-fail-closed
++  (let [valid (fixture 1 [[0 1/10] [1/10 0]])
++        invalid-panels
++        [nil {} 42 "panel" []
++         (assoc valid :assets [])
++         (assoc valid :assets {})
++         (assoc valid :assets [nil])
++         (assoc-in valid [:assets 0 :returns] nil)
++         (assoc-in valid [:assets 0 :returns] '(0 1/10))
++         (assoc-in valid [:assets 0 :returns 0] false)
++         (assoc-in valid [:assets 0 :returns 0] 1.0e1000M)
++         (assoc-in valid [:assets 0 :dates] nil)
++         (assoc valid :k 0) (assoc valid :k 3) (assoc valid :k 1.5)
++         (assoc-in valid [:assets 0 :id] nil)
++         (assoc-in valid [:assets 0 :id] " ")
++         (assoc-in valid [:assets 1 :id] :asset-0)
++         (assoc-in valid [:assets 0 :returns] [0])
++         (assoc-in valid [:assets 1 :dates] ["2000-01-01" "2000-01-03"])
++         (update valid :assets #(mapv (fn [a] (assoc a :dates ["2000-01-01" "2000-01-01"])) %))
++         (update valid :assets #(mapv (fn [a] (assoc a :dates ["2000-01-02" "2000-01-01"])) %))
++         (assoc-in valid [:assets 0 :dates 0] "not-a-date")
++         (assoc-in valid [:assets 0 :dates 0] "2000-02-30")
++         (fixture 1 [[0]]) (fixture 1 [[]])
++         (assoc-in valid [:assets 0 :returns 0] ##NaN)
++         (assoc-in valid [:assets 0 :returns 0] ##Inf)
++         (assoc-in valid [:assets 0 :returns 0] ##-Inf)
++         (assoc-in valid [:assets 0 :returns 0] nil)
++         (assoc-in valid [:assets 0 :returns 0] "0.1")
++         (assoc-in valid [:assets 0 :returns 0] -1.01)]]
++    (doseq [panel invalid-panels]
++      (testing (pr-str panel)
++        (is (thrown? clojure.lang.ExceptionInfo (portfolio/prepare-instance panel)))))))
+--- /dev/null
++++ test/niki/optimizer/test_runner.clj
+@@ -0,0 +1,10 @@
++(ns niki.optimizer.test-runner
++  (:require [clojure.test :as test]
++            [niki.optimizer.portfolio-test]
++            [niki.optimizer.portfolio-reference-test]))
++
++(defn -main [& _]
++  (let [{:keys [fail error]} (test/run-tests 'niki.optimizer.portfolio-test
++                                                        'niki.optimizer.portfolio-reference-test)]
++    (shutdown-agents)
++    (when (pos? (+ fail error)) (System/exit 1))))
+--- /dev/null
++++ scripts/verify-g1.clj
+@@ -0,0 +1,64 @@
++;; G1 correctness verification only. No optimizer search or market data access.
++(require '[clojure.edn :as edn]
++         '[clojure.java.io :as io]
++         '[clojure.string :as str]
++         '[niki.optimizer.portfolio :as portfolio]
++         '[niki.optimizer.portfolio-reference :as reference])
++(import '[java.nio.charset StandardCharsets]
++        '[java.security MessageDigest]
++        '[java.math BigInteger]
++        '[java.time Instant])
++
++(let [started (System/nanoTime)
++      input-bytes (with-open [stream (io/input-stream (io/resource "fixtures/g1-portfolio.edn"))]
++                    (.readAllBytes stream))
++      panel (edn/read-string (String. input-bytes StandardCharsets/UTF_8))
++      _ (when-not (and (= :synthetic-development-only (:source panel))
++                       (= :g1-modular-v1 (:fixture-id panel))
++                       (= 5 (:k panel)) (= 15 (count (:assets panel))))
++          (throw (ex-info "Unexpected G1 fixture" {:error :invalid-fixture})))
++      instance (portfolio/prepare-instance panel)
++      prepared (reference/prepare-reference panel)
++      choices (vec (reference/selections (count (:assets panel)) (:k panel)))
++      rows (mapv (fn [selection]
++                   (let [direct (portfolio/evaluate instance selection)
++                         independent (reference/evaluate prepared selection)
++                         errors (mapv #(abs (- (double %1) (double %2)))
++                                      (:objectives direct) (:objectives independent))
++                         allowed (mapv #(+ 1.0e-12 (* 1.0e-10 (abs (double %))))
++                                       (:objectives independent))]
++                     {:selection selection
++                      :direct direct :reference independent :errors errors
++                      :passed? (and (every? #(Double/isFinite (double %)) (:objectives direct))
++                                    (every? true? (map <= errors allowed))
++                                    (= direct (portfolio/evaluate instance (vec (reverse selection)))))}))
++                 choices)
++      passed? (and (= 3003 (count rows)) (= 3003 (count (set choices)))
++                   (every? :passed? rows))
++      digest (format "%064x" (BigInteger. 1 (.digest (MessageDigest/getInstance "SHA-256") input-bytes)))
++      summary {:gate :G1 :status (if passed? :passed :failed)
++               :scope :synthetic-correctness-only :experiment-launched? false
++               :verified-at (str (Instant/now))
++               :clojure-version (clojure-version) :java-version (System/getProperty "java.version")
++               :fixture-id (:fixture-id panel) :fixture-sha256 digest
++               :assets (count (:assets panel)) :k (:k panel) :observations (count (:dates instance))
++               :expected-portfolios 3003 :checked-portfolios (count rows)
++               :unique-selections (count (set choices))
++               :failed-crosschecks (count (remove :passed? rows))
++               :maximum-absolute-mean-error (reduce max 0.0 (map #(first (:errors %)) rows))
++               :maximum-absolute-risk-error (reduce max 0.0 (map #(second (:errors %)) rows))
++               :tolerance {:absolute 1.0e-12 :relative 1.0e-10}
++               :verification-elapsed-ms (/ (- (System/nanoTime) started) 1.0e6)}
++      csv-path "docs/evidence/g1-objectives.csv"
++      report-path "docs/evidence/g1-verification.edn"]
++  (io/make-parents csv-path)
++  (with-open [writer (io/writer csv-path :encoding "UTF-8")]
++    (.write writer "selection,mean_return,sample_standard_deviation,reference_mean,reference_risk,exact_reference_variance,mean_abs_error,risk_abs_error,passed\n")
++    (doseq [{:keys [selection direct reference errors passed?]} rows]
++      (.write writer (str (str/join "," [(pr-str selection) (:mean-return direct)
++                                        (:sample-standard-deviation direct)
++                                        (:mean-return reference) (:sample-standard-deviation reference)
++                                        (:exact-variance reference) (first errors) (second errors) passed?]) "\n"))))
++  (spit report-path (str (pr-str summary) "\n") :encoding "UTF-8")
++  (prn summary)
++  (when-not passed? (throw (ex-info "G1 crosscheck failed" summary))))
+--- /dev/null
++++ resources/fixtures/g1-portfolio.edn
+@@ -0,0 +1,20 @@
++;; Deterministic synthetic development fixture. Not market data.
++{:fixture-id :g1-modular-v1
++ :source :synthetic-development-only
++ :k 5
++ :assets [
++  {:id :asset-0 :dates ["2000-01-01" "2000-01-02" "2000-01-03" "2000-01-04" "2000-01-05" "2000-01-06" "2000-01-07" "2000-01-08" "2000-01-09" "2000-01-10" "2000-01-11" "2000-01-12"] :returns [-6/125 -9/250 -11/500 -3/500 3/250 4/125 -43/1000 -19/1000 7/1000 7/200 -4/125 0]}
++  {:id :asset-1 :dates ["2000-01-01" "2000-01-02" "2000-01-03" "2000-01-04" "2000-01-05" "2000-01-06" "2000-01-07" "2000-01-08" "2000-01-09" "2000-01-10" "2000-01-11" "2000-01-12"] :returns [-11/250 -1/40 -1/250 19/1000 11/250 -13/500 3/1000 17/500 -3/100 1/200 21/500 -2/125]}
++  {:id :asset-2 :dates ["2000-01-01" "2000-01-02" "2000-01-03" "2000-01-04" "2000-01-05" "2000-01-06" "2000-01-07" "2000-01-08" "2000-01-09" "2000-01-10" "2000-01-11" "2000-01-12"] :returns [-19/500 -3/250 2/125 23/500 -19/1000 3/200 -23/500 -1/125 4/125 -23/1000 21/1000 -3/100]}
++  {:id :asset-3 :dates ["2000-01-01" "2000-01-02" "2000-01-03" "2000-01-04" "2000-01-05" "2000-01-06" "2000-01-07" "2000-01-08" "2000-01-09" "2000-01-10" "2000-01-11" "2000-01-12"] :returns [-3/100 3/1000 19/500 -11/500 17/1000 -39/1000 1/250 -6/125 -1/1000 6/125 1/500 -21/500]}
++  {:id :asset-4 :dates ["2000-01-01" "2000-01-02" "2000-01-03" "2000-01-04" "2000-01-05" "2000-01-06" "2000-01-07" "2000-01-08" "2000-01-09" "2000-01-10" "2000-01-11" "2000-01-12"] :returns [-1/50 1/50 -7/200 9/1000 -21/500 3/500 -41/1000 11/1000 -4/125 3/125 -3/200 9/200]}
++  {:id :asset-5 :dates ["2000-01-01" "2000-01-02" "2000-01-03" "2000-01-04" "2000-01-05" "2000-01-06" "2000-01-07" "2000-01-08" "2000-01-09" "2000-01-10" "2000-01-11" "2000-01-12"] :returns [-1/125 39/1000 -9/1000 21/500 -1/500 -11/250 13/1000 -1/40 9/250 1/500 -3/100 37/1000]}
++  {:id :asset-6 :dates ["2000-01-01" "2000-01-02" "2000-01-03" "2000-01-04" "2000-01-05" "2000-01-06" "2000-01-07" "2000-01-08" "2000-01-09" "2000-01-10" "2000-01-11" "2000-01-12"] :returns [3/500 -37/1000 19/1000 -1/50 1/25 1/200 -7/250 19/500 9/1000 -9/500 -43/1000 31/1000]}
++  {:id :asset-7 :dates ["2000-01-01" "2000-01-02" "2000-01-03" "2000-01-04" "2000-01-05" "2000-01-06" "2000-01-07" "2000-01-08" "2000-01-09" "2000-01-10" "2000-01-11" "2000-01-12"] :returns [11/500 -7/500 -6/125 17/1000 -13/1000 -41/1000 3/100 3/500 -2/125 -9/250 43/1000 27/1000]}
++  {:id :asset-8 :dates ["2000-01-01" "2000-01-02" "2000-01-03" "2000-01-04" "2000-01-05" "2000-01-06" "2000-01-07" "2000-01-08" "2000-01-09" "2000-01-10" "2000-01-11" "2000-01-12"] :returns [1/25 11/1000 -2/125 -41/1000 33/1000 3/250 -7/1000 -3/125 -39/1000 9/200 17/500 1/40]}
++  {:id :asset-9 :dates ["2000-01-01" "2000-01-02" "2000-01-03" "2000-01-04" "2000-01-05" "2000-01-06" "2000-01-07" "2000-01-08" "2000-01-09" "2000-01-10" "2000-01-11" "2000-01-12"] :returns [-37/1000 19/500 9/500 0 -2/125 -3/100 -21/500 9/200 37/1000 31/1000 27/1000 1/40]}
++  {:id :asset-10 :dates ["2000-01-01" "2000-01-02" "2000-01-03" "2000-01-04" "2000-01-05" "2000-01-06" "2000-01-07" "2000-01-08" "2000-01-09" "2000-01-10" "2000-01-11" "2000-01-12"] :returns [-3/200 -3/100 -43/1000 43/1000 17/500 27/1000 11/500 19/1000 9/500 19/1000 11/500 27/1000]}
++  {:id :asset-11 :dates ["2000-01-01" "2000-01-02" "2000-01-03" "2000-01-04" "2000-01-05" "2000-01-06" "2000-01-07" "2000-01-08" "2000-01-09" "2000-01-10" "2000-01-11" "2000-01-12"] :returns [9/1000 1/1000 -1/200 -9/1000 -11/1000 -11/1000 -9/1000 -1/200 1/1000 9/1000 19/1000 31/1000]}
++  {:id :asset-12 :dates ["2000-01-01" "2000-01-02" "2000-01-03" "2000-01-04" "2000-01-05" "2000-01-06" "2000-01-07" "2000-01-08" "2000-01-09" "2000-01-10" "2000-01-11" "2000-01-12"] :returns [7/200 17/500 7/200 19/500 43/1000 -47/1000 -19/500 -27/1000 -7/500 1/1000 9/500 37/1000]}
++  {:id :asset-13 :dates ["2000-01-01" "2000-01-02" "2000-01-03" "2000-01-04" "2000-01-05" "2000-01-06" "2000-01-07" "2000-01-08" "2000-01-09" "2000-01-10" "2000-01-11" "2000-01-12"] :returns [-17/500 -7/250 -1/50 -1/100 1/500 2/125 4/125 -47/1000 -27/1000 -1/200 19/1000 9/200]}
++  {:id :asset-14 :dates ["2000-01-01" "2000-01-02" "2000-01-03" "2000-01-04" "2000-01-05" "2000-01-06" "2000-01-07" "2000-01-08" "2000-01-09" "2000-01-10" "2000-01-11" "2000-01-12"] :returns [-1/250 9/1000 3/125 41/1000 -37/1000 -2/125 7/1000 4/125 -19/500 -9/1000 11/500 -21/500]}]}

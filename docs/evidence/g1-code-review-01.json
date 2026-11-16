@@ -1,0 +1,21 @@
+{
+  "review": 1,
+  "passed": false,
+  "security_concerns": [],
+  "logic_errors": [
+    {
+      "location": "src/niki/optimizer/portfolio.clj: evaluate",
+      "issue": "Subtracting an already-rounded absolute mean can overstate sample risk for large, nearly constant observations.",
+      "counterexample": "K=1, returns [10000000000000000.0 10000000000000002.0]: expected sqrt(2), initial implementation approximately 2."
+    },
+    {
+      "location": "src/niki/optimizer/portfolio_reference.clj: prepare-reference",
+      "issue": "rationalize preserves ordinary Longs; checked fixed-width reductions can overflow before the exact reference is calculated.",
+      "counterexample": "K=1, constant returns [9223372036854775807 9223372036854775807]: mean reduction overflows; expected finite mean and zero risk."
+    }
+  ],
+  "suggestions": ["Add large-offset/small-dispersion and large-integral regression cases with relative or ULP-sensitive checks."],
+  "scope": "Independent static review of g1-review.diff and g1-static-scan.json; no edits or experiments by reviewer.",
+  "delegation_id": "deleg_9073dd77",
+  "resolution": "Resolved with recorded test-first fixes. Further cancellation finding retained in review 2; final exact-arithmetic implementation approved in review 3, with parent regression and source-hash verification."
+}

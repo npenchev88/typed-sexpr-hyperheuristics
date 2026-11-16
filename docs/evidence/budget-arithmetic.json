@@ -1,0 +1,27 @@
+{
+  "status": "proposed_upper_bounds_not_measured_experiments",
+  "correctness": {
+    "portfolios": 3003,
+    "schedules": 5040
+  },
+  "smoke": {
+    "programs": 8,
+    "generations_including_zero": 4,
+    "tasks": 2,
+    "inner_seeds": 1,
+    "inner_budget": 64,
+    "proposal_ceiling": 4096
+  },
+  "candidate_pilot": {
+    "programs": 32,
+    "generations_including_zero": 21,
+    "tasks": 6,
+    "inner_seeds": 2,
+    "inner_budget": 256,
+    "per_run": 2064384,
+    "runs_per_method": 30,
+    "per_method": 61931520,
+    "four_methods_one_domain": 247726080,
+    "four_methods_two_domains": 495452160
+  }
+}

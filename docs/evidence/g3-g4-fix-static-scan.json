@@ -1,0 +1,19 @@
+{
+  "scope": {
+    "src/niki/optimizer/dsl.clj": "2d3fd4acb9295462cec841f8bd22089516ffba5649d6f2637a20d43e1f5888c8",
+    "src/niki/optimizer/variation.clj": "1d21e255608d2e401b94cb921aaa0a1382e136064be44ee0bb314a8f5ec10f11",
+    "test/niki/optimizer/shape_validation_test.clj": "74f6f5920e5b519190fa067f362abc7534e8c49be9692f7bea006498078fc313",
+    "test/niki/optimizer/integration_test.clj": "f994e91bfa2d0833639e8d486ad18cf278fd1d9f29022487abad1bb09fc2c4c4",
+    "test/niki/optimizer/g4_test_runner.clj": "fa2a3cf96cecc5ebf1cfb6b1b14a008e42a28854a9c4fbe0156ec357996ace7d"
+  },
+  "known_unresolved": [
+    "Serializer explicit-limit API still pending separate user approval; do not execute that regression or claim aggregate acceptance."
+  ],
+  "scan": {
+    "src/niki/optimizer/dsl.clj": [],
+    "src/niki/optimizer/variation.clj": [],
+    "test/niki/optimizer/shape_validation_test.clj": [],
+    "test/niki/optimizer/integration_test.clj": [],
+    "test/niki/optimizer/g4_test_runner.clj": []
+  }
+}

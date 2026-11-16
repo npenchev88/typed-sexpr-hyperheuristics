@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 305" width="174mm" height="69.8mm" font-family="Helvetica, Arial, sans-serif">
+  <rect x="0" y="0" width="760" height="305" fill="#ffffff"/>
+  <text x="48" y="18" font-size="10" font-weight="700" fill="#000000">(a) <tspan font-weight="600">Typed vs. Untyped Hit Rate</tspan></text>
+  <rect x="48" y="26" width="198" height="210" fill="#ffffff" stroke="#000000" stroke-width="0.9"/>
+  <line x1="48" y1="236.00" x2="246" y2="236.00" stroke="#e0e0e0" stroke-width="0.7"/>
+  <text x="43" y="236.00" font-size="8.5" fill="#111111" text-anchor="end" dominant-baseline="middle">0%</text>
+  <line x1="48" y1="194.00" x2="246" y2="194.00" stroke="#e0e0e0" stroke-width="0.7"/>
+  <text x="43" y="194.00" font-size="8.5" fill="#111111" text-anchor="end" dominant-baseline="middle">20%</text>
+  <line x1="48" y1="152.00" x2="246" y2="152.00" stroke="#e0e0e0" stroke-width="0.7"/>
+  <text x="43" y="152.00" font-size="8.5" fill="#111111" text-anchor="end" dominant-baseline="middle">40%</text>
+  <line x1="48" y1="110.00" x2="246" y2="110.00" stroke="#e0e0e0" stroke-width="0.7"/>
+  <text x="43" y="110.00" font-size="8.5" fill="#111111" text-anchor="end" dominant-baseline="middle">60%</text>
+  <line x1="48" y1="68.00" x2="246" y2="68.00" stroke="#e0e0e0" stroke-width="0.7"/>
+  <text x="43" y="68.00" font-size="8.5" fill="#111111" text-anchor="end" dominant-baseline="middle">80%</text>
+  <line x1="48" y1="26.00" x2="246" y2="26.00" stroke="#e0e0e0" stroke-width="0.7"/>
+  <text x="43" y="26.00" font-size="8.5" fill="#111111" text-anchor="end" dominant-baseline="middle">100%</text>
+  <rect x="65.00" y="26.00" width="15.0" height="210.00" fill="#1f77b4" stroke="#000000" stroke-width="0.7"/>
+  <rect x="82.00" y="217.10" width="15.0" height="18.90" fill="#d62728" stroke="#000000" stroke-width="0.7"/>
+  <text x="73.50" y="22.00" font-size="7.5" fill="#000000" text-anchor="middle">100%</text>
+  <text x="88.50" y="213.10" font-size="7.5" fill="#000000" text-anchor="middle">9%</text>
+  <text x="81.00" y="251" font-size="8.5" fill="#000000" text-anchor="middle">Generate</text>
+  <rect x="131.00" y="53.71" width="15.0" height="182.29" fill="#1f77b4" stroke="#000000" stroke-width="0.7"/>
+  <rect x="148.00" y="216.86" width="15.0" height="19.14" fill="#d62728" stroke="#000000" stroke-width="0.7"/>
+  <text x="139.50" y="49.71" font-size="7.5" fill="#000000" text-anchor="middle">87%</text>
+  <text x="154.50" y="212.86" font-size="7.5" fill="#000000" text-anchor="middle">9%</text>
+  <text x="147.00" y="251" font-size="8.5" fill="#000000" text-anchor="middle">Mutate</text>
+  <rect x="197.00" y="41.91" width="15.0" height="194.09" fill="#1f77b4" stroke="#000000" stroke-width="0.7"/>
+  <rect x="214.00" y="187.72" width="15.0" height="48.28" fill="#d62728" stroke="#000000" stroke-width="0.7"/>
+  <text x="205.50" y="37.91" font-size="7.5" fill="#000000" text-anchor="middle">92%</text>
+  <text x="220.50" y="183.72" font-size="7.5" fill="#000000" text-anchor="middle">23%</text>
+  <text x="213.00" y="251" font-size="8.5" fill="#000000" text-anchor="middle">Crossover</text>
+  <text x="286" y="18" font-size="10" font-weight="700" fill="#000000">(b) <tspan font-weight="600">Surgical AST Knockouts (HV)</tspan></text>
+  <rect x="286" y="26" width="228" height="210" fill="#ffffff" stroke="#000000" stroke-width="0.9"/>
+  <line x1="286" y1="236.00" x2="514" y2="236.00" stroke="#e0e0e0" stroke-width="0.7"/>
+  <text x="281" y="236.00" font-size="8.5" fill="#111111" text-anchor="end" dominant-baseline="middle">0.00</text>
+  <line x1="286" y1="191.03" x2="514" y2="191.03" stroke="#e0e0e0" stroke-width="0.7"/>
+  <text x="281" y="191.03" font-size="8.5" fill="#111111" text-anchor="end" dominant-baseline="middle">0.18</text>
+  <line x1="286" y1="146.05" x2="514" y2="146.05" stroke="#e0e0e0" stroke-width="0.7"/>
+  <text x="281" y="146.05" font-size="8.5" fill="#111111" text-anchor="end" dominant-baseline="middle">0.36</text>
+  <line x1="286" y1="101.08" x2="514" y2="101.08" stroke="#e0e0e0" stroke-width="0.7"/>
+  <text x="281" y="101.08" font-size="8.5" fill="#111111" text-anchor="end" dominant-baseline="middle">0.54</text>
+  <line x1="286" y1="56.11" x2="514" y2="56.11" stroke="#e0e0e0" stroke-width="0.7"/>
+  <text x="281" y="56.11" font-size="8.5" fill="#111111" text-anchor="end" dominant-baseline="middle">0.72</text>
+  <rect x="293.29" y="53.61" width="18.0" height="182.39" fill="#1f77b4" stroke="#000000" stroke-width="0.7"/>
+  <text x="302.29" y="49.61" font-size="7.5" fill="#000000" text-anchor="middle">0.73</text>
+  <text x="302.29" y="251" font-size="8.5" fill="#000000" text-anchor="middle">K0</text>
+  <rect x="325.86" y="147.86" width="18.0" height="88.14" fill="#ff7f0e" stroke="#000000" stroke-width="0.7"/>
+  <text x="334.86" y="143.86" font-size="7.5" fill="#000000" text-anchor="middle">0.35</text>
+  <text x="334.86" y="251" font-size="8.5" fill="#000000" text-anchor="middle">K1</text>
+  <rect x="358.43" y="53.59" width="18.0" height="182.41" fill="#ff7f0e" stroke="#000000" stroke-width="0.7"/>
+  <text x="367.43" y="49.59" font-size="7.5" fill="#000000" text-anchor="middle">0.73</text>
+  <text x="367.43" y="251" font-size="8.5" fill="#000000" text-anchor="middle">K2</text>
+  <rect x="391.00" y="81.70" width="18.0" height="154.30" fill="#ff7f0e" stroke="#000000" stroke-width="0.7"/>
+  <text x="400.00" y="77.70" font-size="7.5" fill="#000000" text-anchor="middle">0.62</text>
+  <text x="400.00" y="251" font-size="8.5" fill="#000000" text-anchor="middle">K3</text>
+  <rect x="423.57" y="53.39" width="18.0" height="182.61" fill="#ff7f0e" stroke="#000000" stroke-width="0.7"/>
+  <text x="432.57" y="49.39" font-size="7.5" fill="#000000" text-anchor="middle">0.73</text>
+  <text x="432.57" y="251" font-size="8.5" fill="#000000" text-anchor="middle">K4</text>
+  <rect x="456.14" y="53.61" width="18.0" height="182.39" fill="#ff7f0e" stroke="#000000" stroke-width="0.7"/>
+  <text x="465.14" y="49.61" font-size="7.5" fill="#000000" text-anchor="middle">0.73</text>
+  <text x="465.14" y="251" font-size="8.5" fill="#000000" text-anchor="middle">K5</text>
+  <rect x="488.71" y="59.13" width="18.0" height="176.87" fill="#ff7f0e" stroke="#000000" stroke-width="0.7"/>
+  <text x="497.71" y="55.13" font-size="7.5" fill="#000000" text-anchor="middle">0.71</text>
+  <text x="497.71" y="251" font-size="8.5" fill="#000000" text-anchor="middle">K6</text>
+  <text x="554" y="18" font-size="10" font-weight="700" fill="#000000">(c) <tspan font-weight="600">Cache Eval Savings (|&#916;HV|=0)</tspan></text>
+  <rect x="554" y="26" width="192" height="210" fill="#ffffff" stroke="#000000" stroke-width="0.9"/>
+  <line x1="554" y1="236.00" x2="746" y2="236.00" stroke="#e0e0e0" stroke-width="0.7"/>
+  <text x="549" y="236.00" font-size="8.5" fill="#111111" text-anchor="end" dominant-baseline="middle">0k</text>
+  <line x1="554" y1="194.00" x2="746" y2="194.00" stroke="#e0e0e0" stroke-width="0.7"/>
+  <text x="549" y="194.00" font-size="8.5" fill="#111111" text-anchor="end" dominant-baseline="middle">13k</text>
+  <line x1="554" y1="152.00" x2="746" y2="152.00" stroke="#e0e0e0" stroke-width="0.7"/>
+  <text x="549" y="152.00" font-size="8.5" fill="#111111" text-anchor="end" dominant-baseline="middle">26k</text>
+  <line x1="554" y1="110.00" x2="746" y2="110.00" stroke="#e0e0e0" stroke-width="0.7"/>
+  <text x="549" y="110.00" font-size="8.5" fill="#111111" text-anchor="end" dominant-baseline="middle">39k</text>
+  <line x1="554" y1="68.00" x2="746" y2="68.00" stroke="#e0e0e0" stroke-width="0.7"/>
+  <text x="549" y="68.00" font-size="8.5" fill="#111111" text-anchor="end" dominant-baseline="middle">52k</text>
+  <line x1="554" y1="26.00" x2="746" y2="26.00" stroke="#e0e0e0" stroke-width="0.7"/>
+  <text x="549" y="26.00" font-size="8.5" fill="#111111" text-anchor="end" dominant-baseline="middle">65k</text>
+  <rect x="560.20" y="37.50" width="12.0" height="198.50" fill="#7f7f7f" stroke="#000000" stroke-width="0.7"/>
+  <rect x="574.20" y="72.30" width="12.0" height="163.70" fill="#1f77b4" stroke="#000000" stroke-width="0.7"/>
+  <text x="573.20" y="33.50" font-size="7.5" fill="#000000" text-anchor="middle">-18%</text>
+  <text x="573.20" y="251" font-size="8.5" fill="#000000" text-anchor="middle">A1</text>
+  <rect x="598.60" y="37.50" width="12.0" height="198.50" fill="#7f7f7f" stroke="#000000" stroke-width="0.7"/>
+  <rect x="612.60" y="59.32" width="12.0" height="176.68" fill="#1f77b4" stroke="#000000" stroke-width="0.7"/>
+  <text x="611.60" y="33.50" font-size="7.5" fill="#000000" text-anchor="middle">-11%</text>
+  <text x="611.60" y="251" font-size="8.5" fill="#000000" text-anchor="middle">A2</text>
+  <rect x="637.00" y="37.50" width="12.0" height="198.50" fill="#7f7f7f" stroke="#000000" stroke-width="0.7"/>
+  <rect x="651.00" y="70.54" width="12.0" height="165.46" fill="#1f77b4" stroke="#000000" stroke-width="0.7"/>
+  <text x="650.00" y="33.50" font-size="7.5" fill="#000000" text-anchor="middle">-17%</text>
+  <text x="650.00" y="251" font-size="8.5" fill="#000000" text-anchor="middle">A3</text>
+  <rect x="675.40" y="38.28" width="12.0" height="197.72" fill="#7f7f7f" stroke="#000000" stroke-width="0.7"/>
+  <rect x="689.40" y="66.91" width="12.0" height="169.09" fill="#1f77b4" stroke="#000000" stroke-width="0.7"/>
+  <text x="688.40" y="34.28" font-size="7.5" fill="#000000" text-anchor="middle">-14%</text>
+  <text x="688.40" y="251" font-size="8.5" fill="#000000" text-anchor="middle">A4</text>
+  <rect x="713.80" y="37.50" width="12.0" height="198.50" fill="#7f7f7f" stroke="#000000" stroke-width="0.7"/>
+  <rect x="727.80" y="46.04" width="12.0" height="189.96" fill="#1f77b4" stroke="#000000" stroke-width="0.7"/>
+  <text x="726.80" y="33.50" font-size="7.5" fill="#000000" text-anchor="middle">-4%</text>
+  <text x="726.80" y="251" font-size="8.5" fill="#000000" text-anchor="middle">A5</text>
+  <rect x="48" y="264" width="698" height="26" fill="#ffffff" stroke="#cccccc" stroke-width="0.8"/>
+  <text x="60" y="278" font-size="8.5" fill="#000000" dominant-baseline="middle"><tspan font-weight="700">Knockout Key (b):</tspan> K0=Intact, K1=No Body (-0.38 HV), K2=Rand Init, K3=Blind Score (-0.11 HV), K4=Const=1, K5=Static Prog, K6=Obj0 Only (-0.02 HV)</text>
+</svg>

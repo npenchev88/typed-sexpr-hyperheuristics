@@ -1,0 +1,1210 @@
+--- /dev/null
++++ src/niki/optimizer/pareto.clj
+@@ -0,0 +1,144 @@
++(ns niki.optimizer.pareto
++  "Two-objective minimization utilities. Exact comparisons over finite binary64
++  coordinates; no approximate dominance, archive truncation or search runtime."
++  (:require [niki.optimizer.portfolio :as portfolio])
++  (:import [java.math BigDecimal MathContext]))
++
++(defn- ensure! [condition code message]
++  (when-not condition (throw (ex-info message {:error code}))))
++
++(defn- coordinate! [value]
++  (ensure! (contains? #{Byte Short Integer Long clojure.lang.BigInt
++                       java.math.BigInteger clojure.lang.Ratio BigDecimal Float Double}
++                     (class value))
++           :invalid-coordinate "Expected a standard immutable numeric coordinate")
++  (let [d (double value)]
++    (ensure! (Double/isFinite d) :invalid-coordinate "Coordinates must be finite binary64 values")
++    (if (zero? d) 0.0 d)))
++
++(defn- point! [point]
++  (ensure! (and (vector? point) (= 2 (count point))) :invalid-point
++           "Expected a two-coordinate vector")
++  (mapv coordinate! point))
++
++(defn dominates?
++  "True iff a is no worse in either minimized coordinate and strictly better in one."
++  [a b]
++  (let [[ax ay] (point! a) [bx by] (point! b)]
++    (and (<= ax bx) (<= ay by) (or (< ax bx) (< ay by)))))
++
++(defn front
++  "Return the unique nondominated objective vectors, lexicographically sorted.
++  Input is a vector of two-objective vectors. This archive is uncapped and uses
++  exact comparisons over canonicalized binary64 coordinates, with no epsilon."
++  [points]
++  (ensure! (vector? points) :invalid-archive "Expected a vector of objective vectors")
++  (:points
++    (reduce (fn [{:keys [best-y] :as state} [_ y :as point]]
++              (if (< y best-y)
++                {:best-y y :points (conj (:points state) point)}
++                state))
++            {:best-y Double/POSITIVE_INFINITY :points []}
++            (sort (mapv point! points)))))
++
++(defn insert
++  "Insert an objective vector, discard only dominated/duplicate vectors."
++  [archive point]
++  (ensure! (vector? archive) :invalid-archive "Expected an archive vector")
++  (front (conj archive point)))
++
++(defrecord Normalization [bounds constant-coordinates])
++
++(def boundary-tolerance
++  "Only normalized-coordinate overshoot up to this amount is rounded to an endpoint."
++  1.0e-12)
++
++(defn prepare-normalization
++  "Prepare fixed [[min-x max-x] [min-y max-y]] bounds before comparing solvers.
++  Constant-coordinate indices are exposed for degenerate-instance reporting."
++  [bounds]
++  (ensure! (and (vector? bounds) (= 2 (count bounds))) :invalid-bounds
++           "Expected bounds for exactly two objectives")
++  (let [bounds (mapv point! bounds)]
++    (ensure! (every? (fn [[lo hi]] (<= lo hi)) bounds) :invalid-bounds
++             "Lower bounds must not exceed upper bounds")
++    (->Normalization bounds (vec (keep-indexed (fn [i [lo hi]] (when (== lo hi) i)) bounds)))))
++
++(defn normalize-point
++  "Map a point into a fixed unit box. Reject material excursions, not silently
++  clipped. A constant objective maps to zero only when its value equals the bound.
++  Normalization records returned by prepare-normalization are trusted values."
++  [normalization point]
++  (ensure! (instance? Normalization normalization) :invalid-normalization
++           "Call prepare-normalization first")
++  (mapv (fn [value [lo hi]]
++          (if (== lo hi)
++            (do (ensure! (== value lo) :outside-bounds "A constant objective differs from its bound")
++                0.0)
++            (let [v (BigDecimal. (double value))
++                  lower (BigDecimal. (double lo))
++                  upper (BigDecimal. (double hi))
++                  z (.doubleValue (.divide (.subtract v lower) (.subtract upper lower)
++                                           MathContext/DECIMAL128))]
++              (ensure! (and (Double/isFinite z)
++                            (<= (- boundary-tolerance) z (+ 1.0 boundary-tolerance)))
++                       :outside-bounds "Objective lies outside its fixed bounds")
++              (max 0.0 (min 1.0 z)))))
++        (point! point) (:bounds normalization)))
++
++(defn hypervolume-2d
++  "Dominated union area for two minimized objectives and a fixed reference point.
++  Reject any input outside the reference rectangle, including dominated points.
++  Areas accumulate exactly from binary64 coordinates before final conversion."
++  [points reference]
++  (ensure! (vector? points) :invalid-archive "Expected an objective-vector collection")
++  (let [[rx ry] (point! reference)
++        points (mapv point! points)
++        _ (ensure! (every? (fn [[x y]] (and (<= x rx) (<= y ry))) points)
++                   :invalid-reference "Reference must be weakly worse than every point")
++        right (BigDecimal. (double rx))
++        {:keys [area]}
++        (reduce (fn [{:keys [^BigDecimal top ^BigDecimal area]} [x y]]
++                  (let [bottom (BigDecimal. (double y))
++                        width (.subtract right (BigDecimal. (double x)))
++                        height (.subtract top bottom)]
++                    {:top bottom :area (.add area (.multiply width height))}))
++                {:top (BigDecimal. (double ry)) :area BigDecimal/ZERO}
++                (front points))
++        result (.doubleValue ^BigDecimal area)]
++    (ensure! (Double/isFinite result) :nonfinite-hypervolume
++             "Hypervolume is not representable as a finite binary64 value")
++    result))
++
++(defn normalized-hypervolume
++  "Normalize with the supplied fixed box; use reference [1.05 1.05], divisor 1.1025.
++  Empty archives score zero. Degenerate axes follow the normalization's zero rule."
++  [points normalization]
++  (ensure! (vector? points) :invalid-archive "Expected an objective-vector collection")
++  (ensure! (instance? Normalization normalization) :invalid-normalization
++           "Call prepare-normalization first")
++  (/ (hypervolume-2d (mapv #(normalize-point normalization %) points) [1.05 1.05])
++     1.1025))
++
++(defn portfolio-normalization
++  "Instance-only box: exact-K extrema of mean return; conservative [0,max asset
++  sample SD] risk range. Compute once per task and reuse across all comparisons.
++  Uses no competitor outcomes. Prepared portfolio instances are trusted values."
++  [instance]
++  (ensure! (instance? niki.optimizer.portfolio.PreparedPortfolio instance)
++           :unprepared-instance "Call portfolio/prepare-instance first")
++  (let [rows (:returns instance)
++        n (count rows) k (:k instance)
++        totals (mapv (fn [xs]
++                       (reduce (fn [^BigDecimal sum value]
++                                 (.add sum (BigDecimal. (double value))))
++                               BigDecimal/ZERO xs))
++                     rows)
++        ordered (vec (sort-by totals (range n)))
++        worst-mean (:mean-return (portfolio/evaluate instance (subvec ordered 0 k)))
++        best-mean (:mean-return (portfolio/evaluate instance (subvec ordered (- n k) n)))
++        one-asset (assoc instance :k 1)
++        max-risk (reduce max 0.0 (map #(:sample-standard-deviation
++                                        (portfolio/evaluate one-asset [%]))
++                                     (range n)))]
++    (prepare-normalization [[(- best-mean) (- worst-mean)] [0.0 max-risk]])))
+--- /dev/null
++++ src/niki/optimizer/portfolio.clj
+@@ -0,0 +1,129 @@
++(ns niki.optimizer.portfolio
++  "Equal-weight, fixed-cardinality portfolio objectives from aligned simple returns.
++  This namespace does not ingest prices, trade assets, or annualize results."
++  (:require [clojure.string :as str])
++  (:import [java.math BigDecimal MathContext]
++           [java.time LocalDate]
++           [java.time.format DateTimeParseException]))
++
++(defrecord PreparedPortfolio [k asset-ids dates returns])
++
++(defn- ensure! [condition code message]
++  (when-not condition (throw (ex-info message {:error code}))))
++
++(defn- finite-number? [value]
++  (and (number? value)
++       (try (Double/isFinite (double value))
++            (catch ArithmeticException _ false))))
++
++(defn- valid-date? [value]
++  (and (string? value)
++       (boolean (re-matches #"\d{4}-\d{2}-\d{2}" value))
++       (try (LocalDate/parse value) true
++            (catch DateTimeParseException _ false))))
++
++(defn- normalize-return [value]
++  ;; Exact classes exclude mutable/custom Number subclasses, including subclasses
++  ;; of otherwise supported Java numeric types.
++  (ensure! (contains? #{Byte Short Integer Long clojure.lang.BigInt
++                       java.math.BigInteger clojure.lang.Ratio BigDecimal Float Double}
++                     (class value))
++           :invalid-return "Simple returns must be standard immutable numbers")
++  (let [normalized (try (double value) (catch ArithmeticException _ ##NaN))]
++    (ensure! (and (<= -1 value) (Double/isFinite normalized) (<= -1.0 normalized))
++             :invalid-return "Simple returns must be finite numbers >= -1")
++    normalized))
++
++(defn prepare-instance
++  "Validate an asset-major simple-return panel with :k and an :assets vector.
++  Each asset needs a unique keyword/nonblank-string :id, a strictly increasing
++  ISO-date vector, and a finite :returns vector of the same length (T >= 2).
++  All assets must share identical dates. Simple returns below -1 are invalid.
++  Standard immutable numbers are converted once to binary64; missing values
++  are never filled implicitly."
++  [panel]
++  (ensure! (map? panel) :invalid-panel "Expected a panel map")
++  (let [{:keys [k assets]} panel]
++    (ensure! (and (vector? assets) (seq assets) (every? map? assets)) :invalid-assets
++             "Expected a nonempty vector of asset maps")
++    (ensure! (and (integer? k) (<= 1 k (count assets))) :invalid-k
++             "K must be an integer between one and the asset count")
++    (let [ids (mapv :id assets)
++          dates (:dates (first assets))]
++      (ensure! (every? #(or (keyword? %) (and (string? %) (not (str/blank? %)))) ids)
++               :invalid-asset-id "Asset IDs must be keywords or nonblank strings")
++      (ensure! (= (count ids) (count (set ids))) :duplicate-assets
++               "Asset IDs must be unique")
++      (ensure! (and (vector? dates) (<= 2 (count dates))
++                    (every? valid-date? dates)
++                    (every? neg? (map compare dates (rest dates))))
++               :invalid-dates "Expected at least two unique increasing ISO dates")
++      (let [returns (mapv (fn [asset]
++                            (ensure! (= dates (:dates asset)) :unaligned-dates
++                                     "Every asset must use the identical date vector")
++                            (let [xs (:returns asset)]
++                              (ensure! (and (vector? xs) (= (count dates) (count xs)))
++                                       :invalid-return-shape "Returns must match the date vector")
++                              (mapv normalize-return xs)))
++                          assets)]
++        (->PreparedPortfolio k ids dates returns)))))
++
++(defn validate-selection
++  "Return sorted unique asset indices; require exactly K distinct legal members.
++  Only vectors are accepted, so accidental sets/maps and unbounded lazy inputs
++  cannot silently change representation. Prepared instances are trusted values
++  returned by prepare-instance, not a serialization or security boundary."
++  [instance selection]
++  (ensure! (instance? PreparedPortfolio instance) :unprepared-instance
++           "Call prepare-instance before evaluating a portfolio")
++  (let [k (:k instance) n (count (:returns instance))]
++    (ensure! (and (vector? selection) (= k (count selection))
++                  (every? #(and (integer? %) (<= 0 %) (< % n)) selection)
++                  (= k (count (set selection))))
++             :invalid-selection "Expected exactly K distinct valid asset indices")
++    (vec (sort selection))))
++
++(defn evaluate
++  "Return daily mean and sample standard deviation; both objectives minimized.
++  Accumulates the direct time series exactly from normalized binary64 inputs;
++  only final divisions and square root round to DECIMAL128, then binary64.
++  Risk retains dispersion even when displayed portfolio returns round flat.
++  Equal weights are reset analytically for every observation; this is not a
++  buy-and-hold or transaction-cost simulation."
++  [{:keys [returns] :as instance} selection]
++  (let [selection (validate-selection instance selection)
++        selected (mapv returns selection)
++        k (count selection)
++        t (count (first selected))
++        k-decimal (bigdec k)
++        t-decimal (bigdec t)
++        ;; BigDecimal(double), not valueOf, preserves the actual binary64 input.
++        ;; S_t is the exact selected sum at observation t; Q is their exact total.
++        sums (apply mapv (fn [& xs]
++                           (reduce (fn [^BigDecimal total x]
++                                     (.add total (BigDecimal. (double x))))
++                                   BigDecimal/ZERO xs))
++                    selected)
++        total (reduce (fn [^BigDecimal sum ^BigDecimal value] (.add sum value))
++                      BigDecimal/ZERO sums)
++        series (mapv (fn [^BigDecimal value]
++                       (.doubleValue (.divide value k-decimal MathContext/DECIMAL128)))
++                     sums)
++        mean (.doubleValue (.divide total (bigdec (*' k t)) MathContext/DECIMAL128))
++        ;; d_t = T*S_t-Q; variance = sum(d_t^2)/(K^2*T^2*(T-1)).
++        ;; Keep subtraction, weighting residuals, and squared magnitudes exact.
++        variance-numerator
++        (reduce (fn [^BigDecimal numerator ^BigDecimal value]
++                  (let [deviation (.subtract (.multiply t-decimal value) total)]
++                    (.add numerator (.multiply deviation deviation))))
++                BigDecimal/ZERO sums)
++        variance-denominator (bigdec (*' k k t t (dec t)))
++        risk (.doubleValue
++               (.sqrt (.divide variance-numerator variance-denominator MathContext/DECIMAL128)
++                      MathContext/DECIMAL128))]
++    (ensure! (and (finite-number? mean) (finite-number? risk)
++                  (every? finite-number? series))
++             :nonfinite-objective "Numerical calculation produced nonfinite values")
++    {:selection selection :portfolio-returns series
++     :mean-return mean :sample-standard-deviation risk
++     :objectives [(- mean) risk]}))
+--- /dev/null
++++ src/niki/optimizer/portfolio_reference.clj
+@@ -0,0 +1,73 @@
++(ns niki.optimizer.portfolio-reference
++  "Development-only independent reference using rational sample covariance.
++  Shares input/selection validation with the evaluator, but no numerical path.
++  Do not use this slow reference as an uncharged optimizer primitive."
++  (:require [niki.optimizer.portfolio :as portfolio])
++  (:import [java.math BigDecimal MathContext]))
++
++(defn selections
++  "Lazily enumerate every K-of-N subset in lexicographic order, without repeats.
++  This exact reference is intended for small correctness cases only."
++  [n k]
++  (when-not (and (integer? n) (integer? k) (<= 0 k n))
++    (throw (ex-info "Expected integer dimensions with 0 <= K <= N"
++                    {:error :invalid-subset-dimensions})))
++  (letfn [(walk [start left prefix]
++            (lazy-seq
++              (if (zero? left)
++                (list prefix)
++                (mapcat #(walk (inc %) (dec left) (conj prefix %))
++                        (range start (inc (- n left)))))))]
++    (walk 0 k [])))
++
++(defn prepare-reference
++  "Calculate independent rational asset means and sample covariance.
++  Default :normalized-binary64 uses the prepared production inputs, preserving
++  each double's exact binary value via BigDecimal(double) before rationalizing.
++  :exact-input retains original ratios/integers and decimal values (floating
++  numbers use their decimal spelling) for input-quantization diagnostics.
++  Both modes share validation only, not production objective arithmetic."
++  ([panel] (prepare-reference panel :normalized-binary64))
++  ([panel input-mode]
++   (when-not (#{:normalized-binary64 :exact-input} input-mode)
++     (throw (ex-info "Unknown reference input mode"
++                     {:error :invalid-reference-input-mode :input-mode input-mode})))
++   (let [instance (portfolio/prepare-instance panel)
++         rows (case input-mode
++                :normalized-binary64
++                (mapv #(mapv (fn [x] (rationalize (BigDecimal. (double x)))) %)
++                      (:returns instance))
++                :exact-input
++                (mapv #(mapv rationalize (:returns %)) (:assets panel)))
++         t (count (:dates instance))
++         means (mapv #(/ (reduce +' %) t) rows)
++         deviations (mapv (fn [xs mu] (mapv #(-' % mu) xs)) rows means)
++         covariance (mapv (fn [a]
++                            (mapv (fn [b] (/ (reduce +' (map *' a b)) (dec t)))
++                                  deviations))
++                          deviations)]
++     {:instance instance :input-mode input-mode
++      :exact-means means :exact-covariance covariance})))
++
++(defn- rational-sqrt [value]
++  ;; Take the root before conversion to binary64. Converting the squared
++  ;; quantity first would overflow/underflow for otherwise representable risks.
++  (let [^BigDecimal decimal (if (ratio? value)
++                             (.divide (bigdec (numerator value))
++                                      (bigdec (denominator value)) MathContext/DECIMAL128)
++                             (bigdec value))]
++    (double (.sqrt decimal MathContext/DECIMAL128))))
++
++(defn evaluate
++  "Calculate mu^T w and w^T Sigma w without constructing a portfolio series.
++  The exact rational variance is retained; standard deviation is binary64."
++  [{:keys [instance exact-means exact-covariance]} selection]
++  (let [selection (portfolio/validate-selection instance selection)
++        k (:k instance)
++        mean (/ (reduce +' (map exact-means selection)) k)
++        variance (/ (reduce +' (for [i selection j selection]
++                                 (get-in exact-covariance [i j]))) (*' k k))
++        risk (rational-sqrt variance)]
++    {:selection selection :exact-mean mean :exact-variance variance
++     :mean-return (double mean) :sample-standard-deviation risk
++     :objectives [(- (double mean)) risk]}))
+--- /dev/null
++++ test/niki/optimizer/g2_test_runner.clj
+@@ -0,0 +1,8 @@
++(ns niki.optimizer.g2-test-runner
++  (:require [clojure.test :as test]
++            [niki.optimizer.pareto-test]))
++
++(defn -main [& _]
++  (let [{:keys [fail error]} (test/run-tests 'niki.optimizer.pareto-test)]
++    (shutdown-agents)
++    (when (pos? (+ fail error)) (System/exit 1))))
+--- /dev/null
++++ test/niki/optimizer/pareto_reference.clj
+@@ -0,0 +1,30 @@
++(ns niki.optimizer.pareto-reference
++  "Test-only independent quadratic dominance and rational cell-grid union oracle.
++  Deliberately does not require production Pareto/normalization helpers."
++  (:import [java.math BigDecimal]))
++
++(defn front [points]
++  (let [points (vec (distinct (mapv #(mapv double %) points)))]
++    (vec (sort (filter (fn [[x y]]
++                         (not-any? (fn [[u v]]
++                                     (and (<= u x) (<= v y) (or (< u x) (< v y))))
++                                   points))
++                       points)))))
++
++(defn- exact [x] (rationalize (BigDecimal. (double x))))
++
++(defn hypervolume [points reference]
++  (let [points (mapv #(mapv exact %) points)
++        [rx ry] (mapv exact reference)
++        xs (sort (distinct (conj (mapv first points) rx)))
++        ys (sort (distinct (conj (mapv second points) ry)))]
++    (double (reduce + 0 (for [[x0 x1] (partition 2 1 xs)
++                             [y0 y1] (partition 2 1 ys)
++                             :when (some (fn [[x y]] (and (<= x x0) (<= y y0))) points)]
++                         (* (- x1 x0) (- y1 y0)))))))
++
++(defn normalize [point bounds]
++  (mapv (fn [x [lo hi]]
++          (let [x (exact x) lo (exact lo) hi (exact hi)]
++            (if (= lo hi) 0.0 (double (/ (- x lo) (- hi lo))))))
++        point bounds))
+--- /dev/null
++++ test/niki/optimizer/pareto_test.clj
+@@ -0,0 +1,179 @@
++(ns niki.optimizer.pareto-test
++  (:require [clojure.test :refer [deftest is testing]]
++            [niki.optimizer.pareto :as p]
++            [niki.optimizer.portfolio :as portfolio]
++            [niki.optimizer.portfolio-reference :as portfolio-reference]
++            [niki.optimizer.pareto-reference :as reference]
++            [clojure.edn :as edn]
++            [clojure.java.io :as io]))
++
++(deftest custom-and-mutable-coordinates-are-rejected
++  (let [mutable (doto (java.util.concurrent.atomic.DoubleAdder.) (.add 0.5))
++        custom (proxy [java.math.BigDecimal] ["0.5"])]
++    (doseq [value [mutable custom]]
++      (is (thrown? clojure.lang.ExceptionInfo (p/dominates? [value 0] [1 1])))
++      (is (thrown? clojure.lang.ExceptionInfo (p/front [[value 0]]))))))
++
++(deftest archive-removes-dominated-points-and-duplicates
++  (let [front (ns-resolve 'niki.optimizer.pareto 'front)
++        insert (ns-resolve 'niki.optimizer.pareto 'insert)]
++    (is (some? front) "Batch Pareto archive must exist")
++    (is (some? insert) "Incremental archive insertion must exist")
++    (when (and front insert)
++      (let [points [[3 4] [1 5] [2 3] [4 1] [2 3] [2 4]]
++            expected [[1.0 5.0] [2.0 3.0] [4.0 1.0]]]
++        (is (= expected (front points)))
++        (is (= expected (front (vec (reverse points)))))
++        (is (= expected (reduce insert [] points)))
++        (is (= expected (reduce insert [] (reverse points))))
++        (is (= expected (insert expected [9 9])))
++        (is (= [[0.0 0.0]] (front [[0 -0.0] [-0.0 0]])))
++        (is (= [] (front [])))
++        (doseq [bad [nil '([1 2]) [[1]] [[1 ##NaN]] [[1 2 3]]]]
++          (is (thrown? clojure.lang.ExceptionInfo (front bad))))))))
++
++(defn close? [a b] (<= (abs (- (double a) (double b))) 1.0e-12))
++
++(deftest normalization-is-fixed-bounded-and-flags-constants
++  (let [prepare (ns-resolve 'niki.optimizer.pareto 'prepare-normalization)
++        normalize (ns-resolve 'niki.optimizer.pareto 'normalize-point)]
++    (is (some? prepare))
++    (is (some? normalize))
++    (when (and prepare normalize)
++      (let [box (prepare [[-2 2] [10 30]])
++            flat (prepare [[1 1] [0 2]])]
++        (is (= [] (:constant-coordinates box)))
++        (is (= [0] (:constant-coordinates flat)))
++        (is (= [0.25 0.5] (normalize box [-1 20])))
++        (is (= [0.0 0.0] (normalize box [-2 10])))
++        (is (= [1.0 1.0] (normalize box [2 30])))
++        (is (= [0.0 0.5] (normalize flat [1 1])))
++        (is (thrown? clojure.lang.ExceptionInfo (normalize flat [1.01 1])))
++        (is (thrown? clojure.lang.ExceptionInfo (normalize box [-3 20])))
++        (is (thrown? clojure.lang.ExceptionInfo (normalize box [0 31])))
++        (is (thrown? clojure.lang.ExceptionInfo (normalize {} [0 0])))
++        (let [unit (prepare [[0 1] [0 1]])]
++          (is (= [0.0 1.0] (normalize unit [-5.0e-13 (+ 1.0 5.0e-13)])))
++          (is (thrown? clojure.lang.ExceptionInfo (normalize unit [-1.0e-6 0]))))
++        (is (= [0.5 0.5]
++               (normalize (prepare [[(- Double/MAX_VALUE) Double/MAX_VALUE] [0 1]]) [0 0.5])))
++        (is (= [1.0 0.5]
++               (normalize (prepare [[1.0e16 10000000000000002.0] [0 1]])
++                          [10000000000000002.0 0.5])))
++        (is (close? 0.5 (first (normalize (prepare [[0 1.0e-300] [0 1]]) [5.0e-301 0])))))
++      (doseq [bad [nil [] [[0 1]] [[1 0] [0 1]] [[0 ##Inf] [0 1]] [[0 1] [0 ##NaN]]
++                   '([0 1] [0 1])]]
++        (is (thrown? clojure.lang.ExceptionInfo (prepare bad)))))))
++
++(deftest hypervolume-known-areas-and-reference-contract
++  (let [hv (ns-resolve 'niki.optimizer.pareto 'hypervolume-2d)
++        score (ns-resolve 'niki.optimizer.pareto 'normalized-hypervolume)]
++    (is (some? hv))
++    (is (some? score))
++    (when (and hv score)
++      (is (= 0.0 (hv [] [5 5])))
++      (is (= 8.0 (hv [[1 4] [3 2]] [5 5])))
++      (is (= 8.0 (hv [[3 2] [1 4] [4 4] [1 4]] [5 5])))
++      (is (= 2.0 (hv [[-2 -1]] [0 0])))
++      (is (= 0.0 (hv [[5 5]] [5 5])))
++      (is (thrown? clojure.lang.ExceptionInfo (hv [[1 1] [6 6]] [5 5])))
++      (is (thrown? clojure.lang.ExceptionInfo (hv [[0 6]] [5 5])))
++      (is (thrown? clojure.lang.ExceptionInfo (hv [[0 0]] [##Inf 1])))
++      (is (thrown? clojure.lang.ExceptionInfo (hv '([0 0]) [1 1])))
++      (is (thrown? clojure.lang.ExceptionInfo (hv [[0 0]] [1.0e308 1.0e308])))
++      (let [width (rationalize (java.math.BigDecimal. Double/MAX_VALUE))
++            height (rationalize (java.math.BigDecimal. 1.0e-308))
++            expected (double (* 2 width height))]
++        (is (close? expected (hv [[(- Double/MAX_VALUE) 0]] [Double/MAX_VALUE 1.0e-308]))))
++      (let [box (p/prepare-normalization [[0 10] [0 10]])]
++        (is (= 0.0 (score [] box)))
++        (is (= 1.0 (score [[0 0]] box)))
++        (is (close? (/ (* 0.05 0.05) 1.1025) (score [[10 10]] box)))
++        (is (thrown? clojure.lang.ExceptionInfo (score [[11 0]] box))))
++      (is (= 1.0 (score [[2 3]] (p/prepare-normalization [[2 2] [3 3]]))))
++      (is (thrown? clojure.lang.ExceptionInfo (score [] {}))))))
++
++(deftest exhaustive-small-grid-agrees-with-independent-oracle
++  (let [grid (vec (for [x [0.0 0.5 1.0] y [0.0 0.5 1.0]] [x y]))
++        masks (range (bit-shift-left 1 (count grid)))
++        ref [1.25 1.25]]
++    (is (= 512 (count masks)))
++    (doseq [mask masks]
++      (let [points (vec (keep-indexed (fn [i point] (when (bit-test mask i) point)) grid))
++            expected (reference/front points)
++            area (p/hypervolume-2d points ref)
++            trace (mapv #(p/hypervolume-2d % ref) (reductions p/insert [] points))]
++        (is (= expected (p/front points)))
++        (is (= expected (reduce p/insert [] points)))
++        (is (close? (reference/hypervolume points ref) area))
++        (is (= area (p/hypervolume-2d (vec (reverse points)) ref)))
++        (is (= area (p/hypervolume-2d (into points points) ref)))
++        (is (every? true? (map <= trace (rest trace))))))))
++
++(deftest seeded-normalization-and-area-crosschecks
++  (let [rng (java.util.Random. 7102026)
++        bounds [[-2 3] [-5 7]]
++        box (p/prepare-normalization bounds)]
++    (dotimes [_ 100]
++      (let [points (mapv (fn [_] [(- (* 5.0 (.nextDouble rng)) 2.0)
++                                 (- (* 12.0 (.nextDouble rng)) 5.0)])
++                         (range (inc (.nextInt rng 10))))
++            normalized (mapv #(p/normalize-point box %) points)
++            independent (mapv #(reference/normalize % bounds) points)]
++        (is (every? true? (map close? (mapcat identity normalized) (mapcat identity independent))))
++        (is (close? (/ (reference/hypervolume independent [1.05 1.05]) 1.1025)
++                    (p/normalized-hypervolume points box)))
++        (is (= (reference/front points) (p/front points)))))))
++
++(deftest portfolio-bounds-use-feasible-k-subset-means
++  (let [prepare (ns-resolve 'niki.optimizer.pareto 'portfolio-normalization)]
++    (is (some? prepare) "Portfolio normalization must derive bounds from the instance")
++    (when prepare
++      (let [panel {:k 2 :assets (mapv (fn [i value]
++                                       {:id (str i) :dates ["2000-01-01" "2000-01-02"]
++                                        :returns [value value]})
++                                     (range) [0.1 0.2 0.5])}
++            instance (portfolio/prepare-instance panel)
++            box (prepare instance)
++            choices (vec (portfolio-reference/selections 3 2))]
++        (is (close? -0.35 (get-in box [:bounds 0 0])))
++        (is (close? -0.15 (get-in box [:bounds 0 1])))
++        (is (= [1] (:constant-coordinates box)))
++        (doseq [choice choices]
++          (is (every? #(<= 0.0 % 1.0)
++                      (p/normalize-point box (:objectives (portfolio/evaluate instance choice))))))
++        (is (= [0 1] (:constant-coordinates (prepare (portfolio/prepare-instance (assoc panel :k 3)))))))
++      (is (thrown? clojure.lang.ExceptionInfo (prepare {}))))))
++
++(deftest full-tiny-portfolio-pipeline
++  (let [prepare (ns-resolve 'niki.optimizer.pareto 'portfolio-normalization)]
++    (is (some? prepare))
++    (when prepare
++      (let [panel (edn/read-string (slurp (io/resource "fixtures/g1-portfolio.edn")))
++            instance (portfolio/prepare-instance panel)
++            choices (vec (portfolio-reference/selections 15 5))
++            points (mapv #(:objectives (portfolio/evaluate instance %)) choices)
++            box (prepare instance)
++            expected-front (reference/front points)
++            normalized (mapv #(p/normalize-point box %) points)
++            independent-front (reference/front (mapv #(reference/normalize % (:bounds box)) points))
++            expected-hv (/ (reference/hypervolume independent-front [1.05 1.05]) 1.1025)]
++        (is (= 3003 (count choices)))
++        (is (= expected-front (p/front points)))
++        (is (close? expected-hv (p/normalized-hypervolume points box)))
++        (is (<= 0.0 (p/normalized-hypervolume points box) 1.0))
++        (doseq [point normalized]
++          (is (every? #(<= 0.0 % 1.0) point)))))))
++
++(deftest strict-minimization-dominance
++  (let [dominates? (try (requiring-resolve 'niki.optimizer.pareto/dominates?)
++                       (catch java.io.FileNotFoundException _ nil))]
++    (is (some? dominates?) "G2 dominance implementation must exist")
++    (when dominates?
++      (is (true? (dominates? [1 2] [2 3])))
++      (is (true? (dominates? [1 2] [1 3])))
++      (is (false? (dominates? [1 2] [1 2])))
++      (is (false? (dominates? [1 3] [2 2])))
++      (is (false? (dominates? [2 3] [1 2])))
++      (doseq [bad [nil [] [1] [1 2 3] '(1 2) [##NaN 1] [0 ##Inf] [nil 0] ["0" 1]]]
++        (is (thrown? clojure.lang.ExceptionInfo (dominates? bad [0 0])))))))
+--- /dev/null
++++ test/niki/optimizer/portfolio_reference_test.clj
+@@ -0,0 +1,170 @@
++(ns niki.optimizer.portfolio-reference-test
++  (:require [clojure.test :refer [deftest is]]
++            [clojure.edn :as edn]
++            [clojure.java.io :as io]
++            [niki.optimizer.portfolio-test :refer [fixture close?]]
++            [niki.optimizer.portfolio :as portfolio]
++            [niki.optimizer.portfolio-reference :as reference]))
++
++(deftest default-reference-compares-normalized-binary64-inputs
++  (doseq [rows [[[1.0e23 0.0] [0.0 2.0e22] [0.0 4.0e22] [0.0 4.0e22]]
++               [[0.3 0.1] [0.0 0.2]]
++               [[9223372036854775807 9223372036854775000]]]]
++    (let [k (count rows)
++          panel (fixture k rows)
++          selection (vec (range k))
++          direct (portfolio/evaluate (portfolio/prepare-instance panel) selection)
++          prepared (reference/prepare-reference panel)
++          independent (reference/evaluate prepared selection)]
++      (is (= :normalized-binary64 (:input-mode prepared)))
++      ;; Strict equality here: broad absolute tolerances hide cancellation risk.
++      (is (= (:mean-return direct) (:mean-return independent)))
++      (is (= (:sample-standard-deviation direct)
++             (:sample-standard-deviation independent)))
++      (is (= (:objectives direct) (:objectives independent))))))
++
++(deftest explicit-reference-input-modes
++  (doseq [rows [[[1.0e23 0.0] [0.0 2.0e22] [0.0 4.0e22] [0.0 4.0e22]]
++               [[0.3 0.1] [0.0 0.2]]
++               [[9223372036854775807 9223372036854775000]]
++               [[0.1M 0.2M]]
++               [[1/3 2/3]]]]
++    (let [panel (fixture (count rows) rows)
++          selection (vec (range (count rows)))
++          normalized (reference/prepare-reference panel)
++          original (reference/prepare-reference panel :exact-input)]
++      (is (= normalized (reference/prepare-reference panel :normalized-binary64)))
++      (is (= :exact-input (:input-mode original)))
++      (is (not= (:exact-means normalized) (:exact-means original)))
++      (is (not= (:exact-variance (reference/evaluate normalized selection))
++                (:exact-variance (reference/evaluate original selection)))))))
++
++(deftest reference-rejects-unknown-input-modes
++  (doseq [mode [nil :unknown "normalized-binary64" {}]]
++    (is (thrown? clojure.lang.ExceptionInfo
++                 (reference/prepare-reference (fixture 1 [[0 0]]) mode)))))
++
++(deftest independent-covariance-reference
++  (let [prepared (reference/prepare-reference (fixture 2 [[1/10 0 -1/10] [0 1/5 1/10]])
++                                            :exact-input)
++        result (reference/evaluate prepared [0 1])]
++    (is (= [0 1/10] (:exact-means prepared)))
++    (is (= [[1/100 -1/200] [-1/200 1/100]] (:exact-covariance prepared)))
++    (is (= 1/20 (:exact-mean result)))
++    (is (= 1/400 (:exact-variance result)))
++    (is (close? 1/20 (:mean-return result)))
++    (is (close? 1/20 (:sample-standard-deviation result)))))
++
++(deftest direct-risk-preserves-near-constant-asset-dispersion
++  (doseq [[k rows selection expected-variance]
++          [[1 [[10000000000000000.0 10000000000000002.0]] [0] 2]
++           [2 [[10000000000000000.0 10000000000000002.0]
++               [10000000000000000.0 10000000000000000.0]] [0 1] 1/2]]]
++    (let [panel (fixture k rows)
++          direct (portfolio/evaluate (portfolio/prepare-instance panel) selection)
++          independent (reference/evaluate (reference/prepare-reference panel) selection)
++          expected-risk (Math/sqrt (double expected-variance))]
++      (is (= expected-variance (:exact-variance independent)))
++      (is (close? expected-risk (:sample-standard-deviation independent)))
++      (is (close? (:sample-standard-deviation independent)
++                  (:sample-standard-deviation direct)))
++      (is (close? expected-risk (second (:objectives direct))))
++      (is (= (- (:mean-return direct)) (first (:objectives direct)))))))
++
++(deftest covariance-reference-does-not-square-into-overflow-or-underflow
++  (doseq [magnitude [1.0e200 1.0e-200]]
++    (let [prepared (reference/prepare-reference (fixture 1 [[0.0 magnitude]]))
++          result (reference/evaluate prepared [0])
++          expected (/ magnitude (Math/sqrt 2.0))]
++      (is (pos? (:exact-variance result)))
++      (is (Double/isFinite (:sample-standard-deviation result)))
++      (is (< (abs (- 1.0 (/ (:sample-standard-deviation result) expected))) 1.0e-12)))))
++
++(deftest exact-reference-promotes-integral-arithmetic
++  (doseq [[k rows expected-means expected-covariance expected-mean expected-variance]
++          [[1 [[9223372036854775807 9223372036854775807]]
++            [9223372036854775807] [[0]] 9223372036854775807 0]
++           ;; Mean fits Long, but each squared deviation does not.
++           [1 [[0 8000000000]]
++            [4000000000] [[32000000000000000000N]] 4000000000 32000000000000000000N]
++           ;; Per-asset means fit Long; their selected sum does not.
++           [3 (vec (repeat 3 [4000000000000000000 4000000000000000000]))
++            (vec (repeat 3 4000000000000000000)) (vec (repeat 3 [0 0 0]))
++            4000000000000000000 0]
++           ;; Individual covariances fit Long; the selected covariance sum does not.
++           [2 [[0 4000000000] [0 4000000000]]
++            [2000000000 2000000000]
++            [[8000000000000000000 8000000000000000000]
++             [8000000000000000000 8000000000000000000]]
++            2000000000 8000000000000000000]]]
++    (is (= {:means expected-means :covariance expected-covariance
++            :mean expected-mean :variance expected-variance
++            :risk-correct? true :objectives-correct? true}
++           (let [prepared (reference/prepare-reference (fixture k rows) :exact-input)
++                 result (reference/evaluate prepared (vec (range k)))
++                 expected-risk (Math/sqrt (double expected-variance))]
++             {:means (:exact-means prepared) :covariance (:exact-covariance prepared)
++              :mean (:exact-mean result) :variance (:exact-variance result)
++              :risk-correct? (close? expected-risk (:sample-standard-deviation result))
++              :objectives-correct? (every? true? (map close?
++                                                    [(- (double expected-mean)) expected-risk]
++                                                    (:objectives result)))})))))
++
++(deftest exhaustive-direct-versus-covariance
++  (let [rows (mapv (fn [i]
++                     (mapv (fn [t]
++                             (/ (- (mod (+ (* i i) (* t t) (* 7 i t) (* 3 i) (* 11 t)) 97)
++                                   48)
++                                1000))
++                           (range 12)))
++                   (range 15))
++        panel (edn/read-string (slurp (io/resource "fixtures/g1-portfolio.edn")))
++        instance (portfolio/prepare-instance panel)
++        prepared (reference/prepare-reference panel)
++        choices (vec (reference/selections 15 5))]
++    (is (= (fixture 5 rows) (select-keys panel [:k :assets])))
++    (is (= :synthetic-development-only (:source panel)))
++    (is (= 3003 (count choices)))
++    (doseq [selection choices]
++      (let [direct (portfolio/evaluate instance selection)
++            independent (reference/evaluate prepared selection)]
++        (is (close? (:mean-return independent) (:mean-return direct)) (str selection " mean"))
++        (is (close? (:sample-standard-deviation independent)
++                    (:sample-standard-deviation direct)) (str selection " risk"))
++        (is (every? #(Double/isFinite (double %)) (:objectives direct)))
++        (is (= direct (portfolio/evaluate instance (vec (reverse selection)))))))))
++
++(deftest singular-and-tied-covariance-cases
++  (doseq [rows [[[0 0 0] [0 0 0]]
++               [[1/10 -1/10] [1/10 -1/10]]
++               [[1/10 -1/10] [-1/10 1/10]]
++               [[1/10 1/10] [1/10 1/10]]
++               [[1/10 -1/10 0] [1/10 -1/10 0] [1/10 -1/10 0]]]]
++    (let [k (count rows)
++          panel (fixture k rows)
++          direct (portfolio/evaluate (portfolio/prepare-instance panel) (vec (range k)))
++          independent (reference/evaluate (reference/prepare-reference panel) (vec (range k)))]
++      (is (close? (:mean-return independent) (:mean-return direct)))
++      (is (close? (:sample-standard-deviation independent)
++                  (:sample-standard-deviation direct))))))
++
++(deftest exact-subset-enumeration
++  (let [selections (ns-resolve 'niki.optimizer.portfolio-reference 'selections)]
++    (is (some? selections) "The exact subset enumerator must exist")
++    (when selections
++      (let [actual (vec (selections 15 5))
++            bitmask-reference (set (for [mask (range (bit-shift-left 1 15))
++                                        :when (= 5 (Long/bitCount mask))]
++                                    (vec (filter #(bit-test mask %) (range 15)))))]
++        (is (= 3003 (count actual)))
++        (is (= 3003 (count (set actual))))
++        (is (= bitmask-reference (set actual)))
++        (is (= (vec (sort actual)) actual))
++        (is (= [0 1 2 3 4] (first actual)))
++        (is (= [10 11 12 13 14] (last actual)))
++        (is (= [[]] (vec (selections 0 0))))
++        (is (= [[]] (vec (selections 3 0))))
++        (is (= [[0 1 2]] (vec (selections 3 3))))
++        (doseq [[n k] [[-1 0] [3 4] [3 -1] [3 1.5]]]
++          (is (thrown? clojure.lang.ExceptionInfo (doall (selections n k)))))))))
++
+--- /dev/null
++++ test/niki/optimizer/portfolio_test.clj
+@@ -0,0 +1,155 @@
++(ns niki.optimizer.portfolio-test
++  (:require [clojure.test :refer [deftest is testing]]
++            [niki.optimizer.portfolio :as portfolio]))
++
++(defn close? [expected actual]
++  (<= (abs (- (double expected) (double actual)))
++      (+ 1.0e-12 (* 1.0e-10 (abs (double expected))))))
++
++(defn fixture [k rows]
++  {:k k
++   :assets (mapv (fn [i values]
++                   {:id (keyword (str "asset-" i))
++                    :dates (mapv #(str "2000-01-" (format "%02d" (inc %)))
++                                 (range (count values)))
++                    :returns values})
++                 (range) rows)})
++
++(deftest equal-weight-return-and-sample-risk
++  (let [instance (portfolio/prepare-instance
++                  (fixture 2 [[1/10 0 -1/10] [0 1/5 1/10]]))
++        result (portfolio/evaluate instance [0 1])]
++    (is (= [0 1] (:selection result)))
++    (is (= 3 (count (:portfolio-returns result))))
++    (is (every? true? (map close? [1/20 1/10 0] (:portfolio-returns result))))
++    (is (close? 1/20 (:mean-return result)))
++    (is (close? 1/20 (:sample-standard-deviation result)))
++    (is (= 2 (count (:objectives result))))
++    (is (every? true? (map close? [-1/20 1/20] (:objectives result))))))
++
++(deftest stable-objectives-for-extreme-finite-magnitudes
++  (doseq [[rows expected-mean expected-risk]
++          [[[[1.0e308 1.0e308] [1.0e308 1.0e308]] 1.0e308 0.0]
++           [[[0.0 1.0e200]] 5.0e199 (/ 1.0e200 (Math/sqrt 2.0))]
++           [[[0.0 1.0e-200]] 5.0e-201 (/ 1.0e-200 (Math/sqrt 2.0))]]]
++    (let [result (portfolio/evaluate (portfolio/prepare-instance (fixture (count rows) rows))
++                                     (vec (range (count rows))))]
++      (is (Double/isFinite (:mean-return result)))
++      (is (Double/isFinite (:sample-standard-deviation result)))
++      (is (< (abs (- 1.0 (/ (:mean-return result) expected-mean))) 1.0e-12))
++      (if (zero? expected-risk)
++        (is (zero? (:sample-standard-deviation result)))
++        (is (< (abs (- 1.0 (/ (:sample-standard-deviation result) expected-risk))) 1.0e-12))))))
++
++(deftest direct-risk-retains-intermediate-cancellation-residuals
++  ;; Exact selected sums differ by one, although both displayed equal-weight
++  ;; returns round to 5e15. First-observation binary64 shifts erase that residual.
++  (let [instance (portfolio/prepare-instance
++                  (fixture 2 [[10000000000000000.0 1.0]
++                              [0.0 10000000000000000.0]]))
++        result (portfolio/evaluate instance [0 1])
++        expected-risk (Math/sqrt (double 1/8))]
++    (is (= [5.0e15 5.0e15] (:portfolio-returns result)))
++    (is (= 5.0e15 (:mean-return result)))
++    (is (close? expected-risk (:sample-standard-deviation result)))
++    (is (close? expected-risk (second (:objectives result))))
++    (is (= result (portfolio/evaluate instance [1 0])))))
++
++(deftest degenerate-panels-and-sample-denominator
++  (doseq [[k rows expected-mean expected-risk]
++          [[2 [[0 0 0] [0 0 0]] 0 0]
++           [2 [[1/10 -1/10] [1/10 -1/10]] 0 (Math/sqrt 1/50)]
++           [2 [[1/10 -1/10] [-1/10 1/10]] 0 0]
++           [2 [[1/10 1/10] [1/10 1/10]] 1/10 0]
++           [1 [[0 1/5]] 1/10 (Math/sqrt 1/50)]
++           [1 [[-1 -1]] -1 0]
++           [3 [[1/10 -1/10 0] [1/10 -1/10 0] [1/10 -1/10 0]] 0 1/10]]]
++    (let [instance (portfolio/prepare-instance (fixture k rows))
++          result (portfolio/evaluate instance (vec (range k)))]
++      (is (close? expected-mean (:mean-return result)))
++      (is (close? expected-risk (:sample-standard-deviation result)))
++      (is (every? #(Double/isFinite (double %)) (:objectives result))))))
++
++(deftest selections-enforce-exact-cardinality-and-feasibility
++  (let [instance (portfolio/prepare-instance (fixture 2 [[0 1/10] [1/10 0] [0 0]]))]
++    (is (= (portfolio/evaluate instance [0 1]) (portfolio/evaluate instance [1 0])))
++    (doseq [selection [nil [] [0] [0 1 2] [0 0] [-1 1] [0 3] [0 1.0] [0 nil]
++                       #{0 1} "01"]]
++      (testing (pr-str selection)
++        (is (thrown? clojure.lang.ExceptionInfo (portfolio/evaluate instance selection)))))
++    (is (thrown? clojure.lang.ExceptionInfo (portfolio/evaluate {} [0 1])))))
++
++(deftest root-panel-must-be-a-map-without-realizing-sequences
++  (let [valid (fixture 1 [[0 0]])
++        realized? (atom false)
++        poison (lazy-seq
++                 (reset! realized? true)
++                 (throw (ex-info "Bounded lazy-root poison" {:probe :realized})))
++        error-code (fn [panel]
++                     (try (portfolio/prepare-instance panel) :accepted
++                          (catch clojure.lang.ExceptionInfo e (:error (ex-data e)))))]
++    (is (= :invalid-panel (error-code (list :k 1 :assets (:assets valid)))))
++    (is (= :invalid-panel (error-code poison)))
++    (is (false? @realized?))))
++
++(deftest assets-must-be-maps-before-field-access
++  (let [valid (fixture 1 [[0 0]])
++        asset (first (:assets valid))]
++    (doseq [invalid [nil [] '(:id :asset-0) (java.util.HashMap. asset)]]
++      (let [panel (assoc valid :assets [asset invalid])]
++        (is (= :invalid-assets
++               (try (portfolio/prepare-instance panel) :accepted
++                    (catch clojure.lang.ExceptionInfo e (:error (ex-data e))))))))))
++
++(deftest returns-accept-only-standard-immutable-numbers
++  (doseq [value [(doto (java.util.concurrent.atomic.DoubleAdder.) (.add 0.5))
++                 (doto (java.util.concurrent.atomic.DoubleAdder.) (.add -1.5))
++                 (java.util.concurrent.atomic.AtomicLong. 1)
++                 (proxy [Number] []
++                   (intValue [] 1) (longValue [] 1)
++                   (floatValue [] 1.0) (doubleValue [] 1.0))]]
++    (is (thrown? clojure.lang.ExceptionInfo
++                 (portfolio/prepare-instance (fixture 1 [[value 0]])))))
++  (doseq [value [(byte 1) (short 1) (int 1) (long 1) (bigint 1) (biginteger 1)
++                 1/3 0.3M (float 0.3) (double 0.3) -1]]
++    (let [instance (portfolio/prepare-instance (fixture 1 [[value 0]]))]
++      (is (= [[(double value) 0.0]] (:returns instance)))
++      (is (every? #(instance? Double %) (first (:returns instance))))))
++  ;; Exact inputs below -1 must not become legal by rounding to binary64 -1.
++  (doseq [value [-1.00000000000000000000000000001M
++                 -100000000000000000000000000001/100000000000000000000000000000]]
++    (is (thrown? clojure.lang.ExceptionInfo
++                 (portfolio/prepare-instance (fixture 1 [[value 0]]))))))
++
++(deftest malformed-return-panels-fail-closed
++  (let [valid (fixture 1 [[0 1/10] [1/10 0]])
++        invalid-panels
++        [nil {} 42 "panel" []
++         (assoc valid :assets [])
++         (assoc valid :assets {})
++         (assoc valid :assets [nil])
++         (assoc-in valid [:assets 0 :returns] nil)
++         (assoc-in valid [:assets 0 :returns] '(0 1/10))
++         (assoc-in valid [:assets 0 :returns 0] false)
++         (assoc-in valid [:assets 0 :returns 0] 1.0e1000M)
++         (assoc-in valid [:assets 0 :dates] nil)
++         (assoc valid :k 0) (assoc valid :k 3) (assoc valid :k 1.5)
++         (assoc-in valid [:assets 0 :id] nil)
++         (assoc-in valid [:assets 0 :id] " ")
++         (assoc-in valid [:assets 1 :id] :asset-0)
++         (assoc-in valid [:assets 0 :returns] [0])
++         (assoc-in valid [:assets 1 :dates] ["2000-01-01" "2000-01-03"])
++         (update valid :assets #(mapv (fn [a] (assoc a :dates ["2000-01-01" "2000-01-01"])) %))
++         (update valid :assets #(mapv (fn [a] (assoc a :dates ["2000-01-02" "2000-01-01"])) %))
++         (assoc-in valid [:assets 0 :dates 0] "not-a-date")
++         (assoc-in valid [:assets 0 :dates 0] "2000-02-30")
++         (fixture 1 [[0]]) (fixture 1 [[]])
++         (assoc-in valid [:assets 0 :returns 0] ##NaN)
++         (assoc-in valid [:assets 0 :returns 0] ##Inf)
++         (assoc-in valid [:assets 0 :returns 0] ##-Inf)
++         (assoc-in valid [:assets 0 :returns 0] nil)
++         (assoc-in valid [:assets 0 :returns 0] "0.1")
++         (assoc-in valid [:assets 0 :returns 0] -1.01)]]
++    (doseq [panel invalid-panels]
++      (testing (pr-str panel)
++        (is (thrown? clojure.lang.ExceptionInfo (portfolio/prepare-instance panel)))))))
+--- /dev/null
++++ test/niki/optimizer/test_runner.clj
+@@ -0,0 +1,10 @@
++(ns niki.optimizer.test-runner
++  (:require [clojure.test :as test]
++            [niki.optimizer.portfolio-test]
++            [niki.optimizer.portfolio-reference-test]))
++
++(defn -main [& _]
++  (let [{:keys [fail error]} (test/run-tests 'niki.optimizer.portfolio-test
++                                                        'niki.optimizer.portfolio-reference-test)]
++    (shutdown-agents)
++    (when (pos? (+ fail error)) (System/exit 1))))
+--- /dev/null
++++ scripts/verify-g1.clj
+@@ -0,0 +1,65 @@
++;; G1 correctness verification only. No optimizer search or market data access.
++(require '[clojure.edn :as edn]
++         '[clojure.java.io :as io]
++         '[clojure.string :as str]
++         '[niki.optimizer.portfolio :as portfolio]
++         '[niki.optimizer.portfolio-reference :as reference])
++(import '[java.nio.charset StandardCharsets]
++        '[java.security MessageDigest]
++        '[java.math BigInteger]
++        '[java.time Instant])
++
++(let [started (System/nanoTime)
++      input-bytes (with-open [stream (io/input-stream (io/resource "fixtures/g1-portfolio.edn"))]
++                    (.readAllBytes stream))
++      panel (edn/read-string (String. input-bytes StandardCharsets/UTF_8))
++      _ (when-not (and (= :synthetic-development-only (:source panel))
++                       (= :g1-modular-v1 (:fixture-id panel))
++                       (= 5 (:k panel)) (= 15 (count (:assets panel))))
++          (throw (ex-info "Unexpected G1 fixture" {:error :invalid-fixture})))
++      instance (portfolio/prepare-instance panel)
++      prepared (reference/prepare-reference panel)
++      choices (vec (reference/selections (count (:assets panel)) (:k panel)))
++      rows (mapv (fn [selection]
++                   (let [direct (portfolio/evaluate instance selection)
++                         independent (reference/evaluate prepared selection)
++                         errors (mapv #(abs (- (double %1) (double %2)))
++                                      (:objectives direct) (:objectives independent))
++                         allowed (mapv #(+ 1.0e-12 (* 1.0e-10 (abs (double %))))
++                                       (:objectives independent))]
++                     {:selection selection
++                      :direct direct :reference independent :errors errors
++                      :passed? (and (every? #(Double/isFinite (double %)) (:objectives direct))
++                                    (every? true? (map <= errors allowed))
++                                    (= direct (portfolio/evaluate instance (vec (reverse selection)))))}))
++                 choices)
++      passed? (and (= 3003 (count rows)) (= 3003 (count (set choices)))
++                   (every? :passed? rows))
++      digest (format "%064x" (BigInteger. 1 (.digest (MessageDigest/getInstance "SHA-256") input-bytes)))
++      summary {:gate :G1 :status (if passed? :passed :failed)
++               :scope :synthetic-correctness-only :experiment-launched? false
++               :reference-input-mode (:input-mode prepared)
++               :verified-at (str (Instant/now))
++               :clojure-version (clojure-version) :java-version (System/getProperty "java.version")
++               :fixture-id (:fixture-id panel) :fixture-sha256 digest
++               :assets (count (:assets panel)) :k (:k panel) :observations (count (:dates instance))
++               :expected-portfolios 3003 :checked-portfolios (count rows)
++               :unique-selections (count (set choices))
++               :failed-crosschecks (count (remove :passed? rows))
++               :maximum-absolute-mean-error (reduce max 0.0 (map #(first (:errors %)) rows))
++               :maximum-absolute-risk-error (reduce max 0.0 (map #(second (:errors %)) rows))
++               :tolerance {:absolute 1.0e-12 :relative 1.0e-10}
++               :verification-elapsed-ms (/ (- (System/nanoTime) started) 1.0e6)}
++      csv-path "docs/evidence/g1-objectives.csv"
++      report-path "docs/evidence/g1-verification.edn"]
++  (io/make-parents csv-path)
++  (with-open [writer (io/writer csv-path :encoding "UTF-8")]
++    (.write writer "selection,mean_return,sample_standard_deviation,reference_mean,reference_risk,exact_reference_variance,mean_abs_error,risk_abs_error,passed\n")
++    (doseq [{:keys [selection direct reference errors passed?]} rows]
++      (.write writer (str (str/join "," [(pr-str selection) (:mean-return direct)
++                                        (:sample-standard-deviation direct)
++                                        (:mean-return reference) (:sample-standard-deviation reference)
++                                        (:exact-variance reference) (first errors) (second errors) passed?]) "\n"))))
++  (spit report-path (str (pr-str summary) "\n") :encoding "UTF-8")
++  (prn summary)
++  (when-not passed? (throw (ex-info "G1 crosscheck failed" summary))))
+--- /dev/null
++++ scripts/verify-g2.clj
+@@ -0,0 +1,57 @@
++;; Synthetic G2 correctness check only: no GP, market data or optimizer experiment.
++(require '[clojure.edn :as edn]
++         '[clojure.java.io :as io]
++         '[clojure.string :as str]
++         '[niki.optimizer.portfolio :as portfolio]
++         '[niki.optimizer.portfolio-reference :as reference]
++         '[niki.optimizer.pareto :as pareto])
++(import '[java.time Instant]
++        '[java.nio.charset StandardCharsets]
++        '[java.security MessageDigest]
++        '[java.math BigInteger])
++
++(let [input-bytes (with-open [in (io/input-stream (io/resource "fixtures/g1-portfolio.edn"))]
++                    (.readAllBytes in))
++      panel (edn/read-string (String. input-bytes StandardCharsets/UTF_8))
++      _ (when-not (= :synthetic-development-only (:source panel))
++          (throw (ex-info "G2 verification requires the synthetic fixture" {:error :invalid-fixture})))
++      instance (portfolio/prepare-instance panel)
++      normalization (pareto/portfolio-normalization instance)
++      choices (vec (reference/selections (count (:assets panel)) (:k panel)))
++      results (mapv #(portfolio/evaluate instance %) choices)
++      points (mapv :objectives results)
++      archive (pareto/front points)
++      representatives (reduce (fn [m result]
++                                (let [key (mapv #(if (zero? %) 0.0 %) (:objectives result))]
++                                  (if (contains? m key) m (assoc m key (:selection result)))))
++                              {} results)
++      trace (mapv #(pareto/normalized-hypervolume % normalization)
++                  (reductions pareto/insert [] points))
++      score (pareto/normalized-hypervolume archive normalization)
++      passed? (and (= 3003 (count choices))
++                   (= archive (reduce pareto/insert [] points))
++                   (= archive (pareto/front (vec (reverse points))))
++                   (every? true? (map <= trace (rest trace)))
++                   (<= 0.0 score 1.0))
++      csv-path "docs/evidence/g2-front.csv"
++      summary {:gate :G2 :status (if passed? :passed :failed)
++               :scope :synthetic-correctness-only :experiment-launched? false
++               :verified-at (str (Instant/now)) :fixture-id (:fixture-id panel)
++               :fixture-sha256 (format "%064x" (BigInteger. 1 (.digest (MessageDigest/getInstance "SHA-256") input-bytes)))
++               :clojure-version (clojure-version) :java-version (System/getProperty "java.version")
++               :portfolios-checked (count results) :archive-size (count archive)
++               :bounds (:bounds normalization) :constant-coordinates (:constant-coordinates normalization)
++               :normalized-hypervolume score :reference [1.05 1.05] :divisor 1.1025
++               :boundary-tolerance pareto/boundary-tolerance
++               :insertion-and-batch-agree? (= archive (reduce pareto/insert [] points))
++               :order-invariant? (= archive (pareto/front (vec (reverse points))))
++               :hypervolume-monotone? (every? true? (map <= trace (rest trace)))}]
++  (io/make-parents csv-path)
++  (with-open [out (io/writer csv-path :encoding "UTF-8")]
++    (.write out "selection,negative_mean,standard_deviation,normalized_negative_mean,normalized_risk\n")
++    (doseq [[x y :as point] archive]
++      (let [[nx ny] (pareto/normalize-point normalization point)]
++        (.write out (str (str/join "," [(pr-str (representatives point)) x y nx ny]) "\n")))))
++  (spit "docs/evidence/g2-verification.edn" (str (pr-str summary) "\n") :encoding "UTF-8")
++  (prn summary)
++  (when-not passed? (throw (ex-info "G2 synthetic check failed" summary))))
+--- /dev/null
++++ scripts/validate-protocol.clj
+@@ -0,0 +1,68 @@
++;; Checks proposal-data consistency only. This is not the new experiment.
++(require '[clojure.edn :as edn]
++         '[clojure.test :refer [deftest is run-tests]])
++
++(def flagship (edn/read-string (slurp "configs/flagship-proposal.edn")))
++(def smoke (edn/read-string (slurp "configs/smoke-proposal.edn")))
++
++(deftest proposal-status
++  (is (= :proposal (:status flagship)))
++  (is (false? (:confirmatory-ready? flagship)))
++  (is (false? (:launch-authorized? flagship)))
++  (is (= :not-locked (get-in flagship [:test :holdout-status])))
++  (is (false? (:runner-implemented? smoke))))
++
++(deftest resource-accounting
++  (let [runs (get-in flagship [:outer :independent-runs])
++        arms (count (:arms flagship))
++        domains (count (:domains flagship))
++        repetitions (* runs arms domains)
++        slots (get-in flagship [:outer :assessment-slots])
++        train (:train flagship)
++        validation (:validation flagship)
++        test (:test flagship)
++        training (* repetitions slots (:tasks-per-domain train)
++                    (:inner-seeds train) (:solution-proposals train))
++        validating (* repetitions (:max-finalists validation)
++                      (:tasks-per-domain validation) (:inner-seeds validation)
++                      (:solution-proposals validation))
++        testing (* repetitions (:tasks-per-domain test) (:inner-seeds test)
++                   (:solution-proposals test))]
++    (is (= slots (+ (get-in flagship [:outer :initial-population])
++                    (* (get-in flagship [:outer :offspring-batches])
++                       (get-in flagship [:outer :offspring-per-batch])))))
++    (is (= 5 arms))
++    (is (= 2 domains))
++    (is (= training (get-in flagship [:budget-ceilings :training])))
++    (is (= validating (get-in flagship [:budget-ceilings :validation])))
++    (is (= testing (get-in flagship [:budget-ceilings :test])))
++    (is (= (+ training validating testing)
++           (get-in flagship [:budget-ceilings :subtotal])))
++    (is (true? (get-in flagship [:outer :duplicate-consumes-slot?])))
++    (is (true? (get-in flagship [:outer :failed-slot-consumes-slot?])))
++    (is (true? (get-in flagship [:resource-policy :charge-duplicates?])))
++    (is (false? (get-in flagship [:test :pool-archives-across-seeds?])))))
++
++(deftest smoke-budget
++  (let [o (:outer smoke) t (:train smoke)
++        slots (+ (:initial-population o)
++                 (* (:offspring-batches o) (:offspring-per-batch o)))]
++    (is (= slots (:assessment-slots o)))
++    (is (= (:maximum-solution-proposals smoke)
++           (* slots (:independent-runs o) (:tasks-per-domain t)
++              (:inner-seeds t) (:solution-proposals t))))
++    (is (= :synthetic-development-only (:data smoke)))))
++
++(deftest indicator-and-domain-contract
++  (let [reference (get-in flagship [:indicator :reference])]
++    (is (= (reduce * reference) (get-in flagship [:indicator :normalizer])))
++    (is (= [:min :min] (get-in flagship [:indicator :directions])))
++    (is (= [:negative-mean-return :sample-standard-deviation]
++           (get-in flagship [:domains :portfolio :objectives])))
++    (is (= [:mean-completion-time :total-tardiness]
++           (get-in flagship [:domains :scheduling :objectives])))))
++
++(println "Protocol proposal validation only; no optimization run is launched.")
++(let [{:keys [fail error]} (run-tests 'user)]
++  (shutdown-agents)
++  (System/exit (if (zero? (+ fail error)) 0 1)))
+--- /dev/null
++++ deps.edn
+@@ -0,0 +1,18 @@
++{:paths ["src" "resources"]
++ :deps {org.clojure/clojure {:mvn/version "1.12.6"}}
++ :mvn/local-repo ".cache/m2"
++ :mvn/repos {"central" {:url "https://repo.maven.apache.org/maven2/"
++                        :releases {:enabled true :checksum :fail}
++                        :snapshots {:enabled false}}}
++ :aliases
++ {:g2-test {:extra-paths ["test"]
++            :main-opts ["-m" "niki.optimizer.g2-test-runner"]}
++  :g1-test {:extra-paths ["test"]
++            :main-opts ["-m" "niki.optimizer.test-runner"]}
++  :legacy {:extra-paths ["vendor/evolving-portfolio-dsl/src"
++                        "vendor/evolving-portfolio-dsl/resources"]
++           :extra-deps {org.apache.commons/commons-math3 {:mvn/version "3.6.1"}}}
++  :test {:extra-paths ["vendor/evolving-portfolio-dsl/test"]
++         :main-opts ["-m" "portfolio-evolution.test-runner"]}
++  :legacy-version {:override-deps {org.clojure/clojure {:mvn/version "1.12.5"}}}
++  :demo {:main-opts ["-m" "portfolio-evolution.dsl-demo"]}}}
+--- /dev/null
++++ configs/flagship-proposal.edn
+@@ -0,0 +1,62 @@
++;; Protocol data only. There is no experiment runner for this schema yet.
++;; Values are proposed, not a preregistration or authorization to launch.
++{:schema-version 1
++ :protocol-version "1.2"
++ :status :proposal
++ :confirmatory-ready? false
++ :launch-authorized? false
++ :domains {:portfolio {:representation :exact-k-subset
++                       :n 50 :k 5 :history-returns 365
++                       :objectives [:negative-mean-return :sample-standard-deviation]
++                       :exact-oracle {:n 15 :k 5 :feasible-count 3003}
++                       :universe-status :pending-point-in-time-audit}
++           :scheduling {:representation :permutation
++                        :jobs 30
++                        :objectives [:mean-completion-time :total-tardiness]
++                        :exact-oracle {:jobs 7 :feasible-count 5040}
++                        :generator {:duration-range [1 100]
++                                    :tardiness-factors [0.2 0.5 0.8]
++                                    :due-date-ranges [0.2 0.6]}}}
++ :arms [:gp-mixed :gp-mutation-only :random-dsl :formula-only :configured-conventional]
++ :outer {:independent-runs 30
++         :assessment-slots 256
++         :initial-population 32
++         :offspring-batches 7
++         :offspring-per-batch 32
++         :construction-attempts-per-slot 10
++         :duplicate-consumes-slot? true
++         :failed-slot-consumes-slot? true
++         :mixed-crossover-probability 0.5
++         :selection-objectives [:negative-mean-normalized-hv :ast-node-count]}
++ :train {:tasks-per-domain 6 :inner-seeds 2 :solution-proposals 256}
++ :validation {:max-finalists 8 :tasks-per-domain 6 :inner-seeds 2
++              :solution-proposals 256
++              :selector :maximum-mean-normalized-hv
++              :tie-breakers [:ast-node-count :canonical-id]}
++ :test {:tasks-per-domain 24 :inner-seeds 10 :solution-proposals 256
++        :holdout-status :not-locked
++        :pool-archives-across-seeds? false}
++ :indicator {:primary :normalized-hv
++             :directions [:min :min]
++             :bounds :instance-derived-analytic
++             :reference [1.05 1.05]
++             :normalizer 1.1025
++             :constant-coordinate-value 0.0
++             :absolute-practical-margin 0.01}
++ :failure-policy {:method-failure-score 0.0
++                  :infrastructure-rerun :identical-seed-with-audit-record}
++ :resource-policy {:charge-duplicates? true
++                   :objective-aware-neighbor-scans :charge-each-candidate
++                   :objective-computations :log-separately
++                   :interpreter-fuel :pending-pilot
++                   :worker-timeout :pending-pilot
++                   :worker-memory-limit :pending-pilot
++                   :start-workers 1}
++ :confirmation-gates [:numeric-oracles :runtime-budget-audit :typed-variation-properties
++                      :point-in-time-data-audit :historical-exposure-disclosure
++                      :strong-baseline-audit :frozen-core-scheduling-reuse
++                      :pilot-precision-and-cost :preregistered-analysis :compute-approval]
++ :budget-ceilings {:training 235929600 :validation 7372800 :test 18432000
++                  :subtotal 261734400
++                  :excluded [:direct-controls :exact-references :secondary-ablations
++                             :matched-time-comparisons :preprocessing :diagnostics]}}

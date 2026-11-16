@@ -1,0 +1,10 @@
+
+Testing niki.optimizer.portfolio-test
+
+FAIL in (equal-weight-return-and-sample-risk) (portfolio_test.clj:21)
+The portfolio evaluator must exist
+expected: (some? prepare)
+  actual: (not (some? nil))
+
+Ran 1 tests containing 1 assertions.
+1 failures, 0 errors.

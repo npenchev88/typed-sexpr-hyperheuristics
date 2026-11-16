@@ -1,0 +1,22 @@
+#'niki.optimizer.runtime-test/preflight-checks-programs-with-default-execution-limits
+
+Testing niki.optimizer.runtime-test
+
+FAIL in (search-trace-exposes-adoption-with-normalized-scores) (runtime_test.clj:443)
+expected: (= [true true] (mapv :accepted? decisions))
+  actual: (not (= [true true] []))
+
+FAIL in (search-trace-exposes-adoption-with-normalized-scores) (runtime_test.clj:444)
+expected: (= [:no-current :score] (mapv :reason decisions))
+  actual: (not (= [:no-current :score] []))
+
+FAIL in (search-trace-exposes-adoption-with-normalized-scores) (runtime_test.clj:445)
+expected: (= [nil 0.4] (mapv :current-score decisions))
+  actual: (not (= [nil 0.4] []))
+
+FAIL in (search-trace-exposes-adoption-with-normalized-scores) (runtime_test.clj:446)
+expected: (= [nil 0.3] (mapv :candidate-score decisions))
+  actual: (not (= [nil 0.3] []))
+
+Ran 24 tests containing 600 assertions.
+4 failures, 0 errors.

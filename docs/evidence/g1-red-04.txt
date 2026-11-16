@@ -1,0 +1,12 @@
+
+Testing niki.optimizer.portfolio-test
+
+Testing niki.optimizer.portfolio-reference-test
+
+FAIL in (independent-covariance-reference) (portfolio_reference_test.clj:8)
+The independent covariance reference must exist
+expected: (some? prepare)
+  actual: (not (some? nil))
+
+Ran 4 tests containing 44 assertions.
+1 failures, 0 errors.

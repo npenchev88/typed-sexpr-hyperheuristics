@@ -1,0 +1,2 @@
+{:clojure-version 1.12.6, :java-version 25.0.5, :g1-alias-unchanged true}
+{:clojure-version 1.12.5, :java-version 25.0.5}

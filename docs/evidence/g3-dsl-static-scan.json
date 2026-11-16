@@ -1,0 +1,12 @@
+{
+  "scope": {
+    "src/niki/optimizer/dsl.clj": "54490eff37a1782c4b37cf67f448868bc0ed93f224e4fdecebf8bdca44bcaf4b",
+    "test/niki/optimizer/dsl_test.clj": "9437130622e80a10984b1a8e6243d428d0a0d7a7b0a76e81cc5d567983b0b280"
+  },
+  "patterns": {
+    "secret": [],
+    "host_eval": [],
+    "process": []
+  },
+  "note": "DSL source/test only; runtime and variation are separate pending work. No execution by reviewer required."
+}

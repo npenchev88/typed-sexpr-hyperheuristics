@@ -1,0 +1,14 @@
+{
+  "html": "docs/EXPERIMENT_OVERVIEW.html",
+  "png": "docs/EXPERIMENT_OVERVIEW.png",
+  "svg": "docs/EXPERIMENT_OVERVIEW.svg",
+  "png_dimensions": [
+    1020,
+    1380
+  ],
+  "svg_self_contained": true,
+  "text_out_of_bounds": [],
+  "horizontal_overflow": false,
+  "visual_inspection": "passed",
+  "scope": "Proposed experiment; no optimizer experiments launched."
+}

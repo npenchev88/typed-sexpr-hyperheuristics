@@ -1,0 +1,234 @@
+
+Testing niki.optimizer.portfolio-test
+
+FAIL in (malformed-return-panels-fail-closed) (portfolio_test.clj:53)
+nil
+expected: (thrown? clojure.lang.ExceptionInfo (portfolio/prepare-instance panel))
+  actual: nil
+
+FAIL in (malformed-return-panels-fail-closed) (portfolio_test.clj:53)
+{}
+expected: (thrown? clojure.lang.ExceptionInfo (portfolio/prepare-instance panel))
+  actual: nil
+
+FAIL in (malformed-return-panels-fail-closed) (portfolio_test.clj:53)
+{:k 1, :assets []}
+expected: (thrown? clojure.lang.ExceptionInfo (portfolio/prepare-instance panel))
+  actual: nil
+
+FAIL in (malformed-return-panels-fail-closed) (portfolio_test.clj:53)
+{:k 0, :assets [{:id :asset-0, :dates ["2000-01-01" "2000-01-02"], :returns [0 1/10]} {:id :asset-1, :dates ["2000-01-01" "2000-01-02"], :returns [1/10 0]}]}
+expected: (thrown? clojure.lang.ExceptionInfo (portfolio/prepare-instance panel))
+  actual: nil
+
+FAIL in (malformed-return-panels-fail-closed) (portfolio_test.clj:53)
+{:k 3, :assets [{:id :asset-0, :dates ["2000-01-01" "2000-01-02"], :returns [0 1/10]} {:id :asset-1, :dates ["2000-01-01" "2000-01-02"], :returns [1/10 0]}]}
+expected: (thrown? clojure.lang.ExceptionInfo (portfolio/prepare-instance panel))
+  actual: nil
+
+FAIL in (malformed-return-panels-fail-closed) (portfolio_test.clj:53)
+{:k 1.5, :assets [{:id :asset-0, :dates ["2000-01-01" "2000-01-02"], :returns [0 1/10]} {:id :asset-1, :dates ["2000-01-01" "2000-01-02"], :returns [1/10 0]}]}
+expected: (thrown? clojure.lang.ExceptionInfo (portfolio/prepare-instance panel))
+  actual: nil
+
+FAIL in (malformed-return-panels-fail-closed) (portfolio_test.clj:53)
+{:k 1, :assets [{:id nil, :dates ["2000-01-01" "2000-01-02"], :returns [0 1/10]} {:id :asset-1, :dates ["2000-01-01" "2000-01-02"], :returns [1/10 0]}]}
+expected: (thrown? clojure.lang.ExceptionInfo (portfolio/prepare-instance panel))
+  actual: nil
+
+FAIL in (malformed-return-panels-fail-closed) (portfolio_test.clj:53)
+{:k 1, :assets [{:id " ", :dates ["2000-01-01" "2000-01-02"], :returns [0 1/10]} {:id :asset-1, :dates ["2000-01-01" "2000-01-02"], :returns [1/10 0]}]}
+expected: (thrown? clojure.lang.ExceptionInfo (portfolio/prepare-instance panel))
+  actual: nil
+
+FAIL in (malformed-return-panels-fail-closed) (portfolio_test.clj:53)
+{:k 1, :assets [{:id :asset-0, :dates ["2000-01-01" "2000-01-02"], :returns [0 1/10]} {:id :asset-0, :dates ["2000-01-01" "2000-01-02"], :returns [1/10 0]}]}
+expected: (thrown? clojure.lang.ExceptionInfo (portfolio/prepare-instance panel))
+  actual: nil
+
+FAIL in (malformed-return-panels-fail-closed) (portfolio_test.clj:53)
+{:k 1, :assets [{:id :asset-0, :dates ["2000-01-01" "2000-01-02"], :returns [0]} {:id :asset-1, :dates ["2000-01-01" "2000-01-02"], :returns [1/10 0]}]}
+expected: (thrown? clojure.lang.ExceptionInfo (portfolio/prepare-instance panel))
+  actual: nil
+
+FAIL in (malformed-return-panels-fail-closed) (portfolio_test.clj:53)
+{:k 1, :assets [{:id :asset-0, :dates ["2000-01-01" "2000-01-02"], :returns [0 1/10]} {:id :asset-1, :dates ["2000-01-01" "2000-01-03"], :returns [1/10 0]}]}
+expected: (thrown? clojure.lang.ExceptionInfo (portfolio/prepare-instance panel))
+  actual: nil
+
+FAIL in (malformed-return-panels-fail-closed) (portfolio_test.clj:53)
+{:k 1, :assets [{:id :asset-0, :dates ["2000-01-01" "2000-01-01"], :returns [0 1/10]} {:id :asset-1, :dates ["2000-01-01" "2000-01-01"], :returns [1/10 0]}]}
+expected: (thrown? clojure.lang.ExceptionInfo (portfolio/prepare-instance panel))
+  actual: nil
+
+FAIL in (malformed-return-panels-fail-closed) (portfolio_test.clj:53)
+{:k 1, :assets [{:id :asset-0, :dates ["2000-01-02" "2000-01-01"], :returns [0 1/10]} {:id :asset-1, :dates ["2000-01-02" "2000-01-01"], :returns [1/10 0]}]}
+expected: (thrown? clojure.lang.ExceptionInfo (portfolio/prepare-instance panel))
+  actual: nil
+
+FAIL in (malformed-return-panels-fail-closed) (portfolio_test.clj:53)
+{:k 1, :assets [{:id :asset-0, :dates ["not-a-date" "2000-01-02"], :returns [0 1/10]} {:id :asset-1, :dates ["2000-01-01" "2000-01-02"], :returns [1/10 0]}]}
+expected: (thrown? clojure.lang.ExceptionInfo (portfolio/prepare-instance panel))
+  actual: nil
+
+FAIL in (malformed-return-panels-fail-closed) (portfolio_test.clj:53)
+{:k 1, :assets [{:id :asset-0, :dates ["2000-02-30" "2000-01-02"], :returns [0 1/10]} {:id :asset-1, :dates ["2000-01-01" "2000-01-02"], :returns [1/10 0]}]}
+expected: (thrown? clojure.lang.ExceptionInfo (portfolio/prepare-instance panel))
+  actual: nil
+
+FAIL in (malformed-return-panels-fail-closed) (portfolio_test.clj:53)
+{:k 1, :assets [{:id :asset-0, :dates ["2000-01-01"], :returns [0]}]}
+expected: (thrown? clojure.lang.ExceptionInfo (portfolio/prepare-instance panel))
+  actual: nil
+
+FAIL in (malformed-return-panels-fail-closed) (portfolio_test.clj:53)
+{:k 1, :assets [{:id :asset-0, :dates [], :returns []}]}
+expected: (thrown? clojure.lang.ExceptionInfo (portfolio/prepare-instance panel))
+  actual: nil
+
+FAIL in (malformed-return-panels-fail-closed) (portfolio_test.clj:53)
+{:k 1, :assets [{:id :asset-0, :dates ["2000-01-01" "2000-01-02"], :returns [##NaN 1/10]} {:id :asset-1, :dates ["2000-01-01" "2000-01-02"], :returns [1/10 0]}]}
+expected: (thrown? clojure.lang.ExceptionInfo (portfolio/prepare-instance panel))
+  actual: nil
+
+FAIL in (malformed-return-panels-fail-closed) (portfolio_test.clj:53)
+{:k 1, :assets [{:id :asset-0, :dates ["2000-01-01" "2000-01-02"], :returns [##Inf 1/10]} {:id :asset-1, :dates ["2000-01-01" "2000-01-02"], :returns [1/10 0]}]}
+expected: (thrown? clojure.lang.ExceptionInfo (portfolio/prepare-instance panel))
+  actual: nil
+
+FAIL in (malformed-return-panels-fail-closed) (portfolio_test.clj:53)
+{:k 1, :assets [{:id :asset-0, :dates ["2000-01-01" "2000-01-02"], :returns [##-Inf 1/10]} {:id :asset-1, :dates ["2000-01-01" "2000-01-02"], :returns [1/10 0]}]}
+expected: (thrown? clojure.lang.ExceptionInfo (portfolio/prepare-instance panel))
+  actual: nil
+
+ERROR in (malformed-return-panels-fail-closed) (RT.java:1373)
+{:k 1, :assets [{:id :asset-0, :dates ["2000-01-01" "2000-01-02"], :returns [nil 1/10]} {:id :asset-1, :dates ["2000-01-01" "2000-01-02"], :returns [1/10 0]}]}
+expected: (thrown? clojure.lang.ExceptionInfo (portfolio/prepare-instance panel))
+  actual: java.lang.NullPointerException: Cannot invoke "java.lang.Number.doubleValue()" because "x" is null
+ at clojure.lang.RT.doubleCast (RT.java:1373)
+    clojure.core$double.invokeStatic (core.clj:3526)
+    clojure.core$double.invoke (core.clj:3522)
+    clojure.core$mapv$fn__8565.invoke (core.clj:7063)
+    clojure.lang.PersistentVector.reduce (PersistentVector.java:418)
+    clojure.core$reduce.invokeStatic (core.clj:6968)
+    clojure.core$mapv.invokeStatic (core.clj:7054)
+    clojure.core$mapv.invoke (core.clj:7054)
+    niki.optimizer.portfolio$prepare_instance$fn__161.invoke (portfolio.clj:9)
+    clojure.core$mapv$fn__8565.invoke (core.clj:7063)
+    clojure.lang.PersistentVector.reduce (PersistentVector.java:418)
+    clojure.core$reduce.invokeStatic (core.clj:6968)
+    clojure.core$mapv.invokeStatic (core.clj:7054)
+    clojure.core$mapv.invoke (core.clj:7054)
+    niki.optimizer.portfolio$prepare_instance.invokeStatic (portfolio.clj:9)
+    niki.optimizer.portfolio$prepare_instance.invoke (portfolio.clj:5)
+    niki.optimizer.portfolio_test$fn__214$fn__227.invoke (portfolio_test.clj:53)
+    niki.optimizer.portfolio_test$fn__214.invokeStatic (portfolio_test.clj:52)
+    niki.optimizer.portfolio_test/fn (portfolio_test.clj:30)
+    clojure.test$test_var$fn__9894.invoke (test.clj:717)
+    clojure.test$test_var.invokeStatic (test.clj:717)
+    clojure.test$test_var.invoke (test.clj:708)
+    clojure.test$test_vars$fn__9920$fn__9925.invoke (test.clj:735)
+    clojure.test$default_fixture.invokeStatic (test.clj:687)
+    clojure.test$default_fixture.invoke (test.clj:683)
+    clojure.test$test_vars$fn__9920.invoke (test.clj:735)
+    clojure.test$default_fixture.invokeStatic (test.clj:687)
+    clojure.test$default_fixture.invoke (test.clj:683)
+    clojure.test$test_vars.invokeStatic (test.clj:731)
+    clojure.test$test_all_vars.invokeStatic (test.clj:737)
+    clojure.test$test_ns.invokeStatic (test.clj:758)
+    clojure.test$test_ns.invoke (test.clj:743)
+    clojure.core$map$fn__5954.invoke (core.clj:2776)
+    clojure.lang.LazySeq.force (LazySeq.java:50)
+    clojure.lang.LazySeq.realize (LazySeq.java:87)
+    clojure.lang.LazySeq.seq (LazySeq.java:104)
+    clojure.lang.Cons.next (Cons.java:41)
+    clojure.lang.RT.boundedLength (RT.java:1810)
+    clojure.lang.RestFn.applyTo (RestFn.java:133)
+    clojure.core$apply.invokeStatic (core.clj:669)
+    clojure.test$run_tests.invokeStatic (test.clj:768)
+    clojure.test$run_tests.doInvoke (test.clj:768)
+    clojure.lang.RestFn.invoke (RestFn.java:411)
+    niki.optimizer.test_runner$_main.invokeStatic (test_runner.clj:6)
+    niki.optimizer.test_runner$_main.doInvoke (test_runner.clj:5)
+    clojure.lang.RestFn.invoke (RestFn.java:400)
+    clojure.lang.AFn.applyToHelper (AFn.java:152)
+    clojure.lang.RestFn.applyTo (RestFn.java:135)
+    clojure.lang.Var.applyTo (Var.java:707)
+    clojure.core$apply.invokeStatic (core.clj:667)
+    clojure.main$main_opt.invokeStatic (main.clj:515)
+    clojure.main$main_opt.invoke (main.clj:511)
+    clojure.main$main.invokeStatic (main.clj:665)
+    clojure.main$main.doInvoke (main.clj:617)
+    clojure.lang.RestFn.applyTo (RestFn.java:140)
+    clojure.lang.Var.applyTo (Var.java:707)
+    clojure.main.main (main.java:40)
+
+ERROR in (malformed-return-panels-fail-closed) (RT.java:1373)
+{:k 1, :assets [{:id :asset-0, :dates ["2000-01-01" "2000-01-02"], :returns ["0.1" 1/10]} {:id :asset-1, :dates ["2000-01-01" "2000-01-02"], :returns [1/10 0]}]}
+expected: (thrown? clojure.lang.ExceptionInfo (portfolio/prepare-instance panel))
+  actual: java.lang.ClassCastException: class java.lang.String cannot be cast to class java.lang.Number (java.lang.String and java.lang.Number are in module java.base of loader 'bootstrap')
+ at clojure.lang.RT.doubleCast (RT.java:1373)
+    clojure.core$double.invokeStatic (core.clj:3526)
+    clojure.core$double.invoke (core.clj:3522)
+    clojure.core$mapv$fn__8565.invoke (core.clj:7063)
+    clojure.lang.PersistentVector.reduce (PersistentVector.java:418)
+    clojure.core$reduce.invokeStatic (core.clj:6968)
+    clojure.core$mapv.invokeStatic (core.clj:7054)
+    clojure.core$mapv.invoke (core.clj:7054)
+    niki.optimizer.portfolio$prepare_instance$fn__161.invoke (portfolio.clj:9)
+    clojure.core$mapv$fn__8565.invoke (core.clj:7063)
+    clojure.lang.PersistentVector.reduce (PersistentVector.java:418)
+    clojure.core$reduce.invokeStatic (core.clj:6968)
+    clojure.core$mapv.invokeStatic (core.clj:7054)
+    clojure.core$mapv.invoke (core.clj:7054)
+    niki.optimizer.portfolio$prepare_instance.invokeStatic (portfolio.clj:9)
+    niki.optimizer.portfolio$prepare_instance.invoke (portfolio.clj:5)
+    niki.optimizer.portfolio_test$fn__214$fn__227.invoke (portfolio_test.clj:53)
+    niki.optimizer.portfolio_test$fn__214.invokeStatic (portfolio_test.clj:52)
+    niki.optimizer.portfolio_test/fn (portfolio_test.clj:30)
+    clojure.test$test_var$fn__9894.invoke (test.clj:717)
+    clojure.test$test_var.invokeStatic (test.clj:717)
+    clojure.test$test_var.invoke (test.clj:708)
+    clojure.test$test_vars$fn__9920$fn__9925.invoke (test.clj:735)
+    clojure.test$default_fixture.invokeStatic (test.clj:687)
+    clojure.test$default_fixture.invoke (test.clj:683)
+    clojure.test$test_vars$fn__9920.invoke (test.clj:735)
+    clojure.test$default_fixture.invokeStatic (test.clj:687)
+    clojure.test$default_fixture.invoke (test.clj:683)
+    clojure.test$test_vars.invokeStatic (test.clj:731)
+    clojure.test$test_all_vars.invokeStatic (test.clj:737)
+    clojure.test$test_ns.invokeStatic (test.clj:758)
+    clojure.test$test_ns.invoke (test.clj:743)
+    clojure.core$map$fn__5954.invoke (core.clj:2776)
+    clojure.lang.LazySeq.force (LazySeq.java:50)
+    clojure.lang.LazySeq.realize (LazySeq.java:87)
+    clojure.lang.LazySeq.seq (LazySeq.java:104)
+    clojure.lang.Cons.next (Cons.java:41)
+    clojure.lang.RT.boundedLength (RT.java:1810)
+    clojure.lang.RestFn.applyTo (RestFn.java:133)
+    clojure.core$apply.invokeStatic (core.clj:669)
+    clojure.test$run_tests.invokeStatic (test.clj:768)
+    clojure.test$run_tests.doInvoke (test.clj:768)
+    clojure.lang.RestFn.invoke (RestFn.java:411)
+    niki.optimizer.test_runner$_main.invokeStatic (test_runner.clj:6)
+    niki.optimizer.test_runner$_main.doInvoke (test_runner.clj:5)
+    clojure.lang.RestFn.invoke (RestFn.java:400)
+    clojure.lang.AFn.applyToHelper (AFn.java:152)
+    clojure.lang.RestFn.applyTo (RestFn.java:135)
+    clojure.lang.Var.applyTo (Var.java:707)
+    clojure.core$apply.invokeStatic (core.clj:667)
+    clojure.main$main_opt.invokeStatic (main.clj:515)
+    clojure.main$main_opt.invoke (main.clj:511)
+    clojure.main$main.invokeStatic (main.clj:665)
+    clojure.main$main.doInvoke (main.clj:617)
+    clojure.lang.RestFn.applyTo (RestFn.java:140)
+    clojure.lang.Var.applyTo (Var.java:707)
+    clojure.main.main (main.java:40)
+
+FAIL in (malformed-return-panels-fail-closed) (portfolio_test.clj:53)
+{:k 1, :assets [{:id :asset-0, :dates ["2000-01-01" "2000-01-02"], :returns [-1.01 1/10]} {:id :asset-1, :dates ["2000-01-01" "2000-01-02"], :returns [1/10 0]}]}
+expected: (thrown? clojure.lang.ExceptionInfo (portfolio/prepare-instance panel))
+  actual: nil
+
+Ran 2 tests containing 30 assertions.
+21 failures, 2 errors.
