@@ -1,4 +1,4 @@
-{:generated-at "2026-11-16T18:00:07.431295100Z",
+{:generated-at "2026-11-17T14:33:28.163669300Z",
  :publisher-target
  "Springer (LNCS llncs.cls 122mm / Springer Nature sn-jnl.cls 174mm)",
  :typography
@@ -20,11 +20,18 @@
  :figures
  [{:id :fig1,
    :file "docs/figures/springer/fig1_architecture_and_dsl.svg",
-   :viewBox [0 0 760 300],
+   :viewBox [0 0 760 290],
    :width-mm 174.0,
-   :height-mm 68.7,
+   :height-mm 66.4,
    :description
    "System Architecture, 6-Role Typed DSL, Dual Resource Ledger, and Domain Adapters"}
+  {:id :fig1b,
+   :file "docs/figures/springer/fig1b_evolutionary_workflow.svg",
+   :viewBox [0 0 760 392],
+   :width-mm 174.0,
+   :height-mm 89.7,
+   :description
+   "ISO Monochrome Flowchart of Outer Meta-Evolution, Validator, Bounded Interpreter, and Test Protocol"}
   {:id :fig2,
    :file "docs/figures/springer/fig2_pareto_fronts_2panel.svg",
    :viewBox [0 0 760 345],
@@ -39,6 +46,13 @@
    :height-mm 75.5,
    :description
    "2-Panel Five Search Arms & Generator Prior Ablation (:development-only-v1 vs :budget-aware-v2, N=30 seeds)"}
+  {:id :fig3b,
+   :file "docs/figures/springer/fig3b_runtime_comparison.svg",
+   :viewBox [0 0 760 325],
+   :width-mm 174.0,
+   :height-mm 74.4,
+   :description
+   "2-Panel Base Execution Time (ms) & Outer Design Time (s, Mean +/- SD) Across Five Search Arms"}
   {:id :fig4,
    :file "docs/figures/springer/fig4_anytime_budget_scaling.svg",
    :viewBox [0 0 760 335],

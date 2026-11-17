@@ -138,16 +138,20 @@
         typed-edn    (edn/read-string (slurp "docs/evidence/typed-vs-untyped-ablation-results.edn"))
         out-dir      "docs/figures/springer"
         fig1-path    (str out-dir "/fig1_architecture_and_dsl.svg")
+        fig1b-path   (str out-dir "/fig1b_evolutionary_workflow.svg")
         fig2-path    (str out-dir "/fig2_pareto_fronts_2panel.svg")
         fig3-path    (str out-dir "/fig3_five_arms_and_prior_ablation.svg")
+        fig3b-path   (str out-dir "/fig3b_runtime_comparison.svg")
         fig4-path    (str out-dir "/fig4_anytime_budget_scaling.svg")
         fig5-path    (str out-dir "/fig5_mechanism_ablations_3panel.svg")
         fig6-path    (str out-dir "/fig6_meta_evolution_and_ast_structure.svg")
         tex-path     (str out-dir "/springer_figures.tex")
         manifest-path (str out-dir "/figures-manifest.edn")]
     (sfig/generate-fig1-architecture! fig1-path)
+    (sfig/generate-fig1b-workflow! fig1b-path)
     (sfig/generate-fig2-pareto-fronts! fig2-path)
     (sfig/generate-fig3-arms-and-prior! two-rep-edn fig3-path)
+    (sfig/generate-fig3b-runtime! two-rep-edn cache-edn fig3b-path)
     (sfig/generate-fig4-budget-scaling! scaling-edn fig4-path)
     (sfig/generate-fig5-mechanism-ablations! typed-edn knockout-edn cache-edn fig5-path)
     (sfig/generate-fig6-evolution-and-ast-tally! two-rep-edn fig6-path)
@@ -166,12 +170,16 @@
                              :ast-knockout "docs/evidence/ast-knockout-ablation-results.edn"
                              :cache-ablation "docs/evidence/cache-ablation-results.edn"
                              :typed-vs-untyped "docs/evidence/typed-vs-untyped-ablation-results.edn"}
-           :figures [{:id :fig1 :file fig1-path :viewBox [0 0 760 300] :width-mm 174.0 :height-mm 68.7
+           :figures [{:id :fig1 :file fig1-path :viewBox [0 0 760 290] :width-mm 174.0 :height-mm 66.4
                       :description "System Architecture, 6-Role Typed DSL, Dual Resource Ledger, and Domain Adapters"}
+                     {:id :fig1b :file fig1b-path :viewBox [0 0 760 392] :width-mm 174.0 :height-mm 89.7
+                      :description "ISO Monochrome Flowchart of Outer Meta-Evolution, Validator, Bounded Interpreter, and Test Protocol"}
                      {:id :fig2 :file fig2-path :viewBox [0 0 760 345] :width-mm 174.0 :height-mm 79.0
                       :description "2-Panel Portfolio & Scheduling Pareto Fronts with Smooth Monotone Cubic Curve + Shaded HV Step Region"}
                      {:id :fig3 :file fig3-path :viewBox [0 0 760 330] :width-mm 174.0 :height-mm 75.5
                       :description "2-Panel Five Search Arms & Generator Prior Ablation (:development-only-v1 vs :budget-aware-v2, N=30 seeds)"}
+                     {:id :fig3b :file fig3b-path :viewBox [0 0 760 325] :width-mm 174.0 :height-mm 74.4
+                      :description "2-Panel Base Execution Time (ms) & Outer Design Time (s, Mean +/- SD) Across Five Search Arms"}
                      {:id :fig4 :file fig4-path :viewBox [0 0 760 335] :width-mm 174.0 :height-mm 76.7
                       :description "2-Panel Anytime Proposal-Budget Scaling Trajectory B in {16, 32, 64, 128, 256}"}
                      {:id :fig5 :file fig5-path :viewBox [0 0 760 305] :width-mm 174.0 :height-mm 69.8

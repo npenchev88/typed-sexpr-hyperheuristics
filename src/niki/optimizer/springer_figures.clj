@@ -863,3 +863,226 @@
     (io/make-parents out-path)
     (spit out-path (.toString sb) :encoding "UTF-8")
     (println "Wrote Springer SVG:" out-path)))
+
+(defn generate-fig1b-workflow!
+  "Generate clean ISO-5807 monochrome academic flowchart showing the two-level
+   outer GP meta-evolution, static role/effect validator, bounded interpreter,
+   validation selection, and single-shot held-out testing pipeline."
+  [out-path]
+  (let [w 760 h 392
+        sb (StringBuilder.)
+        box (fn [x y bw bh title sub & [fill dash]]
+              (.append sb (fmt "  <rect x=\"%d\" y=\"%d\" width=\"%d\" height=\"%d\" fill=\"%s\" stroke=\"#111111\" stroke-width=\"1.0\"%s/>\n"
+                               x y bw bh (or fill "#ffffff") (if dash (fmt " stroke-dasharray=\"%s\"" dash) "")))
+              (if (and sub (not (str/blank? sub)))
+                (do
+                  (.append sb (fmt "  <text x=\"%.1f\" y=\"%.1f\" font-size=\"9\" font-weight=\"700\" fill=\"#000000\" text-anchor=\"middle\">%s</text>\n"
+                                   (+ x (/ bw 2.0)) (+ y (/ bh 2.0) -4.0) (svg-escape title)))
+                  (.append sb (fmt "  <text x=\"%.1f\" y=\"%.1f\" font-size=\"7.8\" fill=\"#222222\" text-anchor=\"middle\">%s</text>\n"
+                                   (+ x (/ bw 2.0)) (+ y (/ bh 2.0) 9.0) (svg-escape sub))))
+                (.append sb (fmt "  <text x=\"%.1f\" y=\"%.1f\" font-size=\"9\" font-weight=\"700\" fill=\"#000000\" text-anchor=\"middle\" dominant-baseline=\"middle\">%s</text>\n"
+                                 (+ x (/ bw 2.0)) (+ y (/ bh 2.0)) (svg-escape title)))))
+        term (fn [x y bw bh title sub]
+               (.append sb (fmt "  <rect x=\"%d\" y=\"%d\" width=\"%d\" height=\"%d\" rx=\"18\" ry=\"18\" fill=\"#ffffff\" stroke=\"#111111\" stroke-width=\"1.2\"/>\n"
+                                x y bw bh))
+               (.append sb (fmt "  <text x=\"%.1f\" y=\"%.1f\" font-size=\"9\" font-weight=\"700\" fill=\"#000000\" text-anchor=\"middle\">%s</text>\n"
+                                (+ x (/ bw 2.0)) (+ y (/ bh 2.0) -3.5) (svg-escape title)))
+               (.append sb (fmt "  <text x=\"%.1f\" y=\"%.1f\" font-size=\"7.8\" fill=\"#222222\" text-anchor=\"middle\">%s</text>\n"
+                                (+ x (/ bw 2.0)) (+ y (/ bh 2.0) 8.5) (svg-escape sub))))
+        diamond (fn [cx cy rx ry title]
+                  (.append sb (fmt "  <polygon points=\"%d,%d %d,%d %d,%d %d,%d\" fill=\"#ffffff\" stroke=\"#111111\" stroke-width=\"1.0\"/>\n"
+                                   cx (- cy ry) (+ cx rx) cy cx (+ cy ry) (- cx rx) cy))
+                  (.append sb (fmt "  <text x=\"%d\" y=\"%d\" font-size=\"8.5\" font-weight=\"700\" fill=\"#000000\" text-anchor=\"middle\" dominant-baseline=\"middle\">%s</text>\n"
+                                   cx cy (svg-escape title))))
+        arrow (fn [pts-str]
+                (.append sb (fmt "  <polyline points=\"%s\" fill=\"none\" stroke=\"#111111\" stroke-width=\"1.0\" marker-end=\"url(#flow-arrow)\"/>\n" pts-str)))]
+    (.append sb (fmt "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 %d %d\" width=\"174mm\" height=\"89.7mm\" font-family=\"Arial, Helvetica, sans-serif\">\n" w h))
+    (.append sb (fmt "  <rect x=\"0\" y=\"0\" width=\"%d\" height=\"%d\" fill=\"#ffffff\"/>\n" w h))
+    (.append sb "  <defs>\n    <marker id=\"flow-arrow\" viewBox=\"0 0 10 10\" refX=\"8.5\" refY=\"5\" markerWidth=\"5.5\" markerHeight=\"5.5\" orient=\"auto-start-reverse\">\n      <path d=\"M 0 1.5 L 8.5 5 L 0 8.5 z\" fill=\"#111111\"/>\n    </marker>\n  </defs>\n")
+
+    ;; Top Outer Feedback Step (Batches 1..7, Slots 32..255)
+    (box 286 14 252 46 "Select & Vary Next Batch (32 Slots)" "Binary tournament (k=2); crossover p=0.5 / mut")
+    (arrow "286,37 254,37 254,124")
+
+    ;; Main Horizontal Training Pipeline (Row 2)
+    (term 14 105 76 38 "Start" "Seed 0–29")
+    (arrow "90,124 108,124")
+    (box 110 101 128 46 "Gen 0 (Slots 0–31)" "Sample v2 prior ASTs")
+    (arrow "238,124 270,124")
+    (box 272 101 140 46 "Static Validator" "6 Roles, Effects, ≤128 nodes")
+    (arrow "412,124 438,124")
+    (diamond 492 124 52 27 "Valid AST?")
+    (.append sb "  <text x=\"560\" y=\"118\" font-size=\"8\" font-weight=\"700\" fill=\"#000000\" text-anchor=\"middle\">Yes</text>\n")
+    (arrow "544,124 576,124")
+
+    ;; Fallback branch below Valid AST?
+    (arrow "492,151 492,167")
+    (.append sb "  <text x=\"472\" y=\"161\" font-size=\"7.5\" fill=\"#111111\" text-anchor=\"middle\">No (>10)</text>\n")
+    (box 428 169 128 28 "Parent Fallback" "Consumes 1 outer slot")
+    (arrow "556,183 602,183 602,149")
+
+    ;; Train Evaluation & Batch Loop Check
+    (box 578 101 138 46 "Train Evaluation" "6 Train inst. × 2 seeds")
+    (arrow "647,147 647,175")
+    (diamond 647 204 52 27 "Batch < 7?")
+    (.append sb "  <text x=\"722\" y=\"199\" font-size=\"8\" font-weight=\"700\" fill=\"#000000\" text-anchor=\"middle\">Yes</text>\n")
+    (arrow "699,204 744,204 744,37 540,37")
+
+    ;; Validation, Single-Shot Test, Statistical Inference, End
+    (.append sb "  <text x=\"672\" y=\"245\" font-size=\"8\" font-weight=\"700\" fill=\"#000000\" text-anchor=\"middle\">No (256)</text>\n")
+    (arrow "647,231 647,255")
+    (box 562 257 172 44 "Validation (Pick Top-1)" "Top-8 Train → 6 Val × 2 seeds")
+    (arrow "647,301 647,325")
+    (box 562 327 172 44 "Frozen Held-Out Test" "Single-shot 24 Test × 10 seeds")
+    (arrow "562,349 532,349")
+    (box 356 327 174 44 "Statistical Analysis" "10k Bootstrap & Holm (α=0.05)")
+    (arrow "356,349 324,349")
+    (term 234 330 88 38 "End" "Final Fronts")
+
+    ;; Dashed Inset Box: Inside Every Base-Level Interpreter Execution Call
+    (.append sb "  <rect x=\"14\" y=\"212\" width=\"516\" height=\"102\" fill=\"#f7f7f7\" stroke=\"#333333\" stroke-width=\"0.9\" stroke-dasharray=\"4,3\"/>\n")
+    (.append sb "  <text x=\"24\" y=\"229\" font-size=\"8.8\" font-weight=\"700\" fill=\"#000000\">Inside Each Train, Validation &amp; Test Run: Base-Level Bounded Interpreter</text>\n")
+    (box 24 244 106 50 "1. Initialize" ":random / :first" "#ffffff" nil)
+    (arrow "130,269 148,269")
+    (box 150 244 126 50 "2. Search / Step" "B ≤ 256, steps ≤ 4,096" "#ffffff" nil)
+    (arrow "276,269 294,269")
+    (box 296 244 114 50 "3. Cache Check" "Hit charges 1 prop." "#ffffff" nil)
+    (arrow "410,269 428,269")
+    (box 430 244 90 50 "4. Pareto HV" "2D Archive" "#ffffff" nil)
+
+    (.append sb "</svg>\n")
+    (io/make-parents out-path)
+    (spit out-path (.toString sb) :encoding "UTF-8")
+    (println "Wrote Springer SVG:" out-path)))
+
+(defn generate-fig3b-runtime!
+  "Generate 2-panel Runtime Comparison across all 5 search arms:
+   (a) Base-level per-instance execution time (ms, 240 held-out runs, cache ON),
+   (b) One-time outer design / validation-tuning time per seed (s, Mean +/- SD, n=30)."
+  [g8-edn cache-edn out-path]
+  (let [w 760 h 325
+        sb (StringBuilder.)
+        arms [[:gp-mixed "A1: GP-Mix"]
+              [:gp-mutation-only "A2: GP-Mut"]
+              [:random-dsl "A3: Rand-DSL"]
+              [:formula-only "A4: Formula"]
+              [:configured-conventional "A5: Conv."]]
+        mean-fn (fn [xs] (/ (reduce + 0.0 xs) (double (max 1 (count xs)))))
+        sd-fn (fn [xs]
+                (let [n (count xs) m (mean-fn xs)]
+                  (if (> n 1)
+                    (Math/sqrt (/ (reduce + 0.0 (map #(Math/pow (- (double %) m) 2) xs)) (double (dec n))))
+                    0.0)))
+        get-inner-ms (fn [domain arm]
+                       (let [row (first (filter #(and (= arm (:arm %)) (= :budget-aware-v2 (:generator-prior %)))
+                                                (get-in cache-edn [:domains domain])))]
+                         (/ (double (:mean-elapsed-ms-cache-on row)) 240.0)))
+        get-outer-s (fn [domain arm]
+                      (let [row (first (filter #(and (= arm (:arm %)) (= :budget-aware-v2 (:generator-prior %)))
+                                               (get-in g8-edn [:domains domain :arm-summaries])))
+                            xs (mapv :elapsed-seconds (:replications row))]
+                        [(mean-fn xs) (sd-fn xs)]))]
+    (.append sb (fmt "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 %d %d\" width=\"174mm\" height=\"74.4mm\" font-family=\"Arial, Helvetica, sans-serif\">\n" w h))
+    (.append sb (fmt "  <rect x=\"0\" y=\"0\" width=\"%d\" height=\"%d\" fill=\"#ffffff\"/>\n" w h))
+
+    ;; Panel (a): Base-Level Per-Instance Execution Time (ms)
+    (let [x0 58 y0 28 pw 302 ph 212
+          y-max 750.0
+          py (fn [v] (+ y0 (- ph (* (/ (min y-max (max 0.0 (double v))) y-max) ph))))
+          grp-w (/ (double pw) (count arms))
+          bw 21.0]
+      (.append sb (fmt "  <text x=\"%d\" y=\"%d\" font-size=\"10.5\" font-weight=\"700\" fill=\"#000000\">(a) <tspan font-weight=\"600\">Execution Time per Instance (ms)</tspan></text>\n"
+                       x0 (- y0 8)))
+      (.append sb (fmt "  <rect x=\"%d\" y=\"%d\" width=\"%d\" height=\"%d\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"0.9\"/>\n"
+                       x0 y0 pw ph))
+      (doseq [yv [0 150 300 450 600 750] :let [cy (py yv)]]
+        (.append sb (fmt "  <line x1=\"%d\" y1=\"%.2f\" x2=\"%d\" y2=\"%.2f\" stroke=\"%s\" stroke-width=\"0.7\"/>\n"
+                         x0 cy (+ x0 pw) cy (:grid palette)))
+        (.append sb (fmt "  <text x=\"%d\" y=\"%.2f\" font-size=\"9\" fill=\"#111111\" text-anchor=\"end\" dominant-baseline=\"middle\">%d</text>\n"
+                         (- x0 5) cy yv)))
+      (.append sb (fmt "  <text x=\"%d\" y=\"%.2f\" font-size=\"9.5\" fill=\"#000000\" text-anchor=\"middle\" transform=\"rotate(-90 %d %.2f)\">Runtime per Instance (ms)</text>\n"
+                       (- x0 42) (+ y0 (/ ph 2.0)) (- x0 42) (+ y0 (/ ph 2.0))))
+      (doseq [[idx [arm lbl]] (map-indexed vector arms)
+              :let [cx (+ x0 (* (+ idx 0.5) grp-w))
+                    p-ms (get-inner-ms :portfolio arm)
+                    s-ms (get-inner-ms :scheduling arm)
+                    x-p (- cx bw 1.5)
+                    x-s (+ cx 1.5)
+                    y-p (py p-ms)
+                    y-s (py s-ms)]]
+        (.append sb (fmt "  <text x=\"%.2f\" y=\"%d\" font-size=\"8.3\" fill=\"#000000\" text-anchor=\"middle\">%s</text>\n"
+                         cx (+ y0 ph 14) lbl))
+        (.append sb (fmt "  <rect x=\"%.2f\" y=\"%.2f\" width=\"%.1f\" height=\"%.2f\" fill=\"%s\" stroke=\"#000000\" stroke-width=\"0.6\"/>\n"
+                         x-p y-p bw (- (+ y0 ph) y-p) (:emerald palette)))
+        (.append sb (fmt "  <rect x=\"%.2f\" y=\"%.2f\" width=\"%.1f\" height=\"%.2f\" fill=\"%s\" stroke=\"#000000\" stroke-width=\"0.6\"/>\n"
+                         x-s y-s bw (- (+ y0 ph) y-s) (:sky palette)))
+        (.append sb (fmt "  <text x=\"%.2f\" y=\"%.2f\" font-size=\"7.3\" font-weight=\"600\" fill=\"#000000\" text-anchor=\"middle\">%d</text>\n"
+                         (+ x-p (/ bw 2.0)) (- y-p 3.5) (Math/round p-ms)))
+        (.append sb (fmt "  <text x=\"%.2f\" y=\"%.2f\" font-size=\"7.3\" font-weight=\"600\" fill=\"#000000\" text-anchor=\"middle\">%d</text>\n"
+                         (+ x-s (/ bw 2.0)) (- y-s 3.5) (Math/round s-ms)))))
+
+    ;; Panel (b): Outer Design / Tuning Time per Seed (s, Mean +/- SD)
+    (let [x0 442 y0 28 pw 302 ph 212
+          y-max 3000.0
+          py (fn [v] (+ y0 (- ph (* (/ (min y-max (max 0.0 (double v))) y-max) ph))))
+          grp-w (/ (double pw) (count arms))
+          bw 21.0]
+      (.append sb (fmt "  <text x=\"%d\" y=\"%d\" font-size=\"10.5\" font-weight=\"700\" fill=\"#000000\">(b) <tspan font-weight=\"600\">Outer Design Time per Seed (s)</tspan></text>\n"
+                       x0 (- y0 8)))
+      (.append sb (fmt "  <rect x=\"%d\" y=\"%d\" width=\"%d\" height=\"%d\" fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"0.9\"/>\n"
+                       x0 y0 pw ph))
+      (doseq [yv [0 600 1200 1800 2400 3000] :let [cy (py yv)]]
+        (.append sb (fmt "  <line x1=\"%d\" y1=\"%.2f\" x2=\"%d\" y2=\"%.2f\" stroke=\"%s\" stroke-width=\"0.7\"/>\n"
+                         x0 cy (+ x0 pw) cy (:grid palette)))
+        (.append sb (fmt "  <text x=\"%d\" y=\"%.2f\" font-size=\"9\" fill=\"#111111\" text-anchor=\"end\" dominant-baseline=\"middle\">%d</text>\n"
+                         (- x0 5) cy yv)))
+      (.append sb (fmt "  <text x=\"%d\" y=\"%.2f\" font-size=\"9.5\" fill=\"#000000\" text-anchor=\"middle\" transform=\"rotate(-90 %d %.2f)\">Outer Design Time (s, Mean ± SD)</text>\n"
+                       (- x0 42) (+ y0 (/ ph 2.0)) (- x0 42) (+ y0 (/ ph 2.0))))
+      (doseq [[idx [arm lbl]] (map-indexed vector arms)
+              :let [cx (+ x0 (* (+ idx 0.5) grp-w))
+                    [pm psd] (get-outer-s :portfolio arm)
+                    [sm ssd] (get-outer-s :scheduling arm)
+                    x-p (- cx bw 1.5)
+                    x-s (+ cx 1.5)
+                    y-p (py pm)
+                    y-s (py sm)
+                    p-hi (py (+ pm psd))
+                    p-lo (py (max 0.0 (- pm psd)))
+                    s-hi (py (+ sm ssd))
+                    s-lo (py (max 0.0 (- sm ssd)))
+                    mx-p (+ x-p (/ bw 2.0))
+                    mx-s (+ x-s (/ bw 2.0))]]
+        (.append sb (fmt "  <text x=\"%.2f\" y=\"%d\" font-size=\"8.3\" fill=\"#000000\" text-anchor=\"middle\">%s</text>\n"
+                         cx (+ y0 ph 14) lbl))
+        (.append sb (fmt "  <rect x=\"%.2f\" y=\"%.2f\" width=\"%.1f\" height=\"%.2f\" fill=\"%s\" stroke=\"#000000\" stroke-width=\"0.6\"/>\n"
+                         x-p y-p bw (- (+ y0 ph) y-p) (:emerald palette)))
+        (.append sb (fmt "  <rect x=\"%.2f\" y=\"%.2f\" width=\"%.1f\" height=\"%.2f\" fill=\"%s\" stroke=\"#000000\" stroke-width=\"0.6\"/>\n"
+                         x-s y-s bw (- (+ y0 ph) y-s) (:sky palette)))
+        ;; Error whiskers +/- 1 SD
+        (.append sb (fmt "  <line x1=\"%.2f\" y1=\"%.2f\" x2=\"%.2f\" y2=\"%.2f\" stroke=\"#000000\" stroke-width=\"1.0\"/>\n" mx-p p-hi mx-p p-lo))
+        (.append sb (fmt "  <line x1=\"%.2f\" y1=\"%.2f\" x2=\"%.2f\" y2=\"%.2f\" stroke=\"#000000\" stroke-width=\"1.0\"/>\n" (- mx-p 3.5) p-hi (+ mx-p 3.5) p-hi))
+        (.append sb (fmt "  <line x1=\"%.2f\" y1=\"%.2f\" x2=\"%.2f\" y2=\"%.2f\" stroke=\"#000000\" stroke-width=\"1.0\"/>\n" (- mx-p 3.5) p-lo (+ mx-p 3.5) p-lo))
+        (.append sb (fmt "  <line x1=\"%.2f\" y1=\"%.2f\" x2=\"%.2f\" y2=\"%.2f\" stroke=\"#000000\" stroke-width=\"1.0\"/>\n" mx-s s-hi mx-s s-lo))
+        (.append sb (fmt "  <line x1=\"%.2f\" y1=\"%.2f\" x2=\"%.2f\" y2=\"%.2f\" stroke=\"#000000\" stroke-width=\"1.0\"/>\n" (- mx-s 3.5) s-hi (+ mx-s 3.5) s-hi))
+        (.append sb (fmt "  <line x1=\"%.2f\" y1=\"%.2f\" x2=\"%.2f\" y2=\"%.2f\" stroke=\"#000000\" stroke-width=\"1.0\"/>\n" (- mx-s 3.5) s-lo (+ mx-s 3.5) s-lo))
+        ;; Clean labels just above upper whisker cap
+        (.append sb (fmt "  <text x=\"%.2f\" y=\"%.2f\" font-size=\"6.9\" font-weight=\"600\" fill=\"#000000\" text-anchor=\"middle\">%d</text>\n"
+                         mx-p (- p-hi 3.5) (Math/round pm)))
+        (.append sb (fmt "  <text x=\"%.2f\" y=\"%.2f\" font-size=\"6.9\" font-weight=\"600\" fill=\"#000000\" text-anchor=\"middle\">%d</text>\n"
+                         mx-s (- s-hi 3.5) (Math/round sm)))))
+
+    ;; Shared Bottom Legend
+    (let [ly 280]
+      (.append sb (fmt "  <rect x=\"58\" y=\"%d\" width=\"686\" height=\"26\" fill=\"#ffffff\" stroke=\"#cccccc\" stroke-width=\"0.8\"/>\n" ly))
+      (.append sb (fmt "  <rect x=\"102\" y=\"%d\" width=\"11\" height=\"11\" fill=\"%s\" stroke=\"#000000\" stroke-width=\"0.6\"/>\n" (+ ly 7) (:emerald palette)))
+      (.append sb (fmt "  <text x=\"118\" y=\"%d\" font-size=\"8.5\" fill=\"#000000\" dominant-baseline=\"middle\">NASDAQ-50 Portfolio (K=5, T=90)</text>\n" (+ ly 14)))
+      (.append sb (fmt "  <rect x=\"316\" y=\"%d\" width=\"11\" height=\"11\" fill=\"%s\" stroke=\"#000000\" stroke-width=\"0.6\"/>\n" (+ ly 7) (:sky palette)))
+      (.append sb (fmt "  <text x=\"332\" y=\"%d\" font-size=\"8.5\" fill=\"#000000\" dominant-baseline=\"middle\">OR-Library wt40 Scheduling (J=40)</text>\n" (+ ly 14)))
+      (.append sb (fmt "  <line x1=\"544\" y1=\"%d\" x2=\"544\" y2=\"%d\" stroke=\"#000000\" stroke-width=\"1.0\"/>\n" (+ ly 6) (+ ly 20)))
+      (.append sb (fmt "  <line x1=\"540\" y1=\"%d\" x2=\"548\" y2=\"%d\" stroke=\"#000000\" stroke-width=\"1.0\"/>\n" (+ ly 6) (+ ly 6)))
+      (.append sb (fmt "  <line x1=\"540\" y1=\"%d\" x2=\"548\" y2=\"%d\" stroke=\"#000000\" stroke-width=\"1.0\"/>\n" (+ ly 20) (+ ly 20)))
+      (.append sb (fmt "  <text x=\"554\" y=\"%d\" font-size=\"8.5\" fill=\"#000000\" dominant-baseline=\"middle\">Error bars: ± 1 SD (n=30, Panel b)</text>\n" (+ ly 14))))
+    (.append sb "</svg>\n")
+    (io/make-parents out-path)
+    (spit out-path (.toString sb) :encoding "UTF-8")
+    (println "Wrote Springer SVG:" out-path)))

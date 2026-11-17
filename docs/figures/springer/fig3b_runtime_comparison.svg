@@ -1,0 +1,122 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 325" width="174mm" height="74.4mm" font-family="Arial, Helvetica, sans-serif">
+  <rect x="0" y="0" width="760" height="325" fill="#ffffff"/>
+  <text x="58" y="20" font-size="10.5" font-weight="700" fill="#000000">(a) <tspan font-weight="600">Execution Time per Instance (ms)</tspan></text>
+  <rect x="58" y="28" width="302" height="212" fill="#ffffff" stroke="#000000" stroke-width="0.9"/>
+  <line x1="58" y1="240.00" x2="360" y2="240.00" stroke="#e0e0e0" stroke-width="0.7"/>
+  <text x="53" y="240.00" font-size="9" fill="#111111" text-anchor="end" dominant-baseline="middle">0</text>
+  <line x1="58" y1="197.60" x2="360" y2="197.60" stroke="#e0e0e0" stroke-width="0.7"/>
+  <text x="53" y="197.60" font-size="9" fill="#111111" text-anchor="end" dominant-baseline="middle">150</text>
+  <line x1="58" y1="155.20" x2="360" y2="155.20" stroke="#e0e0e0" stroke-width="0.7"/>
+  <text x="53" y="155.20" font-size="9" fill="#111111" text-anchor="end" dominant-baseline="middle">300</text>
+  <line x1="58" y1="112.80" x2="360" y2="112.80" stroke="#e0e0e0" stroke-width="0.7"/>
+  <text x="53" y="112.80" font-size="9" fill="#111111" text-anchor="end" dominant-baseline="middle">450</text>
+  <line x1="58" y1="70.40" x2="360" y2="70.40" stroke="#e0e0e0" stroke-width="0.7"/>
+  <text x="53" y="70.40" font-size="9" fill="#111111" text-anchor="end" dominant-baseline="middle">600</text>
+  <line x1="58" y1="28.00" x2="360" y2="28.00" stroke="#e0e0e0" stroke-width="0.7"/>
+  <text x="53" y="28.00" font-size="9" fill="#111111" text-anchor="end" dominant-baseline="middle">750</text>
+  <text x="16" y="134.00" font-size="9.5" fill="#000000" text-anchor="middle" transform="rotate(-90 16 134.00)">Runtime per Instance (ms)</text>
+  <text x="88.20" y="254" font-size="8.3" fill="#000000" text-anchor="middle">A1: GP-Mix</text>
+  <rect x="65.70" y="203.90" width="21.0" height="36.10" fill="#1f77b4" stroke="#000000" stroke-width="0.6"/>
+  <rect x="89.70" y="71.11" width="21.0" height="168.89" fill="#ff7f0e" stroke="#000000" stroke-width="0.6"/>
+  <text x="76.20" y="200.40" font-size="7.3" font-weight="600" fill="#000000" text-anchor="middle">128</text>
+  <text x="100.20" y="67.61" font-size="7.3" font-weight="600" fill="#000000" text-anchor="middle">598</text>
+  <text x="148.60" y="254" font-size="8.3" fill="#000000" text-anchor="middle">A2: GP-Mut</text>
+  <rect x="126.10" y="201.21" width="21.0" height="38.79" fill="#1f77b4" stroke="#000000" stroke-width="0.6"/>
+  <rect x="150.10" y="73.31" width="21.0" height="166.69" fill="#ff7f0e" stroke="#000000" stroke-width="0.6"/>
+  <text x="136.60" y="197.71" font-size="7.3" font-weight="600" fill="#000000" text-anchor="middle">137</text>
+  <text x="160.60" y="69.81" font-size="7.3" font-weight="600" fill="#000000" text-anchor="middle">590</text>
+  <text x="209.00" y="254" font-size="8.3" fill="#000000" text-anchor="middle">A3: Rand-DSL</text>
+  <rect x="186.50" y="204.46" width="21.0" height="35.54" fill="#1f77b4" stroke="#000000" stroke-width="0.6"/>
+  <rect x="210.50" y="58.04" width="21.0" height="181.96" fill="#ff7f0e" stroke="#000000" stroke-width="0.6"/>
+  <text x="197.00" y="200.96" font-size="7.3" font-weight="600" fill="#000000" text-anchor="middle">126</text>
+  <text x="221.00" y="54.54" font-size="7.3" font-weight="600" fill="#000000" text-anchor="middle">644</text>
+  <text x="269.40" y="254" font-size="8.3" fill="#000000" text-anchor="middle">A4: Formula</text>
+  <rect x="246.90" y="203.62" width="21.0" height="36.38" fill="#1f77b4" stroke="#000000" stroke-width="0.6"/>
+  <rect x="270.90" y="56.47" width="21.0" height="183.53" fill="#ff7f0e" stroke="#000000" stroke-width="0.6"/>
+  <text x="257.40" y="200.12" font-size="7.3" font-weight="600" fill="#000000" text-anchor="middle">129</text>
+  <text x="281.40" y="52.97" font-size="7.3" font-weight="600" fill="#000000" text-anchor="middle">649</text>
+  <text x="329.80" y="254" font-size="8.3" fill="#000000" text-anchor="middle">A5: Conv.</text>
+  <rect x="307.30" y="193.47" width="21.0" height="46.53" fill="#1f77b4" stroke="#000000" stroke-width="0.6"/>
+  <rect x="331.30" y="61.14" width="21.0" height="178.86" fill="#ff7f0e" stroke="#000000" stroke-width="0.6"/>
+  <text x="317.80" y="189.97" font-size="7.3" font-weight="600" fill="#000000" text-anchor="middle">165</text>
+  <text x="341.80" y="57.64" font-size="7.3" font-weight="600" fill="#000000" text-anchor="middle">633</text>
+  <text x="442" y="20" font-size="10.5" font-weight="700" fill="#000000">(b) <tspan font-weight="600">Outer Design Time per Seed (s)</tspan></text>
+  <rect x="442" y="28" width="302" height="212" fill="#ffffff" stroke="#000000" stroke-width="0.9"/>
+  <line x1="442" y1="240.00" x2="744" y2="240.00" stroke="#e0e0e0" stroke-width="0.7"/>
+  <text x="437" y="240.00" font-size="9" fill="#111111" text-anchor="end" dominant-baseline="middle">0</text>
+  <line x1="442" y1="197.60" x2="744" y2="197.60" stroke="#e0e0e0" stroke-width="0.7"/>
+  <text x="437" y="197.60" font-size="9" fill="#111111" text-anchor="end" dominant-baseline="middle">600</text>
+  <line x1="442" y1="155.20" x2="744" y2="155.20" stroke="#e0e0e0" stroke-width="0.7"/>
+  <text x="437" y="155.20" font-size="9" fill="#111111" text-anchor="end" dominant-baseline="middle">1200</text>
+  <line x1="442" y1="112.80" x2="744" y2="112.80" stroke="#e0e0e0" stroke-width="0.7"/>
+  <text x="437" y="112.80" font-size="9" fill="#111111" text-anchor="end" dominant-baseline="middle">1800</text>
+  <line x1="442" y1="70.40" x2="744" y2="70.40" stroke="#e0e0e0" stroke-width="0.7"/>
+  <text x="437" y="70.40" font-size="9" fill="#111111" text-anchor="end" dominant-baseline="middle">2400</text>
+  <line x1="442" y1="28.00" x2="744" y2="28.00" stroke="#e0e0e0" stroke-width="0.7"/>
+  <text x="437" y="28.00" font-size="9" fill="#111111" text-anchor="end" dominant-baseline="middle">3000</text>
+  <text x="400" y="134.00" font-size="9.5" fill="#000000" text-anchor="middle" transform="rotate(-90 400 134.00)">Outer Design Time (s, Mean ± SD)</text>
+  <text x="472.20" y="254" font-size="8.3" fill="#000000" text-anchor="middle">A1: GP-Mix</text>
+  <rect x="449.70" y="165.36" width="21.0" height="74.64" fill="#1f77b4" stroke="#000000" stroke-width="0.6"/>
+  <rect x="473.70" y="101.85" width="21.0" height="138.15" fill="#ff7f0e" stroke="#000000" stroke-width="0.6"/>
+  <line x1="460.20" y1="150.40" x2="460.20" y2="180.31" stroke="#000000" stroke-width="1.0"/>
+  <line x1="456.70" y1="150.40" x2="463.70" y2="150.40" stroke="#000000" stroke-width="1.0"/>
+  <line x1="456.70" y1="180.31" x2="463.70" y2="180.31" stroke="#000000" stroke-width="1.0"/>
+  <line x1="484.20" y1="81.42" x2="484.20" y2="122.29" stroke="#000000" stroke-width="1.0"/>
+  <line x1="480.70" y1="81.42" x2="487.70" y2="81.42" stroke="#000000" stroke-width="1.0"/>
+  <line x1="480.70" y1="122.29" x2="487.70" y2="122.29" stroke="#000000" stroke-width="1.0"/>
+  <text x="460.20" y="146.90" font-size="6.9" font-weight="600" fill="#000000" text-anchor="middle">1056</text>
+  <text x="484.20" y="77.92" font-size="6.9" font-weight="600" fill="#000000" text-anchor="middle">1955</text>
+  <text x="532.60" y="254" font-size="8.3" fill="#000000" text-anchor="middle">A2: GP-Mut</text>
+  <rect x="510.10" y="165.01" width="21.0" height="74.99" fill="#1f77b4" stroke="#000000" stroke-width="0.6"/>
+  <rect x="534.10" y="100.76" width="21.0" height="139.24" fill="#ff7f0e" stroke="#000000" stroke-width="0.6"/>
+  <line x1="520.60" y1="151.39" x2="520.60" y2="178.64" stroke="#000000" stroke-width="1.0"/>
+  <line x1="517.10" y1="151.39" x2="524.10" y2="151.39" stroke="#000000" stroke-width="1.0"/>
+  <line x1="517.10" y1="178.64" x2="524.10" y2="178.64" stroke="#000000" stroke-width="1.0"/>
+  <line x1="544.60" y1="81.85" x2="544.60" y2="119.66" stroke="#000000" stroke-width="1.0"/>
+  <line x1="541.10" y1="81.85" x2="548.10" y2="81.85" stroke="#000000" stroke-width="1.0"/>
+  <line x1="541.10" y1="119.66" x2="548.10" y2="119.66" stroke="#000000" stroke-width="1.0"/>
+  <text x="520.60" y="147.89" font-size="6.9" font-weight="600" fill="#000000" text-anchor="middle">1061</text>
+  <text x="544.60" y="78.35" font-size="6.9" font-weight="600" fill="#000000" text-anchor="middle">1970</text>
+  <text x="593.00" y="254" font-size="8.3" fill="#000000" text-anchor="middle">A3: Rand-DSL</text>
+  <rect x="570.50" y="191.35" width="21.0" height="48.65" fill="#1f77b4" stroke="#000000" stroke-width="0.6"/>
+  <rect x="594.50" y="129.62" width="21.0" height="110.38" fill="#ff7f0e" stroke="#000000" stroke-width="0.6"/>
+  <line x1="581.00" y1="184.60" x2="581.00" y2="198.10" stroke="#000000" stroke-width="1.0"/>
+  <line x1="577.50" y1="184.60" x2="584.50" y2="184.60" stroke="#000000" stroke-width="1.0"/>
+  <line x1="577.50" y1="198.10" x2="584.50" y2="198.10" stroke="#000000" stroke-width="1.0"/>
+  <line x1="605.00" y1="116.70" x2="605.00" y2="142.54" stroke="#000000" stroke-width="1.0"/>
+  <line x1="601.50" y1="116.70" x2="608.50" y2="116.70" stroke="#000000" stroke-width="1.0"/>
+  <line x1="601.50" y1="142.54" x2="608.50" y2="142.54" stroke="#000000" stroke-width="1.0"/>
+  <text x="581.00" y="181.10" font-size="6.9" font-weight="600" fill="#000000" text-anchor="middle">688</text>
+  <text x="605.00" y="113.20" font-size="6.9" font-weight="600" fill="#000000" text-anchor="middle">1562</text>
+  <text x="653.40" y="254" font-size="8.3" fill="#000000" text-anchor="middle">A4: Formula</text>
+  <rect x="630.90" y="146.99" width="21.0" height="93.01" fill="#1f77b4" stroke="#000000" stroke-width="0.6"/>
+  <rect x="654.90" y="83.60" width="21.0" height="156.40" fill="#ff7f0e" stroke="#000000" stroke-width="0.6"/>
+  <line x1="641.40" y1="135.34" x2="641.40" y2="158.63" stroke="#000000" stroke-width="1.0"/>
+  <line x1="637.90" y1="135.34" x2="644.90" y2="135.34" stroke="#000000" stroke-width="1.0"/>
+  <line x1="637.90" y1="158.63" x2="644.90" y2="158.63" stroke="#000000" stroke-width="1.0"/>
+  <line x1="665.40" y1="55.74" x2="665.40" y2="111.45" stroke="#000000" stroke-width="1.0"/>
+  <line x1="661.90" y1="55.74" x2="668.90" y2="55.74" stroke="#000000" stroke-width="1.0"/>
+  <line x1="661.90" y1="111.45" x2="668.90" y2="111.45" stroke="#000000" stroke-width="1.0"/>
+  <text x="641.40" y="131.84" font-size="6.9" font-weight="600" fill="#000000" text-anchor="middle">1316</text>
+  <text x="665.40" y="52.24" font-size="6.9" font-weight="600" fill="#000000" text-anchor="middle">2213</text>
+  <text x="713.80" y="254" font-size="8.3" fill="#000000" text-anchor="middle">A5: Conv.</text>
+  <rect x="691.30" y="134.07" width="21.0" height="105.93" fill="#1f77b4" stroke="#000000" stroke-width="0.6"/>
+  <rect x="715.30" y="75.58" width="21.0" height="164.42" fill="#ff7f0e" stroke="#000000" stroke-width="0.6"/>
+  <line x1="701.80" y1="120.45" x2="701.80" y2="147.69" stroke="#000000" stroke-width="1.0"/>
+  <line x1="698.30" y1="120.45" x2="705.30" y2="120.45" stroke="#000000" stroke-width="1.0"/>
+  <line x1="698.30" y1="147.69" x2="705.30" y2="147.69" stroke="#000000" stroke-width="1.0"/>
+  <line x1="725.80" y1="46.72" x2="725.80" y2="104.43" stroke="#000000" stroke-width="1.0"/>
+  <line x1="722.30" y1="46.72" x2="729.30" y2="46.72" stroke="#000000" stroke-width="1.0"/>
+  <line x1="722.30" y1="104.43" x2="729.30" y2="104.43" stroke="#000000" stroke-width="1.0"/>
+  <text x="701.80" y="116.95" font-size="6.9" font-weight="600" fill="#000000" text-anchor="middle">1499</text>
+  <text x="725.80" y="43.22" font-size="6.9" font-weight="600" fill="#000000" text-anchor="middle">2327</text>
+  <rect x="58" y="280" width="686" height="26" fill="#ffffff" stroke="#cccccc" stroke-width="0.8"/>
+  <rect x="102" y="287" width="11" height="11" fill="#1f77b4" stroke="#000000" stroke-width="0.6"/>
+  <text x="118" y="294" font-size="8.5" fill="#000000" dominant-baseline="middle">NASDAQ-50 Portfolio (K=5, T=90)</text>
+  <rect x="316" y="287" width="11" height="11" fill="#ff7f0e" stroke="#000000" stroke-width="0.6"/>
+  <text x="332" y="294" font-size="8.5" fill="#000000" dominant-baseline="middle">OR-Library wt40 Scheduling (J=40)</text>
+  <line x1="544" y1="286" x2="544" y2="300" stroke="#000000" stroke-width="1.0"/>
+  <line x1="540" y1="286" x2="548" y2="286" stroke="#000000" stroke-width="1.0"/>
+  <line x1="540" y1="300" x2="548" y2="300" stroke="#000000" stroke-width="1.0"/>
+  <text x="554" y="294" font-size="8.5" fill="#000000" dominant-baseline="middle">Error bars: ± 1 SD (n=30, Panel b)</text>
+</svg>
