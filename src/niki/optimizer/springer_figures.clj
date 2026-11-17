@@ -244,11 +244,11 @@
         (.append sb (fmt "  <text x=\"88\" y=\"%d\" font-size=\"8\" fill=\"#222222\">%s</text>\n" y (svg-escape desc)))))
     (.append sb "  <line x1=\"22\" y1=\"182\" x2=\"238\" y2=\"182\" stroke=\"#cccccc\" stroke-width=\"0.7\"/>\n")
     (.append sb "  <text x=\"22\" y=\"196\" font-size=\"8.5\" font-weight=\"700\" fill=\"#000000\">Quoted Program Tree (Code as Data):</text>\n")
-    (.append sb "  <text x=\"22\" y=\"211\" font-size=\"8\" font-family=\"Consolas, monospace\" fill=\"#111111\">'(:program :scheduling</text>\n")
-    (.append sb "  <text x=\"22\" y=\"224\" font-size=\"8\" font-family=\"Consolas, monospace\" fill=\"#111111\">  (:budget (:seq</text>\n")
-    (.append sb "  <text x=\"22\" y=\"237\" font-size=\"8\" font-family=\"Consolas, monospace\" fill=\"#111111\">    (:initialize (:initializer :first))</text>\n")
-    (.append sb "  <text x=\"22\" y=\"250\" font-size=\"8\" font-family=\"Consolas, monospace\" fill=\"#111111\">    (:repeat (:count 32) (:search (:count 8)</text>\n")
-    (.append sb "  <text x=\"22\" y=\"263\" font-size=\"8\" font-family=\"Consolas, monospace\" fill=\"#111111\">      (:operator :insert) &lt;score-expr&gt;)))))</text>\n")
+    (.append sb "  <text x=\"22\" y=\"211\" xml:space=\"preserve\" font-size=\"8\" font-family=\"Consolas, monospace\" fill=\"#111111\">'(:program :scheduling</text>\n")
+    (.append sb "  <text x=\"22\" y=\"224\" xml:space=\"preserve\" font-size=\"8\" font-family=\"Consolas, monospace\" fill=\"#111111\">  (:budget (:seq</text>\n")
+    (.append sb "  <text x=\"22\" y=\"237\" xml:space=\"preserve\" font-size=\"8\" font-family=\"Consolas, monospace\" fill=\"#111111\">    (:initialize (:initializer :first))</text>\n")
+    (.append sb "  <text x=\"22\" y=\"250\" xml:space=\"preserve\" font-size=\"8\" font-family=\"Consolas, monospace\" fill=\"#111111\">    (:repeat (:count 32) (:search (:count 8)</text>\n")
+    (.append sb "  <text x=\"22\" y=\"263\" xml:space=\"preserve\" font-size=\"8\" font-family=\"Consolas, monospace\" fill=\"#111111\">      (:operator :insert) &lt;score-expr&gt;)))))</text>\n")
 
     ;; Arrow 1 -> 2
     (.append sb "  <line x1=\"246\" y1=\"145\" x2=\"270\" y2=\"145\" stroke=\"#000000\" stroke-width=\"1.0\" marker-end=\"url(#arrow)\"/>\n")

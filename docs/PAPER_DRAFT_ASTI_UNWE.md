@@ -16,7 +16,7 @@ This study investigates multi-objective optimization hyper-heuristics built from
 
 ## Introduction
 
-Automated algorithm design shifts heuristic engineering from manual trial-and-error to systematic program synthesis. Conventional metaheuristics fix the search structure—initialization, moves, and acceptance—leaving only numerical tuning or solution encoding to search. When domain structure changes or conflicting objectives trade off, rigid templates degrade. In earlier studies, we compared discrete portfolio evolution against exact dynamic programming (Penchev & Marchev, 2026b) and evolved single-objective knapsack optimizers via typed symbolic expressions (Penchev & Marchev, 2026a), demonstrating strong combinatorial performance and interpretable tree code.
+Automated algorithm design shifts heuristic engineering from manual trial-and-error to systematic program synthesis. Conventional metaheuristics fix the search structure (initialization, moves, and acceptance), leaving only numerical tuning or solution encoding to search. When domain structure changes or conflicting objectives trade off, rigid templates degrade. In earlier studies, we compared discrete portfolio evolution against exact dynamic programming (Penchev & Marchev, 2026b) and evolved single-objective knapsack optimizers via typed symbolic expressions (Penchev & Marchev, 2026a), demonstrating strong combinatorial performance and interpretable tree code.
 
 However, our prior typed S-expression study (Penchev & Marchev, 2026a) had key limitations: asset costs were independent, a preset `return-per-cost` heuristic supplied most quality, subtree crossover was absent, and no equal-budget random grammar control existed. Four research questions follow: (1) Can typed S-expression evolution synthesize multi-objective hyper-heuristics without preset greedy rules? (2) Does one shared framework generalize across historical equities and scheduling? (3) What value do crossover and selection add beyond random grammar search and formula-only evolution? (4) How do evolved programs compare with tuned conventional optimizers in hypervolume, speed, and domain quality?
 
@@ -56,7 +56,7 @@ Source: Authors' own synthesis based on the cited literature.
 
 ### Research Gap Addressed
 
-Four gaps motivate this study. First, multi-objective scheduling GP hyper-heuristics (Zaki et al., 2024; Sun et al., 2024) evolve priority rules inside fixed simulators, and modular MOEA tools (Bezerra et al., 2016) tune fixed templates; neither co-evolves complete control flow and scalarization across both finance and scheduling. Second, LLM–evolutionary systems (Romera-Paredes et al., 2024; Liu et al., 2024) conflate pretrained priors with evolutionary discovery, underscoring Dick and Whigham's (2022) call for equal-budget random-grammar baselines. Third, recent cardinality-constrained portfolio methods (Kobayashi et al., 2023; Lapucci & Mansueto, 2024) build domain-specific mathematical solvers rather than transferable symbolic trees. Fourth, our earlier knapsack study (Penchev & Marchev, 2026a) relied on a preset greedy initializer and omitted crossover and random-DSL controls. We close this gap under strict equal-budget accounting on frozen public benchmarks.
+Four gaps motivate this study. First, multi-objective scheduling GP hyper-heuristics (Zaki et al., 2024; Sun et al., 2024) evolve priority rules inside fixed simulators, and modular MOEA tools (Bezerra et al., 2016) tune fixed templates; neither co-evolves complete control flow and scalarization across both finance and scheduling. Second, LLM-evolutionary systems (Romera-Paredes et al., 2024; Liu et al., 2024) conflate pretrained priors with evolutionary discovery, underscoring Dick and Whigham's (2022) call for equal-budget random-grammar baselines. Third, recent cardinality-constrained portfolio methods (Kobayashi et al., 2023; Lapucci & Mansueto, 2024) build domain-specific mathematical solvers rather than transferable symbolic trees. Fourth, our earlier knapsack study (Penchev & Marchev, 2026a) relied on a preset greedy initializer and omitted crossover and random-DSL controls. We close this gap under strict equal-budget accounting on frozen public benchmarks.
 
 ---
 
@@ -92,9 +92,9 @@ Figure 3 shows representative discrete Pareto fronts as orthogonal hypervolume s
 Source: Authors' own experimental runs on frozen benchmark instances.  
 Figure 3: Representative non-dominated Pareto fronts on real NASDAQ portfolio selection ($N=15, K=5, T=90$) and OR-Library `wt40` scheduling ($J=40$ jobs)
 
-### Experimental Protocol, Ethics, and Originality Statement
+### Experimental Protocol, Ethics, and Reproducibility Statement
 
-Across 30 outer seeds (`0..29`), each search arm receives 256 outer program assessments per seed (selecting one top validation program for single-shot held-out testing; Table 2). We compare Full GP (`A1: :gp-mixed`), Mutation-Only GP (`A2: :gp-mutation-only`), Equal-Budget Random DSL (`A3: :random-dsl`), Formula-Only Evolution (`A4: :formula-only`), and Configured Conventional Baselines (`A5: :configured-conventional`, validation-tuned across NSGA-II, Pareto Local Search, and Multi-Start Restart). Four paired hypotheses (**H1**: `A1` vs. `A3`; **H2**: `A1` vs. `A4`; **H3**: `A1` vs. `A2`; **H4**: `A1` vs. `A5`) use 10,000-resample paired bootstrap confidence intervals, Holm–Bonferroni correction ($\alpha = 0.05$), and $\Delta_{\mathrm{prac}} = 0.01$.
+Across 30 outer seeds (`0..29`), each search arm receives 256 outer program assessments per seed (selecting one top validation program for single-shot held-out testing; Table 2). We compare Full GP (`A1: :gp-mixed`), Mutation-Only GP (`A2: :gp-mutation-only`), Equal-Budget Random DSL (`A3: :random-dsl`), Formula-Only Evolution (`A4: :formula-only`), and Configured Conventional Baselines (`A5: :configured-conventional`, validation-tuned across NSGA-II, Pareto Local Search, and Multi-Start Restart). Four paired hypotheses (**H1**: `A1` vs. `A3`; **H2**: `A1` vs. `A4`; **H3**: `A1` vs. `A2`; **H4**: `A1` vs. `A5`) use 10,000-resample paired bootstrap confidence intervals, Holm-Bonferroni correction ($\alpha = 0.05$), and $\Delta_{\mathrm{prac}} = 0.01$. All Clojure source code, test suites, configuration files, and the deterministic NASDAQ-50 data reconstruction script are publicly archived at https://github.com/npenchev88/typed-sexpr-hyperheuristics.
 
 **Ethics Approval and Originality Statement.** This study uses only public historical equity series (NASDAQ-50) and the public OR-Library `wt40` benchmark; no human subjects, personal data, or animal experiments are involved, so ethics board approval is not applicable. All work is original, properly cited under APA 7th guidelines, free of plagiarism or unverified AI fabrication, and not submitted elsewhere.
 
@@ -133,7 +133,7 @@ Table 3: Thirty-seed test hypervolume, runtime, and structural summary (`budget-
 | `A4: :formula-only` (`v2`) | $0.53829 \pm 0.00054$ | $0.53838$ (0.5374–0.5391) | $0.54650$ | $3.7$ | $649.3$ | $2213.3 \pm 394.1$ | $160.9$ | $14.8$ | $19/30$ |
 | `A5: :configured-conv.` | $0.52751 \pm 0.00212$ | $0.52786$ (0.5237–0.5301) | $0.54321$ | **$7.4$** | $632.8$ | $2326.8 \pm 408.3$ | $190.1$ | $6.4$ | 19 NSGA-II, 11 PLS |
 
-Source: Authors' 30-seed confirmatory experiments (`data/nasdaq50_2012_2026.edn` and `data/orlib_wt40.txt`).
+Source: Authors' 30-seed experiments on NASDAQ-50 equities and OR-Library wt40 (bold marks best per column).
 
 On `wt40`, `:gp-mixed` (`0.53974`) beats `:configured-conventional` (`0.52751`) by `+0.01222` HV across 28/30 seeds and exceeds `:formula-only` (`0.53829`). On NASDAQ-50, `:gp-mixed` outperforms `:configured-conventional` in 12/30 seeds (`0.72975` vs. `0.73440`), staying inside the `±0.01` equivalence band.
 
@@ -164,7 +164,7 @@ Table 4: Concrete domain-level solution quality averaged across 24 held-out test
 | `A4: :formula-only` (`v2`) | 779.6 ± 2.6 | 9,903.2 ± 71.2 | 785.8 / 9,957.0 | 3.7 |
 | `A5: :configured-conv.` | 794.9 ± 2.0 | 10,173.7 ± 49.3 | 828.7 / 10,410.1 | **7.4** |
 
-Source: Authors' held-out test evaluations (`2016–2025` NASDAQ-50 quarters and `wt40`).
+Source: Authors' held-out test evaluations on 2016-2025 NASDAQ-50 quarters and OR-Library wt40 (bold marks best per column).
 
 ### Hypothesis Tests and Prior Ablation
 
@@ -206,7 +206,18 @@ Figure 7: Outer meta-evolution training trajectories (a) and structural operator
 
 Homoiconicity renders the discovered algorithms transparently readable. On NASDAQ-50, the median `:gp-mixed` program (Seed 28, test HV `0.73259`, 19 nodes) runs 32 `:restart` exploration steps before 24 repetitions of 24-proposal `:swap` local search guided by a progress-annealed scalarization $\mathrm{objective}_0 + \mathrm{progress}\cdot \mathrm{objective}_1$:
 
-`'(:program :portfolio (:budget (:seq (:search (:count 32) (:operator :restart) (:add (:feature :objective-0) (:constant -2.0))) (:repeat (:count 24) (:search (:count 24) (:operator :swap) (:add (:feature :objective-0) (:multiply (:feature :progress) (:feature :objective-1))))))))`
+```clojure
+'(:program :portfolio
+  (:budget
+    (:seq
+      (:search (:count 32) (:operator :restart)
+        (:add (:feature :objective-0) (:constant -2.0)))
+      (:repeat (:count 24)
+        (:search (:count 24)
+          (:operator :swap)
+          (:add (:feature :objective-0)
+            (:multiply (:feature :progress) (:feature :objective-1))))))))
+```
 
 On `wt40` scheduling, the median `:gp-mixed` program (Seed 21, test HV `0.54164`, 17 nodes) discovers the exact same annealing formula paired with nested `:insert` local search, whereas the best Seed 0 program (test HV `0.54334`, 35 nodes) pairs SPT (`:first`) initialization with `:swap` and `:insert` phases. Critically, these empirical findings remain bounded by two design limits: under a 256-program outer budget and strong `v2` prior, full GP shows only a minor edge (`+0.00190`) over equal-budget random DSL sampling (**H1**), and trajectory-based DSL primitives produce slightly narrower portfolio fronts (`14.9` vs. `16.9` points) than population-based NSGA-II.
 
@@ -220,11 +231,11 @@ Addressing our four research questions, homoiconic six-role typed S-expressions 
 
 ## Notes
 
-Author academic affiliations and ORCID identifiers appear in Footnotes 1 and 2 on page 1; methodological provenance notes regarding frozen dataset checksums and Clojure implementation details appear in Footnote 3.
+Author academic affiliations and ORCID identifiers appear in Footnotes 1 and 2 on page 1; repository access and data provenance notes appear in Footnote 3.
 
-1. *[Academic title, scientific degree], Faculty of Economics and Business Administration, Sofia University "St. Kliment Ohridski", Sofia, Bulgaria, ORCID: 0009-0000-8955-2474.*
-2. *[Academic title, scientific degree], Department of Management, University of National and World Economy (UNWE), and Faculty of Economics and Business Administration, Sofia University "St. Kliment Ohridski", Sofia, Bulgaria, ORCID: 0000-0002-5090-3123.*
-3. *All NASDAQ-50 return panels (`data/nasdaq50_2012_2026.edn`), OR-Library `wt40` scheduling instances (`data/orlib_wt40.txt`), and 30-seed Clojure confirmatory logs (`docs/evidence/g8-thirty-replications-results.edn`) are archived as deterministic fixed-seed artifacts.*
+1. *Faculty of Economics and Business Administration, Sofia University "St. Kliment Ohridski", Sofia, Bulgaria, ORCID: 0009-0000-8955-2474.*
+2. *Department of Management, University of National and World Economy (UNWE), and Faculty of Economics and Business Administration, Sofia University "St. Kliment Ohridski", Sofia, Bulgaria, ORCID: 0000-0002-5090-3123.*
+3. *Source code, experiment configurations, 30-seed replication logs, and the Yahoo Finance NASDAQ-50 dataset reconstruction script are available at https://github.com/npenchev88/typed-sexpr-hyperheuristics alongside the public OR-Library wt40 benchmark.*
 
 ---
 
