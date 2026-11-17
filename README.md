@@ -31,60 +31,120 @@ Upgrading initialization from `development-only-v1` to `budget-aware-v2` yields 
 
 ---
 
+## Prerequisites and Dependencies
+
+No Python, R, C/C++ toolchain, GPU, or Leiningen installation is required to run the framework, test suites, data fetcher, or 30-seed experiments.
+
+### Software & Language Dependencies
+
+| Component | Requirement | Pinned / Verified Version | Notes |
+| :--- | :--- | :--- | :--- |
+| **Java JDK** | JDK 21+ (`JAVA_HOME` configured) | Eclipse Temurin `25.0.5+8` | `java.net.http.HttpClient` (used by `fetch-nasdaq50.clj`) and exact `DECIMAL128` math are built into the JDK |
+| **Clojure CLI** | `clojure` CLI (`tools.deps`) | `1.12.6.1673` | On Windows 11 provided by `clj-msi` / `deps.exe` |
+| **Clojure Core** | Auto-fetched via `deps.edn` | `org.clojure/clojure` `1.12.6` | Cached locally in `.cache/m2` on first run (no user `deps.edn` needed with `-Srepro`) |
+| **Core Transitively Resolved Jars** | Auto-fetched via `deps.edn` | `spec.alpha` `0.5.238`, `core.specs.alpha` `0.4.74` | Verified SHA-256 checksums recorded in `environment.lock.json` |
+| **Optional (`:legacy` alias only)** | Upstream comparison | Clojure `1.12.5`, `commons-math3` `3.6.1` | Only needed if restoring `vendor/evolving-portfolio-dsl` at its pinned commit |
+| **Git** | Any modern Git (`>= 2.x`) | `2.56.1` | Used to clone the repository |
+
+> **Important note on local wrappers (`clojure` / `clojure.cmd`):** The convenience wrapper scripts in the root directory point to `.tools/jdk` and `.tools/cli/deps.exe` (excluded from Git via `.gitignore`). On any fresh clone on Windows 11, macOS, or Linux, run **`clojure -Srepro ...`** directly once Java and the Clojure CLI are installed (see OS guides below).
+
+### OS-Specific Installation
+
+#### Windows 11 (PowerShell)
+1. Install Git and Eclipse Temurin JDK 25 via `winget`:
+```powershell
+winget install --id Git.Git -e
+winget install --id EclipseAdoptium.Temurin.25.JDK -e
+```
+2. Install the native Windows Clojure CLI via the [`clj-msi` installer](https://github.com/casselc/clj-msi/releases/latest) (which bundles [`deps.clj`](https://github.com/borkdude/deps.clj) and Clojure tools for Windows; see `clojure.org/guides/install_clojure`).
+   *(Alternatively, you can run inside WSL2 using the Linux steps below, or reconstruct the project-local `.tools/` layout recorded in `environment.lock.json` and `docs/ENVIRONMENT.md` and run `.\clojure.cmd`.)*
+3. Open a new PowerShell window and verify:
+```powershell
+java -version
+clojure -Srepro -M -e "(println (clojure-version))"
+```
+
+#### macOS (Apple Silicon / Intel via Homebrew)
+```bash
+brew trust clojure/tools
+brew install git openjdk@25 clojure/tools/clojure
+# Follow Homebrew caveats if needed to symlink openjdk@25 into /Library/Java/JavaVirtualMachines
+java -version
+clojure -Srepro -M -e "(println (clojure-version))"
+```
+
+#### Linux (Ubuntu / Debian & General Distributions)
+Install Java 21+ (or Temurin 25 via Adoptium apt/tarball) and the official Clojure CLI installer:
+
+```bash
+# 1. Install Git, curl, bash, rlwrap, and OpenJDK 21+ (e.g. Ubuntu 24.04+)
+sudo apt update && sudo apt install -y git curl bash rlwrap openjdk-21-jdk
+
+# 2. Install the official Clojure CLI tools
+curl -L -O https://github.com/clojure/brew-install/releases/latest/download/linux-install.sh
+chmod +x linux-install.sh
+sudo ./linux-install.sh
+rm linux-install.sh
+
+# 3. Verify installation
+java -version
+clojure -Srepro -M -e "(println (clojure-version))"
+```
+
+### Hardware & Network Notes
+- **First run:** Requires outbound HTTPS access to `repo.maven.apache.org` once to download Clojure `1.12.6` into `.cache/m2`, and to `query1.finance.yahoo.com` once when running `scripts/fetch-nasdaq50.clj`.
+- **Confirmatory 30-seed runs:** Test suites run in seconds on any modern laptop; full 30-seed meta-evolution (`run-thirty-replications-g8.clj`) benefits from multi-core CPUs and 8–16 GB RAM (reference runs were executed on an 8-core AMD Ryzen 7 9700X with 32 GB RAM).
+
+---
+
 ## Benchmark Data Setup
 
 The public OR-Library `wt40` scheduling file (`data/orlib_wt40.txt`) is included directly in the repository.
 
-To comply with market-data redistribution terms, historical NASDAQ-50 price returns (`data/nasdaq50_2012_2026.edn`) are **not** committed to GitHub. Before running portfolio experiments or `:g5-test`/`:g7-test` scripts that read the NASDAQ-50 panel, reconstruct `data/nasdaq50_2012_2026.edn` directly from Yahoo Finance using the bundled zero-dependency Clojure script:
+To comply with market-data redistribution terms, historical NASDAQ-50 price returns (`data/nasdaq50_2012_2026.edn`) are **not** committed to GitHub. Before running portfolio experiments or `:g5-test`/`:g7-test` suites that read the NASDAQ-50 panel, reconstruct `data/nasdaq50_2012_2026.edn` directly from Yahoo Finance using the zero-dependency Clojure script:
 
-**Windows PowerShell:**
-```powershell
-.\clojure.cmd -M scripts/fetch-nasdaq50.clj
-```
-
-**Linux / macOS / Git Bash:**
 ```bash
-./clojure -M scripts/fetch-nasdaq50.clj
+git clone https://github.com/npenchev88/typed-sexpr-hyperheuristics.git
+cd typed-sexpr-hyperheuristics
+clojure -Srepro -M scripts/fetch-nasdaq50.clj
 ```
 
 This downloads daily closing prices (`2012-01-03` to `2026-02-27`, `3,559` aligned trading dates yielding `3,558` daily simple returns) for all 50 NASDAQ tickers and writes `data/nasdaq50_2012_2026.edn`.
-
-*(Note: `.\clojure.cmd` / `./clojure` expects JDK and Clojure CLI tools configured locally — see `docs/ENVIRONMENT.md` and `environment.lock.json`, or run with your system `clojure` CLI on Java 17+ using `-Srepro`.)*
 
 ---
 
 ## Running Tests and Reproducing Experiments
 
-Run all verification test suites from the repository root:
+Run all commands below from the repository root (`.\clojure.cmd ...` may be used interchangeably with `clojure -Srepro ...` if you use the Windows `.tools/` setup):
 
-```powershell
+```bash
 # Core domain, Pareto archive, DSL, variation, search, scheduling, and stats suites
-.\clojure.cmd -M:g1-test
-.\clojure.cmd -M:g2-test
-.\clojure.cmd -M:g3-test
-.\clojure.cmd -M:g4-test
-.\clojure.cmd -M:g5-test
-.\clojure.cmd -M:g6-test
-.\clojure.cmd -M:g7-test
+clojure -Srepro -M:g1-test
+clojure -Srepro -M:g2-test
+clojure -Srepro -M:g3-test
+clojure -Srepro -M:g4-test
+clojure -Srepro -M:g5-test
+clojure -Srepro -M:g6-test
+clojure -Srepro -M:g7-test
 
 # Reproducibility verifications and smoke pilot
-.\clojure.cmd -M scripts/verify-g1.clj
-.\clojure.cmd -M scripts/verify-g2.clj
-.\clojure.cmd -M scripts/verify-g6.clj
-.\clojure.cmd -M scripts/validate-protocol.clj
-.\clojure.cmd -M scripts/run-smoke.clj
+clojure -Srepro -M scripts/verify-g1.clj
+clojure -Srepro -M scripts/verify-g2.clj
+clojure -Srepro -M scripts/verify-g6.clj
+clojure -Srepro -M scripts/validate-protocol.clj
+clojure -Srepro -M scripts/run-smoke.clj
 ```
 
 To reproduce the confirmatory 30-seed run, mechanism ablations, and manuscript SVG figures (which update `docs/evidence/*.edn` and `docs/figures/springer/*.svg`):
 
-```powershell
-.\clojure.cmd -M scripts/run-thirty-replications-g8.clj
-.\clojure.cmd -M scripts/summarize-g8-thirty-runs.clj
-.\clojure.cmd -M scripts/run-budget-scaling-ablation.clj
-.\clojure.cmd -M scripts/run-typed-vs-untyped-ablation.clj
-.\clojure.cmd -M scripts/run-ast-knockout-ablation.clj
-.\clojure.cmd -M scripts/run-cache-ablation.clj
-.\clojure.cmd -M scripts/generate-springer-svgs.clj
+```bash
+clojure -Srepro -M scripts/run-thirty-replications-g8.clj
+clojure -Srepro -M scripts/summarize-g8-thirty-runs.clj
+clojure -Srepro -M scripts/run-budget-scaling-ablation.clj
+clojure -Srepro -M scripts/run-typed-vs-untyped-ablation.clj
+clojure -Srepro -M scripts/run-ast-knockout-ablation.clj
+clojure -Srepro -M scripts/run-cache-ablation.clj
+clojure -Srepro -M scripts/generate-springer-svgs.clj
 ```
 
 ---
