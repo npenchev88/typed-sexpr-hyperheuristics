@@ -66,13 +66,21 @@ Four gaps motivate this work. First, scheduling hyper-heuristics (Zaki et al., 2
 
 ### Six-Role Typed DSL, Static Effects, and Bounded Interpreter
 
-We build a binder-free typed Clojure DSL rooted at `'(:program <domain> (:budget <operation>))`. Every AST node has one of six disjoint roles shown in Figure 2. Control flow uses `:operation` nodes (`:noop`, `:seq`, `:repeat`, `:if`, `:initialize`, `:step`, `:search`) and bounded loop `:count` ($\in \{2, 4, 8, 12, 16, 24, 32, 64\}$). Domain edits use `:initializer` (`:random`, `:first`) and `:operator` moves. Branching relies on `:predicate` forms (`:not`, `:and`, `:less`, `:archive-changed`, `:budget-left`, `:coin`), and selection scores working states via `:score` trees combining `:objective-0`, `:objective-1`, `:progress`, constants, `:add`, and `:multiply`. With no free variables, swapping same-role subtrees always preserves syntax. Static checks enforce effect permissions (`:pure`, `:control`, `:state`) and cap programs at 128 nodes, depth 12, and count 256.
+We build a binder-free typed Clojure DSL rooted at `'(:program <domain> (:budget <operation>))` (Figure 2). Every AST node belongs to one of six disjoint syntactic roles:
+
+- **Control flow (`:operation`):** `:noop`, `:seq`, `:repeat`, `:if`, `:initialize`, `:step`, and `:search`.
+- **Loop bounds (`:count`):** bounded iteration steps in $\{2, 4, 8, 12, 16, 24, 32, 64\}$.
+- **Initializers (`:initializer`) and moves (`:operator`):** `:random` or `:first` starts paired with domain neighborhood operators.
+- **Guards (`:predicate`):** boolean tests `:not`, `:and`, `:less`, `:archive-changed`, `:budget-left`, and `:coin`.
+- **Acceptance (`:score`):** scalarization trees built from `:objective-0`, `:objective-1`, `:progress`, constants, `:add`, and `:multiply`.
+
+With no free variables, exchanging same-role subtrees always preserves syntax. Static checks enforce effect permissions (`:pure`, `:control`, `:state`) and cap programs at 128 AST nodes, depth 12, and count 256.
 
 ![Figure 2: Architecture of the typed S-expression optimizer framework.](figures/png300/fig1_architecture_and_dsl.png)  
 Source: Authors' own elaboration based on the implemented Clojure architecture.  
 Figure 2: Architecture of the typed S-expression optimizer framework showing (a) six-role DSL, (b) meta-evolution and bounded interpreter, and (c, d) benchmark adapters
 
-A bounded interpreter limits interpreter steps and caps each instance at $B = 256$ candidate proposals. When an algorithm revisits an already evaluated solution, the optional cache (`cache? = true`) reuses its objective vector to save runtime. For strict fairness, cache hits still charge 1 proposal against $B = 256$, keeping Pareto archives bitwise identical. We also compare two initialization priors (Dick & Whigham, 2022). The uniform `development-only-v1` prior places single-step leaves at top-level branches, causing early exits below budget, whereas `budget-aware-v2` nests `:seq`, `:repeat`, and `:search` blocks aligned with 256 proposals. Figure 3 traces the full two-level execution flow from outer GP variation through static checking, inner interpretation, validation, and held-out testing.
+A bounded interpreter limits execution steps and caps each instance at $B = 256$ candidate proposals. Under `cache? = true`, revisited solutions reuse stored objectives but still charge 1 proposal against $B = 256$, keeping Pareto archives bitwise identical. We compare two initialization priors (Dick & Whigham, 2022): `development-only-v1`, which places single-step leaves at top-level branches and stops early, against `budget-aware-v2`, which nests `:seq`, `:repeat`, and `:search` blocks aligned with 256 proposals. Figure 3 traces this full two-level workflow.
 
 ![Figure 3: Two-level evolutionary and interpreter workflow across outer GP seeds and base-level runs.](figures/png300/fig1b_evolutionary_workflow.png)  
 Source: Authors' own elaboration based on the implemented experimental pipeline.  
@@ -96,13 +104,20 @@ Figure 4 shows representative discrete Pareto fronts as orthogonal hypervolume s
 
 ![Figure 4: Representative Pareto fronts on NASDAQ Portfolio Selection and OR-Library wt40 Scheduling.](figures/png300/fig2_pareto_fronts_2panel.png)  
 Source: Authors' own experimental runs on frozen benchmark instances.  
-Figure 4: Representative non-dominated Pareto fronts on real NASDAQ portfolio selection ($N=15, K=5, T=90$) and OR-Library `wt40` scheduling ($J=40$ jobs)
+Figure 4: Representative non-dominated Pareto fronts on real NASDAQ portfolio selection ($N=15, K=5, T=90$) and OR-Library `wt40` scheduling ($J=40$ jobs; green diamond: classical SPT rule minimizing completion time; purple square: classical EDD rule minimizing due-date violations)
 
 ### Experimental Protocol, Ethics, and Reproducibility Statement
 
-Across 30 independent outer seeds (`0..29`), each search arm evaluates 256 candidate programs on the 6 training instances, freezes one top validation candidate, and runs it once on the 24 test instances (Table 2). We compare Full GP (`A1: :gp-mixed`), Mutation-Only GP (`A2: :gp-mutation-only`), Equal-Budget Random DSL (`A3: :random-dsl`), Formula-Only Evolution (`A4: :formula-only`), and Configured Conventional Baselines (`A5: :configured-conventional`, validation-tuned across NSGA-II, Pareto Local Search, and Multi-Start Restart). Because GP settings remain static without hyperparameter optimization, Table 3 lists all fixed evolutionary, interpreter, and baseline search-space parameters explicitly. Four paired hypotheses test key components: **H1** (`A1` vs. `A3`), **H2** (`A1` vs. `A4`), **H3** (`A1` vs. `A2`), and **H4** (`A1` vs. `A5`), using 10,000-resample paired bootstrap confidence intervals, Holm-Bonferroni correction ($\alpha = 0.05$), and $\Delta_{\mathrm{prac}} = 0.01$. All Clojure code, tests, configurations, and the NASDAQ-50 reconstruction script are archived at https://github.com/npenchev88/typed-sexpr-hyperheuristics.
+Across 30 independent outer seeds (`0..29`), each arm runs 256 outer assessments on 6 training instances, freezes 1 top validation candidate, and tests it once on 24 held-out instances (Table 2, Table 3). Five arms are evaluated:
 
-**Ethics Approval and Originality Statement.** This study uses only public historical equity series (NASDAQ-50) and the public OR-Library `wt40` benchmark; no human subjects, personal data, or animal experiments are involved, so ethics board approval is not applicable. All work is original, properly cited under APA 7th guidelines, free of plagiarism or unverified AI fabrication, and not submitted elsewhere.
+- **Full GP (`A1: :gp-mixed`) and Mutation-Only GP (`A2: :gp-mutation-only`):** evolve `v2` ASTs using subtree mutation with crossover ($p_c = 0.5$) or without crossover ($p_c = 0.0$).
+- **Random DSL (`A3: :random-dsl`):** draws 256 independent `v2` trees without selection.
+- **Formula-Only (`A4: :formula-only`):** evolves only `:score` expressions inside a fixed `:swap` scaffold.
+- **Configured Baselines (`A5: :configured-conventional`):** validation-tunes NSGA-II, Pareto Local Search, and Multi-Start Restart across 256 configurations.
+
+Four paired hypotheses (**H1**: `A1` vs. `A3`; **H2**: `A1` vs. `A4`; **H3**: `A1` vs. `A2`; **H4**: `A1` vs. `A5`) use 10,000-resample paired bootstrap CIs, Holm-Bonferroni correction ($\alpha = 0.05$), and $\Delta_{\mathrm{prac}} = 0.01$. Complete Clojure source code, test suites, frozen configurations, replication logs, and the NASDAQ-50 script are publicly archived (Penchev & Marchev, 2026c).
+
+**Ethics Approval and Originality Statement.** This study uses only public historical equity series (NASDAQ-50) and OR-Library `wt40`; no human subjects, personal data, or animal experiments are involved. All work is original, cited under APA 7th rules, free of plagiarism or unverified fabrication, and not submitted elsewhere.
 
 Table 2: Main experimental parameters across both benchmark domains
 
@@ -128,7 +143,7 @@ Table 3: Fixed hyperparameters and configured conventional baseline search space
 | (`256` samples/seed) | Pareto Local Search (PLS) | `initial-starts`, `neighbors-per-step` $\in \{1, 2, 4, 8\}$; rule `{unvisited, crowding, random}` |
 | | Multi-Start Restart | `restart-period` $\in \{4, 8, 16, 32\}$; weights `{balanced, alternating, uniform-grid}` |
 
-Source: Authors' frozen experimental specification (`src/niki/optimizer/` and `scripts/run-thirty-replications-g8.clj`).
+Source: Authors' frozen experimental configuration, available in the authors' GitHub repository (Penchev & Marchev, 2026c).
 
 ---
 
@@ -169,11 +184,11 @@ Figure 6: Base-level execution time per instance in ms (a) and one-time outer de
 
 ### Domain-Level Quality and Concrete Solutions
 
-Table 5 shows concrete financial and scheduling metrics across the 24 test instances. On NASDAQ-50, all four DSL arms reach higher peak returns (`+0.378%` to `+0.380%`) and return-to-risk ratios (`4.33`–`4.43`) than `:configured-conventional` (`+0.371%`, `4.24`). Configured NSGA-II and PLS earn their `+0.00465` HV edge by extending the low-volatility left tail (`0.845%` vs. `0.947%` min risk) and keeping roughly two more intermediate portfolios (`17.2` vs. `14.9` in Table 5).
+Table 5 translates Pareto fronts into concrete domain metrics averaged across all 24 held-out test instances:
 
-Sample fronts illustrate this trade-off. On `nasdaq-test-0` (`2016-09-07` to `2017-01-13`), median `:gp-mixed` traces 17 portfolios from `(AAPL, ADP, COST, CSCO, ISRG)` (`11.28%` annualized volatility) up to `(NVDA, AMD, CSX, FITB, HBAN)` (`+0.438%` daily return). On `nasdaq-test-23` (`2025-08-26` to `2026-01-02`), it builds 14 portfolios spanning defensive `(AAPL, COST, CTSH, IDXX, PEP)` (`11.99%` volatility), balanced `(ASML, CTSH, GILD, MAR, MU)` (`+0.422%` return, `4.94` return-to-risk), and growth `(GOOGL, INTC, KLAC, LRCX, MU)` (`+0.686%` daily return).
-
-On OR-Library `wt40`, single-pass rules expose the scheduling trade-off: SPT keeps completion low (`734.5`) at high tardiness (`11,173.8`), while EDD worsens both metrics (`1,037.8` completion, `12,032.6` tardiness). Evolved `:gp-mixed` cuts minimum tardiness to `9,878.3` (`-1,295.5` units, or `11.6%` below SPT). At the knee schedule, `:gp-mixed` reaches `781.9 / 9,928.8` versus `828.7 / 10,410.1` for `:configured-conventional`, improving completion (`-46.8`) and tardiness (`-481.3`) together.
+- **NASDAQ-50 Front Coverage:** All four DSL arms achieve higher peak daily returns (`+0.378%` to `+0.380%`) and return-to-risk ratios (`4.33`–`4.43`) than `:configured-conventional` (`+0.371%`, `4.24`). Configured NSGA-II and PLS earn their `+0.00465` HV edge by extending the low-volatility corner (`0.845%` vs. `0.947%`) with extra points (`17.2` vs. `14.9`).
+- **Concrete Equity Baskets:** On `nasdaq-test-0` (`2016–2017`), median `:gp-mixed` traces 17 portfolios from `(AAPL, ADP, COST, CSCO, ISRG)` (`11.28%` volatility) up to `(NVDA, AMD, CSX, FITB, HBAN)` (`+0.438%` daily return). On `nasdaq-test-23` (`late 2025`), it builds 14 portfolios spanning defensive `(AAPL, COST, CTSH, IDXX, PEP)` (`11.99%` volatility), balanced `(ASML, CTSH, GILD, MAR, MU)` (`+0.422%`, `4.94` return-to-risk), and growth `(GOOGL, INTC, KLAC, LRCX, MU)` (`+0.686%`).
+- **Scheduling (`wt40`) Trade-offs:** Classical SPT lowers completion time (`734.5`) at high tardiness (`11,173.8`), while EDD worsens both metrics (`1,037.8` completion, `12,032.6` tardiness). Evolved `:gp-mixed` cuts minimum tardiness to `9,878.3` (`11.6%` below SPT) and dominates `:configured-conventional` at the knee schedule (`781.9 / 9,928.8` vs. `828.7 / 10,410.1`, saving `46.8` completion and `481.3` tardiness units).
 
 Table 5: Concrete domain-level solution quality averaged across 24 held-out test instances (Mean ± 95% CI)
 
@@ -214,17 +229,20 @@ Source: Authors' paired bootstrap analysis (*Note:* Scheduling H4 unadjusted 95%
 
 ### Anytime Budget Scaling and Mechanism Ablations
 
-Across budgets $B \in \{16, 32, 64, 128, 256\}$ (Figure 7), `:gp-mixed` converges faster than `:configured-conventional`. On NASDAQ-50, it leads from $B=16$ through $B=128$ (`0.66832` vs. `0.64250` at $B=64$, `0.70545` vs. `0.69347` at $B=128$) before NSGA-II and PLS catch up at $B=256$. On `wt40`, `:gp-mixed` passes `:configured-conventional` by $B=64$ (`0.46570` vs. `0.45707`) and widens its lead to `0.54067` vs. `0.52760`. Under `v1`, programs stall lower (`0.70890` portfolios, `0.51751` `wt40`) because shallow branches stop early.
+Across inner budgets $B \in \{16, 32, 64, 128, 256\}$ (Figure 7), `:gp-mixed` converges faster than `:configured-conventional`:
+
+- **NASDAQ-50 Anytime Curve:** `:gp-mixed` leads from $B=16$ through $B=128$ (`0.66832` vs. `0.64250` at $B=64$, `0.70545` vs. `0.69347` at $B=128$) before NSGA-II and PLS catch up at $B=256$.
+- **Scheduling (`wt40`) Anytime Curve:** `:gp-mixed` passes `:configured-conventional` by $B=64$ (`0.46570` vs. `0.45707`) and widens its lead to `0.54067` vs. `0.52760`; under `v1`, programs stall lower (`0.70890` portfolios, `0.51751` `wt40`) due to early exits.
 
 ![Figure 7: Anytime normalized test hypervolume across evaluation budgets B = 16 to 256.](figures/png300/fig4_anytime_budget_scaling.png)  
 Source: Authors' budget-scaling ablation runs across 30 seeds.  
 Figure 7: Anytime normalized test hypervolume scaling across per-instance evaluation budgets $B \in \{16, 32, 64, 128, 256\}$
 
-Figure 8 isolates three system mechanisms. In Panel A, 1,000 `v2` draws yield 100% valid trees (`0` rejections), and typed variation passes checks on 86.8%–93.5% of edits. Untyped generation (`:untyped-validated`) rejects ~91% of raw proposals (`6,199` rejections for `613` valid trees), with 38.7% falling back to minimal default trees. In full runs, untyped search visits just `6.0`–`8.5` distinct programs and collapses to `0.36461` HV on portfolios and `0.35601` on `wt40`.
+Figure 8 isolates three system mechanisms across both domains:
 
-Panel B ablates six AST components (`K1`–`K6`) against intact programs (`K0`). Deleting the search body (`K1`) drops HV by `-0.37724` on portfolios (`0.72999` to `0.35275`) and `-0.18466` on `wt40` (`0.54067` to `0.35601`). Unlike our single-objective knapsack study where a built-in greedy initializer supplied almost all quality (Penchev & Marchev, 2026a), the evolved search loop does most work here. Zeroing `:score` (`K3`) cuts HV by `-0.11241` and `-0.11874`, while removing `:objective-1` (`K6`) costs `-0.02209` and `-0.01690`. Resetting constants (`K4`), freezing `:progress` (`K5`), or forcing `:random` initialization (`K2`) shifts HV by at most `-0.00039` to `+0.00088`.
-
-Panel C verifies `cache? = true`. Caching leaves archives bitwise identical (`max-hv-abs-diff = 0.0`), avoids 17.5% of NASDAQ-50 calls (`10,771` saved calls over 240 runs, `147.0` to `127.7 ms`), and speeds up `wt40` (`684.8` to `597.5 ms`). Leaving cache hits uncharged would grant `22.7`–`42.5` free proposals and inflate portfolio HV by `+0.00163`–`+0.00256`.
+- **Static Typing (Panel a):** 1,000 `v2` draws yield 100% valid trees (`0` rejections), and typed variation passes checks on 86.8%–93.5% of edits. Untyped trees (`:untyped-validated`) reject ~91% of proposals (`6,199` rejections for `613` valid trees; 38.7% default fallbacks), explore only `6.0`–`8.5` trees, and collapse to `0.36461` HV on portfolios and `0.35601` on `wt40`.
+- **AST Knockouts (Panel b):** Deleting the search body (`K1`) drops HV by `-0.37724` (portfolios) and `-0.18466` (`wt40`), showing evolved loops carry most quality unlike preset greedy knapsack rules (Penchev & Marchev, 2026a). Zeroing `:score` (`K3`) cuts HV by `-0.11241` and `-0.11874`, dropping `:objective-1` (`K6`) costs `-0.02209` and `-0.01690`, while `K2`, `K4`, and `K5` shift HV within `-0.00039` to `+0.00088`.
+- **Cache Accounting (Panel c):** Under `cache? = true`, archives remain bitwise identical (`max-hv-abs-diff = 0.0`) while saving 17.5% of NASDAQ-50 calls (`10,771` calls over 240 runs; `147.0` to `127.7 ms`) and speeding up `wt40` (`684.8` to `597.5 ms`). Leaving cache hits uncharged would grant `22.7`–`42.5` free proposals and inflate HV by `+0.00163`–`+0.00256`.
 
 ![Figure 8: Mechanism ablations for static typing, AST knockouts, and evaluation caching.](figures/png300/fig5_mechanism_ablations_3panel.png)  
 Source: Authors' mechanism ablation experiments on frozen benchmarks.  
@@ -269,7 +287,7 @@ Author academic affiliations and ORCID identifiers appear in Footnotes 1 and 2 o
 
 1. *Faculty of Economics and Business Administration, Sofia University "St. Kliment Ohridski", Sofia, Bulgaria, ORCID: 0009-0000-8955-2474.*
 2. *Department of Management, University of National and World Economy (UNWE), and Faculty of Economics and Business Administration, Sofia University "St. Kliment Ohridski", Sofia, Bulgaria, ORCID: 0000-0002-5090-3123.*
-3. *Source code, experiment configurations, 30-seed replication logs, and the Yahoo Finance NASDAQ-50 dataset reconstruction script are available at https://github.com/npenchev88/typed-sexpr-hyperheuristics alongside the public OR-Library wt40 benchmark.*
+3. *Data provenance and code availability note: all Clojure code, frozen experimental configurations, 30-seed replication logs, and the Yahoo Finance NASDAQ-50 reconstruction script are archived in the authors' GitHub repository (Penchev & Marchev, 2026c), alongside the public OR-Library wt40 benchmark (Beasley, 1990).*
 
 ---
 
@@ -316,6 +334,8 @@ Parthasarathy, D., Mitchell, W. B., & Köstler, H. (2024). Evolving algebraic mu
 Penchev, N., & Marchev, A., Jr. (2026a). Evolution of interpretable optimization algorithms through typed S-expressions for binary knapsack-like portfolio selection. In *Artificial Intelligence: Methodology, Systems, and Applications (AIMSA)*.
 
 Penchev, N., & Marchev, A., Jr. (2026b). Multi-objective knapsack-like portfolio optimization using evolutionary algorithm (UNWE Research Project No. NID NI-11/2026/A). University of National and World Economy.
+
+Penchev, N., & Marchev, A., Jr. (2026c). *Typed S-expression hyper-heuristics in Clojure* [Computer software]. GitHub. https://github.com/npenchev88/typed-sexpr-hyperheuristics
 
 Romera-Paredes, B., Barekatain, M., Novikov, A., Balog, M., Kumar, M. P., Dupont, E., Ruiz, F. J. R., Ellenberg, J. S., Wang, P., Fawzi, O., Kohli, P., & Fawzi, A. (2024). Mathematical discoveries from program search with large language models. *Nature*, *625*, 468–475. https://doi.org/10.1038/s41586-023-06924-6
 

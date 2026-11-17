@@ -364,8 +364,8 @@
      sb {:x0 64 :y0 26 :pw 292 :ph 232
          :panel-label "(a)"
          :title "NASDAQ Portfolio (N=15, K=5, T=90)"
-         :x-label "Obj. 1: Negative Mean Daily Return -mu_p (min)"
-         :y-label "Obj. 2: Daily Risk sigma_p (min)"
+         :x-label "Obj. 1: Negative Mean Daily Return (−μp, min)"
+         :y-label "Obj. 2: Daily Risk (σp, min)"
          :dominated-points p-dom
          :initial-points p-init
          :pareto-points p-front
@@ -394,33 +394,34 @@
          :x-decimals 1 :y-decimals 0})
     ;; Shared Legend Bar at Bottom
     (let [ly 304]
-      (.append sb (fmt "  <rect x=\"64\" y=\"%d\" width=\"670\" height=\"30\" rx=\"4\" fill=\"%s\" stroke=\"%s\" stroke-width=\"0.8\"/>\n"
-                       ly (:panel-bg palette) (:border palette)))
-      ;; Item 1: Initial Random (Amber Triangle)
       (.append sb (fmt "  <rect x=\"64\" y=\"%d\" width=\"670\" height=\"26\" fill=\"#ffffff\" stroke=\"#cccccc\" stroke-width=\"0.8\"/>\n"
                        ly))
       ;; Item 1: Initial Random
-      (.append sb (draw-marker :triangle 82 (+ ly 13) 3.4 (:amber palette) (:amber-dk palette) 0.9 0.95))
-      (.append sb (fmt "  <text x=\"92\" y=\"%d\" font-size=\"9\" fill=\"#000000\" dominant-baseline=\"middle\">Initial Random Solutions</text>\n"
+      (.append sb (draw-marker :triangle 78 (+ ly 13) 3.4 (:amber palette) (:amber-dk palette) 0.9 0.95))
+      (.append sb (fmt "  <text x=\"87\" y=\"%d\" font-size=\"8.8\" fill=\"#000000\" dominant-baseline=\"middle\">Initial Random</text>\n"
                        (+ ly 14)))
       ;; Item 2: Dominated Cloud
-      (.append sb (fmt "  <circle cx=\"224\" cy=\"%d\" r=\"2.8\" fill=\"%s\" fill-opacity=\"0.65\"/>\n" (+ ly 13) (:slate palette)))
-      (.append sb (fmt "  <text x=\"233\" y=\"%d\" font-size=\"9\" fill=\"#000000\" dominant-baseline=\"middle\">Dominated Solutions</text>\n"
+      (.append sb (fmt "  <circle cx=\"172\" cy=\"%d\" r=\"2.8\" fill=\"%s\" fill-opacity=\"0.65\"/>\n" (+ ly 13) (:slate palette)))
+      (.append sb (fmt "  <text x=\"180\" y=\"%d\" font-size=\"8.8\" fill=\"#000000\" dominant-baseline=\"middle\">Dominated</text>\n"
                        (+ ly 14)))
       ;; Item 3: Nondominated Front
-      (.append sb (fmt "  <line x1=\"340\" y1=\"%d\" x2=\"364\" y2=\"%d\" stroke=\"%s\" stroke-width=\"1.8\"/>\n"
+      (.append sb (fmt "  <line x1=\"248\" y1=\"%d\" x2=\"270\" y2=\"%d\" stroke=\"%s\" stroke-width=\"1.8\"/>\n"
                        (+ ly 13) (+ ly 13) (:emerald palette)))
-      (.append sb (draw-marker :circle 352 (+ ly 13) 3.2 (:emerald palette) (:emerald-dk palette) 0.9 1.0))
-      (.append sb (fmt "  <text x=\"370\" y=\"%d\" font-size=\"9\" fill=\"#000000\" dominant-baseline=\"middle\">Pareto Front</text>\n"
+      (.append sb (draw-marker :circle 259 (+ ly 13) 3.2 (:emerald palette) (:emerald-dk palette) 0.9 1.0))
+      (.append sb (fmt "  <text x=\"276\" y=\"%d\" font-size=\"8.8\" fill=\"#000000\" dominant-baseline=\"middle\">Pareto Front</text>\n"
                        (+ ly 14)))
       ;; Item 4: Shaded Step Hypervolume
-      (.append sb (fmt "  <rect x=\"460\" y=\"%d\" width=\"14\" height=\"10\" fill=\"%s\" fill-opacity=\"0.18\" stroke=\"%s\" stroke-dasharray=\"2,2\" stroke-width=\"0.8\"/>\n"
+      (.append sb (fmt "  <rect x=\"354\" y=\"%d\" width=\"13\" height=\"10\" fill=\"%s\" fill-opacity=\"0.18\" stroke=\"%s\" stroke-dasharray=\"2,2\" stroke-width=\"0.8\"/>\n"
                        (+ ly 8) (:emerald palette) (:emerald-dk palette)))
-      (.append sb (fmt "  <text x=\"479\" y=\"%d\" font-size=\"9\" fill=\"#000000\" dominant-baseline=\"middle\">Hypervolume Region</text>\n"
+      (.append sb (fmt "  <text x=\"372\" y=\"%d\" font-size=\"8.8\" fill=\"#000000\" dominant-baseline=\"middle\">Hypervolume Region</text>\n"
                        (+ ly 14)))
-      ;; Item 5: Heuristics
-      (.append sb (draw-marker :diamond 608 (+ ly 13) 3.4 (:blue palette) (:blue-dk palette) 0.9 1.0))
-      (.append sb (fmt "  <text x=\"618\" y=\"%d\" font-size=\"9\" fill=\"#000000\" dominant-baseline=\"middle\">SPT / EDD Rules</text>\n"
+      ;; Item 5: SPT Rule (Green Diamond)
+      (.append sb (draw-marker :diamond 488 (+ ly 13) 3.4 (:blue palette) (:blue-dk palette) 0.9 1.0))
+      (.append sb (fmt "  <text x=\"497\" y=\"%d\" font-size=\"8.8\" fill=\"#000000\" dominant-baseline=\"middle\">SPT Rule</text>\n"
+                       (+ ly 14)))
+      ;; Item 6: EDD Rule (Purple Square)
+      (.append sb (draw-marker :square 568 (+ ly 13) 3.2 (:purple palette) (:purple-dk palette) 0.9 1.0))
+      (.append sb (fmt "  <text x=\"577\" y=\"%d\" font-size=\"8.8\" fill=\"#000000\" dominant-baseline=\"middle\">EDD Rule (wt40)</text>\n"
                        (+ ly 14))))
     (.append sb "</svg>\n")
     (io/make-parents out-path)
