@@ -27,7 +27,7 @@ This repository implements a generative multi-objective optimization framework i
 | **OR-Library `wt40`** | `:gp-mixed` (`A1`) | **`0.53974 ± 0.00438`** | `597.5 ms` | **`+0.01222` HV** (*p* < 0.0001, **wins 28/30 seeds**); strictly dominates knee schedule (`781.9 / 9,928.8` vs. `828.7 / 10,410.1`) |
 | **OR-Library `wt40`** | `:configured-conventional` (`A5`) | `0.52751 ± 0.00212` | `632.8 ms` | Validation-selected 19 NSGA-II / 11 PLS |
 
-Upgrading initialization from `development-only-v1` to `budget-aware-v2` yields `+0.02110` HV on NASDAQ-50 and `+0.02316` HV on `wt40` (*p* < 0.0001). All 7 publication figures in `docs/figures/springer/` (SVG) and `docs/figures/png300/` (360 DPI PNG) are generated directly from the experimental logs.
+Upgrading initialization from `development-only-v1` to `budget-aware-v2` yields `+0.02110` HV on NASDAQ-50 and `+0.02316` HV on `wt40` (*p* < 0.0001). All 9 publication figures in `docs/figures/springer/` (SVG) and `docs/figures/png300/` (360 DPI PNG) are generated directly from the experimental logs.
 
 ---
 
