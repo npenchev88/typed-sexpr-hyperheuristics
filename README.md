@@ -174,6 +174,7 @@ clojure -Srepro -M scripts/generate-springer-svgs.clj
 ├── docs/
 │   ├── PAPER_DRAFT_SPRINGER.md        # Extended Springer manuscript draft
 │   ├── PAPER_DRAFT_ASTI_UNWE.md       # Condensed ASTI / UNWE template manuscript (<= 5,000 words)
+│   ├── bg/                            # Bulgarian summaries (motivation, experiments, project overview)
 │   ├── evidence/                      # Logged confirmatory & ablation EDN results
 │   └── figures/                       # Clean publication SVGs and 360 DPI PNGs (9 figures)
 └── PROJECT_EXPLANATION_BG.txt         # Full explanatory summary in Bulgarian
